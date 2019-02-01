@@ -64,8 +64,14 @@ def perf_page_parser(table, all_songs, work_title, work_artist, work_id, inst_fl
 
             header = perf_soup.find_all('header', {'class': 'row'})[0]
             span_tags = header.find_all('span', {'itemprop': 'name'})
-            perf_title = span_tags[0].get_text()
-            perf_artist = span_tags[1].get_text()
+            try:
+                perf_title = span_tags[0].get_text()
+            except:
+                perf_title = 'None'
+            try:
+                perf_artist = span_tags[1].get_text()
+            except:
+                perf_artist = 'None'
 
             yt_link_shs = perf_soup.find_all("iframe")[0]['src']
             if yt_link_shs.split('/')[2] == 'www.youtube.com':
