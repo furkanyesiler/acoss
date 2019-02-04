@@ -1,0 +1,2070 @@
+{
+	"W_188261": {},
+	"W_188275": {
+		"P_708036": {
+			"work_title": "Masterpiece",
+			"work_artist": "Josh Alexander",
+			"perf_title": "Masterpiece",
+			"perf_artist": "Jessie J",
+			"release_year": "2014",
+			"work_id": "W_188275",
+			"perf_id": "P_708036",
+			"yt_link": "http://www.youtube.com/embed/PTOFEgJ9zzI",
+			"instrumental": "No"
+		},
+		"P_720446": {
+			"work_title": "Masterpiece",
+			"work_artist": "Josh Alexander",
+			"perf_title": "Masterpiece",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2014",
+			"work_id": "W_188275",
+			"perf_id": "P_720446",
+			"yt_link": "http://www.youtube.com/embed/GcH8YFe_kEw",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188285": {
+		"P_708063": {
+			"work_title": "Poppin'",
+			"work_artist": "Charlie Chalmers",
+			"perf_title": "Poppin'",
+			"perf_artist": "Charlie Chalmers",
+			"release_year": "1967",
+			"work_id": "W_188285",
+			"perf_id": "P_708063",
+			"yt_link": "http://www.youtube.com/embed/wXhzKXL5zZA",
+			"instrumental": "Yes"
+		},
+		"P_708064": {
+			"work_title": "Poppin'",
+			"work_artist": "Charlie Chalmers",
+			"perf_title": "Poppin",
+			"perf_artist": "Willie Mitchell",
+			"release_year": "1968",
+			"work_id": "W_188285",
+			"perf_id": "P_708064",
+			"yt_link": "http://www.youtube.com/embed/dlvhBSivpfI",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188286": {
+		"P_708071": {
+			"work_title": "Night Rumble",
+			"work_artist": "Terry Thompson",
+			"perf_title": "Night Rumble",
+			"perf_artist": "The Mark V",
+			"release_year": "1963",
+			"work_id": "W_188286",
+			"perf_id": "P_708071",
+			"yt_link": "http://www.youtube.com/embed/Fdde_4We1AA",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188290": {},
+	"W_188304": {
+		"P_708169": {
+			"work_title": "Cigaro",
+			"work_artist": "Daron Malakian",
+			"perf_title": "Cigaro",
+			"perf_artist": "System of a Down",
+			"release_year": "2005",
+			"work_id": "W_188304",
+			"perf_id": "P_708169",
+			"yt_link": "http://www.youtube.com/embed/ehwYjuZ6e_Q",
+			"instrumental": "No"
+		},
+		"P_708170": {
+			"work_title": "Cigaro",
+			"work_artist": "Daron Malakian",
+			"perf_title": "Cigaro",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2005",
+			"work_id": "W_188304",
+			"perf_id": "P_708170",
+			"yt_link": "http://www.youtube.com/embed/hr5HEZ0-JPU",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188305": {
+		"P_708172": {
+			"work_title": "Lonely Day",
+			"work_artist": "Daron Malakian",
+			"perf_title": "Lonely Day",
+			"perf_artist": "System of a Down",
+			"release_year": "2005",
+			"work_id": "W_188305",
+			"perf_id": "P_708172",
+			"yt_link": "http://www.youtube.com/embed/DnGdoEa1tPg",
+			"instrumental": "No"
+		},
+		"P_708174": {
+			"work_title": "Lonely Day",
+			"work_artist": "Daron Malakian",
+			"perf_title": "Lonely Day",
+			"perf_artist": "Yeah Baby! String Quartet",
+			"release_year": "2006",
+			"work_id": "W_188305",
+			"perf_id": "P_708174",
+			"yt_link": "http://www.youtube.com/embed/3oFal8Sgbpw",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188306": {
+		"P_708177": {
+			"work_title": "Radio Video",
+			"work_artist": "Daron Malakian",
+			"perf_title": "Radio/Video",
+			"perf_artist": "System of a Down",
+			"release_year": "2005",
+			"work_id": "W_188306",
+			"perf_id": "P_708177",
+			"yt_link": "http://www.youtube.com/embed/PI8KacxPovo",
+			"instrumental": "No"
+		},
+		"P_708176": {
+			"work_title": "Radio Video",
+			"work_artist": "Daron Malakian",
+			"perf_title": "Radio/Video",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2005",
+			"work_id": "W_188306",
+			"perf_id": "P_708176",
+			"yt_link": "http://www.youtube.com/embed/maOOtjjFOSM",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188323": {
+		"P_708221": {
+			"work_title": "Sure Thing",
+			"work_artist": "Happy Perez",
+			"perf_title": "Sure Thing",
+			"perf_artist": "Miguel",
+			"release_year": "2010",
+			"work_id": "W_188323",
+			"perf_id": "P_708221",
+			"yt_link": "http://www.youtube.com/embed/q4GJVOMjCC4",
+			"instrumental": "No"
+		},
+		"P_708223": {
+			"work_title": "Sure Thing",
+			"work_artist": "Happy Perez",
+			"perf_title": "Sure Thing",
+			"perf_artist": "Nathan Hermida",
+			"release_year": "2015",
+			"work_id": "W_188323",
+			"perf_id": "P_708223",
+			"yt_link": "http://www.youtube.com/embed/ljVGPnBVHgs",
+			"instrumental": "No"
+		}
+	},
+	"W_188447": {
+		"P_708857": {
+			"work_title": "Death or Glory",
+			"work_artist": "W\u00fcrzel",
+			"perf_title": "Death or Glory",
+			"perf_artist": "Mot\u00f6rhead",
+			"release_year": "1993",
+			"work_id": "W_188447",
+			"perf_id": "P_708857",
+			"yt_link": "http://www.youtube.com/embed/vewOMBltXrk",
+			"instrumental": "No"
+		},
+		"P_708866": {
+			"work_title": "Death or Glory",
+			"work_artist": "W\u00fcrzel",
+			"perf_title": "Death or Glory",
+			"perf_artist": "Witchgoat",
+			"release_year": "2014",
+			"work_id": "W_188447",
+			"perf_id": "P_708866",
+			"yt_link": "http://www.youtube.com/embed/XbKajD5cSQE",
+			"instrumental": "No"
+		}
+	},
+	"W_188448": {
+		"P_708856": {
+			"work_title": "I Am the Sword",
+			"work_artist": "W\u00fcrzel",
+			"perf_title": "I Am the Sword",
+			"perf_artist": "Mot\u00f6rhead",
+			"release_year": "1993",
+			"work_id": "W_188448",
+			"perf_id": "P_708856",
+			"yt_link": "http://www.youtube.com/embed/T7bdkelejfQ",
+			"instrumental": "No"
+		},
+		"P_735284": {
+			"work_title": "I Am the Sword",
+			"work_artist": "W\u00fcrzel",
+			"perf_title": "I Am the Sword",
+			"perf_artist": "Quasimodo",
+			"release_year": "2001",
+			"work_id": "W_188448",
+			"perf_id": "P_735284",
+			"yt_link": "http://www.youtube.com/embed/CRmsAqGe-Kw",
+			"instrumental": "No"
+		},
+		"P_708867": {
+			"work_title": "I Am the Sword",
+			"work_artist": "W\u00fcrzel",
+			"perf_title": "I Am the Sword",
+			"perf_artist": "Mortar",
+			"release_year": "2014",
+			"work_id": "W_188448",
+			"perf_id": "P_708867",
+			"yt_link": "http://www.youtube.com/embed/VbHmeBHGCOQ",
+			"instrumental": "No"
+		}
+	},
+	"W_188454": {
+		"P_708944": {
+			"work_title": "Joe's Garage",
+			"work_artist": "Frank Zappa",
+			"perf_title": "Joe's Garage",
+			"perf_artist": "Frank Zappa",
+			"release_year": "1979",
+			"work_id": "W_188454",
+			"perf_id": "P_708944",
+			"yt_link": "http://www.youtube.com/embed/_oH8u9PxWJo",
+			"instrumental": "No"
+		}
+	},
+	"W_188457": {},
+	"W_188462": {
+		"P_709052": {
+			"work_title": "Banned in Boston",
+			"work_artist": "Clint Ballard Jr.",
+			"perf_title": "Banned in Boston",
+			"perf_artist": "Merv Griffin with Sid Bass Orchestra and Chorus",
+			"release_year": "1961",
+			"work_id": "W_188462",
+			"perf_id": "P_709052",
+			"yt_link": "http://www.youtube.com/embed/KDFlka11Wlw",
+			"instrumental": "No"
+		},
+		"P_709053": {
+			"work_title": "Banned in Boston",
+			"work_artist": "Clint Ballard Jr.",
+			"perf_title": "Banned in Boston",
+			"perf_artist": "The Viscounts",
+			"release_year": "1961",
+			"work_id": "W_188462",
+			"perf_id": "P_709053",
+			"yt_link": "http://www.youtube.com/embed/-rZoqFH0Tlk",
+			"instrumental": "No"
+		}
+	},
+	"W_188468": {
+		"P_709066": {
+			"work_title": "Tennis Court",
+			"work_artist": "Joel Little",
+			"perf_title": "Tennis Court",
+			"perf_artist": "Lorde",
+			"release_year": "2013",
+			"work_id": "W_188468",
+			"perf_id": "P_709066",
+			"yt_link": "http://www.youtube.com/embed/D8Ymd-OCucs",
+			"instrumental": "No"
+		},
+		"P_727274": {
+			"work_title": "Tennis Court",
+			"work_artist": "Joel Little",
+			"perf_title": "Tennis Court",
+			"perf_artist": "Winston K.",
+			"release_year": "2014",
+			"work_id": "W_188468",
+			"perf_id": "P_727274",
+			"yt_link": "http://www.youtube.com/embed/D6UODHsEB0A",
+			"instrumental": "No"
+		}
+	},
+	"W_188469": {
+		"P_709068": {
+			"work_title": "The Love Club",
+			"work_artist": "Joel Little",
+			"perf_title": "The Love Club",
+			"perf_artist": "Lorde",
+			"release_year": "2013",
+			"work_id": "W_188469",
+			"perf_id": "P_709068",
+			"yt_link": "http://www.youtube.com/embed/Ca50eYQR58Q",
+			"instrumental": "No"
+		},
+		"P_727279": {
+			"work_title": "The Love Club",
+			"work_artist": "Joel Little",
+			"perf_title": "The Love Club",
+			"perf_artist": "Winston K.",
+			"release_year": "2014",
+			"work_id": "W_188469",
+			"perf_id": "P_727279",
+			"yt_link": "http://www.youtube.com/embed/9A0zIb0GrNU",
+			"instrumental": "No"
+		}
+	},
+	"W_188484": {
+		"P_709148": {
+			"work_title": "I'm So Happy I Can't Stop Crying",
+			"work_artist": "Sting",
+			"perf_title": "I'm So Happy I Can't Stop Crying",
+			"perf_artist": "Sting",
+			"release_year": "1996",
+			"work_id": "W_188484",
+			"perf_id": "P_709148",
+			"yt_link": "http://www.youtube.com/embed/c9LsgjW_1uA",
+			"instrumental": "No"
+		},
+		"P_710705": {
+			"work_title": "I'm So Happy I Can't Stop Crying",
+			"work_artist": "Sting",
+			"perf_title": "I'm So Happy I Can't Stop Crying",
+			"perf_artist": "Toby Keith with Sting",
+			"release_year": "1997",
+			"work_id": "W_188484",
+			"perf_id": "P_710705",
+			"yt_link": "http://www.youtube.com/embed/24HG0Hw-2f0",
+			"instrumental": "No"
+		}
+	},
+	"W_188709": {
+		"P_710719": {
+			"work_title": "Moon Mist",
+			"work_artist": "Mercer Ellington",
+			"perf_title": "Moon Mist",
+			"perf_artist": "Duke Ellington and His Famous Orchestra",
+			"release_year": "1942",
+			"work_id": "W_188709",
+			"perf_id": "P_710719",
+			"yt_link": "http://www.youtube.com/embed/zmlayIeEOJQ",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188710": {
+		"P_710783": {
+			"work_title": "Cool Girl",
+			"work_artist": "Jakob Jerlstr\u00f6m",
+			"perf_title": "Cool Girl",
+			"perf_artist": "Tove Lo",
+			"release_year": "2016",
+			"work_id": "W_188710",
+			"perf_id": "P_710783",
+			"yt_link": "http://www.youtube.com/embed/XsFneCExrCQ",
+			"instrumental": "No"
+		},
+		"P_710784": {
+			"work_title": "Cool Girl",
+			"work_artist": "Jakob Jerlstr\u00f6m",
+			"perf_title": "Cool Girl",
+			"perf_artist": "Emma Heesters",
+			"release_year": "2016",
+			"work_id": "W_188710",
+			"perf_id": "P_710784",
+			"yt_link": "http://www.youtube.com/embed/vB5RGQfTjIA",
+			"instrumental": "No"
+		},
+		"P_722536": {
+			"work_title": "Cool Girl",
+			"work_artist": "Jakob Jerlstr\u00f6m",
+			"perf_title": "Cool Boy",
+			"perf_artist": "Jacob Wellfair",
+			"release_year": "2017",
+			"work_id": "W_188710",
+			"perf_id": "P_722536",
+			"yt_link": "http://www.youtube.com/embed/-JUlHmCz8e0",
+			"instrumental": "No"
+		}
+	},
+	"W_188715": {
+		"P_710807": {
+			"work_title": "Everyday",
+			"work_artist": "Ariana Grande",
+			"perf_title": "Everyday",
+			"perf_artist": "Ariana Grande ft. Future",
+			"release_year": "2016",
+			"work_id": "W_188715",
+			"perf_id": "P_710807",
+			"yt_link": "http://www.youtube.com/embed/oHmBf4ExtZk",
+			"instrumental": "No"
+		},
+		"P_710808": {
+			"work_title": "Everyday",
+			"work_artist": "Ariana Grande",
+			"perf_title": "Everyday",
+			"perf_artist": "Emma Heesters",
+			"release_year": "2017",
+			"work_id": "W_188715",
+			"perf_id": "P_710808",
+			"yt_link": "http://www.youtube.com/embed/TfFcYJH4FQw",
+			"instrumental": "No"
+		}
+	},
+	"W_188728": {
+		"P_710886": {
+			"work_title": "The Infant's Song",
+			"work_artist": "Gigi Gryce",
+			"perf_title": "The Infant Song",
+			"perf_artist": "Art Farmer Quintet featuring Gigi Gryce",
+			"release_year": "1957",
+			"work_id": "W_188728",
+			"perf_id": "P_710886",
+			"yt_link": "http://www.youtube.com/embed/D0zEB-JvV08",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188742": {
+		"P_710985": {
+			"work_title": "Psycho",
+			"work_artist": "Louis Bell",
+			"perf_title": "Psycho",
+			"perf_artist": "Post Malone - Ty Dolla $ign",
+			"release_year": "2018",
+			"work_id": "W_188742",
+			"perf_id": "P_710985",
+			"yt_link": "http://www.youtube.com/embed/au2n7VVGv_c",
+			"instrumental": "No"
+		},
+		"P_776499": {
+			"work_title": "Psycho",
+			"work_artist": "Louis Bell",
+			"perf_title": "Psycho",
+			"perf_artist": "Shawn Mendes",
+			"release_year": "2018",
+			"work_id": "W_188742",
+			"perf_id": "P_776499",
+			"yt_link": "http://www.youtube.com/embed/iPf_ifCKftc",
+			"instrumental": "No"
+		}
+	},
+	"W_188747": {
+		"P_717906": {
+			"work_title": "Fill Me up (Heart to Heart)",
+			"work_artist": "Gregg Diamond",
+			"perf_title": "Fill Me up (Heart to Heart)",
+			"perf_artist": "The Andrea True Connection",
+			"release_year": "1976",
+			"work_id": "W_188747",
+			"perf_id": "P_717906",
+			"yt_link": "http://www.youtube.com/embed/ZRFKXjeHj1Q",
+			"instrumental": "No"
+		},
+		"P_717909": {
+			"work_title": "Fill Me up (Heart to Heart)",
+			"work_artist": "Gregg Diamond",
+			"perf_title": "Fill Me up (Heart to Heart)",
+			"perf_artist": "Caress",
+			"release_year": "1976",
+			"work_id": "W_188747",
+			"perf_id": "P_717909",
+			"yt_link": "http://www.youtube.com/embed/ZdZ9w2pKyMY",
+			"instrumental": "No"
+		}
+	},
+	"W_188750": {
+		"P_716179": {
+			"work_title": "Love Is Where You Find It",
+			"work_artist": "J.C. Crowley",
+			"perf_title": "Love Is Where You Find It",
+			"perf_artist": "The Whitney Family",
+			"release_year": "1977",
+			"work_id": "W_188750",
+			"perf_id": "P_716179",
+			"yt_link": "http://www.youtube.com/embed/wRZTPmeWeJA",
+			"instrumental": "No"
+		},
+		"P_716177": {
+			"work_title": "Love Is Where You Find It",
+			"work_artist": "J.C. Crowley",
+			"perf_title": "Love Is Where You Find It",
+			"perf_artist": "Player",
+			"release_year": "1977",
+			"work_id": "W_188750",
+			"perf_id": "P_716177",
+			"yt_link": "http://www.youtube.com/embed/HHlyLyYkvc8",
+			"instrumental": "No"
+		}
+	},
+	"W_188757": {
+		"P_712976": {
+			"work_title": "Make It Like It Was",
+			"work_artist": "Carvin Winans",
+			"perf_title": "Make It Like It Was",
+			"perf_artist": "Regina Belle",
+			"release_year": "1989",
+			"work_id": "W_188757",
+			"perf_id": "P_712976",
+			"yt_link": "http://www.youtube.com/embed/KUEAokGu1EA",
+			"instrumental": "No"
+		},
+		"P_712982": {
+			"work_title": "Make It Like It Was",
+			"work_artist": "Carvin Winans",
+			"perf_title": "Make It Like It Was",
+			"perf_artist": "Tito Nieves",
+			"release_year": "1991",
+			"work_id": "W_188757",
+			"perf_id": "P_712982",
+			"yt_link": "http://www.youtube.com/embed/FEwiDLp73t8",
+			"instrumental": "No"
+		}
+	},
+	"W_188760": {
+		"P_713553": {
+			"work_title": "You Got Me Running",
+			"work_artist": "Parker McGee",
+			"perf_title": "You Got Me Running",
+			"perf_artist": "Gene Cotton",
+			"release_year": "1976",
+			"work_id": "W_188760",
+			"perf_id": "P_713553",
+			"yt_link": "http://www.youtube.com/embed/NPHkFIyAwPM",
+			"instrumental": "No"
+		},
+		"P_713552": {
+			"work_title": "You Got Me Running",
+			"work_artist": "Parker McGee",
+			"perf_title": "You Got Me Runnin'",
+			"perf_artist": "Parker McGee",
+			"release_year": "1976",
+			"work_id": "W_188760",
+			"perf_id": "P_713552",
+			"yt_link": "http://www.youtube.com/embed/BnJxLGZe5gU",
+			"instrumental": "No"
+		},
+		"P_713554": {
+			"work_title": "You Got Me Running",
+			"work_artist": "Parker McGee",
+			"perf_title": "You Got Me Running",
+			"perf_artist": "Jim Glaser",
+			"release_year": "1983",
+			"work_id": "W_188760",
+			"perf_id": "P_713554",
+			"yt_link": "http://www.youtube.com/embed/REGW7Al0Lw4",
+			"instrumental": "No"
+		}
+	},
+	"W_188766": {
+		"P_718264": {
+			"work_title": "I Got This Thing for Your Love",
+			"work_artist": "Greg Guidry",
+			"perf_title": "I Got This Thing for Your Love",
+			"perf_artist": "Johnnie Taylor",
+			"release_year": "1980",
+			"work_id": "W_188766",
+			"perf_id": "P_718264",
+			"yt_link": "http://www.youtube.com/embed/dTNcqvB0Md8",
+			"instrumental": "No"
+		},
+		"P_718267": {
+			"work_title": "I Got This Thing for Your Love",
+			"work_artist": "Greg Guidry",
+			"perf_title": "I Got This Thing for Your Love",
+			"perf_artist": "The Aliis",
+			"release_year": "1981",
+			"work_id": "W_188766",
+			"perf_id": "P_718267",
+			"yt_link": "http://www.youtube.com/embed/2CiMnqijBzU",
+			"instrumental": "No"
+		},
+		"P_718270": {
+			"work_title": "I Got This Thing for Your Love",
+			"work_artist": "Greg Guidry",
+			"perf_title": "I Got This Thing",
+			"perf_artist": "Greg Guidry",
+			"release_year": "2000",
+			"work_id": "W_188766",
+			"perf_id": "P_718270",
+			"yt_link": "http://www.youtube.com/embed/xQIZBvxwaUc",
+			"instrumental": "No"
+		}
+	},
+	"W_188772": {
+		"P_711017": {
+			"work_title": "Lay a Little Lovin' on Me",
+			"work_artist": "Jeff Barry",
+			"perf_title": "Lay a Little Lovin' on Me",
+			"perf_artist": "Robin McNamara",
+			"release_year": "1970",
+			"work_id": "W_188772",
+			"perf_id": "P_711017",
+			"yt_link": "http://www.youtube.com/embed/wBXJVZ856fU",
+			"instrumental": "No"
+		},
+		"P_711020": {
+			"work_title": "Lay a Little Lovin' on Me",
+			"work_artist": "Jeff Barry",
+			"perf_title": "Lay a Little Lovin' on Me",
+			"perf_artist": "Love Generation",
+			"release_year": "1974",
+			"work_id": "W_188772",
+			"perf_id": "P_711020",
+			"yt_link": "http://www.youtube.com/embed/xYwOZHNjA58",
+			"instrumental": "No"
+		},
+		"P_711019": {
+			"work_title": "Lay a Little Lovin' on Me",
+			"work_artist": "Jeff Barry",
+			"perf_title": "Lay a Little Lovin' on Me",
+			"perf_artist": "Jody Miller",
+			"release_year": "1979",
+			"work_id": "W_188772",
+			"perf_id": "P_711019",
+			"yt_link": "http://www.youtube.com/embed/7Oq5jeUHQ7U",
+			"instrumental": "No"
+		}
+	},
+	"W_188777": {
+		"P_711080": {
+			"work_title": "Soul Shoutin'",
+			"work_artist": "Stanley Turrentine",
+			"perf_title": "Soul Shoutin'",
+			"perf_artist": "Shirley Scott",
+			"release_year": "1964",
+			"work_id": "W_188777",
+			"perf_id": "P_711080",
+			"yt_link": "http://www.youtube.com/embed/XyXSDHzcE2w",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188788": {
+		"P_711235": {
+			"work_title": "Lay a Little Loving on Me",
+			"work_artist": "Charlie Craig",
+			"perf_title": "Lay a Little Lovin' on Me",
+			"perf_artist": "Del Reeves",
+			"release_year": "1973",
+			"work_id": "W_188788",
+			"perf_id": "P_711235",
+			"yt_link": "http://www.youtube.com/embed/GBOxCB8mf-4",
+			"instrumental": "No"
+		},
+		"P_711254": {
+			"work_title": "Lay a Little Loving on Me",
+			"work_artist": "Charlie Craig",
+			"perf_title": "Lay a Little Lovin' on Me",
+			"perf_artist": "Bill Medley",
+			"release_year": "1978",
+			"work_id": "W_188788",
+			"perf_id": "P_711254",
+			"yt_link": "http://www.youtube.com/embed/SghB4fZxuRg",
+			"instrumental": "No"
+		}
+	},
+	"W_188789": {
+		"P_711273": {
+			"work_title": "New Age",
+			"work_artist": "Guy Chambers",
+			"perf_title": "New Age",
+			"perf_artist": "Marlon Roudette",
+			"release_year": "2011",
+			"work_id": "W_188789",
+			"perf_id": "P_711273",
+			"yt_link": "http://www.youtube.com/embed/Jk5kYjD9E1I",
+			"instrumental": "No"
+		},
+		"P_711274": {
+			"work_title": "New Age",
+			"work_artist": "Guy Chambers",
+			"perf_title": "New Age",
+			"perf_artist": "Grant Scott",
+			"release_year": "2012",
+			"work_id": "W_188789",
+			"perf_id": "P_711274",
+			"yt_link": "http://www.youtube.com/embed/omE9z9Z-KXY",
+			"instrumental": "No"
+		},
+		"P_718613": {
+			"work_title": "New Age",
+			"work_artist": "Guy Chambers",
+			"perf_title": "New Age",
+			"perf_artist": "Sandra van Nieuwland",
+			"release_year": "2012",
+			"work_id": "W_188789",
+			"perf_id": "P_718613",
+			"yt_link": "http://www.youtube.com/embed/4yi6ktjnwVw",
+			"instrumental": "No"
+		}
+	},
+	"W_188792": {
+		"P_711321": {
+			"work_title": "I'm Not My Father's Son",
+			"work_artist": "Cyndi Lauper",
+			"perf_title": "Not My Father's Son",
+			"perf_artist": "Billy Porter, Stark Sands",
+			"release_year": "",
+			"work_id": "W_188792",
+			"perf_id": "P_711321",
+			"yt_link": "http://www.youtube.com/embed/kxNSyorwck4",
+			"instrumental": "No"
+		},
+		"P_711318": {
+			"work_title": "I'm Not My Father's Son",
+			"work_artist": "Cyndi Lauper",
+			"perf_title": "Not My Father's Son",
+			"perf_artist": "Billy Porter, Stark Sands",
+			"release_year": "2013",
+			"work_id": "W_188792",
+			"perf_id": "P_711318",
+			"yt_link": "http://www.youtube.com/embed/q6Ups_EU-wE",
+			"instrumental": "No"
+		}
+	},
+	"W_188878": {
+		"P_716303": {
+			"work_title": "Hang on in",
+			"work_artist": "Norman Saleet",
+			"perf_title": "Hang on in",
+			"perf_artist": "Art Garfunkel",
+			"release_year": "1981",
+			"work_id": "W_188878",
+			"perf_id": "P_716303",
+			"yt_link": "http://www.youtube.com/embed/wdlMQFk_qdc",
+			"instrumental": "No"
+		},
+		"P_716304": {
+			"work_title": "Hang on in",
+			"work_artist": "Norman Saleet",
+			"perf_title": "Hang on in",
+			"perf_artist": "Tycoon",
+			"release_year": "1981",
+			"work_id": "W_188878",
+			"perf_id": "P_716304",
+			"yt_link": "http://www.youtube.com/embed/CYiC5IJh470",
+			"instrumental": "No"
+		},
+		"P_716305": {
+			"work_title": "Hang on in",
+			"work_artist": "Norman Saleet",
+			"perf_title": "Hang on in",
+			"perf_artist": "Norman Saleet",
+			"release_year": "1982",
+			"work_id": "W_188878",
+			"perf_id": "P_716305",
+			"yt_link": "http://www.youtube.com/embed/OaY_NMp0IT4",
+			"instrumental": "No"
+		}
+	},
+	"W_188882": {
+		"P_714004": {
+			"work_title": "It's a Crazy World",
+			"work_artist": "Mac McAnally",
+			"perf_title": "It's a Crazy World",
+			"perf_artist": "Doc & Merle Watson",
+			"release_year": "1978",
+			"work_id": "W_188882",
+			"perf_id": "P_714004",
+			"yt_link": "http://www.youtube.com/embed/h9LwR8Hadg4",
+			"instrumental": "No"
+		},
+		"P_714054": {
+			"work_title": "It's a Crazy World",
+			"work_artist": "Mac McAnally",
+			"perf_title": "It's a Crazy World",
+			"perf_artist": "Steve Wariner",
+			"release_year": "1987",
+			"work_id": "W_188882",
+			"perf_id": "P_714054",
+			"yt_link": "http://www.youtube.com/embed/wJiEhjuO0KM",
+			"instrumental": "No"
+		}
+	},
+	"W_188884": {
+		"P_714019": {
+			"work_title": "Nickel Dreams",
+			"work_artist": "Donny Lowery",
+			"perf_title": "Nickel Dreams",
+			"perf_artist": "Mac Davis",
+			"release_year": "1984",
+			"work_id": "W_188884",
+			"perf_id": "P_714019",
+			"yt_link": "http://www.youtube.com/embed/m2w_HKUXX4Q",
+			"instrumental": "No"
+		},
+		"P_714026": {
+			"work_title": "Nickel Dreams",
+			"work_artist": "Donny Lowery",
+			"perf_title": "Nickel Dreams",
+			"perf_artist": "Nanci Griffith",
+			"release_year": "1987",
+			"work_id": "W_188884",
+			"perf_id": "P_714026",
+			"yt_link": "http://www.youtube.com/embed/qPvtsBBGLhU",
+			"instrumental": "No"
+		}
+	},
+	"W_188988": {
+		"P_712370": {
+			"work_title": "Hub-Tones",
+			"work_artist": "Freddie Hubbard",
+			"perf_title": "Hub-Tones",
+			"perf_artist": "Freddie Hubbard",
+			"release_year": "1963",
+			"work_id": "W_188988",
+			"perf_id": "P_712370",
+			"yt_link": "http://www.youtube.com/embed/w4f37gpeTsI",
+			"instrumental": "Yes"
+		},
+		"P_733100": {
+			"work_title": "Hub-Tones",
+			"work_artist": "Freddie Hubbard",
+			"perf_title": "Hub-Tones",
+			"perf_artist": "Ray Vega",
+			"release_year": "1999",
+			"work_id": "W_188988",
+			"perf_id": "P_733100",
+			"yt_link": "http://www.youtube.com/embed/1kR1lTBFO7Q",
+			"instrumental": "Yes"
+		},
+		"P_712371": {
+			"work_title": "Hub-Tones",
+			"work_artist": "Freddie Hubbard",
+			"perf_title": "Hub-Tones",
+			"perf_artist": "Kamasi Washington",
+			"release_year": "2018",
+			"work_id": "W_188988",
+			"perf_id": "P_712371",
+			"yt_link": "http://www.youtube.com/embed/e8xA3voo9v4",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188992": {},
+	"W_189053": {},
+	"W_189062": {
+		"P_713001": {
+			"work_title": "I Cry Myself to Sleep at Night",
+			"work_artist": "Anthony Mitman",
+			"perf_title": "I Cry Myself to Sleep at NIght",
+			"perf_artist": "Romeo's Daughter",
+			"release_year": "1988",
+			"work_id": "W_189062",
+			"perf_id": "P_713001",
+			"yt_link": "http://www.youtube.com/embed/_RP5N_iZgsY",
+			"instrumental": "No"
+		},
+		"P_713016": {
+			"work_title": "I Cry Myself to Sleep at Night",
+			"work_artist": "Anthony Mitman",
+			"perf_title": "Cry Myself to Sleep",
+			"perf_artist": "Chrissy Steele",
+			"release_year": "1991",
+			"work_id": "W_189062",
+			"perf_id": "P_713016",
+			"yt_link": "http://www.youtube.com/embed/0JwDM3GIe4c",
+			"instrumental": "No"
+		},
+		"P_713004": {
+			"work_title": "I Cry Myself to Sleep at Night",
+			"work_artist": "Anthony Mitman",
+			"perf_title": "I Cry Myself to Sleep at Night",
+			"perf_artist": "Bonnie Tyler",
+			"release_year": "1992",
+			"work_id": "W_189062",
+			"perf_id": "P_713004",
+			"yt_link": "http://www.youtube.com/embed/EsG8FyI2kKs",
+			"instrumental": "No"
+		}
+	},
+	"W_189065": {
+		"P_713030": {
+			"work_title": "What's on Your Mind",
+			"work_artist": "Glen Ballard",
+			"perf_title": "What's on Your Mind",
+			"perf_artist": "George Benson",
+			"release_year": "1980",
+			"work_id": "W_189065",
+			"perf_id": "P_713030",
+			"yt_link": "http://www.youtube.com/embed/RVwbsocn18s",
+			"instrumental": "No"
+		},
+		"P_713032": {
+			"work_title": "What's on Your Mind",
+			"work_artist": "Glen Ballard",
+			"perf_title": "What's on Your Mind",
+			"perf_artist": "Taffy McElroy",
+			"release_year": "1981",
+			"work_id": "W_189065",
+			"perf_id": "P_713032",
+			"yt_link": "http://www.youtube.com/embed/cTjjEAbkKIs",
+			"instrumental": "No"
+		},
+		"P_713031": {
+			"work_title": "What's on Your Mind",
+			"work_artist": "Glen Ballard",
+			"perf_title": "What's on Your Mind",
+			"perf_artist": "Cheryl Barnes",
+			"release_year": "2015",
+			"work_id": "W_189065",
+			"perf_id": "P_713031",
+			"yt_link": "http://www.youtube.com/embed/k9jhOxuGvaM",
+			"instrumental": "No"
+		}
+	},
+	"W_189077": {
+		"P_713558": {
+			"work_title": "Lonely Won't Leave Me Alone",
+			"work_artist": "David Foster [CA]",
+			"perf_title": "Lonely Won't Leave Me Alone",
+			"perf_artist": "Glenn Medeiros",
+			"release_year": "1987",
+			"work_id": "W_189077",
+			"perf_id": "P_713558",
+			"yt_link": "http://www.youtube.com/embed/Le9Anv_EzvE",
+			"instrumental": "No"
+		}
+	},
+	"W_189118": {
+		"P_713465": {
+			"work_title": "Jaco",
+			"work_artist": "Pat Metheny",
+			"perf_title": "Jaco",
+			"perf_artist": "Pat Metheny Group",
+			"release_year": "1978",
+			"work_id": "W_189118",
+			"perf_id": "P_713465",
+			"yt_link": "http://www.youtube.com/embed/1oEbh5G4Sek",
+			"instrumental": "Yes"
+		},
+		"P_713467": {
+			"work_title": "Jaco",
+			"work_artist": "Pat Metheny",
+			"perf_title": "Jaco",
+			"perf_artist": "Turtle Island String Quartet",
+			"release_year": "1989",
+			"work_id": "W_189118",
+			"perf_id": "P_713467",
+			"yt_link": "http://www.youtube.com/embed/wNt8K_CA_ro",
+			"instrumental": "Yes"
+		},
+		"P_713466": {
+			"work_title": "Jaco",
+			"work_artist": "Pat Metheny",
+			"perf_title": "Jaco",
+			"perf_artist": "The Jeff Benedict Big Big Band",
+			"release_year": "2015",
+			"work_id": "W_189118",
+			"perf_id": "P_713466",
+			"yt_link": "http://www.youtube.com/embed/i0Aw3O7msWg",
+			"instrumental": "Yes"
+		}
+	},
+	"W_189125": {
+		"P_713593": {
+			"work_title": "Make Believe Dreams",
+			"work_artist": "Mitchell Tableporter",
+			"perf_title": "Make Believe Dreams",
+			"perf_artist": "Dinah Washington",
+			"release_year": "1952",
+			"work_id": "W_189125",
+			"perf_id": "P_713593",
+			"yt_link": "http://www.youtube.com/embed/cYy6t8hK2d8",
+			"instrumental": "No"
+		}
+	},
+	"W_189155": {},
+	"W_189157": {
+		"P_713815": {
+			"work_title": "By My Side",
+			"work_artist": "Andrew Farriss",
+			"perf_title": "By My Side",
+			"perf_artist": "INXS",
+			"release_year": "1990",
+			"work_id": "W_189157",
+			"perf_id": "P_713815",
+			"yt_link": "http://www.youtube.com/embed/2CXUcihuVJc",
+			"instrumental": "No"
+		},
+		"P_713816": {
+			"work_title": "By My Side",
+			"work_artist": "Andrew Farriss",
+			"perf_title": "By My Side",
+			"perf_artist": "Robbie Balmer",
+			"release_year": "2014",
+			"work_id": "W_189157",
+			"perf_id": "P_713816",
+			"yt_link": "http://www.youtube.com/embed/NHyVCKRlPHc",
+			"instrumental": "No"
+		}
+	},
+	"W_189172": {
+		"P_713874": {
+			"work_title": "Blue Valentine's Day",
+			"work_artist": "Eiichi Ohtaki",
+			"perf_title": "Blue Valentine's Day",
+			"perf_artist": "\u5927\u6edd \u8a60\u4e00",
+			"release_year": "1977",
+			"work_id": "W_189172",
+			"perf_id": "P_713874",
+			"yt_link": "http://www.youtube.com/embed/BN_SyLZScTM",
+			"instrumental": "No"
+		}
+	},
+	"W_189185": {
+		"P_713947": {
+			"work_title": "Patterns",
+			"work_artist": "Dave Shire",
+			"perf_title": "Patterns",
+			"perf_artist": "Karen Akers",
+			"release_year": "2004",
+			"work_id": "W_189185",
+			"perf_id": "P_713947",
+			"yt_link": "http://www.youtube.com/embed/N6Ry1qy2lUM",
+			"instrumental": "No"
+		}
+	},
+	"W_189192": {
+		"P_713999": {
+			"work_title": "A Light in the Dark",
+			"work_artist": "Tom Kitt",
+			"perf_title": "A Light in the Dark",
+			"perf_artist": "Brian d'Arcy James and Alice Ripley",
+			"release_year": "",
+			"work_id": "W_189192",
+			"perf_id": "P_713999",
+			"yt_link": "http://www.youtube.com/embed/8Z-jYhBU1pM",
+			"instrumental": "No"
+		}
+	},
+	"W_189346": {
+		"P_714878": {
+			"work_title": "Two in Love",
+			"work_artist": "Meredith Willson",
+			"perf_title": "Two in Love",
+			"perf_artist": "Tommy Dorsey and His Orchestra - Vocal Refrain by Frank Sinatra",
+			"release_year": "1941",
+			"work_id": "W_189346",
+			"perf_id": "P_714878",
+			"yt_link": "http://www.youtube.com/embed/d0rWQo3OPUc",
+			"instrumental": "No"
+		}
+	},
+	"W_189360": {},
+	"W_189375": {
+		"P_714979": {
+			"work_title": "Haunted",
+			"work_artist": "Amy Lee",
+			"perf_title": "Haunted",
+			"perf_artist": "Evanescence",
+			"release_year": "2003",
+			"work_id": "W_189375",
+			"perf_id": "P_714979",
+			"yt_link": "http://www.youtube.com/embed/di8zQcabGBc",
+			"instrumental": "No"
+		},
+		"P_782590": {
+			"work_title": "Haunted",
+			"work_artist": "Amy Lee",
+			"perf_title": "Haunted",
+			"perf_artist": "The Gothacoustic Ensemble",
+			"release_year": "2004",
+			"work_id": "W_189375",
+			"perf_id": "P_782590",
+			"yt_link": "http://www.youtube.com/embed/zWi84Pm4wC0",
+			"instrumental": "No"
+		},
+		"P_714980": {
+			"work_title": "Haunted",
+			"work_artist": "Amy Lee",
+			"perf_title": "Haunted",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2003",
+			"work_id": "W_189375",
+			"perf_id": "P_714980",
+			"yt_link": "http://www.youtube.com/embed/hNdd-xqBo90",
+			"instrumental": "Yes"
+		}
+	},
+	"W_189376": {
+		"P_714981": {
+			"work_title": "Hello",
+			"work_artist": "Amy Lee",
+			"perf_title": "Hello",
+			"perf_artist": "Evanescence",
+			"release_year": "2003",
+			"work_id": "W_189376",
+			"perf_id": "P_714981",
+			"yt_link": "http://www.youtube.com/embed/HPam_3D9eXU",
+			"instrumental": "No"
+		},
+		"P_782581": {
+			"work_title": "Hello",
+			"work_artist": "Amy Lee",
+			"perf_title": "Hello",
+			"perf_artist": "The Gothacoustic Ensemble",
+			"release_year": "2004",
+			"work_id": "W_189376",
+			"perf_id": "P_782581",
+			"yt_link": "http://www.youtube.com/embed/WDiqmrn_raI",
+			"instrumental": "No"
+		},
+		"P_714983": {
+			"work_title": "Hello",
+			"work_artist": "Amy Lee",
+			"perf_title": "Hello [Evanescence]",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2003",
+			"work_id": "W_189376",
+			"perf_id": "P_714983",
+			"yt_link": "http://www.youtube.com/embed/R7Yf3PZyU3s",
+			"instrumental": "Yes"
+		}
+	},
+	"W_189378": {
+		"P_714986": {
+			"work_title": "Tourniquet",
+			"work_artist": "Amy Lee",
+			"perf_title": "Tourniquet",
+			"perf_artist": "Evanescence",
+			"release_year": "2003",
+			"work_id": "W_189378",
+			"perf_id": "P_714986",
+			"yt_link": "http://www.youtube.com/embed/YSC0zQnLIWQ",
+			"instrumental": "No"
+		},
+		"P_782585": {
+			"work_title": "Tourniquet",
+			"work_artist": "Amy Lee",
+			"perf_title": "Tourniquet",
+			"perf_artist": "The Gothacoustic Ensemble",
+			"release_year": "2004",
+			"work_id": "W_189378",
+			"perf_id": "P_782585",
+			"yt_link": "http://www.youtube.com/embed/QNxQHrPSdJA",
+			"instrumental": "No"
+		},
+		"P_714987": {
+			"work_title": "Tourniquet",
+			"work_artist": "Amy Lee",
+			"perf_title": "Tourniquet",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2003",
+			"work_id": "W_189378",
+			"perf_id": "P_714987",
+			"yt_link": "http://www.youtube.com/embed/tN7lzjN37KQ",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188227": {
+		"P_707740": {
+			"work_title": "Star\u00e1lfur",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Star\u00e1lfur",
+			"perf_artist": "Sigur R\u00f3s",
+			"release_year": "1999",
+			"work_id": "W_188227",
+			"perf_id": "P_707740",
+			"yt_link": "http://www.youtube.com/embed/wlPtmws131o",
+			"instrumental": "No"
+		},
+		"P_707790": {
+			"work_title": "Star\u00e1lfur",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Star\u00e1lfur",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2013",
+			"work_id": "W_188227",
+			"perf_id": "P_707790",
+			"yt_link": "http://www.youtube.com/embed/4-4prS-TTZ8",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188230": {
+		"P_707764": {
+			"work_title": "Ba Ba",
+			"work_artist": "Georg H\u00f3lm",
+			"perf_title": "Ba Ba",
+			"perf_artist": "Sigur R\u00f3s",
+			"release_year": "2004",
+			"work_id": "W_188230",
+			"perf_id": "P_707764",
+			"yt_link": "http://www.youtube.com/embed/6fSUpndsFds",
+			"instrumental": "Yes"
+		},
+		"P_707791": {
+			"work_title": "Ba Ba",
+			"work_artist": "Georg H\u00f3lm",
+			"perf_title": "Ba Ba",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2013",
+			"work_id": "W_188230",
+			"perf_id": "P_707791",
+			"yt_link": "http://www.youtube.com/embed/1toTDfb-4AE",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188235": {
+		"P_707779": {
+			"work_title": "Gobbledigook",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Gobbledigook",
+			"perf_artist": "Sigur R\u00f3s",
+			"release_year": "2008",
+			"work_id": "W_188235",
+			"perf_id": "P_707779",
+			"yt_link": "http://www.youtube.com/embed/zfKw5r7M7MQ",
+			"instrumental": "No"
+		},
+		"P_707788": {
+			"work_title": "Gobbledigook",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Gobbledigook",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2013",
+			"work_id": "W_188235",
+			"perf_id": "P_707788",
+			"yt_link": "http://www.youtube.com/embed/CSADgYHhB1o",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188240": {
+		"P_707793": {
+			"work_title": "Svefn-g-englar",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Svefn-g-englar",
+			"perf_artist": "Sigur R\u00f3s",
+			"release_year": "1999",
+			"work_id": "W_188240",
+			"perf_id": "P_707793",
+			"yt_link": "http://www.youtube.com/embed/8L64BcCRDAE",
+			"instrumental": "No"
+		},
+		"P_751529": {
+			"work_title": "Svefn-g-englar",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Svefn-g-englar",
+			"perf_artist": "Melo-M",
+			"release_year": "2007",
+			"work_id": "W_188240",
+			"perf_id": "P_751529",
+			"yt_link": "http://www.youtube.com/embed/DOIrT8CwZLU",
+			"instrumental": "Yes"
+		},
+		"P_707794": {
+			"work_title": "Svefn-g-englar",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "Svefn-g-englar",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2013",
+			"work_id": "W_188240",
+			"perf_id": "P_707794",
+			"yt_link": "http://www.youtube.com/embed/5IjSlr41-Jw",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188244": {
+		"P_707808": {
+			"work_title": "S\u00e6gl\u00f3pur",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "S\u00e6gl\u00f3pur",
+			"perf_artist": "Sigur R\u00f3s",
+			"release_year": "2005",
+			"work_id": "W_188244",
+			"perf_id": "P_707808",
+			"yt_link": "http://www.youtube.com/embed/TFHCWZh0_Co",
+			"instrumental": "No"
+		},
+		"P_707809": {
+			"work_title": "S\u00e6gl\u00f3pur",
+			"work_artist": "J\u00f3nsi",
+			"perf_title": "S\u00e6gl\u00f3pur",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2013",
+			"work_id": "W_188244",
+			"perf_id": "P_707809",
+			"yt_link": "http://www.youtube.com/embed/lHEDcEW0GZo",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188350": {
+		"P_708317": {
+			"work_title": "Baby I",
+			"work_artist": "Antonio Dixon",
+			"perf_title": "Baby I",
+			"perf_artist": "Ariana Grande",
+			"release_year": "2013",
+			"work_id": "W_188350",
+			"perf_id": "P_708317",
+			"yt_link": "http://www.youtube.com/embed/bJuWlMFToNo",
+			"instrumental": "No"
+		}
+	},
+	"W_188381": {
+		"P_708521": {
+			"work_title": "The Closer to the Bone (The Sweeter is the Meat)",
+			"work_artist": "Grandpa Jones",
+			"perf_title": "The Closer to the Bone",
+			"perf_artist": "Louis Prima and Keely Smith with Sam Butera and The Witnesses",
+			"release_year": "1957",
+			"work_id": "W_188381",
+			"perf_id": "P_708521",
+			"yt_link": "http://www.youtube.com/embed/tcRBm58WvPI",
+			"instrumental": "No"
+		}
+	},
+	"W_188533": {},
+	"W_188570": {
+		"P_709772": {
+			"work_title": "Staring at the Sun",
+			"work_artist": "Dexter Holland",
+			"perf_title": "Staring at the Sun",
+			"perf_artist": "The Offspring",
+			"release_year": "1998",
+			"work_id": "W_188570",
+			"perf_id": "P_709772",
+			"yt_link": "http://www.youtube.com/embed/fNZooFfxW48",
+			"instrumental": "No"
+		}
+	},
+	"W_188573": {
+		"P_709809": {
+			"work_title": "I'm Gonna Be Somebody",
+			"work_artist": "Stewart Harris",
+			"perf_title": "I'm Gonna Be Somebody",
+			"perf_artist": "Travis Tritt",
+			"release_year": "1990",
+			"work_id": "W_188573",
+			"perf_id": "P_709809",
+			"yt_link": "http://www.youtube.com/embed/N3oO2edwEO8",
+			"instrumental": "No"
+		},
+		"P_709814": {
+			"work_title": "I'm Gonna Be Somebody",
+			"work_artist": "Stewart Harris",
+			"perf_title": "I'm Gonna Be Somebody",
+			"perf_artist": "Cliff Cody",
+			"release_year": "2014",
+			"work_id": "W_188573",
+			"perf_id": "P_709814",
+			"yt_link": "http://www.youtube.com/embed/wyyNnaMGWFc",
+			"instrumental": "No"
+		},
+		"P_714787": {
+			"work_title": "I'm Gonna Be Somebody",
+			"work_artist": "Stewart Harris",
+			"perf_title": "I'm Gonna Be Somebody",
+			"perf_artist": "Tyler Dickerson & Zach Seabaugh",
+			"release_year": "2015",
+			"work_id": "W_188573",
+			"perf_id": "P_714787",
+			"yt_link": "http://www.youtube.com/embed/jvrU6Ou6G-Y",
+			"instrumental": "No"
+		}
+	},
+	"W_188625": {
+		"P_710074": {
+			"work_title": "E-Pro",
+			"work_artist": "Mike D",
+			"perf_title": "E-Pro",
+			"perf_artist": "Beck",
+			"release_year": "2005",
+			"work_id": "W_188625",
+			"perf_id": "P_710074",
+			"yt_link": "http://www.youtube.com/embed/RIrG6xBW5Wk",
+			"instrumental": "No"
+		},
+		"P_718197": {
+			"work_title": "E-Pro",
+			"work_artist": "Mike D",
+			"perf_title": "E-Pro",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2014",
+			"work_id": "W_188625",
+			"perf_id": "P_718197",
+			"yt_link": "http://www.youtube.com/embed/BBtujHogrdY",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188632": {},
+	"W_188633": {
+		"P_710107": {
+			"work_title": "Loving the Alien",
+			"work_artist": "Dave Kushner",
+			"perf_title": "Loving the Alien",
+			"perf_artist": "Velvet Revolver",
+			"release_year": "2004",
+			"work_id": "W_188633",
+			"perf_id": "P_710107",
+			"yt_link": "http://www.youtube.com/embed/AtwKLIbEZH8",
+			"instrumental": "No"
+		}
+	},
+	"W_188639": {},
+	"W_188645": {
+		"P_710192": {
+			"work_title": "Nothing Stops Another Day",
+			"work_artist": "Glen Ballard",
+			"perf_title": "Nothing Stops Another Day",
+			"perf_artist": "Caissie Levy",
+			"release_year": "",
+			"work_id": "W_188645",
+			"perf_id": "P_710192",
+			"yt_link": "http://www.youtube.com/embed/YBsYVd-cKv8",
+			"instrumental": "No"
+		},
+		"P_710194": {
+			"work_title": "Nothing Stops Another Day",
+			"work_artist": "Glen Ballard",
+			"perf_title": "Nothing Stops Another Day",
+			"perf_artist": "Caissie Levy",
+			"release_year": "2011",
+			"work_id": "W_188645",
+			"perf_id": "P_710194",
+			"yt_link": "http://www.youtube.com/embed/G19h037A728",
+			"instrumental": "No"
+		}
+	},
+	"W_188648": {
+		"P_710217": {
+			"work_title": "Gasoline",
+			"work_artist": "Tim Commerford",
+			"perf_title": "Gasoline",
+			"perf_artist": "Audioslave",
+			"release_year": "2002",
+			"work_id": "W_188648",
+			"perf_id": "P_710217",
+			"yt_link": "http://www.youtube.com/embed/62_0ZHhOo58",
+			"instrumental": "No"
+		},
+		"P_716256": {
+			"work_title": "Gasoline",
+			"work_artist": "Tim Commerford",
+			"perf_title": "Gasoline",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2007",
+			"work_id": "W_188648",
+			"perf_id": "P_716256",
+			"yt_link": "http://www.youtube.com/embed/-vnRBpi6eNo",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188652": {
+		"P_710227": {
+			"work_title": "Set It Off",
+			"work_artist": "Tim Commerford",
+			"perf_title": "Set It Off",
+			"perf_artist": "Audioslave",
+			"release_year": "2002",
+			"work_id": "W_188652",
+			"perf_id": "P_710227",
+			"yt_link": "http://www.youtube.com/embed/k225_q1L9l4",
+			"instrumental": "No"
+		},
+		"P_716257": {
+			"work_title": "Set It Off",
+			"work_artist": "Tim Commerford",
+			"perf_title": "Set It Off",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2007",
+			"work_id": "W_188652",
+			"perf_id": "P_716257",
+			"yt_link": "http://www.youtube.com/embed/2wAcoVoZoz4",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188653": {
+		"P_710230": {
+			"work_title": "Shadow of the Sun",
+			"work_artist": "Tim Commerford",
+			"perf_title": "Shadow of the Sun",
+			"perf_artist": "Audioslave",
+			"release_year": "2002",
+			"work_id": "W_188653",
+			"perf_id": "P_710230",
+			"yt_link": "http://www.youtube.com/embed/dfF4t9-wpCM",
+			"instrumental": "No"
+		},
+		"P_716266": {
+			"work_title": "Shadow of the Sun",
+			"work_artist": "Tim Commerford",
+			"perf_title": "Shadow on the Sun",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2007",
+			"work_id": "W_188653",
+			"perf_id": "P_716266",
+			"yt_link": "http://www.youtube.com/embed/COhCuFkSCIY",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188656": {
+		"P_710249": {
+			"work_title": "Lily's Eyes",
+			"work_artist": "Lucy Simon",
+			"perf_title": "Lily's Eyes",
+			"perf_artist": "Mandy Patinkin & Robert Westenberg",
+			"release_year": "",
+			"work_id": "W_188656",
+			"perf_id": "P_710249",
+			"yt_link": "http://www.youtube.com/embed/QlWOCwHU2fI",
+			"instrumental": "No"
+		},
+		"P_710251": {
+			"work_title": "Lily's Eyes",
+			"work_artist": "Lucy Simon",
+			"perf_title": "Lily's Eyes",
+			"perf_artist": "Mandy Patinkin & Robert Westenberg",
+			"release_year": "1991",
+			"work_id": "W_188656",
+			"perf_id": "P_710251",
+			"yt_link": "http://www.youtube.com/embed/JhHURWFUXHQ",
+			"instrumental": "No"
+		},
+		"P_710252": {
+			"work_title": "Lily's Eyes",
+			"work_artist": "Lucy Simon",
+			"perf_title": "Lily's Eyes",
+			"perf_artist": "Kane Alexander featuring Simon Gleeson",
+			"release_year": "2017",
+			"work_id": "W_188656",
+			"perf_id": "P_710252",
+			"yt_link": "http://www.youtube.com/embed/P57EM8RAr9Q",
+			"instrumental": "No"
+		}
+	},
+	"W_188659": {},
+	"W_188662": {
+		"P_710278": {
+			"work_title": "Could We Start Again Please",
+			"work_artist": "Andrew Lloyd Webber",
+			"perf_title": "Could We Start Again Please",
+			"perf_artist": "Tom Butwin",
+			"release_year": "2018",
+			"work_id": "W_188662",
+			"perf_id": "P_710278",
+			"yt_link": "http://www.youtube.com/embed/uYNetUJkHhY",
+			"instrumental": "No"
+		}
+	},
+	"W_188686": {
+		"P_710558": {
+			"work_title": "High",
+			"work_artist": "James Blunt",
+			"perf_title": "High",
+			"perf_artist": "James Blunt",
+			"release_year": "2004",
+			"work_id": "W_188686",
+			"perf_id": "P_710558",
+			"yt_link": "http://www.youtube.com/embed/D9LopyqdzIw",
+			"instrumental": "No"
+		}
+	},
+	"W_188687": {
+		"P_710560": {
+			"work_title": "Tears and Rain",
+			"work_artist": "James Blunt",
+			"perf_title": "Tears and Rain",
+			"perf_artist": "James Blunt",
+			"release_year": "2004",
+			"work_id": "W_188687",
+			"perf_id": "P_710560",
+			"yt_link": "http://www.youtube.com/embed/HXMNAJs7qCA",
+			"instrumental": "No"
+		},
+		"P_735199": {
+			"work_title": "Tears and Rain",
+			"work_artist": "James Blunt",
+			"perf_title": "Tears and Rain",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2006",
+			"work_id": "W_188687",
+			"perf_id": "P_735199",
+			"yt_link": "http://www.youtube.com/embed/iT8xZev-cVA",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188694": {
+		"P_710609": {
+			"work_title": "Write on Me",
+			"work_artist": "Mikkel Eriksen",
+			"perf_title": "Write on Me",
+			"perf_artist": "Fifth Harmony",
+			"release_year": "2016",
+			"work_id": "W_188694",
+			"perf_id": "P_710609",
+			"yt_link": "http://www.youtube.com/embed/7WuggM1WBiU",
+			"instrumental": "No"
+		},
+		"P_710610": {
+			"work_title": "Write on Me",
+			"work_artist": "Mikkel Eriksen",
+			"perf_title": "Write on Me",
+			"perf_artist": "Emma Heesters",
+			"release_year": "2016",
+			"work_id": "W_188694",
+			"perf_id": "P_710610",
+			"yt_link": "http://www.youtube.com/embed/njTNpYWGZwg",
+			"instrumental": "No"
+		},
+		"P_739981": {
+			"work_title": "Write on Me",
+			"work_artist": "Mikkel Eriksen",
+			"perf_title": "Write on Me",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2016",
+			"work_id": "W_188694",
+			"perf_id": "P_739981",
+			"yt_link": "http://www.youtube.com/embed/ddQbLkmPjs8",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188695": {
+		"P_710622": {
+			"work_title": "Like I Would",
+			"work_artist": "James Griffin [Zayn]",
+			"perf_title": "Like I Would",
+			"perf_artist": "Zayn",
+			"release_year": "2016",
+			"work_id": "W_188695",
+			"perf_id": "P_710622",
+			"yt_link": "http://www.youtube.com/embed/pTaqcGz2O5o",
+			"instrumental": "No"
+		},
+		"P_737482": {
+			"work_title": "Like I Would",
+			"work_artist": "James Griffin [Zayn]",
+			"perf_title": "Like I Would",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2016",
+			"work_id": "W_188695",
+			"perf_id": "P_737482",
+			"yt_link": "http://www.youtube.com/embed/2iNx_A0RsTM",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188890": {
+		"P_719945": {
+			"work_title": "The Nightingale",
+			"work_artist": "Jude Johnstone",
+			"perf_title": "The Nightingale",
+			"perf_artist": "Trisha Yearwood",
+			"release_year": "1993",
+			"work_id": "W_188890",
+			"perf_id": "P_719945",
+			"yt_link": "http://www.youtube.com/embed/iFNjTx63dVQ",
+			"instrumental": "No"
+		},
+		"P_719949": {
+			"work_title": "The Nightingale",
+			"work_artist": "Jude Johnstone",
+			"perf_title": "The Nightingale",
+			"perf_artist": "Jennifer Warnes",
+			"release_year": "2001",
+			"work_id": "W_188890",
+			"perf_id": "P_719949",
+			"yt_link": "http://www.youtube.com/embed/ClpAZdROGFc",
+			"instrumental": "No"
+		},
+		"P_719951": {
+			"work_title": "The Nightingale",
+			"work_artist": "Jude Johnstone",
+			"perf_title": "The Nightingale",
+			"perf_artist": "Jude Johnstone",
+			"release_year": "2002",
+			"work_id": "W_188890",
+			"perf_id": "P_719951",
+			"yt_link": "http://www.youtube.com/embed/N3TbXxFLBsA",
+			"instrumental": "No"
+		}
+	},
+	"W_188891": {
+		"P_723448": {
+			"work_title": "If You Can't Give Her Love, Give Her Up",
+			"work_artist": "Clayton Ivey",
+			"perf_title": "If You Can't Give Her Love (Give Her Up)",
+			"perf_artist": "Mary Wells",
+			"release_year": "1974",
+			"work_id": "W_188891",
+			"perf_id": "P_723448",
+			"yt_link": "http://www.youtube.com/embed/POv4mITb0qg",
+			"instrumental": "No"
+		}
+	},
+	"W_188936": {
+		"P_712061": {
+			"work_title": "Shiver",
+			"work_artist": "Jesse Carmichael",
+			"perf_title": "Shiver",
+			"perf_artist": "Maroon 5",
+			"release_year": "2002",
+			"work_id": "W_188936",
+			"perf_id": "P_712061",
+			"yt_link": "http://www.youtube.com/embed/wXpS0eArMVQ",
+			"instrumental": "No"
+		}
+	},
+	"W_188937": {
+		"P_712059": {
+			"work_title": "Tangled",
+			"work_artist": "Jesse Carmichael",
+			"perf_title": "Tangled",
+			"perf_artist": "Maroon 5",
+			"release_year": "2002",
+			"work_id": "W_188937",
+			"perf_id": "P_712059",
+			"yt_link": "http://www.youtube.com/embed/D3Q6xvcyMLk",
+			"instrumental": "No"
+		}
+	},
+	"W_188944": {},
+	"W_188945": {
+		"P_712099": {
+			"work_title": "Who Knew",
+			"work_artist": "Eminem",
+			"perf_title": "Who Knew",
+			"perf_artist": "Eminem",
+			"release_year": "2000",
+			"work_id": "W_188945",
+			"perf_id": "P_712099",
+			"yt_link": "http://www.youtube.com/embed/752W9M-ZNfc",
+			"instrumental": "No"
+		}
+	},
+	"W_188946": {
+		"P_712101": {
+			"work_title": "Criminal",
+			"work_artist": "Jeff Bass",
+			"perf_title": "Criminal",
+			"perf_artist": "Eminem",
+			"release_year": "2000",
+			"work_id": "W_188946",
+			"perf_id": "P_712101",
+			"yt_link": "http://www.youtube.com/embed/y7P7IDJe0i0",
+			"instrumental": "No"
+		}
+	},
+	"W_188947": {
+		"P_712103": {
+			"work_title": "As the World Turns",
+			"work_artist": "Jeff Bass",
+			"perf_title": "As the World Turns",
+			"perf_artist": "Eminem",
+			"release_year": "1999",
+			"work_id": "W_188947",
+			"perf_id": "P_712103",
+			"yt_link": "http://www.youtube.com/embed/I_-xTRrSan0",
+			"instrumental": "No"
+		}
+	},
+	"W_188948": {
+		"P_712105": {
+			"work_title": "Drug Ballad",
+			"work_artist": "Jeff Bass",
+			"perf_title": "Drug Ballad",
+			"perf_artist": "Eminem",
+			"release_year": "2000",
+			"work_id": "W_188948",
+			"perf_id": "P_712105",
+			"yt_link": "http://www.youtube.com/embed/eMs6eI1VRBQ",
+			"instrumental": "No"
+		}
+	},
+	"W_188949": {
+		"P_712107": {
+			"work_title": "I'm Shady",
+			"work_artist": "Jeff Bass",
+			"perf_title": "I'm Shady",
+			"perf_artist": "Eminem",
+			"release_year": "1999",
+			"work_id": "W_188949",
+			"perf_id": "P_712107",
+			"yt_link": "http://www.youtube.com/embed/2wYWdcanEIc",
+			"instrumental": "No"
+		}
+	},
+	"W_188952": {
+		"P_712114": {
+			"work_title": "Mockingbird",
+			"work_artist": "Eminem",
+			"perf_title": "Mockingbird",
+			"perf_artist": "Eminem",
+			"release_year": "2004",
+			"work_id": "W_188952",
+			"perf_id": "P_712114",
+			"yt_link": "http://www.youtube.com/embed/S9bCLPwzSC0",
+			"instrumental": "No"
+		},
+		"P_712400": {
+			"work_title": "Mockingbird",
+			"work_artist": "Eminem",
+			"perf_title": "Mockingbird",
+			"perf_artist": "Mixmaster Throwback",
+			"release_year": "2008",
+			"work_id": "W_188952",
+			"perf_id": "P_712400",
+			"yt_link": "http://www.youtube.com/embed/6yLTz3EvLrQ",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188953": {
+		"P_712116": {
+			"work_title": "Shake That",
+			"work_artist": "Eminem",
+			"perf_title": "Shake That",
+			"perf_artist": "Eminem feat. Nate Dogg",
+			"release_year": "2005",
+			"work_id": "W_188953",
+			"perf_id": "P_712116",
+			"yt_link": "http://www.youtube.com/embed/WrjwGPb0Hvw",
+			"instrumental": "No"
+		},
+		"P_712402": {
+			"work_title": "Shake That",
+			"work_artist": "Eminem",
+			"perf_title": "Shake That",
+			"perf_artist": "Mixmaster Throwback",
+			"release_year": "2008",
+			"work_id": "W_188953",
+			"perf_id": "P_712402",
+			"yt_link": "http://www.youtube.com/embed/nxHQY3QzHgU",
+			"instrumental": "Yes"
+		}
+	},
+	"W_188959": {
+		"P_712172": {
+			"work_title": "All I Can Be Is a Sweet Memory",
+			"work_artist": "Harlan Howard",
+			"perf_title": "All I Can Be Is a Sweet Memory",
+			"perf_artist": "Johnny Rodriguez",
+			"release_year": "1985",
+			"work_id": "W_188959",
+			"perf_id": "P_712172",
+			"yt_link": "http://www.youtube.com/embed/LPpWUAZI16A",
+			"instrumental": "No"
+		},
+		"P_712178": {
+			"work_title": "All I Can Be Is a Sweet Memory",
+			"work_artist": "Harlan Howard",
+			"perf_title": "All I Can Be Is a Sweet Memory",
+			"perf_artist": "Conway Twitty",
+			"release_year": "1985",
+			"work_id": "W_188959",
+			"perf_id": "P_712178",
+			"yt_link": "http://www.youtube.com/embed/NiMb4B1EjU0",
+			"instrumental": "No"
+		},
+		"P_712183": {
+			"work_title": "All I Can Be Is a Sweet Memory",
+			"work_artist": "Harlan Howard",
+			"perf_title": "All I Can Be (Is a Sweet Memory)",
+			"perf_artist": "Collin Raye",
+			"release_year": "1991",
+			"work_id": "W_188959",
+			"perf_id": "P_712183",
+			"yt_link": "http://www.youtube.com/embed/G9Z7u2e6MVg",
+			"instrumental": "No"
+		}
+	},
+	"W_188962": {
+		"P_712216": {
+			"work_title": "Suzanne, Suzanne",
+			"work_artist": "Rebecca Vogel",
+			"perf_title": "Suzanne, Suzanne",
+			"perf_artist": "Pop-Tops",
+			"release_year": "1972",
+			"work_id": "W_188962",
+			"perf_id": "P_712216",
+			"yt_link": "http://www.youtube.com/embed/7opeIIIUhs0",
+			"instrumental": "No"
+		},
+		"P_712217": {
+			"work_title": "Suzanne, Suzanne",
+			"work_artist": "Rebecca Vogel",
+			"perf_title": "Suzanne, Suzanne",
+			"perf_artist": "Kai Warner",
+			"release_year": "1972",
+			"work_id": "W_188962",
+			"perf_id": "P_712217",
+			"yt_link": "http://www.youtube.com/embed/KjX13yAmToE",
+			"instrumental": "No"
+		}
+	},
+	"W_189258": {
+		"P_715443": {
+			"work_title": "Private Idaho",
+			"work_artist": "Kate Pierson",
+			"perf_title": "Private Idaho",
+			"perf_artist": "Doughboys",
+			"release_year": "1992",
+			"work_id": "W_189258",
+			"perf_id": "P_715443",
+			"yt_link": "http://www.youtube.com/embed/L5OQ6bf3QPA",
+			"instrumental": "No"
+		}
+	},
+	"W_189261": {
+		"P_714321": {
+			"work_title": "The Old Apartment",
+			"work_artist": "Eli Bolin",
+			"perf_title": "The Old Apartment",
+			"perf_artist": "Leslie Kritzer",
+			"release_year": "",
+			"work_id": "W_189261",
+			"perf_id": "P_714321",
+			"yt_link": "http://www.youtube.com/embed/Hrjv-tX8DRY",
+			"instrumental": "No"
+		},
+		"P_714323": {
+			"work_title": "The Old Apartment",
+			"work_artist": "Eli Bolin",
+			"perf_title": "The Old Apartment",
+			"perf_artist": "Leslie Kritzer",
+			"release_year": "2004",
+			"work_id": "W_189261",
+			"perf_id": "P_714323",
+			"yt_link": "http://www.youtube.com/embed/IFmnKKE4lSE",
+			"instrumental": "No"
+		}
+	},
+	"W_189263": {},
+	"W_189291": {
+		"P_714491": {
+			"work_title": "Albatrossi",
+			"work_artist": "Juha Vainio",
+			"perf_title": "Albatrossi",
+			"perf_artist": "Juha \"Watt\" Vainio ja Hyv\u00e4n Tuulen Laulajat \u200e",
+			"release_year": "1980",
+			"work_id": "W_189291",
+			"perf_id": "P_714491",
+			"yt_link": "http://www.youtube.com/embed/5uyjGGYONmM",
+			"instrumental": "No"
+		}
+	},
+	"W_189319": {
+		"P_714737": {
+			"work_title": "Come Get It Bae",
+			"work_artist": "Pharrell Williams",
+			"perf_title": "Come Get It Bae",
+			"perf_artist": "Pharrell Williams",
+			"release_year": "2014",
+			"work_id": "W_189319",
+			"perf_id": "P_714737",
+			"yt_link": "http://www.youtube.com/embed/UfGMj10wOzg",
+			"instrumental": "No"
+		},
+		"P_714738": {
+			"work_title": "Come Get It Bae",
+			"work_artist": "Pharrell Williams",
+			"perf_title": "Come Get It Bae",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2014",
+			"work_id": "W_189319",
+			"perf_id": "P_714738",
+			"yt_link": "http://www.youtube.com/embed/nOekzMqIBbo",
+			"instrumental": "Yes"
+		},
+		"P_728246": {
+			"work_title": "Come Get It Bae",
+			"work_artist": "Pharrell Williams",
+			"perf_title": "Come Get It Bae",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2014",
+			"work_id": "W_189319",
+			"perf_id": "P_728246",
+			"yt_link": "http://www.youtube.com/embed/KbEKhAa5t24",
+			"instrumental": "Yes"
+		}
+	},
+	"W_189468": {
+		"P_715211": {
+			"work_title": "First It Giveth",
+			"work_artist": "Josh Homme",
+			"perf_title": "First It Giveth",
+			"perf_artist": "Queens of the Stone Age",
+			"release_year": "2002",
+			"work_id": "W_189468",
+			"perf_id": "P_715211",
+			"yt_link": "http://www.youtube.com/embed/g5GrSPUAj4E",
+			"instrumental": "No"
+		},
+		"P_715212": {
+			"work_title": "First It Giveth",
+			"work_artist": "Josh Homme",
+			"perf_title": "First It Giveth",
+			"perf_artist": "Garage Groove Inc.",
+			"release_year": "2003",
+			"work_id": "W_189468",
+			"perf_id": "P_715212",
+			"yt_link": "http://www.youtube.com/embed/SbiGywLci5I",
+			"instrumental": "No"
+		},
+		"P_715221": {
+			"work_title": "First It Giveth",
+			"work_artist": "Josh Homme",
+			"perf_title": "First It Giveth",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2004",
+			"work_id": "W_189468",
+			"perf_id": "P_715221",
+			"yt_link": "http://www.youtube.com/embed/5rn1TKylrko",
+			"instrumental": "Yes"
+		}
+	},
+	"W_189469": {
+		"P_715213": {
+			"work_title": "Song for the Deaf",
+			"work_artist": "Josh Homme",
+			"perf_title": "A Song for the Deaf",
+			"perf_artist": "Queens of the Stone Age",
+			"release_year": "2002",
+			"work_id": "W_189469",
+			"perf_id": "P_715213",
+			"yt_link": "http://www.youtube.com/embed/Ipe-PH6CBa0",
+			"instrumental": "No"
+		},
+		"P_715214": {
+			"work_title": "Song for the Deaf",
+			"work_artist": "Josh Homme",
+			"perf_title": "A Song for the Deaf",
+			"perf_artist": "Garage Groove Inc.",
+			"release_year": "2003",
+			"work_id": "W_189469",
+			"perf_id": "P_715214",
+			"yt_link": "http://www.youtube.com/embed/FtC7GAEDsLE",
+			"instrumental": "No"
+		},
+		"P_715230": {
+			"work_title": "Song for the Deaf",
+			"work_artist": "Josh Homme",
+			"perf_title": "Song for the Deaf",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2004",
+			"work_id": "W_189469",
+			"perf_id": "P_715230",
+			"yt_link": "http://www.youtube.com/embed/cyiem3R9h64",
+			"instrumental": "Yes"
+		}
+	},
+	"W_189471": {
+		"P_715217": {
+			"work_title": "Another Love Song",
+			"work_artist": "Josh Homme",
+			"perf_title": "Another Love Song",
+			"perf_artist": "Queens of the Stone Age",
+			"release_year": "2002",
+			"work_id": "W_189471",
+			"perf_id": "P_715217",
+			"yt_link": "http://www.youtube.com/embed/9eml0Jc72I8",
+			"instrumental": "No"
+		},
+		"P_715218": {
+			"work_title": "Another Love Song",
+			"work_artist": "Josh Homme",
+			"perf_title": "Another Love Song",
+			"perf_artist": "Garage Groove Inc.",
+			"release_year": "2003",
+			"work_id": "W_189471",
+			"perf_id": "P_715218",
+			"yt_link": "http://www.youtube.com/embed/6SSbFqRCRw8",
+			"instrumental": "No"
+		},
+		"P_715225": {
+			"work_title": "Another Love Song",
+			"work_artist": "Josh Homme",
+			"perf_title": "Another Love Song",
+			"perf_artist": "Vitamin String Quartet",
+			"release_year": "2004",
+			"work_id": "W_189471",
+			"perf_id": "P_715225",
+			"yt_link": "http://www.youtube.com/embed/8YZzxVj-Kbw",
+			"instrumental": "Yes"
+		}
+	}
+}

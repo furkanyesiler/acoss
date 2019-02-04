@@ -1,0 +1,1449 @@
+{
+	"W_195750": {
+		"P_745886": {
+			"work_title": "Whisky",
+			"work_artist": "Samantha Gongol",
+			"perf_title": "Whisky",
+			"perf_artist": "Marian Hill",
+			"release_year": "2014",
+			"work_id": "W_195750",
+			"perf_id": "P_745886",
+			"yt_link": "http://www.youtube.com/embed/Mj7-_PBKkOE",
+			"instrumental": "No"
+		},
+		"P_745887": {
+			"work_title": "Whisky",
+			"work_artist": "Samantha Gongol",
+			"perf_title": "Whisky",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195750",
+			"perf_id": "P_745887",
+			"yt_link": "http://www.youtube.com/embed/OADRs1M0z4w",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195752": {
+		"P_745896": {
+			"work_title": "Lips",
+			"work_artist": "Samantha Gongol",
+			"perf_title": "Lips",
+			"perf_artist": "Marian Hill",
+			"release_year": "2014",
+			"work_id": "W_195752",
+			"perf_id": "P_745896",
+			"yt_link": "http://www.youtube.com/embed/YFEt96ChhgE",
+			"instrumental": "No"
+		}
+	},
+	"W_195753": {
+		"P_745898": {
+			"work_title": "Got It",
+			"work_artist": "Samantha Gongol",
+			"perf_title": "Got It",
+			"perf_artist": "Marian Hill",
+			"release_year": "2014",
+			"work_id": "W_195753",
+			"perf_id": "P_745898",
+			"yt_link": "http://www.youtube.com/embed/8wjbY0Tyfr4",
+			"instrumental": "No"
+		}
+	},
+	"W_195760": {
+		"P_745990": {
+			"work_title": "Soul on Fire",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Soul on Fire",
+			"perf_artist": "The Wizards",
+			"release_year": "2017",
+			"work_id": "W_195760",
+			"perf_id": "P_745990",
+			"yt_link": "http://www.youtube.com/embed/JnnZem7EfYw",
+			"instrumental": "No"
+		}
+	},
+	"W_195761": {
+		"P_745992": {
+			"work_title": "Heart of the Devil",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Heart of the Devil",
+			"perf_artist": "Danzig",
+			"release_year": "1992",
+			"work_id": "W_195761",
+			"perf_id": "P_745992",
+			"yt_link": "http://www.youtube.com/embed/PNApmGre9V4",
+			"instrumental": "No"
+		},
+		"P_745991": {
+			"work_title": "Heart of the Devil",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Heart of the Devil",
+			"perf_artist": "November",
+			"release_year": "2010",
+			"work_id": "W_195761",
+			"perf_id": "P_745991",
+			"yt_link": "http://www.youtube.com/embed/eI8a6GyDvEM",
+			"instrumental": "No"
+		}
+	},
+	"W_195762": {
+		"P_746023": {
+			"work_title": "Belly of the Beast",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Belly of the Beast",
+			"perf_artist": "Danzig",
+			"release_year": "1999",
+			"work_id": "W_195762",
+			"perf_id": "P_746023",
+			"yt_link": "http://www.youtube.com/embed/Iqu_gDKeuD8",
+			"instrumental": "No"
+		}
+	},
+	"W_195763": {
+		"P_746001": {
+			"work_title": "Certain Things",
+			"work_artist": "James Arthur",
+			"perf_title": "Certain Things",
+			"perf_artist": "James Arthur feat. Chasing Grace",
+			"release_year": "2013",
+			"work_id": "W_195763",
+			"perf_id": "P_746001",
+			"yt_link": "http://www.youtube.com/embed/N-w_6zlmZsM",
+			"instrumental": "No"
+		}
+	},
+	"W_195764": {
+		"P_746003": {
+			"work_title": "Suicide",
+			"work_artist": "James Arthur",
+			"perf_title": "Suicide",
+			"perf_artist": "James Arthur",
+			"release_year": "2013",
+			"work_id": "W_195764",
+			"perf_id": "P_746003",
+			"yt_link": "http://www.youtube.com/embed/Wc76Ber-OS8",
+			"instrumental": "No"
+		}
+	},
+	"W_195765": {
+		"P_746005": {
+			"work_title": "Back from the Edge",
+			"work_artist": "James Arthur",
+			"perf_title": "Back from the Edge",
+			"perf_artist": "James Arthur",
+			"release_year": "2016",
+			"work_id": "W_195765",
+			"perf_id": "P_746005",
+			"yt_link": "http://www.youtube.com/embed/L7Y0YCalwD4",
+			"instrumental": "No"
+		},
+		"P_746006": {
+			"work_title": "Back from the Edge",
+			"work_artist": "James Arthur",
+			"perf_title": "Back from the Edge",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195765",
+			"perf_id": "P_746006",
+			"yt_link": "http://www.youtube.com/embed/Dp7GPGvaan8",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195766": {
+		"P_746012": {
+			"work_title": "Train Wreck",
+			"work_artist": "Adam Argyle",
+			"perf_title": "Train Wreck",
+			"perf_artist": "James Arthur",
+			"release_year": "2016",
+			"work_id": "W_195766",
+			"perf_id": "P_746012",
+			"yt_link": "http://www.youtube.com/embed/W1UNDLRsF8M",
+			"instrumental": "No"
+		},
+		"P_746013": {
+			"work_title": "Train Wreck",
+			"work_artist": "Adam Argyle",
+			"perf_title": "Train Wreck",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195766",
+			"perf_id": "P_746013",
+			"yt_link": "http://www.youtube.com/embed/JH5AhPl_aSE",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195768": {},
+	"W_195770": {
+		"P_746037": {
+			"work_title": "I Am",
+			"work_artist": "Adam Argyle",
+			"perf_title": "I Am",
+			"perf_artist": "James Arthur",
+			"release_year": "2016",
+			"work_id": "W_195770",
+			"perf_id": "P_746037",
+			"yt_link": "http://www.youtube.com/embed/r21UboDl3HM",
+			"instrumental": "No"
+		}
+	},
+	"W_195771": {
+		"P_746043": {
+			"work_title": "Long Way Back from Hell",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Long Way Back from Hell",
+			"perf_artist": "Danzig",
+			"release_year": "1990",
+			"work_id": "W_195771",
+			"perf_id": "P_746043",
+			"yt_link": "http://www.youtube.com/embed/jDdIQFmcTCY",
+			"instrumental": "No"
+		}
+	},
+	"W_195772": {
+		"P_746044": {
+			"work_title": "Let Me Love the Lonely",
+			"work_artist": "Adam Argyle",
+			"perf_title": "Let Me Love the Lonely",
+			"perf_artist": "James Arthur",
+			"release_year": "2016",
+			"work_id": "W_195772",
+			"perf_id": "P_746044",
+			"yt_link": "http://www.youtube.com/embed/PArW96-XCKM",
+			"instrumental": "No"
+		}
+	},
+	"W_195773": {
+		"P_746047": {
+			"work_title": "Remember Who I Was",
+			"work_artist": "James Arthur",
+			"perf_title": "Remember Who I Was",
+			"perf_artist": "James Arthur",
+			"release_year": "2016",
+			"work_id": "W_195773",
+			"perf_id": "P_746047",
+			"yt_link": "http://www.youtube.com/embed/BsH3nH13tg0",
+			"instrumental": "No"
+		}
+	},
+	"W_195774": {
+		"P_746050": {
+			"work_title": "Can I Be Him",
+			"work_artist": "James Arthur",
+			"perf_title": "Can I Be Him",
+			"perf_artist": "James Arthur",
+			"release_year": "2016",
+			"work_id": "W_195774",
+			"perf_id": "P_746050",
+			"yt_link": "http://www.youtube.com/embed/L3dPK8tDn6g",
+			"instrumental": "No"
+		}
+	},
+	"W_195775": {
+		"P_746053": {
+			"work_title": "I'm the One",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "I'm the One",
+			"perf_artist": "Danzig",
+			"release_year": "1990",
+			"work_id": "W_195775",
+			"perf_id": "P_746053",
+			"yt_link": "http://www.youtube.com/embed/Vn5WBLdCj_Q",
+			"instrumental": "No"
+		}
+	},
+	"W_195782": {
+		"P_746076": {
+			"work_title": "Lust for Life",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Lust for Life",
+			"perf_artist": "Lana Del Rey feat. The Weeknd",
+			"release_year": "2017",
+			"work_id": "W_195782",
+			"perf_id": "P_746076",
+			"yt_link": "http://www.youtube.com/embed/eP4eqhWc7sI",
+			"instrumental": "No"
+		},
+		"P_746077": {
+			"work_title": "Lust for Life",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Lust for Life",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195782",
+			"perf_id": "P_746077",
+			"yt_link": "http://www.youtube.com/embed/kaTbUB8OayE",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195783": {
+		"P_746087": {
+			"work_title": "777",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "777",
+			"perf_artist": "Danzig",
+			"release_year": "1990",
+			"work_id": "W_195783",
+			"perf_id": "P_746087",
+			"yt_link": "http://www.youtube.com/embed/g9y6xKN8NU8",
+			"instrumental": "No"
+		}
+	},
+	"W_195784": {
+		"P_746090": {
+			"work_title": "Unspeakable",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Unspeakable",
+			"perf_artist": "Danzig",
+			"release_year": "1999",
+			"work_id": "W_195784",
+			"perf_id": "P_746090",
+			"yt_link": "http://www.youtube.com/embed/1wcNXMybM6U",
+			"instrumental": "No"
+		}
+	},
+	"W_195785": {
+		"P_746091": {
+			"work_title": "Five Finger Crawl",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Five Finger Crawl",
+			"perf_artist": "Danzig",
+			"release_year": "1999",
+			"work_id": "W_195785",
+			"perf_id": "P_746091",
+			"yt_link": "http://www.youtube.com/embed/2-vo2eRvi8M",
+			"instrumental": "No"
+		}
+	},
+	"W_195786": {
+		"P_746096": {
+			"work_title": "Lick the Blood off My Hands",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Lick the Blood off My Hands",
+			"perf_artist": "Cochise [PO]",
+			"release_year": "2010",
+			"work_id": "W_195786",
+			"perf_id": "P_746096",
+			"yt_link": "http://www.youtube.com/embed/zcIbnIT_z5g",
+			"instrumental": "No"
+		}
+	},
+	"W_195788": {
+		"P_746098": {
+			"work_title": "Bringer of Death",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Bringer of Death",
+			"perf_artist": "Danzig",
+			"release_year": "1994",
+			"work_id": "W_195788",
+			"perf_id": "P_746098",
+			"yt_link": "http://www.youtube.com/embed/pLfSNitX0VY",
+			"instrumental": "No"
+		}
+	},
+	"W_195789": {
+		"P_746105": {
+			"work_title": "End of Time",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "End of Time",
+			"perf_artist": "Danzig",
+			"release_year": "1988",
+			"work_id": "W_195789",
+			"perf_id": "P_746105",
+			"yt_link": "http://www.youtube.com/embed/AXAFcYPkR-c",
+			"instrumental": "No"
+		}
+	},
+	"W_195790": {},
+	"W_195792": {
+		"P_746109": {
+			"work_title": "Black Angel, White Angel",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Black Angel, White Angel",
+			"perf_artist": "Danzig",
+			"release_year": "2004",
+			"work_id": "W_195792",
+			"perf_id": "P_746109",
+			"yt_link": "http://www.youtube.com/embed/Ee4Xg_SnPHM",
+			"instrumental": "No"
+		},
+		"P_746108": {
+			"work_title": "Black Angel, White Angel",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "Black Angel, White Angel",
+			"perf_artist": "Hellraizer",
+			"release_year": "2010",
+			"work_id": "W_195792",
+			"perf_id": "P_746108",
+			"yt_link": "http://www.youtube.com/embed/JkcV38INmNc",
+			"instrumental": "No"
+		}
+	},
+	"W_195793": {
+		"P_746111": {
+			"work_title": "God of Light",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "God of Light",
+			"perf_artist": "Angerpath",
+			"release_year": "2010",
+			"work_id": "W_195793",
+			"perf_id": "P_746111",
+			"yt_link": "http://www.youtube.com/embed/5z-remO3ObI",
+			"instrumental": "No"
+		}
+	},
+	"W_195888": {},
+	"W_195890": {
+		"P_746651": {
+			"work_title": "Midt om natten",
+			"work_artist": "Kim Larsen",
+			"perf_title": "Midt om natten",
+			"perf_artist": "Kim Larsen",
+			"release_year": "1983",
+			"work_id": "W_195890",
+			"perf_id": "P_746651",
+			"yt_link": "http://www.youtube.com/embed/_rBeni3L7Gg",
+			"instrumental": "No"
+		}
+	},
+	"W_195897": {
+		"P_746667": {
+			"work_title": "Daddy Ding-Dong",
+			"work_artist": "Tommy Bogs",
+			"perf_title": "Daddy Ding-Dong",
+			"perf_artist": "Gasolin'",
+			"release_year": "1974",
+			"work_id": "W_195897",
+			"perf_id": "P_746667",
+			"yt_link": "http://www.youtube.com/embed/VroPKtkO_xM",
+			"instrumental": "No"
+		}
+	},
+	"W_195899": {
+		"P_746672": {
+			"work_title": "December i New York",
+			"work_artist": "Kim Larsen",
+			"perf_title": "December i New York",
+			"perf_artist": "Gasolin'",
+			"release_year": "1977",
+			"work_id": "W_195899",
+			"perf_id": "P_746672",
+			"yt_link": "http://www.youtube.com/embed/DRzOxI9lQBM",
+			"instrumental": "No"
+		}
+	},
+	"W_195904": {
+		"P_746691": {
+			"work_title": "Pretty Girl",
+			"work_artist": "Maggie Lindemann",
+			"perf_title": "Pretty Girl",
+			"perf_artist": "Maggie Lindemann",
+			"release_year": "2016",
+			"work_id": "W_195904",
+			"perf_id": "P_746691",
+			"yt_link": "http://www.youtube.com/embed/WEFJnYMz0Ec",
+			"instrumental": "No"
+		}
+	},
+	"W_195907": {
+		"P_746701": {
+			"work_title": "Hurtin' Me",
+			"work_artist": "Stefflon Don",
+			"perf_title": "Hurtin' Me",
+			"perf_artist": "Stefflon Don - French Montana",
+			"release_year": "2017",
+			"work_id": "W_195907",
+			"perf_id": "P_746701",
+			"yt_link": "http://www.youtube.com/embed/DNdLFbEZC2Y",
+			"instrumental": "No"
+		},
+		"P_746702": {
+			"work_title": "Hurtin' Me",
+			"work_artist": "Stefflon Don",
+			"perf_title": "Hurtin' Me",
+			"perf_artist": "Mia Love ft. Nic Perez",
+			"release_year": "2017",
+			"work_id": "W_195907",
+			"perf_id": "P_746702",
+			"yt_link": "http://www.youtube.com/embed/FWyH6vqGrHc",
+			"instrumental": "No"
+		}
+	},
+	"W_195912": {
+		"P_746780": {
+			"work_title": "Every Night (Without You)",
+			"work_artist": "Paul Anka",
+			"perf_title": "Every Night (Without You)",
+			"perf_artist": "Paul Anka",
+			"release_year": "1962",
+			"work_id": "W_195912",
+			"perf_id": "P_746780",
+			"yt_link": "http://www.youtube.com/embed/RtbNp-AY7hc",
+			"instrumental": "No"
+		}
+	},
+	"W_195913": {},
+	"W_195922": {
+		"P_746825": {
+			"work_title": "I'd Like to Know",
+			"work_artist": "Paul Anka",
+			"perf_title": "I'd Like to Know",
+			"perf_artist": "Paul Anka",
+			"release_year": "1962",
+			"work_id": "W_195922",
+			"perf_id": "P_746825",
+			"yt_link": "http://www.youtube.com/embed/kFagadiUBzI",
+			"instrumental": "No"
+		}
+	},
+	"W_195925": {
+		"P_746828": {
+			"work_title": "Don't Ever Leave Me",
+			"work_artist": "Paul Anka",
+			"perf_title": "Don't Ever Leave Me",
+			"perf_artist": "Paul Anka",
+			"release_year": "1959",
+			"work_id": "W_195925",
+			"perf_id": "P_746828",
+			"yt_link": "http://www.youtube.com/embed/2XzdWh4f5B8",
+			"instrumental": "No"
+		}
+	},
+	"W_195930": {},
+	"W_195931": {},
+	"W_195932": {},
+	"W_195933": {},
+	"W_195934": {},
+	"W_195935": {},
+	"W_195936": {},
+	"W_195937": {},
+	"W_195939": {},
+	"W_195940": {},
+	"W_195941": {
+		"P_746911": {
+			"work_title": "Sober",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "Sober",
+			"perf_artist": "Lorde",
+			"release_year": "2017",
+			"work_id": "W_195941",
+			"perf_id": "P_746911",
+			"yt_link": "http://www.youtube.com/embed/UvgigkaSCZA",
+			"instrumental": "No"
+		}
+	},
+	"W_195942": {
+		"P_746916": {
+			"work_title": "The Louvre",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "The Louvre",
+			"perf_artist": "Lorde",
+			"release_year": "2017",
+			"work_id": "W_195942",
+			"perf_id": "P_746916",
+			"yt_link": "http://www.youtube.com/embed/ZQkdwymDanE",
+			"instrumental": "No"
+		},
+		"P_746917": {
+			"work_title": "The Louvre",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "The Louvre",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195942",
+			"perf_id": "P_746917",
+			"yt_link": "http://www.youtube.com/embed/uoCQAnynhso",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195943": {},
+	"W_195945": {
+		"P_746924": {
+			"work_title": "Sunset Glow",
+			"work_artist": "Benny Carter",
+			"perf_title": "Sunset Glow",
+			"perf_artist": "Count Basie & His Orchestra",
+			"release_year": "1960",
+			"work_id": "W_195945",
+			"perf_id": "P_746924",
+			"yt_link": "http://www.youtube.com/embed/Ld039GJNNkg",
+			"instrumental": "Yes"
+		},
+		"P_746925": {
+			"work_title": "Sunset Glow",
+			"work_artist": "Benny Carter",
+			"perf_title": "Sunset Glow",
+			"perf_artist": "Sant Andreu Jazz Band",
+			"release_year": "2017",
+			"work_id": "W_195945",
+			"perf_id": "P_746925",
+			"yt_link": "http://www.youtube.com/embed/G5vwPymfpXw",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195948": {
+		"P_746937": {
+			"work_title": "You Drive Me Nervous",
+			"work_artist": "Michael Bruce",
+			"perf_title": "You Drive Me Nervous",
+			"perf_artist": "Alice Cooper",
+			"release_year": "1971",
+			"work_id": "W_195948",
+			"perf_id": "P_746937",
+			"yt_link": "http://www.youtube.com/embed/K2K7k5hv9Hc",
+			"instrumental": "No"
+		},
+		"P_746936": {
+			"work_title": "You Drive Me Nervous",
+			"work_artist": "Michael Bruce",
+			"perf_title": "You Drive Me Nervous",
+			"perf_artist": "Serpenteens",
+			"release_year": "2010",
+			"work_id": "W_195948",
+			"perf_id": "P_746936",
+			"yt_link": "http://www.youtube.com/embed/XQM5nV7DuRE",
+			"instrumental": "No"
+		}
+	},
+	"W_195949": {
+		"P_746939": {
+			"work_title": "Yeah Yeah Yeah",
+			"work_artist": "Michael Bruce",
+			"perf_title": "Yeah, Yeah, Yeah",
+			"perf_artist": "Alice Cooper",
+			"release_year": "1971",
+			"work_id": "W_195949",
+			"perf_id": "P_746939",
+			"yt_link": "http://www.youtube.com/embed/YXgPAXvFdqQ",
+			"instrumental": "No"
+		}
+	},
+	"W_195950": {
+		"P_746941": {
+			"work_title": "Big Apple Dreaming",
+			"work_artist": "Michael Bruce",
+			"perf_title": "Big Apple Dreamin' (Hippo)",
+			"perf_artist": "Alice Cooper",
+			"release_year": "1973",
+			"work_id": "W_195950",
+			"perf_id": "P_746941",
+			"yt_link": "http://www.youtube.com/embed/DJ7q2nr64W8",
+			"instrumental": "No"
+		},
+		"P_746944": {
+			"work_title": "Big Apple Dreaming",
+			"work_artist": "Michael Bruce",
+			"perf_title": "Big Apple Dreamin' (Hippo)",
+			"perf_artist": "Rick Tedesco",
+			"release_year": "2010",
+			"work_id": "W_195950",
+			"perf_id": "P_746944",
+			"yt_link": "http://www.youtube.com/embed/DgX7oXepWnU",
+			"instrumental": "No"
+		}
+	},
+	"W_195951": {
+		"P_789983": {
+			"work_title": "You and Me",
+			"work_artist": "Alice Cooper",
+			"perf_title": "You and Me",
+			"perf_artist": "Christian Beach",
+			"release_year": "2010",
+			"work_id": "W_195951",
+			"perf_id": "P_789983",
+			"yt_link": "http://www.youtube.com/embed/U3UUuwZJES4",
+			"instrumental": "No"
+		}
+	},
+	"W_195952": {
+		"P_746956": {
+			"work_title": "Hard Feelings / Loveless",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "Hard Feelings / Loveless",
+			"perf_artist": "Lorde",
+			"release_year": "2017",
+			"work_id": "W_195952",
+			"perf_id": "P_746956",
+			"yt_link": "http://www.youtube.com/embed/XRNSan20Wpw",
+			"instrumental": "No"
+		},
+		"P_746957": {
+			"work_title": "Hard Feelings / Loveless",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "Hard Feelings / Loveless",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195952",
+			"perf_id": "P_746957",
+			"yt_link": "http://www.youtube.com/embed/3QWmVLHa2ik",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195953": {
+		"P_746971": {
+			"work_title": "Sober II (Melodrama)",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "Sober II (Melodrama)",
+			"perf_artist": "Lorde",
+			"release_year": "2017",
+			"work_id": "W_195953",
+			"perf_id": "P_746971",
+			"yt_link": "http://www.youtube.com/embed/Y8j-PqSFHcc",
+			"instrumental": "No"
+		},
+		"P_746974": {
+			"work_title": "Sober II (Melodrama)",
+			"work_artist": "Jack Antonoff",
+			"perf_title": "Sober II (Melodrama)",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195953",
+			"perf_id": "P_746974",
+			"yt_link": "http://www.youtube.com/embed/Tzym4m_ItBw",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195794": {
+		"P_746112": {
+			"work_title": "HellMask",
+			"work_artist": "Glenn Danzig",
+			"perf_title": "HellMask",
+			"perf_artist": "Danzig",
+			"release_year": "2004",
+			"work_id": "W_195794",
+			"perf_id": "P_746112",
+			"yt_link": "http://www.youtube.com/embed/7hdDwZ5iBH0",
+			"instrumental": "No"
+		}
+	},
+	"W_195795": {
+		"P_746132": {
+			"work_title": "(Oh la la) Jag vill ha dej",
+			"work_artist": "Ulf Lundell",
+			"perf_title": "(Oh la la) Jag vill ha dej",
+			"perf_artist": "Ulf Lundell",
+			"release_year": "1979",
+			"work_id": "W_195795",
+			"perf_id": "P_746132",
+			"yt_link": "http://www.youtube.com/embed/t2WeSFxCo_4",
+			"instrumental": "No"
+		},
+		"P_746129": {
+			"work_title": "(Oh la la) Jag vill ha dej",
+			"work_artist": "Ulf Lundell",
+			"perf_title": "(Oh la la) Jag vill ha dig",
+			"perf_artist": "Pumpbolaget",
+			"release_year": "2001",
+			"work_id": "W_195795",
+			"perf_id": "P_746129",
+			"yt_link": "http://www.youtube.com/embed/6THGGSpnPgY",
+			"instrumental": "No"
+		}
+	},
+	"W_195796": {},
+	"W_195798": {
+		"P_746159": {
+			"work_title": "TG4M",
+			"work_artist": "Kid Joki",
+			"perf_title": "TG4M",
+			"perf_artist": "Zara Larsson",
+			"release_year": "2017",
+			"work_id": "W_195798",
+			"perf_id": "P_746159",
+			"yt_link": "http://www.youtube.com/embed/ZATvjyz-ieM",
+			"instrumental": "No"
+		},
+		"P_746160": {
+			"work_title": "TG4M",
+			"work_artist": "Kid Joki",
+			"perf_title": "TG4m",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195798",
+			"perf_id": "P_746160",
+			"yt_link": "http://www.youtube.com/embed/ChxpXzdqcLM",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195800": {
+		"P_743028": {
+			"work_title": "Hip Bones",
+			"work_artist": "J.J. Johnson",
+			"perf_title": "Hip Bones",
+			"perf_artist": "Jay and Kai",
+			"release_year": "1955",
+			"work_id": "W_195800",
+			"perf_id": "P_743028",
+			"yt_link": "http://www.youtube.com/embed/jaye6Y9aRRk",
+			"instrumental": "Yes"
+		},
+		"P_746172": {
+			"work_title": "Hip Bones",
+			"work_artist": "J.J. Johnson",
+			"perf_title": "Hip Bones",
+			"perf_artist": "Joan Chamorro & Joan Codina",
+			"release_year": "2018",
+			"work_id": "W_195800",
+			"perf_id": "P_746172",
+			"yt_link": "http://www.youtube.com/embed/i__OL6x19w4",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195801": {},
+	"W_195802": {
+		"P_746193": {
+			"work_title": "Reborn Dogs",
+			"work_artist": "Andy Classen",
+			"perf_title": "Reborn Dogs",
+			"perf_artist": "Holy Moses",
+			"release_year": "1992",
+			"work_id": "W_195802",
+			"perf_id": "P_746193",
+			"yt_link": "http://www.youtube.com/embed/tawpBaCCwUQ",
+			"instrumental": "No"
+		}
+	},
+	"W_195803": {
+		"P_746198": {
+			"work_title": "Sweetie of the St Moritz",
+			"work_artist": "Marwood Chesterton",
+			"perf_title": "Sweety of the St. Moritz",
+			"perf_artist": "101ers",
+			"release_year": "1981",
+			"work_id": "W_195803",
+			"perf_id": "P_746198",
+			"yt_link": "http://www.youtube.com/embed/uv_OjMT8WLo",
+			"instrumental": "No"
+		}
+	},
+	"W_195804": {
+		"P_746199": {
+			"work_title": "Letsagetabitarockin",
+			"work_artist": "Marwood Chesterton",
+			"perf_title": "Letsagetabitarockin",
+			"perf_artist": "101ers",
+			"release_year": "1981",
+			"work_id": "W_195804",
+			"perf_id": "P_746199",
+			"yt_link": "http://www.youtube.com/embed/oSxtQGS7ZPQ",
+			"instrumental": "No"
+		}
+	},
+	"W_195805": {
+		"P_746212": {
+			"work_title": "Victoria Smiles",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Victoria Smiles",
+			"perf_artist": "Kevin Coyne Band",
+			"release_year": "1987",
+			"work_id": "W_195805",
+			"perf_id": "P_746212",
+			"yt_link": "http://www.youtube.com/embed/VbKUWYmCkRc",
+			"instrumental": "No"
+		},
+		"P_746214": {
+			"work_title": "Victoria Smiles",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Victoria Smiles",
+			"perf_artist": "Heinz Rudolf Kunze",
+			"release_year": "2007",
+			"work_id": "W_195805",
+			"perf_id": "P_746214",
+			"yt_link": "http://www.youtube.com/embed/nro9SVkLGrs",
+			"instrumental": "No"
+		}
+	},
+	"W_195806": {
+		"P_746217": {
+			"work_title": "Strange Pictures",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Strange Pictures",
+			"perf_artist": "Dave Russell",
+			"release_year": "2007",
+			"work_id": "W_195806",
+			"perf_id": "P_746217",
+			"yt_link": "http://www.youtube.com/embed/yiuxj1vgdV0",
+			"instrumental": "No"
+		}
+	},
+	"W_195807": {
+		"P_746215": {
+			"work_title": "Mad Boy No 2",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Mad Boy No.2",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1980",
+			"work_id": "W_195807",
+			"perf_id": "P_746215",
+			"yt_link": "http://www.youtube.com/embed/ofs9C_6Je0k",
+			"instrumental": "No"
+		},
+		"P_746216": {
+			"work_title": "Mad Boy No 2",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Mad Boy No2",
+			"perf_artist": "Frank Bangay and Almost Real",
+			"release_year": "2007",
+			"work_id": "W_195807",
+			"perf_id": "P_746216",
+			"yt_link": "http://www.youtube.com/embed/9xNFI_LDQC0",
+			"instrumental": "No"
+		}
+	},
+	"W_195809": {
+		"P_746221": {
+			"work_title": "A Loving Hand",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "A Loving Hand",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1980",
+			"work_id": "W_195809",
+			"perf_id": "P_746221",
+			"yt_link": "http://www.youtube.com/embed/Ima16KwDgdo",
+			"instrumental": "No"
+		},
+		"P_746223": {
+			"work_title": "A Loving Hand",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "A Loving Hand",
+			"perf_artist": "Clive Product",
+			"release_year": "2007",
+			"work_id": "W_195809",
+			"perf_id": "P_746223",
+			"yt_link": "http://www.youtube.com/embed/ISazUKAQseY",
+			"instrumental": "No"
+		}
+	},
+	"W_195810": {
+		"P_746220": {
+			"work_title": "Weirdo",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Weirdo",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1997",
+			"work_id": "W_195810",
+			"perf_id": "P_746220",
+			"yt_link": "http://www.youtube.com/embed/LSocttSJNyQ",
+			"instrumental": "No"
+		},
+		"P_746222": {
+			"work_title": "Weirdo",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Weirdo",
+			"perf_artist": "Joey Stack",
+			"release_year": "2007",
+			"work_id": "W_195810",
+			"perf_id": "P_746222",
+			"yt_link": "http://www.youtube.com/embed/cHLAb7Sxizc",
+			"instrumental": "No"
+		}
+	},
+	"W_195811": {
+		"P_746219": {
+			"work_title": "Evil Island Home",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Evil Island Home",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1972",
+			"work_id": "W_195811",
+			"perf_id": "P_746219",
+			"yt_link": "http://www.youtube.com/embed/ZDLG3rKsgBE",
+			"instrumental": "No"
+		}
+	},
+	"W_195812": {
+		"P_746228": {
+			"work_title": "Hello Judas",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Hello Judas",
+			"perf_artist": "Alternative TV",
+			"release_year": "2007",
+			"work_id": "W_195812",
+			"perf_id": "P_746228",
+			"yt_link": "http://www.youtube.com/embed/fX-bKkOl7HM",
+			"instrumental": "No"
+		}
+	},
+	"W_195813": {
+		"P_746229": {
+			"work_title": "Raindrops on the Window",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Raindrops on the Window",
+			"perf_artist": "Kevin Hewick",
+			"release_year": "2007",
+			"work_id": "W_195813",
+			"perf_id": "P_746229",
+			"yt_link": "http://www.youtube.com/embed/R5QH50JMK-o",
+			"instrumental": "No"
+		}
+	},
+	"W_195814": {
+		"P_746237": {
+			"work_title": "Focus",
+			"work_artist": "Hey DJ",
+			"perf_title": "Focus",
+			"perf_artist": "H.E.R.",
+			"release_year": "2016",
+			"work_id": "W_195814",
+			"perf_id": "P_746237",
+			"yt_link": "http://www.youtube.com/embed/Z5ze4CUAkE8",
+			"instrumental": "No"
+		}
+	},
+	"W_195816": {
+		"P_746247": {
+			"work_title": "I'm Just a Man",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "I'm Just a Man",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1978",
+			"work_id": "W_195816",
+			"perf_id": "P_746247",
+			"yt_link": "http://www.youtube.com/embed/_CMElzE8JlA",
+			"instrumental": "No"
+		},
+		"P_746245": {
+			"work_title": "I'm Just a Man",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "I'm Just a Man",
+			"perf_artist": "Sally Timms",
+			"release_year": "2004",
+			"work_id": "W_195816",
+			"perf_id": "P_746245",
+			"yt_link": "http://www.youtube.com/embed/uEaQwxEGQa0",
+			"instrumental": "No"
+		}
+	},
+	"W_195818": {
+		"P_746257": {
+			"work_title": "Having a Party",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Having a Party",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1978",
+			"work_id": "W_195818",
+			"perf_id": "P_746257",
+			"yt_link": "http://www.youtube.com/embed/OHE0P35tLYU",
+			"instrumental": "No"
+		},
+		"P_746258": {
+			"work_title": "Having a Party",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Having a Party",
+			"perf_artist": "Mekons",
+			"release_year": "1990",
+			"work_id": "W_195818",
+			"perf_id": "P_746258",
+			"yt_link": "http://www.youtube.com/embed/P1a_XlmzHco",
+			"instrumental": "No"
+		}
+	},
+	"W_195822": {},
+	"W_195823": {
+		"P_746270": {
+			"work_title": "I Confess",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "I Confess",
+			"perf_artist": "Bonnie Prince Billy",
+			"release_year": "1998",
+			"work_id": "W_195823",
+			"perf_id": "P_746270",
+			"yt_link": "http://www.youtube.com/embed/j3-GVeEmIUE",
+			"instrumental": "No"
+		}
+	},
+	"W_195824": {
+		"P_746272": {
+			"work_title": "Sun Shines down on Me",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Sun Shines down on Me",
+			"perf_artist": "Kevin Coyne & Dagmar Krause",
+			"release_year": "1979",
+			"work_id": "W_195824",
+			"perf_id": "P_746272",
+			"yt_link": "http://www.youtube.com/embed/x9hSiUOx1yk",
+			"instrumental": "No"
+		},
+		"P_746271": {
+			"work_title": "Sun Shines down on Me",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Sun Shines down on Me",
+			"perf_artist": "Bonnie Prince Billy",
+			"release_year": "1998",
+			"work_id": "W_195824",
+			"perf_id": "P_746271",
+			"yt_link": "http://www.youtube.com/embed/6W62guy4ltY",
+			"instrumental": "No"
+		}
+	},
+	"W_195826": {
+		"P_746273": {
+			"work_title": "Good Boy",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Good Boy",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1973",
+			"work_id": "W_195826",
+			"perf_id": "P_746273",
+			"yt_link": "http://www.youtube.com/embed/7V1LxZHNIKA",
+			"instrumental": "No"
+		},
+		"P_746297": {
+			"work_title": "Good Boy",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Good Boy",
+			"perf_artist": "Nightingales",
+			"release_year": "2006",
+			"work_id": "W_195826",
+			"perf_id": "P_746297",
+			"yt_link": "http://www.youtube.com/embed/R1-6JE-FJSU",
+			"instrumental": "No"
+		}
+	},
+	"W_195828": {
+		"P_746276": {
+			"work_title": "Bag duggede ruder",
+			"work_artist": "Steffen Brandt",
+			"perf_title": "Bag duggede ruder",
+			"perf_artist": "TV-2",
+			"release_year": "1983",
+			"work_id": "W_195828",
+			"perf_id": "P_746276",
+			"yt_link": "http://www.youtube.com/embed/qXaEMZJuv6o",
+			"instrumental": "No"
+		}
+	},
+	"W_195829": {
+		"P_746278": {
+			"work_title": "There's a New World Just Opening for Me",
+			"work_artist": "Ray Davies",
+			"perf_title": "There's a New World Just Opening for Me",
+			"perf_artist": "The Kinks",
+			"release_year": "2011",
+			"work_id": "W_195829",
+			"perf_id": "P_746278",
+			"yt_link": "http://www.youtube.com/embed/yVSJA5YTc6w",
+			"instrumental": "No"
+		},
+		"P_746279": {
+			"work_title": "There's a New World Just Opening for Me",
+			"work_artist": "Ray Davies",
+			"perf_title": "There's a New World Just Opening for Me",
+			"perf_artist": "Nightingales",
+			"release_year": "2006",
+			"work_id": "W_195829",
+			"perf_id": "P_746279",
+			"yt_link": "http://www.youtube.com/embed/8gEZQ8IZpdY",
+			"instrumental": "No"
+		}
+	},
+	"W_195830": {
+		"P_746285": {
+			"work_title": "No Melody",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "No Melody",
+			"perf_artist": "Jealousy Party",
+			"release_year": "2008",
+			"work_id": "W_195830",
+			"perf_id": "P_746285",
+			"yt_link": "http://www.youtube.com/embed/Yr9rYGKElfg",
+			"instrumental": "No"
+		}
+	},
+	"W_195831": {
+		"P_746282": {
+			"work_title": "Johnny the Blues",
+			"work_artist": "Johnny Madsen",
+			"perf_title": "Johnny the Blues",
+			"perf_artist": "Johnny Madsen",
+			"release_year": "1991",
+			"work_id": "W_195831",
+			"perf_id": "P_746282",
+			"yt_link": "http://www.youtube.com/embed/p57Bs5ZLdX4",
+			"instrumental": "No"
+		}
+	},
+	"W_195832": {
+		"P_746288": {
+			"work_title": "Sunday Morning Sunrise",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Sunday Morning Sunrise",
+			"perf_artist": "Kevin Coyne",
+			"release_year": "1975",
+			"work_id": "W_195832",
+			"perf_id": "P_746288",
+			"yt_link": "http://www.youtube.com/embed/_PYpuwOO0gs",
+			"instrumental": "No"
+		},
+		"P_746289": {
+			"work_title": "Sunday Morning Sunrise",
+			"work_artist": "Kevin Coyne",
+			"perf_title": "Sunday Morning Sunrise",
+			"perf_artist": "Rootbeats with Bill \u00d6hrstr\u00f6m",
+			"release_year": "2014",
+			"work_id": "W_195832",
+			"perf_id": "P_746289",
+			"yt_link": "http://www.youtube.com/embed/ciU7wS-tA4Y",
+			"instrumental": "No"
+		}
+	},
+	"W_195833": {
+		"P_746294": {
+			"work_title": "Speedy",
+			"work_artist": "Kim Larsen",
+			"perf_title": "Speedy",
+			"perf_artist": "Kim Larsen & Kjukken",
+			"release_year": "2006",
+			"work_id": "W_195833",
+			"perf_id": "P_746294",
+			"yt_link": "http://www.youtube.com/embed/8joPw-5vLew",
+			"instrumental": "No"
+		}
+	},
+	"W_195834": {
+		"P_746299": {
+			"work_title": "Jack the Ripper's Caf\u00e9",
+			"work_artist": "Johnny Madsen",
+			"perf_title": "Jack the Ripper's Caf\u00e9",
+			"perf_artist": "Johnny Madsen",
+			"release_year": "2001",
+			"work_id": "W_195834",
+			"perf_id": "P_746299",
+			"yt_link": "http://www.youtube.com/embed/hfdB4meLOKI",
+			"instrumental": "No"
+		}
+	},
+	"W_195835": {
+		"P_746311": {
+			"work_title": "Gammel hankat",
+			"work_artist": "Kim Larsen",
+			"perf_title": "Gammel hankat",
+			"perf_artist": "Kim Larsen & Kjukken",
+			"release_year": "2006",
+			"work_id": "W_195835",
+			"perf_id": "P_746311",
+			"yt_link": "http://www.youtube.com/embed/AmngZAQDILQ",
+			"instrumental": "No"
+		}
+	},
+	"W_195836": {
+		"P_746317": {
+			"work_title": "Stir Fry",
+			"work_artist": "Takeoff",
+			"perf_title": "Stir Fry",
+			"perf_artist": "Migos",
+			"release_year": "2018",
+			"work_id": "W_195836",
+			"perf_id": "P_746317",
+			"yt_link": "http://www.youtube.com/embed/HI-mXMr8glQ",
+			"instrumental": "No"
+		},
+		"P_746318": {
+			"work_title": "Stir Fry",
+			"work_artist": "Takeoff",
+			"perf_title": "Stir Fry",
+			"perf_artist": "Sharaya J",
+			"release_year": "2018",
+			"work_id": "W_195836",
+			"perf_id": "P_746318",
+			"yt_link": "http://www.youtube.com/embed/AWjcEIQVYhc",
+			"instrumental": "No"
+		}
+	},
+	"W_195837": {
+		"P_746315": {
+			"work_title": "Prinsessen af \u00c5lborg",
+			"work_artist": "Poul Krebs",
+			"perf_title": "Prinsessen af \u00c5lborg",
+			"perf_artist": "Poul Krebs",
+			"release_year": "1995",
+			"work_id": "W_195837",
+			"perf_id": "P_746315",
+			"yt_link": "http://www.youtube.com/embed/buZfbOl0LsE",
+			"instrumental": "No"
+		}
+	},
+	"W_195844": {
+		"P_746392": {
+			"work_title": "Billy Is a Runaway",
+			"work_artist": "Iggy Pop",
+			"perf_title": "Billy Is a Runaway",
+			"perf_artist": "Iggy Pop",
+			"release_year": "1979",
+			"work_id": "W_195844",
+			"perf_id": "P_746392",
+			"yt_link": "http://www.youtube.com/embed/dO8Huc9pmJA",
+			"instrumental": "No"
+		},
+		"P_746395": {
+			"work_title": "Billy Is a Runaway",
+			"work_artist": "Iggy Pop",
+			"perf_title": "Billy Is a Runaway",
+			"perf_artist": "G\u00d8GGS",
+			"release_year": "2015",
+			"work_id": "W_195844",
+			"perf_id": "P_746395",
+			"yt_link": "http://www.youtube.com/embed/WZ2EeqEmjLA",
+			"instrumental": "No"
+		}
+	},
+	"W_195852": {
+		"P_746431": {
+			"work_title": "Girls Like",
+			"work_artist": "Aleisha Bennett",
+			"perf_title": "Girls Like",
+			"perf_artist": "Tinie Tempah feat. Zara Larsson",
+			"release_year": "2016",
+			"work_id": "W_195852",
+			"perf_id": "P_746431",
+			"yt_link": "http://www.youtube.com/embed/OEiva3cMv6k",
+			"instrumental": "No"
+		}
+	},
+	"W_195856": {
+		"P_746488": {
+			"work_title": "Nancy Joe",
+			"work_artist": "Gerald Wilson",
+			"perf_title": "Nancy Joe",
+			"perf_artist": "Gerald Wilson Band",
+			"release_year": "1962",
+			"work_id": "W_195856",
+			"perf_id": "P_746488",
+			"yt_link": "http://www.youtube.com/embed/tgkv2qhHYbY",
+			"instrumental": "Yes"
+		},
+		"P_746489": {
+			"work_title": "Nancy Joe",
+			"work_artist": "Gerald Wilson",
+			"perf_title": "Nancy Joe",
+			"perf_artist": "Geri Allen feat. Marcus Belgrave",
+			"release_year": "2013",
+			"work_id": "W_195856",
+			"perf_id": "P_746489",
+			"yt_link": "http://www.youtube.com/embed/_OExpApk1zo",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195858": {
+		"P_746493": {
+			"work_title": "Space Odyssey",
+			"work_artist": "Marcus Belgrave",
+			"perf_title": "Space Odyssey",
+			"perf_artist": "Marcus Belgrave",
+			"release_year": "1974",
+			"work_id": "W_195858",
+			"perf_id": "P_746493",
+			"yt_link": "http://www.youtube.com/embed/mlyl3GDlHJI",
+			"instrumental": "Yes"
+		},
+		"P_746494": {
+			"work_title": "Space Odyssey",
+			"work_artist": "Marcus Belgrave",
+			"perf_title": "Space Odyssey",
+			"perf_artist": "Geri Allen feat. Marcus Belgrave",
+			"release_year": "2013",
+			"work_id": "W_195858",
+			"perf_id": "P_746494",
+			"yt_link": "http://www.youtube.com/embed/SAVGJw_DCU8",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195863": {
+		"P_746538": {
+			"work_title": "Uncover",
+			"work_artist": "Gavin Jones",
+			"perf_title": "Uncover",
+			"perf_artist": "Zara Larsson",
+			"release_year": "2013",
+			"work_id": "W_195863",
+			"perf_id": "P_746538",
+			"yt_link": "http://www.youtube.com/embed/U-PXEe-qeK4",
+			"instrumental": "No"
+		},
+		"P_746539": {
+			"work_title": "Uncover",
+			"work_artist": "Gavin Jones",
+			"perf_title": "Uncover",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195863",
+			"perf_id": "P_746539",
+			"yt_link": "http://www.youtube.com/embed/b2rKZeESKQY",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195864": {
+		"P_746540": {
+			"work_title": "Rooftop",
+			"work_artist": "Rickard G\u00f6ransson",
+			"perf_title": "Rooftop",
+			"perf_artist": "Zara Larsson",
+			"release_year": "2014",
+			"work_id": "W_195864",
+			"perf_id": "P_746540",
+			"yt_link": "http://www.youtube.com/embed/BcPzEEyfBIk",
+			"instrumental": "No"
+		},
+		"P_746541": {
+			"work_title": "Rooftop",
+			"work_artist": "Rickard G\u00f6ransson",
+			"perf_title": "Rooftop",
+			"perf_artist": "Piano Dreamers",
+			"release_year": "2017",
+			"work_id": "W_195864",
+			"perf_id": "P_746541",
+			"yt_link": "http://www.youtube.com/embed/31G9bvy3Rb4",
+			"instrumental": "Yes"
+		}
+	},
+	"W_195865": {
+		"P_746542": {
+			"work_title": "Carry You Home",
+			"work_artist": "Elof Loelv",
+			"perf_title": "Carry You Home",
+			"perf_artist": "Zara Larsson",
+			"release_year": "2014",
+			"work_id": "W_195865",
+			"perf_id": "P_746542",
+			"yt_link": "http://www.youtube.com/embed/rVO2byp-tWg",
+			"instrumental": "No"
+		}
+	},
+	"W_195876": {
+		"P_746624": {
+			"work_title": "The Boys in the Band",
+			"work_artist": "Kerry Minnear",
+			"perf_title": "The Boys in the Band",
+			"perf_artist": "Gentle Giant",
+			"release_year": "1972",
+			"work_id": "W_195876",
+			"perf_id": "P_746624",
+			"yt_link": "http://www.youtube.com/embed/BTet3C_afKA",
+			"instrumental": "No"
+		},
+		"P_746625": {
+			"work_title": "The Boys in the Band",
+			"work_artist": "Kerry Minnear",
+			"perf_title": "BITB",
+			"perf_artist": "Advent",
+			"release_year": "1997",
+			"work_id": "W_195876",
+			"perf_id": "P_746625",
+			"yt_link": "http://www.youtube.com/embed/B-k1XORjszI",
+			"instrumental": "No"
+		}
+	},
+	"W_195878": {
+		"P_746631": {
+			"work_title": "Carnival Song",
+			"work_artist": "Tim Buckley",
+			"perf_title": "Carnival Song",
+			"perf_artist": "Tim Buckley",
+			"release_year": "1967",
+			"work_id": "W_195878",
+			"perf_id": "P_746631",
+			"yt_link": "http://www.youtube.com/embed/AdKV4i1K4b8",
+			"instrumental": "No"
+		}
+	}
+}

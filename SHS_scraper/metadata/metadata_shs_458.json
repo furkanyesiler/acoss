@@ -1,0 +1,1792 @@
+{
+	"W_20688": {},
+	"W_20748": {
+		"P_20748": {
+			"work_title": "Why?",
+			"work_artist": "Bernard Edwards",
+			"perf_title": "Why?",
+			"perf_artist": "Carly Simon",
+			"release_year": "1982",
+			"work_id": "W_20748",
+			"perf_id": "P_20748",
+			"yt_link": "http://www.youtube.com/embed/aW8UnXzP3ms",
+			"instrumental": "No"
+		}
+	},
+	"W_20777": {
+		"P_20777": {
+			"work_title": "The Star of a Story",
+			"work_artist": "Rod Temperton",
+			"perf_title": "The Star of a Story",
+			"perf_artist": "Heatwave",
+			"release_year": "1977",
+			"work_id": "W_20777",
+			"perf_id": "P_20777",
+			"yt_link": "http://www.youtube.com/embed/qEu-fGjhkiQ",
+			"instrumental": "No"
+		},
+		"P_273721": {
+			"work_title": "The Star of a Story",
+			"work_artist": "Rod Temperton",
+			"perf_title": "Star of a Story (X)",
+			"perf_artist": "George Benson",
+			"release_year": "1980",
+			"work_id": "W_20777",
+			"perf_id": "P_273721",
+			"yt_link": "http://www.youtube.com/embed/j0c_MbhIMJ4",
+			"instrumental": "No"
+		}
+	},
+	"W_20824": {
+		"P_669265": {
+			"work_title": "Somebody's Been Sleeping (In My Bed)",
+			"work_artist": "Angelo Bond",
+			"perf_title": "Somebody's Been Sleeping",
+			"perf_artist": "The Main Ingredient",
+			"release_year": "1970",
+			"work_id": "W_20824",
+			"perf_id": "P_669265",
+			"yt_link": "http://www.youtube.com/embed/k_MuaQTAZb0",
+			"instrumental": "No"
+		},
+		"P_158156": {
+			"work_title": "Somebody's Been Sleeping (In My Bed)",
+			"work_artist": "Angelo Bond",
+			"perf_title": "Somebody's Been Sleepin' in My Bed",
+			"perf_artist": "Foghat",
+			"release_year": "1979",
+			"work_id": "W_20824",
+			"perf_id": "P_158156",
+			"yt_link": "http://www.youtube.com/embed/fQ907N-b7vw",
+			"instrumental": "No"
+		}
+	},
+	"W_20867": {
+		"P_20867": {
+			"work_title": "I Like It",
+			"work_artist": "El DeBarge",
+			"perf_title": "I Like It",
+			"perf_artist": "DeBarge",
+			"release_year": "1982",
+			"work_id": "W_20867",
+			"perf_id": "P_20867",
+			"yt_link": "http://www.youtube.com/embed/VqaKisKIyUo",
+			"instrumental": "No"
+		},
+		"P_637307": {
+			"work_title": "I Like It",
+			"work_artist": "El DeBarge",
+			"perf_title": "I Like It",
+			"perf_artist": "DeAndre Brackensick",
+			"release_year": "2012",
+			"work_id": "W_20867",
+			"perf_id": "P_637307",
+			"yt_link": "http://www.youtube.com/embed/FFUsnyAnyb4",
+			"instrumental": "No"
+		}
+	},
+	"W_20874": {
+		"P_771861": {
+			"work_title": "We're Still Friends",
+			"work_artist": "Donny Hathaway",
+			"perf_title": "We're Still Friends",
+			"perf_artist": "Lauren Henderson",
+			"release_year": "2018",
+			"work_id": "W_20874",
+			"perf_id": "P_771861",
+			"yt_link": "http://www.youtube.com/embed/YNghBw0J9eo",
+			"instrumental": "No"
+		}
+	},
+	"W_21083": {
+		"P_21083": {
+			"work_title": "Every Woman",
+			"work_artist": "Dave Mason [GB]",
+			"perf_title": "Every Woman",
+			"perf_artist": "Dave Mason [GB]",
+			"release_year": "1973",
+			"work_id": "W_21083",
+			"perf_id": "P_21083",
+			"yt_link": "http://www.youtube.com/embed/_iI1Hv84o_k",
+			"instrumental": "No"
+		},
+		"P_213128": {
+			"work_title": "Every Woman",
+			"work_artist": "Dave Mason [GB]",
+			"perf_title": "Every Woman",
+			"perf_artist": "Mac Davis",
+			"release_year": "1974",
+			"work_id": "W_21083",
+			"perf_id": "P_213128",
+			"yt_link": "http://www.youtube.com/embed/XClRImNXEGo",
+			"instrumental": "No"
+		},
+		"P_21084": {
+			"work_title": "Every Woman",
+			"work_artist": "Dave Mason [GB]",
+			"perf_title": "Every Woman",
+			"perf_artist": "Jos\u00e9 Feliciano",
+			"release_year": "1976",
+			"work_id": "W_21083",
+			"perf_id": "P_21084",
+			"yt_link": "http://www.youtube.com/embed/PpEsGez2Pfw",
+			"instrumental": "No"
+		}
+	},
+	"W_21116": {
+		"P_21116": {
+			"work_title": "My Man and Me",
+			"work_artist": "Lynsey De Paul",
+			"perf_title": "My Man and Me",
+			"perf_artist": "Lynsey De Paul",
+			"release_year": "1974",
+			"work_id": "W_21116",
+			"perf_id": "P_21116",
+			"yt_link": "http://www.youtube.com/embed/vRzqoJK7Pc8",
+			"instrumental": "No"
+		},
+		"P_21117": {
+			"work_title": "My Man and Me",
+			"work_artist": "Lynsey De Paul",
+			"perf_title": "My Girl and Me",
+			"perf_artist": "Carl Wayne",
+			"release_year": "1977",
+			"work_id": "W_21116",
+			"perf_id": "P_21117",
+			"yt_link": "http://www.youtube.com/embed/PJ0UQzIcjqc",
+			"instrumental": "No"
+		}
+	},
+	"W_21174": {
+		"P_21175": {
+			"work_title": "The Ballad of Frankie Lee and Judas Priest",
+			"work_artist": "Bob Dylan",
+			"perf_title": "The Ballad of Frankie Lee and Judas Priest",
+			"perf_artist": "Jerry Garcia & David Grisman",
+			"release_year": "2004",
+			"work_id": "W_21174",
+			"perf_id": "P_21175",
+			"yt_link": "http://www.youtube.com/embed/FbpoVOXteuw",
+			"instrumental": "No"
+		}
+	},
+	"W_21176": {
+		"P_21176": {
+			"work_title": "Try Again",
+			"work_artist": "Static Major",
+			"perf_title": "Try Again",
+			"perf_artist": "Aaliyah",
+			"release_year": "2000",
+			"work_id": "W_21176",
+			"perf_id": "P_21176",
+			"yt_link": "http://www.youtube.com/embed/aRcAvsZgjXA",
+			"instrumental": "No"
+		}
+	},
+	"W_21192": {
+		"P_21192": {
+			"work_title": "Deeper Underground",
+			"work_artist": "Jay Kay",
+			"perf_title": "Deeper Underground",
+			"perf_artist": "Jamiroquai",
+			"release_year": "1998",
+			"work_id": "W_21192",
+			"perf_id": "P_21192",
+			"yt_link": "http://www.youtube.com/embed/WIUAC03YMlA",
+			"instrumental": "No"
+		}
+	},
+	"W_21330": {
+		"P_79197": {
+			"work_title": "Misdemeanor",
+			"work_artist": "Leon Sylvers",
+			"perf_title": "Misdemeanor",
+			"perf_artist": "Ahmad Jamal",
+			"release_year": "1974",
+			"work_id": "W_21330",
+			"perf_id": "P_79197",
+			"yt_link": "http://www.youtube.com/embed/lMnfji7KLjg",
+			"instrumental": "No"
+		},
+		"P_303341": {
+			"work_title": "Misdemeanor",
+			"work_artist": "Leon Sylvers",
+			"perf_title": "Misdemeanor",
+			"perf_artist": "The CB's",
+			"release_year": "2009",
+			"work_id": "W_21330",
+			"perf_id": "P_303341",
+			"yt_link": "http://www.youtube.com/embed/mpO70FOT_eQ",
+			"instrumental": "No"
+		}
+	},
+	"W_21546": {
+		"P_21546": {
+			"work_title": "Nothing Like a Woman",
+			"work_artist": "Vince Gill",
+			"perf_title": "Nothing Like a Woman",
+			"perf_artist": "Vince Gill",
+			"release_year": "1992",
+			"work_id": "W_21546",
+			"perf_id": "P_21546",
+			"yt_link": "http://www.youtube.com/embed/JlFY_9oVmrQ",
+			"instrumental": "No"
+		}
+	},
+	"W_21578": {
+		"P_21578": {
+			"work_title": "U.S. Male",
+			"work_artist": "Jerry Reed",
+			"perf_title": "U.S. Male",
+			"perf_artist": "Jerry Reed",
+			"release_year": "1967",
+			"work_id": "W_21578",
+			"perf_id": "P_21578",
+			"yt_link": "http://www.youtube.com/embed/Zeu7VxHSxIU",
+			"instrumental": "No"
+		}
+	},
+	"W_21682": {
+		"P_21682": {
+			"work_title": "A Really Good Time",
+			"work_artist": "Bryan Ferry",
+			"perf_title": "A Really Good Time",
+			"perf_artist": "Roxy Music",
+			"release_year": "1974",
+			"work_id": "W_21682",
+			"perf_id": "P_21682",
+			"yt_link": "http://www.youtube.com/embed/jzRtnwv8eJ4",
+			"instrumental": "No"
+		}
+	},
+	"W_21709": {
+		"P_21709": {
+			"work_title": "Only After Dark",
+			"work_artist": "Mick Ronson",
+			"perf_title": "Only After Dark",
+			"perf_artist": "Mick Ronson",
+			"release_year": "1974",
+			"work_id": "W_21709",
+			"perf_id": "P_21709",
+			"yt_link": "http://www.youtube.com/embed/e_4PpB0TIN0",
+			"instrumental": "No"
+		},
+		"P_21710": {
+			"work_title": "Only After Dark",
+			"work_artist": "Mick Ronson",
+			"perf_title": "Only After Dark",
+			"perf_artist": "The Human League",
+			"release_year": "1980",
+			"work_id": "W_21709",
+			"perf_id": "P_21710",
+			"yt_link": "http://www.youtube.com/embed/vfuh5koxfLU",
+			"instrumental": "No"
+		},
+		"P_399466": {
+			"work_title": "Only After Dark",
+			"work_artist": "Mick Ronson",
+			"perf_title": "Only After Dark",
+			"perf_artist": "Def Leppard",
+			"release_year": "1993",
+			"work_id": "W_21709",
+			"perf_id": "P_399466",
+			"yt_link": "http://www.youtube.com/embed/hOO6wztjxV0",
+			"instrumental": "No"
+		}
+	},
+	"W_21714": {
+		"P_21714": {
+			"work_title": "Southland of the Heart",
+			"work_artist": "Bruce Cockburn",
+			"perf_title": "Southland of the Heart",
+			"perf_artist": "Bruce Cockburn",
+			"release_year": "1994",
+			"work_id": "W_21714",
+			"perf_id": "P_21714",
+			"yt_link": "http://www.youtube.com/embed/DCPfi_oBA7E",
+			"instrumental": "No"
+		}
+	},
+	"W_21716": {
+		"P_21716": {
+			"work_title": "Devil in Disguise",
+			"work_artist": "J.J. Cale",
+			"perf_title": "Devil in Disguise",
+			"perf_artist": "J.J. Cale",
+			"release_year": "1982",
+			"work_id": "W_21716",
+			"perf_id": "P_21716",
+			"yt_link": "http://www.youtube.com/embed/ZrnpQDvfbMY",
+			"instrumental": "No"
+		},
+		"P_21717": {
+			"work_title": "Devil in Disguise",
+			"work_artist": "J.J. Cale",
+			"perf_title": "Devil in Disguise",
+			"perf_artist": "George Thorogood & The Destroyers",
+			"release_year": "2003",
+			"work_id": "W_21716",
+			"perf_id": "P_21717",
+			"yt_link": "http://www.youtube.com/embed/PzSkhMnlzic",
+			"instrumental": "No"
+		},
+		"P_430174": {
+			"work_title": "Devil in Disguise",
+			"work_artist": "J.J. Cale",
+			"perf_title": "Devil in Disguise",
+			"perf_artist": "The Black Sorrows",
+			"release_year": "2015",
+			"work_id": "W_21716",
+			"perf_id": "P_430174",
+			"yt_link": "http://www.youtube.com/embed/-XNp9H_joN8",
+			"instrumental": "No"
+		}
+	},
+	"W_21791": {
+		"P_21791": {
+			"work_title": "You Are My World",
+			"work_artist": "Richard Nevil Coles",
+			"perf_title": "You Are My World",
+			"perf_artist": "The Communards",
+			"release_year": "1985",
+			"work_id": "W_21791",
+			"perf_id": "P_21791",
+			"yt_link": "http://www.youtube.com/embed/7Sk2tR9btL0",
+			"instrumental": "No"
+		},
+		"P_21792": {
+			"work_title": "You Are My World",
+			"work_artist": "Richard Nevil Coles",
+			"perf_title": "You Are My World",
+			"perf_artist": "Richard Clayderman",
+			"release_year": "1987",
+			"work_id": "W_21791",
+			"perf_id": "P_21792",
+			"yt_link": "http://www.youtube.com/embed/hTDnHyG-s6o",
+			"instrumental": "No"
+		},
+		"P_187970": {
+			"work_title": "You Are My World",
+			"work_artist": "Richard Nevil Coles",
+			"perf_title": "You Are My World",
+			"perf_artist": "Paul Mauriat",
+			"release_year": "1986",
+			"work_id": "W_21791",
+			"perf_id": "P_187970",
+			"yt_link": "http://www.youtube.com/embed/LRzLDmUMstM",
+			"instrumental": "Yes"
+		}
+	},
+	"W_21820": {},
+	"W_21871": {},
+	"W_21907": {
+		"P_21908": {
+			"work_title": "Need a Woman",
+			"work_artist": "Bob Dylan",
+			"perf_title": "I Need a Woman",
+			"perf_artist": "Ry Cooder",
+			"release_year": "1982",
+			"work_id": "W_21907",
+			"perf_id": "P_21908",
+			"yt_link": "http://www.youtube.com/embed/ZfXs5GfRDL8",
+			"instrumental": "No"
+		}
+	},
+	"W_21955": {
+		"P_21955": {
+			"work_title": "Carry On",
+			"work_artist": "Joey DeMaio",
+			"perf_title": "Carry On",
+			"perf_artist": "Manowar",
+			"release_year": "1987",
+			"work_id": "W_21955",
+			"perf_id": "P_21955",
+			"yt_link": "http://www.youtube.com/embed/SFE4GnUirOY",
+			"instrumental": "No"
+		},
+		"P_764086": {
+			"work_title": "Carry On",
+			"work_artist": "Joey DeMaio",
+			"perf_title": "Carry On",
+			"perf_artist": "Trizna",
+			"release_year": "2004",
+			"work_id": "W_21955",
+			"perf_id": "P_764086",
+			"yt_link": "http://www.youtube.com/embed/73SLt48FWoo",
+			"instrumental": "No"
+		}
+	},
+	"W_22010": {
+		"P_22010": {
+			"work_title": "You",
+			"work_artist": "Bill Withers",
+			"perf_title": "You",
+			"perf_artist": "Bill Withers",
+			"release_year": "1974",
+			"work_id": "W_22010",
+			"perf_id": "P_22010",
+			"yt_link": "http://www.youtube.com/embed/pMKBINhQZO0",
+			"instrumental": "No"
+		}
+	},
+	"W_22052": {
+		"P_22052": {
+			"work_title": "Black Star",
+			"work_artist": "Colin Greenwood",
+			"perf_title": "Black Star",
+			"perf_artist": "Radiohead",
+			"release_year": "1995",
+			"work_id": "W_22052",
+			"perf_id": "P_22052",
+			"yt_link": "http://www.youtube.com/embed/QfzV-oHgRxU",
+			"instrumental": "No"
+		},
+		"P_363623": {
+			"work_title": "Black Star",
+			"work_artist": "Colin Greenwood",
+			"perf_title": "Black Star",
+			"perf_artist": "Eliza Lumley",
+			"release_year": "2007",
+			"work_id": "W_22052",
+			"perf_id": "P_363623",
+			"yt_link": "http://www.youtube.com/embed/tPwbmhk8MMY",
+			"instrumental": "No"
+		}
+	},
+	"W_22057": {
+		"P_22057": {
+			"work_title": "You",
+			"work_artist": "Colin Greenwood",
+			"perf_title": "You",
+			"perf_artist": "Radiohead",
+			"release_year": "1993",
+			"work_id": "W_22057",
+			"perf_id": "P_22057",
+			"yt_link": "http://www.youtube.com/embed/CVcrnb-4T_E",
+			"instrumental": "No"
+		},
+		"P_393333": {
+			"work_title": "You",
+			"work_artist": "Colin Greenwood",
+			"perf_title": "You",
+			"perf_artist": "Helen Merrill",
+			"release_year": "2003",
+			"work_id": "W_22057",
+			"perf_id": "P_393333",
+			"yt_link": "http://www.youtube.com/embed/H5onhO1iZnk",
+			"instrumental": "No"
+		}
+	},
+	"W_22489": {
+		"P_22489": {
+			"work_title": "Rip Her to Shreds",
+			"work_artist": "Clem Burke",
+			"perf_title": "Rip Her to Shreds",
+			"perf_artist": "Blondie",
+			"release_year": "1976",
+			"work_id": "W_22489",
+			"perf_id": "P_22489",
+			"yt_link": "http://www.youtube.com/embed/fhafRxHUHm8",
+			"instrumental": "No"
+		},
+		"P_22490": {
+			"work_title": "Rip Her to Shreds",
+			"work_artist": "Clem Burke",
+			"perf_title": "Rip Her to Shreds",
+			"perf_artist": "The Come Ons",
+			"release_year": "2001",
+			"work_id": "W_22489",
+			"perf_id": "P_22490",
+			"yt_link": "http://www.youtube.com/embed/6-_gbkDTIpM",
+			"instrumental": "No"
+		},
+		"P_778383": {
+			"work_title": "Rip Her to Shreds",
+			"work_artist": "Clem Burke",
+			"perf_title": "Rip Her to Shreds",
+			"perf_artist": "Prima Donna [US]",
+			"release_year": "2015",
+			"work_id": "W_22489",
+			"perf_id": "P_778383",
+			"yt_link": "http://www.youtube.com/embed/bimIf6yk1Z0",
+			"instrumental": "No"
+		}
+	},
+	"W_22529": {
+		"P_22529": {
+			"work_title": "Swooshy",
+			"work_artist": "Freddie King",
+			"perf_title": "Swooshy",
+			"perf_artist": "Freddy King",
+			"release_year": "1961",
+			"work_id": "W_22529",
+			"perf_id": "P_22529",
+			"yt_link": "http://www.youtube.com/embed/KfKQIrCVEUo",
+			"instrumental": "Yes"
+		}
+	},
+	"W_22577": {
+		"P_22577": {
+			"work_title": "Somedays",
+			"work_artist": "Paul McCartney",
+			"perf_title": "Somedays",
+			"perf_artist": "Paul McCartney",
+			"release_year": "1997",
+			"work_id": "W_22577",
+			"perf_id": "P_22577",
+			"yt_link": "http://www.youtube.com/embed/hnC9UmFrdkw",
+			"instrumental": "No"
+		},
+		"P_387927": {
+			"work_title": "Somedays",
+			"work_artist": "Paul McCartney",
+			"perf_title": "Somedays",
+			"perf_artist": "Loma Mar Quartet",
+			"release_year": "1999",
+			"work_id": "W_22577",
+			"perf_id": "P_387927",
+			"yt_link": "http://www.youtube.com/embed/zv_rvXuN-TY",
+			"instrumental": "Yes"
+		}
+	},
+	"W_22616": {
+		"P_22616": {
+			"work_title": "Man We Was Lonely",
+			"work_artist": "Paul McCartney",
+			"perf_title": "Man We Was Lonely",
+			"perf_artist": "Paul McCartney",
+			"release_year": "1970",
+			"work_id": "W_22616",
+			"perf_id": "P_22616",
+			"yt_link": "http://www.youtube.com/embed/xXMCfYIT4n8",
+			"instrumental": "No"
+		}
+	},
+	"W_22637": {
+		"P_22637": {
+			"work_title": "Biddle Street Blues",
+			"work_artist": "Henry Townsend",
+			"perf_title": "Biddle Street Blues",
+			"perf_artist": "Henry Spaulding",
+			"release_year": "1929",
+			"work_id": "W_22637",
+			"perf_id": "P_22637",
+			"yt_link": "http://www.youtube.com/embed/asEx-wm3TH8",
+			"instrumental": "No"
+		}
+	},
+	"W_22697": {
+		"P_570386": {
+			"work_title": "Just Like Always",
+			"work_artist": "Jimmy Webb",
+			"perf_title": "Just Like Always",
+			"perf_artist": "Glen Campbell",
+			"release_year": "2017",
+			"work_id": "W_22697",
+			"perf_id": "P_570386",
+			"yt_link": "http://www.youtube.com/embed/zgaUaseLUyU",
+			"instrumental": "No"
+		}
+	},
+	"W_22745": {
+		"P_22745": {
+			"work_title": "Little Johnny Jewel",
+			"work_artist": "Richard Lloyd",
+			"perf_title": "Little Johnny Jewel - Part One",
+			"perf_artist": "Television",
+			"release_year": "1975",
+			"work_id": "W_22745",
+			"perf_id": "P_22745",
+			"yt_link": "http://www.youtube.com/embed/SL0XO5gN4Uc",
+			"instrumental": "No"
+		},
+		"P_22747": {
+			"work_title": "Little Johnny Jewel",
+			"work_artist": "Richard Lloyd",
+			"perf_title": "Little Johnny Jewel",
+			"perf_artist": "Siouxsie & The Banshees",
+			"release_year": "1987",
+			"work_id": "W_22745",
+			"perf_id": "P_22747",
+			"yt_link": "http://www.youtube.com/embed/6OsdCs16NiQ",
+			"instrumental": "No"
+		}
+	},
+	"W_22750": {
+		"P_22750": {
+			"work_title": "Gun",
+			"work_artist": "John Cale",
+			"perf_title": "Gun",
+			"perf_artist": "John Cale",
+			"release_year": "1974",
+			"work_id": "W_22750",
+			"perf_id": "P_22750",
+			"yt_link": "http://www.youtube.com/embed/jeMHetUOdYQ",
+			"instrumental": "No"
+		},
+		"P_22751": {
+			"work_title": "Gun",
+			"work_artist": "John Cale",
+			"perf_title": "Gun",
+			"perf_artist": "Siouxsie & The Banshees",
+			"release_year": "1987",
+			"work_id": "W_22750",
+			"perf_id": "P_22751",
+			"yt_link": "http://www.youtube.com/embed/Xdvre7OAuIs",
+			"instrumental": "No"
+		}
+	},
+	"W_23321": {
+		"P_23321": {
+			"work_title": "Rock Me Right",
+			"work_artist": "Tom Hambridge",
+			"perf_title": "Rock Me Right",
+			"perf_artist": "Susan Tedeschi",
+			"release_year": "1998",
+			"work_id": "W_23321",
+			"perf_id": "P_23321",
+			"yt_link": "http://www.youtube.com/embed/xigwtXcrXBA",
+			"instrumental": "No"
+		}
+	},
+	"W_23335": {
+		"P_23335": {
+			"work_title": "White Rhythm and Blues",
+			"work_artist": "J.D. Souther",
+			"perf_title": "White Rhythm and Blues",
+			"perf_artist": "Linda Ronstadt",
+			"release_year": "1978",
+			"work_id": "W_23335",
+			"perf_id": "P_23335",
+			"yt_link": "http://www.youtube.com/embed/WjWV0o4nR7k",
+			"instrumental": "No"
+		}
+	},
+	"W_23383": {
+		"P_23383": {
+			"work_title": "Terry",
+			"work_artist": "Gavin Povey",
+			"perf_title": "Terry",
+			"perf_artist": "Kirsty MacColl",
+			"release_year": "1983",
+			"work_id": "W_23383",
+			"perf_id": "P_23383",
+			"yt_link": "http://www.youtube.com/embed/7-QVqcjg3g8",
+			"instrumental": "No"
+		},
+		"P_23384": {
+			"work_title": "Terry",
+			"work_artist": "Gavin Povey",
+			"perf_title": "Terry",
+			"perf_artist": "Tracey Ullman",
+			"release_year": "1984",
+			"work_id": "W_23383",
+			"perf_id": "P_23384",
+			"yt_link": "http://www.youtube.com/embed/RXRd3vUNscw",
+			"instrumental": "No"
+		}
+	},
+	"W_23414": {
+		"P_23414": {
+			"work_title": "You Broke My Heart in 17 Places",
+			"work_artist": "Kirsty MacColl",
+			"perf_title": "You Broke My Heart in 17 Places",
+			"perf_artist": "Tracey Ullman",
+			"release_year": "1983",
+			"work_id": "W_23414",
+			"perf_id": "P_23414",
+			"yt_link": "http://www.youtube.com/embed/4ixrN65ehTg",
+			"instrumental": "No"
+		},
+		"P_23415": {
+			"work_title": "You Broke My Heart in 17 Places",
+			"work_artist": "Kirsty MacColl",
+			"perf_title": "You Broke My Heart in 17 Places",
+			"perf_artist": "Denise Gyngell",
+			"release_year": "1984",
+			"work_id": "W_23414",
+			"perf_id": "P_23415",
+			"yt_link": "http://www.youtube.com/embed/gb2pcMsMXY4",
+			"instrumental": "No"
+		},
+		"P_215719": {
+			"work_title": "You Broke My Heart in 17 Places",
+			"work_artist": "Kirsty MacColl",
+			"perf_title": "You Broke My Heart in 17 Places",
+			"perf_artist": "Los Summers",
+			"release_year": "2009",
+			"work_id": "W_23414",
+			"perf_id": "P_215719",
+			"yt_link": "http://www.youtube.com/embed/Kgpq9YJI1D4",
+			"instrumental": "No"
+		}
+	},
+	"W_23418": {
+		"P_23418": {
+			"work_title": "Life Is a Rock (But the Radio Rolled Me)",
+			"work_artist": "Paul DiFranco",
+			"perf_title": "Life Is a Rock (But the Radio Rolled Me)",
+			"perf_artist": "Reunion",
+			"release_year": "1974",
+			"work_id": "W_23418",
+			"perf_id": "P_23418",
+			"yt_link": "http://www.youtube.com/embed/16kh-AP4OCU",
+			"instrumental": "No"
+		},
+		"P_23419": {
+			"work_title": "Life Is a Rock (But the Radio Rolled Me)",
+			"work_artist": "Paul DiFranco",
+			"perf_title": "Life Is a Rock (But the Radio Rolled Me)",
+			"perf_artist": "Tracey Ullman",
+			"release_year": "1983",
+			"work_id": "W_23418",
+			"perf_id": "P_23419",
+			"yt_link": "http://www.youtube.com/embed/0M53VtjltTc",
+			"instrumental": "No"
+		},
+		"P_673856": {
+			"work_title": "Life Is a Rock (But the Radio Rolled Me)",
+			"work_artist": "Paul DiFranco",
+			"perf_title": "Life Is a Rock (But the Radio Rolled Me)",
+			"perf_artist": "The Reverbs [1]",
+			"release_year": "2010",
+			"work_id": "W_23418",
+			"perf_id": "P_673856",
+			"yt_link": "http://www.youtube.com/embed/15wq1Yg_Ac4",
+			"instrumental": "No"
+		}
+	},
+	"W_23420": {
+		"P_23421": {
+			"work_title": "Baby I Lied",
+			"work_artist": "Rory Bourke",
+			"perf_title": "Baby I Lied",
+			"perf_artist": "Tracey Ullman",
+			"release_year": "1984",
+			"work_id": "W_23420",
+			"perf_id": "P_23421",
+			"yt_link": "http://www.youtube.com/embed/V9YYrn5gLic",
+			"instrumental": "No"
+		}
+	},
+	"W_23430": {
+		"P_23430": {
+			"work_title": "Numbers",
+			"work_artist": "Karl Bartos",
+			"perf_title": "Numbers",
+			"perf_artist": "Kraftwerk",
+			"release_year": "1981",
+			"work_id": "W_23430",
+			"perf_id": "P_23430",
+			"yt_link": "http://www.youtube.com/embed/4YPiCeLwh5o",
+			"instrumental": "No"
+		}
+	},
+	"W_23435": {},
+	"W_24065": {},
+	"W_24068": {
+		"P_24069": {
+			"work_title": "Don't Kill It Carol",
+			"work_artist": "Mike Heron",
+			"perf_title": "Don't Kill It Carol",
+			"perf_artist": "Manfred Mann's Earth Band",
+			"release_year": "1979",
+			"work_id": "W_24068",
+			"perf_id": "P_24069",
+			"yt_link": "http://www.youtube.com/embed/8CFdaOkaBIc",
+			"instrumental": "No"
+		},
+		"P_372047": {
+			"work_title": "Don't Kill It Carol",
+			"work_artist": "Mike Heron",
+			"perf_title": "Don't Kill It Carol",
+			"perf_artist": "Chris Thompson [NZ]",
+			"release_year": "2011",
+			"work_id": "W_24068",
+			"perf_id": "P_372047",
+			"yt_link": "http://www.youtube.com/embed/7dOAYIjVKjs",
+			"instrumental": "No"
+		}
+	},
+	"W_24075": {
+		"P_24075": {
+			"work_title": "Candy's Going Bad",
+			"work_artist": "Barry Hay",
+			"perf_title": "Candy's Going Bad",
+			"perf_artist": "Golden Earring",
+			"release_year": "1973",
+			"work_id": "W_24075",
+			"perf_id": "P_24075",
+			"yt_link": "http://www.youtube.com/embed/boPLUivcDQw",
+			"instrumental": "No"
+		}
+	},
+	"W_24077": {
+		"P_24077": {
+			"work_title": "Tonight",
+			"work_artist": "Nick Lowe",
+			"perf_title": "Tonight",
+			"perf_artist": "Nick Lowe",
+			"release_year": "1978",
+			"work_id": "W_24077",
+			"perf_id": "P_24077",
+			"yt_link": "http://www.youtube.com/embed/K5S4DuodiyY",
+			"instrumental": "No"
+		},
+		"P_24078": {
+			"work_title": "Tonight",
+			"work_artist": "Nick Lowe",
+			"perf_title": "Tonight",
+			"perf_artist": "Lene Lovich",
+			"release_year": "1978",
+			"work_id": "W_24077",
+			"perf_id": "P_24078",
+			"yt_link": "http://www.youtube.com/embed/6V8Gyr4FPt8",
+			"instrumental": "No"
+		}
+	},
+	"W_24090": {
+		"P_24090": {
+			"work_title": "In Held 'Twas in I",
+			"work_artist": "Matthew Fisher",
+			"perf_title": "In Held 'Twas in I",
+			"perf_artist": "Procol Harum",
+			"release_year": "1968",
+			"work_id": "W_24090",
+			"perf_id": "P_24090",
+			"yt_link": "http://www.youtube.com/embed/2YBpNHmodGA",
+			"instrumental": "No"
+		},
+		"P_24091": {
+			"work_title": "In Held 'Twas in I",
+			"work_artist": "Matthew Fisher",
+			"perf_title": "In Held ('Twas) in I",
+			"perf_artist": "Transatlantic",
+			"release_year": "2000",
+			"work_id": "W_24090",
+			"perf_id": "P_24091",
+			"yt_link": "http://www.youtube.com/embed/2smecZc_SVM",
+			"instrumental": "No"
+		}
+	},
+	"W_24179": {
+		"P_24180": {
+			"work_title": "Too Hot",
+			"work_artist": "Prince Buster",
+			"perf_title": "Too Hot",
+			"perf_artist": "The Specials",
+			"release_year": "1979",
+			"work_id": "W_24179",
+			"perf_id": "P_24180",
+			"yt_link": "http://www.youtube.com/embed/z8SIUtUAtrw",
+			"instrumental": "No"
+		}
+	},
+	"W_24238": {},
+	"W_24253": {
+		"P_24253": {
+			"work_title": "Look Who's Blue",
+			"work_artist": "Don Gibson",
+			"perf_title": "Look Who's Blue",
+			"perf_artist": "Don Gibson",
+			"release_year": "1958",
+			"work_id": "W_24253",
+			"perf_id": "P_24253",
+			"yt_link": "http://www.youtube.com/embed/urs5W7zxzn4",
+			"instrumental": "No"
+		},
+		"P_24254": {
+			"work_title": "Look Who's Blue",
+			"work_artist": "Don Gibson",
+			"perf_title": "Look Who's Blue",
+			"perf_artist": "Robert Gordon",
+			"release_year": "1981",
+			"work_id": "W_24253",
+			"perf_id": "P_24254",
+			"yt_link": "http://www.youtube.com/embed/vbbEsA5fSso",
+			"instrumental": "No"
+		}
+	},
+	"W_24275": {
+		"P_24275": {
+			"work_title": "I'm a Drifter",
+			"work_artist": "Dolly Parton",
+			"perf_title": "I'm a Drifter",
+			"perf_artist": "Dolly Parton",
+			"release_year": "1976",
+			"work_id": "W_24275",
+			"perf_id": "P_24275",
+			"yt_link": "http://www.youtube.com/embed/roDSnzABLAY",
+			"instrumental": "No"
+		},
+		"P_24276": {
+			"work_title": "I'm a Drifter",
+			"work_artist": "Dolly Parton",
+			"perf_title": "I'm a Drifter",
+			"perf_artist": "Johnny Cash",
+			"release_year": "2003",
+			"work_id": "W_24275",
+			"perf_id": "P_24276",
+			"yt_link": "http://www.youtube.com/embed/Yo8yONPFPuY",
+			"instrumental": "No"
+		}
+	},
+	"W_24317": {
+		"P_24317": {
+			"work_title": "Hypin' Woman Blues",
+			"work_artist": "Shifty Henry",
+			"perf_title": "Hypin' Women Blues",
+			"perf_artist": "T-Bone Walker and His Guitar",
+			"release_year": "1949",
+			"work_id": "W_24317",
+			"perf_id": "P_24317",
+			"yt_link": "http://www.youtube.com/embed/3IQpjduZNy4",
+			"instrumental": "No"
+		},
+		"P_24318": {
+			"work_title": "Hypin' Woman Blues",
+			"work_artist": "Shifty Henry",
+			"perf_title": "Hypin' Woman",
+			"perf_artist": "El Fish",
+			"release_year": "1996",
+			"work_id": "W_24317",
+			"perf_id": "P_24318",
+			"yt_link": "http://www.youtube.com/embed/XDPTKsxhVT4",
+			"instrumental": "No"
+		}
+	},
+	"W_24353": {
+		"P_24353": {
+			"work_title": "Sunshine",
+			"work_artist": "Paul Richard Hewson",
+			"perf_title": "Sunshine",
+			"perf_artist": "Dragon",
+			"release_year": "1977",
+			"work_id": "W_24353",
+			"perf_id": "P_24353",
+			"yt_link": "http://www.youtube.com/embed/ePhLHdtoWao",
+			"instrumental": "No"
+		}
+	},
+	"W_24357": {
+		"P_24357": {
+			"work_title": "Ooh Boy",
+			"work_artist": "Norman Whitfield",
+			"perf_title": "Ooh Boy",
+			"perf_artist": "Rose Royce",
+			"release_year": "1977",
+			"work_id": "W_24357",
+			"perf_id": "P_24357",
+			"yt_link": "http://www.youtube.com/embed/Sk5QApkNyFM",
+			"instrumental": "No"
+		}
+	},
+	"W_24403": {
+		"P_24403": {
+			"work_title": "The Road to Mandalay",
+			"work_artist": "Guy Chambers",
+			"perf_title": "The Road to Mandalay",
+			"perf_artist": "Robbie Williams",
+			"release_year": "2000",
+			"work_id": "W_24403",
+			"perf_id": "P_24403",
+			"yt_link": "http://www.youtube.com/embed/9km9E6-09IA",
+			"instrumental": "No"
+		}
+	},
+	"W_24421": {},
+	"W_24426": {
+		"P_24426": {
+			"work_title": "Sinatra",
+			"work_artist": "Page Hamilton",
+			"perf_title": "Sinatra",
+			"perf_artist": "Helmet",
+			"release_year": "1990",
+			"work_id": "W_24426",
+			"perf_id": "P_24426",
+			"yt_link": "http://www.youtube.com/embed/8SYEh2aHtvQ",
+			"instrumental": "No"
+		},
+		"P_789865": {
+			"work_title": "Sinatra",
+			"work_artist": "Page Hamilton",
+			"perf_title": "Sinatra",
+			"perf_artist": "Livver",
+			"release_year": "2016",
+			"work_id": "W_24426",
+			"perf_id": "P_789865",
+			"yt_link": "http://www.youtube.com/embed/X8RBDZPXf2E",
+			"instrumental": "No"
+		}
+	},
+	"W_24516": {
+		"P_24516": {
+			"work_title": "Paradise Is Here",
+			"work_artist": "Paul Brady",
+			"perf_title": "Paradise Is Here",
+			"perf_artist": "Tina Turner",
+			"release_year": "1986",
+			"work_id": "W_24516",
+			"perf_id": "P_24516",
+			"yt_link": "http://www.youtube.com/embed/tk6xlECYbqw",
+			"instrumental": "No"
+		},
+		"P_168801": {
+			"work_title": "Paradise Is Here",
+			"work_artist": "Paul Brady",
+			"perf_title": "Paradise Is Here",
+			"perf_artist": "Paul Brady",
+			"release_year": "1987",
+			"work_id": "W_24516",
+			"perf_id": "P_168801",
+			"yt_link": "http://www.youtube.com/embed/UORUXth5k1w",
+			"instrumental": "No"
+		},
+		"P_24517": {
+			"work_title": "Paradise Is Here",
+			"work_artist": "Paul Brady",
+			"perf_title": "Paradise Is Here",
+			"perf_artist": "Cher",
+			"release_year": "1995",
+			"work_id": "W_24516",
+			"perf_id": "P_24517",
+			"yt_link": "http://www.youtube.com/embed/4ZmwwcSu63M",
+			"instrumental": "No"
+		}
+	},
+	"W_24549": {
+		"P_24549": {
+			"work_title": "Sittin' on My Sofa",
+			"work_artist": "Ray Davies",
+			"perf_title": "Sittin' on My Sofa",
+			"perf_artist": "The Kinks",
+			"release_year": "1966",
+			"work_id": "W_24549",
+			"perf_id": "P_24549",
+			"yt_link": "http://www.youtube.com/embed/oDF-7iMhg4o",
+			"instrumental": "No"
+		},
+		"P_30095": {
+			"work_title": "Sittin' on My Sofa",
+			"work_artist": "Ray Davies",
+			"perf_title": "Sittin' on My Sofa",
+			"perf_artist": "Apaches",
+			"release_year": "1966",
+			"work_id": "W_24549",
+			"perf_id": "P_30095",
+			"yt_link": "http://www.youtube.com/embed/KbYVmVU-l9c",
+			"instrumental": "No"
+		}
+	},
+	"W_24576": {
+		"P_24576": {
+			"work_title": "The Messenger",
+			"work_artist": "Daniel Lanois",
+			"perf_title": "The Messenger",
+			"perf_artist": "Daniel Lanois",
+			"release_year": "1993",
+			"work_id": "W_24576",
+			"perf_id": "P_24576",
+			"yt_link": "http://www.youtube.com/embed/5AlzHDv0RXQ",
+			"instrumental": "No"
+		},
+		"P_24577": {
+			"work_title": "The Messenger",
+			"work_artist": "Daniel Lanois",
+			"perf_title": "The Messenger",
+			"perf_artist": "The Tea Party",
+			"release_year": "1999",
+			"work_id": "W_24576",
+			"perf_id": "P_24577",
+			"yt_link": "http://www.youtube.com/embed/w98SWuVbEjo",
+			"instrumental": "No"
+		}
+	},
+	"W_24647": {
+		"P_24647": {
+			"work_title": "Concentration Baby",
+			"work_artist": "Dave Clark",
+			"perf_title": "Concentration Baby",
+			"perf_artist": "The Dave Clark Five",
+			"release_year": "1967",
+			"work_id": "W_24647",
+			"perf_id": "P_24647",
+			"yt_link": "http://www.youtube.com/embed/x-R_9G4xFeA",
+			"instrumental": "No"
+		},
+		"P_24648": {
+			"work_title": "Concentration Baby",
+			"work_artist": "Dave Clark",
+			"perf_title": "Concentration Baby",
+			"perf_artist": "Blancmange",
+			"release_year": "1980",
+			"work_id": "W_24647",
+			"perf_id": "P_24648",
+			"yt_link": "http://www.youtube.com/embed/8zXOlu_tqfA",
+			"instrumental": "No"
+		}
+	},
+	"W_24650": {
+		"P_24650": {
+			"work_title": "Posse on Broadway",
+			"work_artist": "Sir Mix-A-Lot",
+			"perf_title": "Posse on Broadway",
+			"perf_artist": "Sir Mix-A-Lot",
+			"release_year": "1988",
+			"work_id": "W_24650",
+			"perf_id": "P_24650",
+			"yt_link": "http://www.youtube.com/embed/SBPpy_SVV_0",
+			"instrumental": "No"
+		},
+		"P_167269": {
+			"work_title": "Posse on Broadway",
+			"work_artist": "Sir Mix-A-Lot",
+			"perf_title": "Posse on Broadway",
+			"perf_artist": "Insane Clown Posse",
+			"release_year": "2000",
+			"work_id": "W_24650",
+			"perf_id": "P_167269",
+			"yt_link": "http://www.youtube.com/embed/we2M8FVWmw8",
+			"instrumental": "No"
+		}
+	},
+	"W_24659": {
+		"P_24659": {
+			"work_title": "Up in the Sky",
+			"work_artist": "Noel Gallagher",
+			"perf_title": "Up in the Sky",
+			"perf_artist": "Oasis",
+			"release_year": "1994",
+			"work_id": "W_24659",
+			"perf_id": "P_24659",
+			"yt_link": "http://www.youtube.com/embed/sQ_ho_1m2tY",
+			"instrumental": "No"
+		}
+	},
+	"W_24662": {
+		"P_24662": {
+			"work_title": "She's Electric",
+			"work_artist": "Noel Gallagher",
+			"perf_title": "She's Electric",
+			"perf_artist": "Oasis",
+			"release_year": "1995",
+			"work_id": "W_24662",
+			"perf_id": "P_24662",
+			"yt_link": "http://www.youtube.com/embed/04hcZwqYVpI",
+			"instrumental": "No"
+		}
+	},
+	"W_24687": {
+		"P_24687": {
+			"work_title": "16 Shells from a Thirty-Ought-Six",
+			"work_artist": "Tom Waits",
+			"perf_title": "16 Shells from a Thirty-Ought-Six",
+			"perf_artist": "Tom Waits",
+			"release_year": "1983",
+			"work_id": "W_24687",
+			"perf_id": "P_24687",
+			"yt_link": "http://www.youtube.com/embed/0XLdxxJEB80",
+			"instrumental": "No"
+		},
+		"P_24689": {
+			"work_title": "16 Shells from a Thirty-Ought-Six",
+			"work_artist": "Tom Waits",
+			"perf_title": "16 Shells from a 30-6",
+			"perf_artist": "Bob Seger & The Silver Bullet Band",
+			"release_year": "1995",
+			"work_id": "W_24687",
+			"perf_id": "P_24689",
+			"yt_link": "http://www.youtube.com/embed/UF7wiQ0lqYY",
+			"instrumental": "No"
+		}
+	},
+	"W_21377": {
+		"P_21377": {
+			"work_title": "One Man Band",
+			"work_artist": "Billy Fox",
+			"perf_title": "One Man Band",
+			"perf_artist": "Three Dog Night",
+			"release_year": "1970",
+			"work_id": "W_21377",
+			"perf_id": "P_21377",
+			"yt_link": "http://www.youtube.com/embed/IKbz6gCmlWw",
+			"instrumental": "No"
+		},
+		"P_21378": {
+			"work_title": "One Man Band",
+			"work_artist": "Billy Fox",
+			"perf_title": "One Man Band",
+			"perf_artist": "Monk Higgins & The Specialties",
+			"release_year": "1974",
+			"work_id": "W_21377",
+			"perf_id": "P_21378",
+			"yt_link": "http://www.youtube.com/embed/5mqvomO7eO8",
+			"instrumental": "No"
+		}
+	},
+	"W_21472": {
+		"P_120630": {
+			"work_title": "Teorema",
+			"work_artist": "Marco Ferradini",
+			"perf_title": "Teorema",
+			"perf_artist": "Mina",
+			"release_year": "1993",
+			"work_id": "W_21472",
+			"perf_id": "P_120630",
+			"yt_link": "http://www.youtube.com/embed/O9kZLzJKdVo",
+			"instrumental": "No"
+		}
+	},
+	"W_21483": {
+		"P_21483": {
+			"work_title": "Viva Bobby Joe",
+			"work_artist": "Eddy Grant",
+			"perf_title": "Viva Bobby Joe",
+			"perf_artist": "The Equals",
+			"release_year": "1969",
+			"work_id": "W_21483",
+			"perf_id": "P_21483",
+			"yt_link": "http://www.youtube.com/embed/veVRejxrE6U",
+			"instrumental": "No"
+		}
+	},
+	"W_22089": {
+		"P_22089": {
+			"work_title": "Stop Whispering",
+			"work_artist": "Colin Greenwood",
+			"perf_title": "Stop Whispering",
+			"perf_artist": "Radiohead",
+			"release_year": "1993",
+			"work_id": "W_22089",
+			"perf_id": "P_22089",
+			"yt_link": "http://www.youtube.com/embed/PECnzN8P6KQ",
+			"instrumental": "No"
+		},
+		"P_269217": {
+			"work_title": "Stop Whispering",
+			"work_artist": "Colin Greenwood",
+			"perf_title": "Stop Whispering",
+			"perf_artist": "Jimmy Eat World",
+			"release_year": "2013",
+			"work_id": "W_22089",
+			"perf_id": "P_269217",
+			"yt_link": "http://www.youtube.com/embed/1cX87Spdz1Y",
+			"instrumental": "No"
+		}
+	},
+	"W_22257": {
+		"P_186008": {
+			"work_title": "In Your Arms",
+			"work_artist": "Linda Creed",
+			"perf_title": "In Your Arms",
+			"perf_artist": "Diana Ross",
+			"release_year": "1982",
+			"work_id": "W_22257",
+			"perf_id": "P_186008",
+			"yt_link": "http://www.youtube.com/embed/KbzIW_vd890",
+			"instrumental": "No"
+		},
+		"P_22257": {
+			"work_title": "In Your Arms",
+			"work_artist": "Linda Creed",
+			"perf_title": "Hold Me",
+			"perf_artist": "Teddy Pendergrass with Whitney Houston",
+			"release_year": "1984",
+			"work_id": "W_22257",
+			"perf_id": "P_22257",
+			"yt_link": "http://www.youtube.com/embed/X6Kv5iONssM",
+			"instrumental": "No"
+		},
+		"P_515655": {
+			"work_title": "In Your Arms",
+			"work_artist": "Linda Creed",
+			"perf_title": "Hold Me",
+			"perf_artist": "Lani Misalucha",
+			"release_year": "2006",
+			"work_id": "W_22257",
+			"perf_id": "P_515655",
+			"yt_link": "http://www.youtube.com/embed/wIvHq3lB9_A",
+			"instrumental": "No"
+		}
+	},
+	"W_22470": {},
+	"W_22833": {
+		"P_22833": {
+			"work_title": "I Do",
+			"work_artist": "Frank Paden",
+			"perf_title": "I Do",
+			"perf_artist": "The Marvelows",
+			"release_year": "1965",
+			"work_id": "W_22833",
+			"perf_id": "P_22833",
+			"yt_link": "http://www.youtube.com/embed/KY9FyR-vUFI",
+			"instrumental": "No"
+		},
+		"P_22834": {
+			"work_title": "I Do",
+			"work_artist": "Frank Paden",
+			"perf_title": "I Do",
+			"perf_artist": "The J. Geils Band",
+			"release_year": "1977",
+			"work_id": "W_22833",
+			"perf_id": "P_22834",
+			"yt_link": "http://www.youtube.com/embed/MoEugIqcumA",
+			"instrumental": "No"
+		}
+	},
+	"W_22866": {
+		"P_22866": {
+			"work_title": "I Wish You Well",
+			"work_artist": "Bill Withers",
+			"perf_title": "I Wish You Well",
+			"perf_artist": "Bill Withers",
+			"release_year": "1975",
+			"work_id": "W_22866",
+			"perf_id": "P_22866",
+			"yt_link": "http://www.youtube.com/embed/KyypsBZCEvw",
+			"instrumental": "No"
+		}
+	},
+	"W_22882": {
+		"P_22882": {
+			"work_title": "Freak Like Me",
+			"work_artist": "Eugene Leroy Hanes",
+			"perf_title": "Freak Like Me",
+			"perf_artist": "Adina Howard",
+			"release_year": "1995",
+			"work_id": "W_22882",
+			"perf_id": "P_22882",
+			"yt_link": "http://www.youtube.com/embed/iirDzMk5ysI",
+			"instrumental": "No"
+		},
+		"P_32404": {
+			"work_title": "Freak Like Me",
+			"work_artist": "Eugene Leroy Hanes",
+			"perf_title": "Freak Like Me",
+			"perf_artist": "Tru Faith & Dub Conspiracy",
+			"release_year": "2000",
+			"work_id": "W_22882",
+			"perf_id": "P_32404",
+			"yt_link": "http://www.youtube.com/embed/UDYwRs6LfnA",
+			"instrumental": "No"
+		},
+		"P_41823": {
+			"work_title": "Freak Like Me",
+			"work_artist": "Eugene Leroy Hanes",
+			"perf_title": "Freak Like Me",
+			"perf_artist": "Sugababes",
+			"release_year": "2002",
+			"work_id": "W_22882",
+			"perf_id": "P_41823",
+			"yt_link": "http://www.youtube.com/embed/dSAGsiVSoeE",
+			"instrumental": "No"
+		}
+	},
+	"W_22898": {
+		"P_22898": {
+			"work_title": "Summertime",
+			"work_artist": "Craig Simpkins",
+			"perf_title": "Summertime",
+			"perf_artist": "DJ Jazzy Jeff & The Fresh Prince",
+			"release_year": "1991",
+			"work_id": "W_22898",
+			"perf_id": "P_22898",
+			"yt_link": "http://www.youtube.com/embed/Kr0tTbTbmVA",
+			"instrumental": "No"
+		},
+		"P_775654": {
+			"work_title": "Summertime",
+			"work_artist": "Craig Simpkins",
+			"perf_title": "Summertime",
+			"perf_artist": "Patrick Lentz",
+			"release_year": "2016",
+			"work_id": "W_22898",
+			"perf_id": "P_775654",
+			"yt_link": "http://www.youtube.com/embed/Vi3w_AKitXo",
+			"instrumental": "No"
+		}
+	},
+	"W_23066": {},
+	"W_23728": {
+		"P_23728": {
+			"work_title": "It's Alright",
+			"work_artist": "Tony Mortimer",
+			"perf_title": "It's alright",
+			"perf_artist": "East 17",
+			"release_year": "1992",
+			"work_id": "W_23728",
+			"perf_id": "P_23728",
+			"yt_link": "http://www.youtube.com/embed/Ul_hcxlA5KU",
+			"instrumental": "No"
+		}
+	},
+	"W_23760": {
+		"P_23760": {
+			"work_title": "Silent Running",
+			"work_artist": "B.A. Robertson",
+			"perf_title": "Silent Running",
+			"perf_artist": "Mike + The Mechanics",
+			"release_year": "1985",
+			"work_id": "W_23760",
+			"perf_id": "P_23760",
+			"yt_link": "http://www.youtube.com/embed/ep7W89I_V_g",
+			"instrumental": "No"
+		},
+		"P_23761": {
+			"work_title": "Silent Running",
+			"work_artist": "B.A. Robertson",
+			"perf_title": "Silent Running",
+			"perf_artist": "Sandra [DE]",
+			"release_year": "2002",
+			"work_id": "W_23760",
+			"perf_id": "P_23761",
+			"yt_link": "http://www.youtube.com/embed/S0gdd4ZsFDQ",
+			"instrumental": "No"
+		},
+		"P_420629": {
+			"work_title": "Silent Running",
+			"work_artist": "B.A. Robertson",
+			"perf_title": "Silent Running",
+			"perf_artist": "The Protomen",
+			"release_year": "2015",
+			"work_id": "W_23760",
+			"perf_id": "P_420629",
+			"yt_link": "http://www.youtube.com/embed/Qs6TY43g5Iw",
+			"instrumental": "No"
+		}
+	},
+	"W_23814": {
+		"P_23814": {
+			"work_title": "Excuse Me Mr.",
+			"work_artist": "Ben Harper",
+			"perf_title": "Excuse Me Mr.",
+			"perf_artist": "Ben Harper",
+			"release_year": "1995",
+			"work_id": "W_23814",
+			"perf_id": "P_23814",
+			"yt_link": "http://www.youtube.com/embed/zZEGhcekgHw",
+			"instrumental": "No"
+		},
+		"P_23815": {
+			"work_title": "Excuse Me Mr.",
+			"work_artist": "Ben Harper",
+			"perf_title": "Excuse Me Mister",
+			"perf_artist": "John Martyn",
+			"release_year": "1998",
+			"work_id": "W_23814",
+			"perf_id": "P_23815",
+			"yt_link": "http://www.youtube.com/embed/TB3PO1feI4I",
+			"instrumental": "No"
+		}
+	},
+	"W_23840": {
+		"P_23840": {
+			"work_title": "Disguises",
+			"work_artist": "Pete Townshend",
+			"perf_title": "Disguises",
+			"perf_artist": "The Who",
+			"release_year": "1966",
+			"work_id": "W_23840",
+			"perf_id": "P_23840",
+			"yt_link": "http://www.youtube.com/embed/73tRBoPZAWM",
+			"instrumental": "No"
+		},
+		"P_23841": {
+			"work_title": "Disguises",
+			"work_artist": "Pete Townshend",
+			"perf_title": "Disguises",
+			"perf_artist": "The Jam",
+			"release_year": "1981",
+			"work_id": "W_23840",
+			"perf_id": "P_23841",
+			"yt_link": "http://www.youtube.com/embed/qPz16DhrdOc",
+			"instrumental": "No"
+		},
+		"P_86614": {
+			"work_title": "Disguises",
+			"work_artist": "Pete Townshend",
+			"perf_title": "Disguises",
+			"perf_artist": "of Montreal",
+			"release_year": "1997",
+			"work_id": "W_23840",
+			"perf_id": "P_86614",
+			"yt_link": "http://www.youtube.com/embed/jlUV0WnUpVg",
+			"instrumental": "No"
+		}
+	},
+	"W_23878": {
+		"P_23878": {
+			"work_title": "Blue Clouds",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Blue Clouds",
+			"perf_artist": "Daniel Johnston",
+			"release_year": "1988",
+			"work_id": "W_23878",
+			"perf_id": "P_23878",
+			"yt_link": "http://www.youtube.com/embed/uA5ae-7T_4A",
+			"instrumental": "No"
+		}
+	},
+	"W_23881": {
+		"P_23881": {
+			"work_title": "Don't Let the Sun Go Down on Your Grievances",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Don't Let the Sun Go Down on Your Grievances",
+			"perf_artist": "Daniel Johnston",
+			"release_year": "1983",
+			"work_id": "W_23881",
+			"perf_id": "P_23881",
+			"yt_link": "http://www.youtube.com/embed/C6ZiZmQ5V2s",
+			"instrumental": "No"
+		},
+		"P_23885": {
+			"work_title": "Don't Let the Sun Go Down on Your Grievances",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Don't Let the Sun Go Down on Your Grievances",
+			"perf_artist": "Clem Snide",
+			"release_year": "2004",
+			"work_id": "W_23881",
+			"perf_id": "P_23885",
+			"yt_link": "http://www.youtube.com/embed/AR7hdWvlRH8",
+			"instrumental": "No"
+		},
+		"P_50024": {
+			"work_title": "Don't Let the Sun Go Down on Your Grievances",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Don't Let the Sun Go Down on Your Grievances",
+			"perf_artist": "Dot Allison",
+			"release_year": "2006",
+			"work_id": "W_23881",
+			"perf_id": "P_50024",
+			"yt_link": "http://www.youtube.com/embed/cWbDUYN05Ec",
+			"instrumental": "No"
+		}
+	},
+	"W_23887": {
+		"P_23887": {
+			"work_title": "A Quitter Never Wins",
+			"work_artist": "Margaret Sampson",
+			"perf_title": "A Quitter Never Wins",
+			"perf_artist": "Tinsley Ellis",
+			"release_year": "1994",
+			"work_id": "W_23887",
+			"perf_id": "P_23887",
+			"yt_link": "http://www.youtube.com/embed/8OxlpQcUHVs",
+			"instrumental": "No"
+		},
+		"P_393828": {
+			"work_title": "A Quitter Never Wins",
+			"work_artist": "Margaret Sampson",
+			"perf_title": "A Quitter Never Wins",
+			"perf_artist": "Jonny Lang",
+			"release_year": "1996",
+			"work_id": "W_23887",
+			"perf_id": "P_393828",
+			"yt_link": "http://www.youtube.com/embed/ldRV565BjTE",
+			"instrumental": "No"
+		}
+	},
+	"W_23964": {
+		"P_23964": {
+			"work_title": "You Got It (The Right Stuff)",
+			"work_artist": "Maurice Starr",
+			"perf_title": "You Got It (The Right Stuff)",
+			"perf_artist": "New Kids on the Block",
+			"release_year": "1988",
+			"work_id": "W_23964",
+			"perf_id": "P_23964",
+			"yt_link": "http://www.youtube.com/embed/tbIEwIwYz-c",
+			"instrumental": "No"
+		},
+		"P_681543": {
+			"work_title": "You Got It (The Right Stuff)",
+			"work_artist": "Maurice Starr",
+			"perf_title": "You Got It (The Right Stuff)",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2011",
+			"work_id": "W_23964",
+			"perf_id": "P_681543",
+			"yt_link": "http://www.youtube.com/embed/S4pgIRNLbmU",
+			"instrumental": "Yes"
+		}
+	},
+	"W_23977": {
+		"P_374805": {
+			"work_title": "Mississippi Moon",
+			"work_artist": "Peter Rowan",
+			"perf_title": "Mississippi Moon",
+			"perf_artist": "Jerry Garcia Band",
+			"release_year": "2001",
+			"work_id": "W_23977",
+			"perf_id": "P_374805",
+			"yt_link": "http://www.youtube.com/embed/msJx2-RUTC4",
+			"instrumental": "No"
+		}
+	},
+	"W_24008": {
+		"P_24010": {
+			"work_title": "Sorry Entertainer",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Sorry Entertainer",
+			"perf_artist": "K. McCarty",
+			"release_year": "1992",
+			"work_id": "W_24008",
+			"perf_id": "P_24010",
+			"yt_link": "http://www.youtube.com/embed/kpOAosR5Ft0",
+			"instrumental": "No"
+		}
+	},
+	"W_24015": {},
+	"W_24017": {},
+	"W_24022": {
+		"P_24024": {
+			"work_title": "Living Life",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Living Life",
+			"perf_artist": "K. McCarty",
+			"release_year": "1992",
+			"work_id": "W_24022",
+			"perf_id": "P_24024",
+			"yt_link": "http://www.youtube.com/embed/6scamDr1r3s",
+			"instrumental": "No"
+		}
+	},
+	"W_24034": {
+		"P_24034": {
+			"work_title": "Rocket Ship",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Rocket Ship",
+			"perf_artist": "Daniel Johnston",
+			"release_year": "1983",
+			"work_id": "W_24034",
+			"perf_id": "P_24034",
+			"yt_link": "http://www.youtube.com/embed/IfEa5PwbqNE",
+			"instrumental": "No"
+		},
+		"P_24035": {
+			"work_title": "Rocket Ship",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Rocket Ship",
+			"perf_artist": "K. McCarty",
+			"release_year": "1992",
+			"work_id": "W_24034",
+			"perf_id": "P_24035",
+			"yt_link": "http://www.youtube.com/embed/lZLdgb3kZpM",
+			"instrumental": "No"
+		}
+	},
+	"W_24038": {},
+	"W_24040": {
+		"P_24040": {
+			"work_title": "Hey Joe",
+			"work_artist": "Daniel Johnston",
+			"perf_title": "Hey Joe",
+			"perf_artist": "Daniel Johnston",
+			"release_year": "1986",
+			"work_id": "W_24040",
+			"perf_id": "P_24040",
+			"yt_link": "http://www.youtube.com/embed/iUFd3WMXUt8",
+			"instrumental": "No"
+		}
+	},
+	"W_24050": {},
+	"W_24052": {},
+	"W_24697": {},
+	"W_24701": {
+		"P_24701": {
+			"work_title": "Whistlin' Past the Graveyard",
+			"work_artist": "Tom Waits",
+			"perf_title": "Whistlin' Past the Graveyard",
+			"perf_artist": "Tom Waits",
+			"release_year": "1978",
+			"work_id": "W_24701",
+			"perf_id": "P_24701",
+			"yt_link": "http://www.youtube.com/embed/1Uo1G2Lb2EQ",
+			"instrumental": "No"
+		},
+		"P_161500": {
+			"work_title": "Whistlin' Past the Graveyard",
+			"work_artist": "Tom Waits",
+			"perf_title": "Whistling Past the Graveyard",
+			"perf_artist": "Screamin' Jay Hawkins",
+			"release_year": "1994",
+			"work_id": "W_24701",
+			"perf_id": "P_161500",
+			"yt_link": "http://www.youtube.com/embed/DRjHAHt6rzs",
+			"instrumental": "No"
+		}
+	},
+	"W_24707": {},
+	"W_24723": {
+		"P_24724": {
+			"work_title": "Muriel",
+			"work_artist": "Tom Waits",
+			"perf_title": "Muriel",
+			"perf_artist": "Eleni Mandell",
+			"release_year": "2000",
+			"work_id": "W_24723",
+			"perf_id": "P_24724",
+			"yt_link": "http://www.youtube.com/embed/zi6Xc2O_9V4",
+			"instrumental": "No"
+		}
+	},
+	"W_24725": {
+		"P_24725": {
+			"work_title": "Poncho's Lament",
+			"work_artist": "Tom Waits",
+			"perf_title": "Poncho's Lament",
+			"perf_artist": "Tom Waits",
+			"release_year": "1991",
+			"work_id": "W_24725",
+			"perf_id": "P_24725",
+			"yt_link": "http://www.youtube.com/embed/RAGPHphRwTA",
+			"instrumental": "No"
+		},
+		"P_442340": {
+			"work_title": "Poncho's Lament",
+			"work_artist": "Tom Waits",
+			"perf_title": "Poncho's Lament",
+			"perf_artist": "Eriksen",
+			"release_year": "1994",
+			"work_id": "W_24725",
+			"perf_id": "P_442340",
+			"yt_link": "http://www.youtube.com/embed/J-WU-TkZN4E",
+			"instrumental": "No"
+		},
+		"P_24726": {
+			"work_title": "Poncho's Lament",
+			"work_artist": "Tom Waits",
+			"perf_title": "Poncho's Lament",
+			"perf_artist": "The Blacks",
+			"release_year": "2000",
+			"work_id": "W_24725",
+			"perf_id": "P_24726",
+			"yt_link": "http://www.youtube.com/embed/6-5dH1PLKdo",
+			"instrumental": "No"
+		}
+	},
+	"W_24810": {
+		"P_24810": {
+			"work_title": "Come Home",
+			"work_artist": "Dave Clark",
+			"perf_title": "Come Home",
+			"perf_artist": "The Dave Clark Five",
+			"release_year": "1965",
+			"work_id": "W_24810",
+			"perf_id": "P_24810",
+			"yt_link": "http://www.youtube.com/embed/2MNPILJA5_k",
+			"instrumental": "No"
+		},
+		"P_375068": {
+			"work_title": "Come Home",
+			"work_artist": "Dave Clark",
+			"perf_title": "Come Home",
+			"perf_artist": "The Aces Combo",
+			"release_year": "1966",
+			"work_id": "W_24810",
+			"perf_id": "P_375068",
+			"yt_link": "http://www.youtube.com/embed/9hdGTFm4qNk",
+			"instrumental": "No"
+		}
+	}
+}

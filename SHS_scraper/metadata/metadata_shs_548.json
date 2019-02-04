@@ -1,0 +1,1443 @@
+{
+	"W_182851": {
+		"P_681824": {
+			"work_title": "On the Fritz",
+			"work_artist": "Steve Taylor [US1]",
+			"perf_title": "On the Fritz",
+			"perf_artist": "Steve Taylor [US1]",
+			"release_year": "1985",
+			"work_id": "W_182851",
+			"perf_id": "P_681824",
+			"yt_link": "http://www.youtube.com/embed/I_Jh4ZEMYtc",
+			"instrumental": "No"
+		},
+		"P_681826": {
+			"work_title": "On the Fritz",
+			"work_artist": "Steve Taylor [US1]",
+			"perf_title": "On the Fritz",
+			"perf_artist": "Deliverance",
+			"release_year": "1994",
+			"work_id": "W_182851",
+			"perf_id": "P_681826",
+			"yt_link": "http://www.youtube.com/embed/VBY1OLlEvsM",
+			"instrumental": "No"
+		}
+	},
+	"W_182852": {
+		"P_681828": {
+			"work_title": "To Forgive",
+			"work_artist": "Steve Taylor [US1]",
+			"perf_title": "To Forgive",
+			"perf_artist": "Steve Taylor [US1]",
+			"release_year": "1985",
+			"work_id": "W_182852",
+			"perf_id": "P_681828",
+			"yt_link": "http://www.youtube.com/embed/zsvA-wDk4k0",
+			"instrumental": "No"
+		},
+		"P_681829": {
+			"work_title": "To Forgive",
+			"work_artist": "Steve Taylor [US1]",
+			"perf_title": "To Forgive",
+			"perf_artist": "The Wayside",
+			"release_year": "1994",
+			"work_id": "W_182852",
+			"perf_id": "P_681829",
+			"yt_link": "http://www.youtube.com/embed/MkeK25INMhs",
+			"instrumental": "No"
+		}
+	},
+	"W_182859": {
+		"P_681863": {
+			"work_title": "You Never Need Nobody",
+			"work_artist": "Sam Ashworth",
+			"perf_title": "You Never Need Nobody",
+			"perf_artist": "The Lone Bellow",
+			"release_year": "2013",
+			"work_id": "W_182859",
+			"perf_id": "P_681863",
+			"yt_link": "http://www.youtube.com/embed/Gsnrzr0Bm80",
+			"instrumental": "No"
+		}
+	},
+	"W_182861": {
+		"P_681873": {
+			"work_title": "Breezeblocks",
+			"work_artist": "Charlie Andrew",
+			"perf_title": "Breezeblocks",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182861",
+			"perf_id": "P_681873",
+			"yt_link": "http://www.youtube.com/embed/rVeMiVU77wo",
+			"instrumental": "No"
+		}
+	},
+	"W_182862": {
+		"P_681875": {
+			"work_title": "Dissolve Me",
+			"work_artist": "Thom Green",
+			"perf_title": "Dissolve Me",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182862",
+			"perf_id": "P_681875",
+			"yt_link": "http://www.youtube.com/embed/mowozlG6Abo",
+			"instrumental": "No"
+		}
+	},
+	"W_182863": {
+		"P_681877": {
+			"work_title": "Fitzpleasure",
+			"work_artist": "Thom Green",
+			"perf_title": "Fitzpleasure",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182863",
+			"perf_id": "P_681877",
+			"yt_link": "http://www.youtube.com/embed/npvNPORFXpc",
+			"instrumental": "No"
+		},
+		"P_681878": {
+			"work_title": "Fitzpleasure",
+			"work_artist": "Thom Green",
+			"perf_title": "Fitzpleasure",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2013",
+			"work_id": "W_182863",
+			"perf_id": "P_681878",
+			"yt_link": "http://www.youtube.com/embed/wY4eEkMO1zs",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182864": {
+		"P_681879": {
+			"work_title": "Matilda",
+			"work_artist": "Charlie Andrew",
+			"perf_title": "Matilda",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182864",
+			"perf_id": "P_681879",
+			"yt_link": "http://www.youtube.com/embed/Q06wFUi5OM8",
+			"instrumental": "No"
+		}
+	},
+	"W_182865": {
+		"P_681881": {
+			"work_title": "Ms",
+			"work_artist": "Thom Green",
+			"perf_title": "Ms",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182865",
+			"perf_id": "P_681881",
+			"yt_link": "http://www.youtube.com/embed/4_NeqrJJ53Q",
+			"instrumental": "No"
+		}
+	},
+	"W_182866": {
+		"P_681883": {
+			"work_title": "Something Good",
+			"work_artist": "Thom Green",
+			"perf_title": "Something Good",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182866",
+			"perf_id": "P_681883",
+			"yt_link": "http://www.youtube.com/embed/aNYjOVo5IEw",
+			"instrumental": "No"
+		},
+		"P_681884": {
+			"work_title": "Something Good",
+			"work_artist": "Thom Green",
+			"perf_title": "Something Good",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2013",
+			"work_id": "W_182866",
+			"perf_id": "P_681884",
+			"yt_link": "http://www.youtube.com/embed/1oaBOtpgfzM",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182867": {
+		"P_681885": {
+			"work_title": "Taro",
+			"work_artist": "Thom Green",
+			"perf_title": "Taro",
+			"perf_artist": "Alt-J",
+			"release_year": "2012",
+			"work_id": "W_182867",
+			"perf_id": "P_681885",
+			"yt_link": "http://www.youtube.com/embed/S3fTw_D3l10",
+			"instrumental": "No"
+		},
+		"P_681886": {
+			"work_title": "Taro",
+			"work_artist": "Thom Green",
+			"perf_title": "Taro",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2013",
+			"work_id": "W_182867",
+			"perf_id": "P_681886",
+			"yt_link": "http://www.youtube.com/embed/9UvanxACGY0",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182868": {
+		"P_681887": {
+			"work_title": "Bloodflood",
+			"work_artist": "Thom Green",
+			"perf_title": "Bloodflood",
+			"perf_artist": "\u2206",
+			"release_year": "2011",
+			"work_id": "W_182868",
+			"perf_id": "P_681887",
+			"yt_link": "http://www.youtube.com/embed/0tBam6qXVDg",
+			"instrumental": "No"
+		}
+	},
+	"W_182872": {
+		"P_681899": {
+			"work_title": "Arrival in Nara",
+			"work_artist": "Thom Green",
+			"perf_title": "Arrival in Nara",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182872",
+			"perf_id": "P_681899",
+			"yt_link": "http://www.youtube.com/embed/gtZYsXSokFk",
+			"instrumental": "No"
+		}
+	},
+	"W_182873": {
+		"P_681901": {
+			"work_title": "Leaving Nara",
+			"work_artist": "Thom Green",
+			"perf_title": "Leaving Nara",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182873",
+			"perf_id": "P_681901",
+			"yt_link": "http://www.youtube.com/embed/z7ETJxw-kBM",
+			"instrumental": "No"
+		}
+	},
+	"W_182874": {
+		"P_681903": {
+			"work_title": "Choice Kingdom",
+			"work_artist": "Thom Green",
+			"perf_title": "Choice Kingdom",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182874",
+			"perf_id": "P_681903",
+			"yt_link": "http://www.youtube.com/embed/Chhmrc-Kel0",
+			"instrumental": "No"
+		}
+	},
+	"W_182875": {
+		"P_681907": {
+			"work_title": "Garden of England",
+			"work_artist": "Joe Newman [1]",
+			"perf_title": "Garden of England",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182875",
+			"perf_id": "P_681907",
+			"yt_link": "http://www.youtube.com/embed/wqShWa2GPWQ",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182876": {
+		"P_681911": {
+			"work_title": "Pusher",
+			"work_artist": "Thom Green",
+			"perf_title": "Pusher",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182876",
+			"perf_id": "P_681911",
+			"yt_link": "http://www.youtube.com/embed/ZmnZHudtzXg",
+			"instrumental": "No"
+		}
+	},
+	"W_182877": {
+		"P_681913": {
+			"work_title": "The Gospel of John Hurt",
+			"work_artist": "Thom Green",
+			"perf_title": "The Gospel of John Hurt",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182877",
+			"perf_id": "P_681913",
+			"yt_link": "http://www.youtube.com/embed/LXkpWY5Y02Q",
+			"instrumental": "No"
+		},
+		"P_681914": {
+			"work_title": "The Gospel of John Hurt",
+			"work_artist": "Thom Green",
+			"perf_title": "The Gospel of John Hurt",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2014",
+			"work_id": "W_182877",
+			"perf_id": "P_681914",
+			"yt_link": "http://www.youtube.com/embed/8bddMKFpvs8",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182878": {
+		"P_681915": {
+			"work_title": "Warm Foothills",
+			"work_artist": "Thom Green",
+			"perf_title": "Warm Foothills",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182878",
+			"perf_id": "P_681915",
+			"yt_link": "http://www.youtube.com/embed/9WZh49lA9ns",
+			"instrumental": "No"
+		}
+	},
+	"W_182879": {
+		"P_681917": {
+			"work_title": "Left Hand Free",
+			"work_artist": "Thom Green",
+			"perf_title": "Left Hand Free",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182879",
+			"perf_id": "P_681917",
+			"yt_link": "http://www.youtube.com/embed/NRWUoDpo2fo",
+			"instrumental": "No"
+		}
+	},
+	"W_182880": {
+		"P_681919": {
+			"work_title": "Bloodflood Pt. II",
+			"work_artist": "Thom Green",
+			"perf_title": "Bloodflood Pt. II",
+			"perf_artist": "Alt-J",
+			"release_year": "2014",
+			"work_id": "W_182880",
+			"perf_id": "P_681919",
+			"yt_link": "http://www.youtube.com/embed/p_wdKxvOQbM",
+			"instrumental": "No"
+		}
+	},
+	"W_182883": {
+		"P_681969": {
+			"work_title": "Sailor's Lament",
+			"work_artist": "John Fogerty",
+			"perf_title": "Sailor's Lament",
+			"perf_artist": "Creedence Clearwater Revival",
+			"release_year": "1970",
+			"work_id": "W_182883",
+			"perf_id": "P_681969",
+			"yt_link": "http://www.youtube.com/embed/Yz-2IaLgZ9I",
+			"instrumental": "No"
+		},
+		"P_681968": {
+			"work_title": "Sailor's Lament",
+			"work_artist": "John Fogerty",
+			"perf_title": "Sailor's Lament",
+			"perf_artist": "The Outlet",
+			"release_year": "1971",
+			"work_id": "W_182883",
+			"perf_id": "P_681968",
+			"yt_link": "http://www.youtube.com/embed/uRzxtwc6Q_s",
+			"instrumental": "No"
+		}
+	},
+	"W_182885": {
+		"P_681977": {
+			"work_title": "What's on Your Mind",
+			"work_artist": "Mike Vickers",
+			"perf_title": "What's on Your Mind",
+			"perf_artist": "John Rowles",
+			"release_year": "1970",
+			"work_id": "W_182885",
+			"perf_id": "P_681977",
+			"yt_link": "http://www.youtube.com/embed/95fIqrQjgX8",
+			"instrumental": "No"
+		},
+		"P_681976": {
+			"work_title": "What's on Your Mind",
+			"work_artist": "Mike Vickers",
+			"perf_title": "What's on Your Mind",
+			"perf_artist": "The Outlet",
+			"release_year": "1971",
+			"work_id": "W_182885",
+			"perf_id": "P_681976",
+			"yt_link": "http://www.youtube.com/embed/zko1vo1yR4U",
+			"instrumental": "No"
+		}
+	},
+	"W_182887": {
+		"P_681991": {
+			"work_title": "Cosy",
+			"work_artist": "Mort Garson",
+			"perf_title": "Cosy",
+			"perf_artist": "The Shadows",
+			"release_year": "1962",
+			"work_id": "W_182887",
+			"perf_id": "P_681991",
+			"yt_link": "http://www.youtube.com/embed/6m7KWt2usHc",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182890": {},
+	"W_182913": {},
+	"W_182914": {
+		"P_682058": {
+			"work_title": "Do Right to Me Baby (Do unto Others)",
+			"work_artist": "Bob Dylan",
+			"perf_title": "Do Right to Me Baby (Do unto Others)",
+			"perf_artist": "Bettye LaVette",
+			"release_year": "2018",
+			"work_id": "W_182914",
+			"perf_id": "P_682058",
+			"yt_link": "http://www.youtube.com/embed/Uxxx87_UN64",
+			"instrumental": "No"
+		}
+	},
+	"W_182918": {},
+	"W_182926": {
+		"P_682235": {
+			"work_title": "I Got You",
+			"work_artist": "Kevin Griffin",
+			"perf_title": "I Got You",
+			"perf_artist": "Train",
+			"release_year": "2009",
+			"work_id": "W_182926",
+			"perf_id": "P_682235",
+			"yt_link": "http://www.youtube.com/embed/7ZOlBU4rDQI",
+			"instrumental": "No"
+		}
+	},
+	"W_182927": {
+		"P_682237": {
+			"work_title": "If It's Love",
+			"work_artist": "Pat Monahan",
+			"perf_title": "If It's Love",
+			"perf_artist": "Train",
+			"release_year": "2009",
+			"work_id": "W_182927",
+			"perf_id": "P_682237",
+			"yt_link": "http://www.youtube.com/embed/iR2TIzM5PaQ",
+			"instrumental": "No"
+		}
+	},
+	"W_182928": {
+		"P_682243": {
+			"work_title": "This Ain't Goodbye",
+			"work_artist": "Pat Monahan",
+			"perf_title": "This Ain't Goodbye",
+			"perf_artist": "Train",
+			"release_year": "2009",
+			"work_id": "W_182928",
+			"perf_id": "P_682243",
+			"yt_link": "http://www.youtube.com/embed/JHdgN8t_EYw",
+			"instrumental": "No"
+		}
+	},
+	"W_182929": {
+		"P_682245": {
+			"work_title": "When I Look to the Sky",
+			"work_artist": "Charlie Colin",
+			"perf_title": "When I Look to the Sky",
+			"perf_artist": "Train",
+			"release_year": "2003",
+			"work_id": "W_182929",
+			"perf_id": "P_682245",
+			"yt_link": "http://www.youtube.com/embed/KipSEcE6gGM",
+			"instrumental": "No"
+		}
+	},
+	"W_182932": {
+		"P_682259": {
+			"work_title": "National Anthem",
+			"work_artist": "David Sneddon",
+			"perf_title": "National Anthem",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2012",
+			"work_id": "W_182932",
+			"perf_id": "P_682259",
+			"yt_link": "http://www.youtube.com/embed/DuEEnZk4-48",
+			"instrumental": "No"
+		}
+	},
+	"W_182933": {
+		"P_682261": {
+			"work_title": "Off to the Races",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Off to the Races",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2012",
+			"work_id": "W_182933",
+			"perf_id": "P_682261",
+			"yt_link": "http://www.youtube.com/embed/ET1MhXiUDVg",
+			"instrumental": "No"
+		}
+	},
+	"W_182934": {
+		"P_682263": {
+			"work_title": "Radio",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Radio",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2012",
+			"work_id": "W_182934",
+			"perf_id": "P_682263",
+			"yt_link": "http://www.youtube.com/embed/CFjqZpZZ5jI",
+			"instrumental": "No"
+		}
+	},
+	"W_182935": {
+		"P_682266": {
+			"work_title": "This Is What Makes Us Girls",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "This Is What Makes Us Girls",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2012",
+			"work_id": "W_182935",
+			"perf_id": "P_682266",
+			"yt_link": "http://www.youtube.com/embed/941DmatcK8M",
+			"instrumental": "No"
+		}
+	},
+	"W_182936": {
+		"P_682269": {
+			"work_title": "Shades of Cool",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Shades of Cool",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182936",
+			"perf_id": "P_682269",
+			"yt_link": "http://www.youtube.com/embed/rJABBmAMXnY",
+			"instrumental": "No"
+		}
+	},
+	"W_182940": {
+		"P_682281": {
+			"work_title": "Cruel World",
+			"work_artist": "Blake Stranathan",
+			"perf_title": "Cruel World",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182940",
+			"perf_id": "P_682281",
+			"yt_link": "http://www.youtube.com/embed/nNT8USozqoo",
+			"instrumental": "No"
+		}
+	},
+	"W_182941": {
+		"P_682290": {
+			"work_title": "Money Power Glory",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Money Power Glory",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182941",
+			"perf_id": "P_682290",
+			"yt_link": "http://www.youtube.com/embed/l3t8L5sfJto",
+			"instrumental": "No"
+		}
+	},
+	"W_182942": {
+		"P_682292": {
+			"work_title": "Pretty When You Cry",
+			"work_artist": "Blake Stranathan",
+			"perf_title": "Pretty When You Cry",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182942",
+			"perf_id": "P_682292",
+			"yt_link": "http://www.youtube.com/embed/24rvr9HeeiY",
+			"instrumental": "No"
+		}
+	},
+	"W_183037": {
+		"P_682876": {
+			"work_title": "Sally Is Something Else",
+			"work_artist": "Sakke J\u00e4rvenp\u00e4\u00e4",
+			"perf_title": "Sally Is Something Else",
+			"perf_artist": "Sleepy Sleepers",
+			"release_year": "1983",
+			"work_id": "W_183037",
+			"perf_id": "P_682876",
+			"yt_link": "http://www.youtube.com/embed/s0Z4-Y_oL7Y",
+			"instrumental": "No"
+		},
+		"P_682877": {
+			"work_title": "Sally Is Something Else",
+			"work_artist": "Sakke J\u00e4rvenp\u00e4\u00e4",
+			"perf_title": "Sally Is Something Else",
+			"perf_artist": "Leningrad Cowboys",
+			"release_year": "1992",
+			"work_id": "W_183037",
+			"perf_id": "P_682877",
+			"yt_link": "http://www.youtube.com/embed/sbLcVWvnhBE",
+			"instrumental": "No"
+		}
+	},
+	"W_183041": {
+		"P_682885": {
+			"work_title": "The Nereid of Esgalduin",
+			"work_artist": "Jim Patsouris",
+			"perf_title": "The Nereid of Esgalduin",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1989",
+			"work_id": "W_183041",
+			"perf_id": "P_682885",
+			"yt_link": "http://www.youtube.com/embed/Bgn8ONza3NM",
+			"instrumental": "No"
+		},
+		"P_682886": {
+			"work_title": "The Nereid of Esgalduin",
+			"work_artist": "Jim Patsouris",
+			"perf_title": "The Nereid of Esgalduin",
+			"perf_artist": "Wolftribe",
+			"release_year": "2013",
+			"work_id": "W_183041",
+			"perf_id": "P_682886",
+			"yt_link": "http://www.youtube.com/embed/a0JUm1DAzLA",
+			"instrumental": "No"
+		}
+	},
+	"W_183044": {
+		"P_682895": {
+			"work_title": "Restoration",
+			"work_artist": "Jim Patsouris",
+			"perf_title": "Restoration of the Infernal Kingdom",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1989",
+			"work_id": "W_183044",
+			"perf_id": "P_682895",
+			"yt_link": "http://www.youtube.com/embed/EntsQpA9M94",
+			"instrumental": "No"
+		}
+	},
+	"W_183046": {
+		"P_682899": {
+			"work_title": "Dive the Deepest Abyss",
+			"work_artist": "Jim Patsouris",
+			"perf_title": "Dive the Deepest Abyss",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1993",
+			"work_id": "W_183046",
+			"perf_id": "P_682899",
+			"yt_link": "http://www.youtube.com/embed/MInA3c5Yt_4",
+			"instrumental": "No"
+		}
+	},
+	"W_183048": {
+		"P_682903": {
+			"work_title": "The Fifth Illusion",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "The Fifth Illusion (Furrowed Background)",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1994",
+			"work_id": "W_183048",
+			"perf_id": "P_682903",
+			"yt_link": "http://www.youtube.com/embed/w6LabXcSBto",
+			"instrumental": "No"
+		}
+	},
+	"W_183049": {
+		"P_682905": {
+			"work_title": "Wolfera the Chacal",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Wolfera the Chacal (Neoplasia)",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1994",
+			"work_id": "W_183049",
+			"perf_id": "P_682905",
+			"yt_link": "http://www.youtube.com/embed/f83qfskuhF0",
+			"instrumental": "No"
+		}
+	},
+	"W_183051": {
+		"P_682913": {
+			"work_title": "One with the Forest",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "One with the Forest",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1996",
+			"work_id": "W_183051",
+			"perf_id": "P_682913",
+			"yt_link": "http://www.youtube.com/embed/bApXZScXO1U",
+			"instrumental": "No"
+		},
+		"P_682912": {
+			"work_title": "One with the Forest",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "One with the Forest",
+			"perf_artist": "Nechochwen",
+			"release_year": "2013",
+			"work_id": "W_183051",
+			"perf_id": "P_682912",
+			"yt_link": "http://www.youtube.com/embed/sqi2eiXIbHA",
+			"instrumental": "No"
+		}
+	},
+	"W_183052": {
+		"P_682916": {
+			"work_title": "A Dead Poem",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "A Dead Poem",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1997",
+			"work_id": "W_183052",
+			"perf_id": "P_682916",
+			"yt_link": "http://www.youtube.com/embed/2OHyE22kCsk",
+			"instrumental": "No"
+		}
+	},
+	"W_183053": {
+		"P_682914": {
+			"work_title": "Diastric Alchemy",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Diastric Alchemy",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1996",
+			"work_id": "W_183053",
+			"perf_id": "P_682914",
+			"yt_link": "http://www.youtube.com/embed/QweOL6rY6YI",
+			"instrumental": "No"
+		},
+		"P_682915": {
+			"work_title": "Diastric Alchemy",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Diastric Alchemy",
+			"perf_artist": "Eternal Winter",
+			"release_year": "2013",
+			"work_id": "W_183053",
+			"perf_id": "P_682915",
+			"yt_link": "http://www.youtube.com/embed/pvduFt9Xg6s",
+			"instrumental": "No"
+		}
+	},
+	"W_183054": {
+		"P_682918": {
+			"work_title": "Out of Spirits",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Out of Spirits",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1997",
+			"work_id": "W_183054",
+			"perf_id": "P_682918",
+			"yt_link": "http://www.youtube.com/embed/Cpz6Kb7d4aE",
+			"instrumental": "No"
+		},
+		"P_682919": {
+			"work_title": "Out of Spirits",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Out of Spirits",
+			"perf_artist": "BORGNE",
+			"release_year": "2013",
+			"work_id": "W_183054",
+			"perf_id": "P_682919",
+			"yt_link": "http://www.youtube.com/embed/nqSzzgVCpoA",
+			"instrumental": "No"
+		}
+	},
+	"W_183055": {
+		"P_682921": {
+			"work_title": "Cold Colours",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Cold Colours",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1999",
+			"work_id": "W_183055",
+			"perf_id": "P_682921",
+			"yt_link": "http://www.youtube.com/embed/YmHpAgC3bnI",
+			"instrumental": "No"
+		}
+	},
+	"W_183056": {
+		"P_682922": {
+			"work_title": "Athanatoi Este",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Athanati Este",
+			"perf_artist": "Rotting Christ",
+			"release_year": "2004",
+			"work_id": "W_183056",
+			"perf_id": "P_682922",
+			"yt_link": "http://www.youtube.com/embed/b4hhTtrP9DM",
+			"instrumental": "No"
+		},
+		"P_682923": {
+			"work_title": "Athanatoi Este",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Athanati Este",
+			"perf_artist": "Nefas Terra",
+			"release_year": "2013",
+			"work_id": "W_183056",
+			"perf_id": "P_682923",
+			"yt_link": "http://www.youtube.com/embed/BtitBEWEXb4",
+			"instrumental": "No"
+		}
+	},
+	"W_183057": {
+		"P_682928": {
+			"work_title": "Nights with You",
+			"work_artist": "Cashmere Cat",
+			"perf_title": "Nights with You",
+			"perf_artist": "M\u00d8",
+			"release_year": "2017",
+			"work_id": "W_183057",
+			"perf_id": "P_682928",
+			"yt_link": "http://www.youtube.com/embed/wwqpA_tQcXQ",
+			"instrumental": "No"
+		},
+		"P_682929": {
+			"work_title": "Nights with You",
+			"work_artist": "Cashmere Cat",
+			"perf_title": "Nights with You",
+			"perf_artist": "Adam Christopher",
+			"release_year": "2017",
+			"work_id": "W_183057",
+			"perf_id": "P_682929",
+			"yt_link": "http://www.youtube.com/embed/1ve-o7qRuRE",
+			"instrumental": "No"
+		}
+	},
+	"W_183059": {
+		"P_682955": {
+			"work_title": "All Falls Down",
+			"work_artist": "Sarah Blanchard",
+			"perf_title": "All Falls Down",
+			"perf_artist": "Alan Walker, Noah Cyrus & Digital Farm Animals",
+			"release_year": "2017",
+			"work_id": "W_183059",
+			"perf_id": "P_682955",
+			"yt_link": "http://www.youtube.com/embed/YVXu4KkZz7Q",
+			"instrumental": "No"
+		},
+		"P_682957": {
+			"work_title": "All Falls Down",
+			"work_artist": "Sarah Blanchard",
+			"perf_title": "All Falls Down",
+			"perf_artist": "Adam Christopher",
+			"release_year": "2017",
+			"work_id": "W_183059",
+			"perf_id": "P_682957",
+			"yt_link": "http://www.youtube.com/embed/VcpmRUppTlo",
+			"instrumental": "No"
+		}
+	},
+	"W_183063": {},
+	"W_183065": {},
+	"W_183066": {
+		"P_683034": {
+			"work_title": "Shine On",
+			"work_artist": "Paul Garred",
+			"perf_title": "Shine On",
+			"perf_artist": "The Kooks",
+			"release_year": "2008",
+			"work_id": "W_183066",
+			"perf_id": "P_683034",
+			"yt_link": "http://www.youtube.com/embed/iKlnG_155M8",
+			"instrumental": "No"
+		}
+	},
+	"W_183077": {
+		"P_683105": {
+			"work_title": "The Era of Satan Rising",
+			"work_artist": "John Hiotellis",
+			"perf_title": "The Era of Satan Rising",
+			"perf_artist": "Thou Art Lord",
+			"release_year": "1993",
+			"work_id": "W_183077",
+			"perf_id": "P_683105",
+			"yt_link": "http://www.youtube.com/embed/aBaAGln2k2U",
+			"instrumental": "No"
+		},
+		"P_683103": {
+			"work_title": "The Era of Satan Rising",
+			"work_artist": "John Hiotellis",
+			"perf_title": "The Sign of Evil Existence - The Era of Satan Rising",
+			"perf_artist": "Algaion",
+			"release_year": "2010",
+			"work_id": "W_183077",
+			"perf_id": "P_683103",
+			"yt_link": "http://www.youtube.com/embed/uL8UnrEZ5W8",
+			"instrumental": "No"
+		}
+	},
+	"W_183083": {},
+	"W_183084": {},
+	"W_183091": {
+		"P_683142": {
+			"work_title": "As if by Magic",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "As if by Magic",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1997",
+			"work_id": "W_183091",
+			"perf_id": "P_683142",
+			"yt_link": "http://www.youtube.com/embed/71Gh7uA6RtI",
+			"instrumental": "No"
+		},
+		"P_683143": {
+			"work_title": "As if by Magic",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "As if by Magic",
+			"perf_artist": "Insanity",
+			"release_year": "2003",
+			"work_id": "W_183091",
+			"perf_id": "P_683143",
+			"yt_link": "http://www.youtube.com/embed/N3tTJgbyzRc",
+			"instrumental": "No"
+		}
+	},
+	"W_183092": {
+		"P_683151": {
+			"work_title": "Visions of the Dead Lover",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Visions of the Dead Lover",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1997",
+			"work_id": "W_183092",
+			"perf_id": "P_683151",
+			"yt_link": "http://www.youtube.com/embed/KoGfBMiFk5Y",
+			"instrumental": "No"
+		}
+	},
+	"W_183094": {
+		"P_683149": {
+			"work_title": "I'll Remember Tonight",
+			"work_artist": "Chris Andrews",
+			"perf_title": "I'll Remember Tonight",
+			"perf_artist": "The Roulettes",
+			"release_year": "1964",
+			"work_id": "W_183094",
+			"perf_id": "P_683149",
+			"yt_link": "http://www.youtube.com/embed/ArQ8X9cpo3E",
+			"instrumental": "No"
+		}
+	},
+	"W_183097": {
+		"P_683182": {
+			"work_title": "Saturn Unlock Avey's Son",
+			"work_artist": "Sakis Tolis",
+			"perf_title": "Saturn Unlock Avey's Son",
+			"perf_artist": "Rotting Christ",
+			"release_year": "1994",
+			"work_id": "W_183097",
+			"perf_id": "P_683182",
+			"yt_link": "http://www.youtube.com/embed/PA0dQYKIs4o",
+			"instrumental": "No"
+		}
+	},
+	"W_183098": {},
+	"W_183099": {
+		"P_683199": {
+			"work_title": "Man on the Edge",
+			"work_artist": "Blaze Bayley",
+			"perf_title": "Man on the Edge",
+			"perf_artist": "Iron Maiden",
+			"release_year": "1995",
+			"work_id": "W_183099",
+			"perf_id": "P_683199",
+			"yt_link": "http://www.youtube.com/embed/u5UqJWRV55E",
+			"instrumental": "No"
+		}
+	},
+	"W_182835": {
+		"P_681700": {
+			"work_title": "Brandy",
+			"work_artist": "Joseph Jefferson",
+			"perf_title": "Brandy",
+			"perf_artist": "The O'Jays",
+			"release_year": "1978",
+			"work_id": "W_182835",
+			"perf_id": "P_681700",
+			"yt_link": "http://www.youtube.com/embed/i6j-99ckw4c",
+			"instrumental": "No"
+		}
+	},
+	"W_182837": {
+		"P_681724": {
+			"work_title": "Stille Wasser, die sind tief",
+			"work_artist": "G\u00fcnter Sonneborn",
+			"perf_title": "Stille Wasser, die sind tief",
+			"perf_artist": "Paola",
+			"release_year": "1969",
+			"work_id": "W_182837",
+			"perf_id": "P_681724",
+			"yt_link": "http://www.youtube.com/embed/XFvD47xz52A",
+			"instrumental": "No"
+		}
+	},
+	"W_182943": {
+		"P_682296": {
+			"work_title": "Sad Girl",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Sad Girl",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182943",
+			"perf_id": "P_682296",
+			"yt_link": "http://www.youtube.com/embed/UnfM-7py58E",
+			"instrumental": "No"
+		}
+	},
+	"W_182944": {
+		"P_682299": {
+			"work_title": "Is This Happiness",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Is This Happiness",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182944",
+			"perf_id": "P_682299",
+			"yt_link": "http://www.youtube.com/embed/-YMBYKVF-LU",
+			"instrumental": "No"
+		}
+	},
+	"W_182948": {
+		"P_682316": {
+			"work_title": "V\u00e4in\u00f6",
+			"work_artist": "Nakke P\u00e4ntt\u00f6nen",
+			"perf_title": "V\u00e4in\u00f6",
+			"perf_artist": "The Sleepy Sleepers",
+			"release_year": "1975",
+			"work_id": "W_182948",
+			"perf_id": "P_682316",
+			"yt_link": "http://www.youtube.com/embed/4zEr0YUEJJM",
+			"instrumental": "No"
+		}
+	},
+	"W_182951": {
+		"P_682351": {
+			"work_title": "New",
+			"work_artist": "Mikkel Eriksen",
+			"perf_title": "New",
+			"perf_artist": "Daya",
+			"release_year": "2017",
+			"work_id": "W_182951",
+			"perf_id": "P_682351",
+			"yt_link": "http://www.youtube.com/embed/9yfMplVU0m0",
+			"instrumental": "No"
+		},
+		"P_682350": {
+			"work_title": "New",
+			"work_artist": "Mikkel Eriksen",
+			"perf_title": "New, Too Much to Ask",
+			"perf_artist": "Landon Austin feat. Molly Reinold",
+			"release_year": "2018",
+			"work_id": "W_182951",
+			"perf_id": "P_682350",
+			"yt_link": "http://www.youtube.com/embed/XVr6CMOipxk",
+			"instrumental": "No"
+		}
+	},
+	"W_182962": {},
+	"W_182963": {
+		"P_682394": {
+			"work_title": "Pikku maalari",
+			"work_artist": "Olavi Huuska",
+			"perf_title": "Pikku maalari",
+			"perf_artist": "Pikku-Tapani",
+			"release_year": "1951",
+			"work_id": "W_182963",
+			"perf_id": "P_682394",
+			"yt_link": "http://www.youtube.com/embed/uN3Jns-iSaM",
+			"instrumental": "No"
+		}
+	},
+	"W_182965": {
+		"P_682401": {
+			"work_title": "Fucked My Way Up to the Top",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Fucked My Way Up to the Top",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182965",
+			"perf_id": "P_682401",
+			"yt_link": "http://www.youtube.com/embed/Hs_xSB0hBfk",
+			"instrumental": "No"
+		}
+	},
+	"W_182966": {
+		"P_682404": {
+			"work_title": "Our Love Is Easy",
+			"work_artist": "Melody Gardot",
+			"perf_title": "Our Love Is Easy",
+			"perf_artist": "Melody Gardot",
+			"release_year": "2009",
+			"work_id": "W_182966",
+			"perf_id": "P_682404",
+			"yt_link": "http://www.youtube.com/embed/SkBuxeIsXDo",
+			"instrumental": "No"
+		}
+	},
+	"W_182967": {
+		"P_682407": {
+			"work_title": "Brooklyn Baby",
+			"work_artist": "Barrie-James O'Neill",
+			"perf_title": "Brooklyn Baby",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182967",
+			"perf_id": "P_682407",
+			"yt_link": "http://www.youtube.com/embed/T5xcnjAG8pE",
+			"instrumental": "No"
+		}
+	},
+	"W_182969": {
+		"P_682410": {
+			"work_title": "Black Beauty",
+			"work_artist": "Barrie-James O'Neill",
+			"perf_title": "Black Beauty",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182969",
+			"perf_id": "P_682410",
+			"yt_link": "http://www.youtube.com/embed/8tFBK2Qgnxs",
+			"instrumental": "No"
+		}
+	},
+	"W_182971": {
+		"P_682412": {
+			"work_title": "Florida Kilos",
+			"work_artist": "Dan Auerbach",
+			"perf_title": "Florida Kilos",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182971",
+			"perf_id": "P_682412",
+			"yt_link": "http://www.youtube.com/embed/tvyEzB389Gg",
+			"instrumental": "No"
+		}
+	},
+	"W_182972": {
+		"P_682415": {
+			"work_title": "Guns and Roses",
+			"work_artist": "Lana Del Rey",
+			"perf_title": "Guns and Roses",
+			"perf_artist": "Lana Del Rey",
+			"release_year": "2014",
+			"work_id": "W_182972",
+			"perf_id": "P_682415",
+			"yt_link": "http://www.youtube.com/embed/c8NgNs3h20A",
+			"instrumental": "No"
+		}
+	},
+	"W_182973": {
+		"P_682418": {
+			"work_title": "Cake and Eat It",
+			"work_artist": "David Gray",
+			"perf_title": "Cake and Eat It",
+			"perf_artist": "David Gray",
+			"release_year": "2014",
+			"work_id": "W_182973",
+			"perf_id": "P_682418",
+			"yt_link": "http://www.youtube.com/embed/QQJf7HmRb5w",
+			"instrumental": "No"
+		},
+		"P_682419": {
+			"work_title": "Cake and Eat It",
+			"work_artist": "David Gray",
+			"perf_title": "Cake and Eat It",
+			"perf_artist": "Piano Tribute Players",
+			"release_year": "2014",
+			"work_id": "W_182973",
+			"perf_id": "P_682419",
+			"yt_link": "http://www.youtube.com/embed/IZ4wqeLlLBQ",
+			"instrumental": "Yes"
+		}
+	},
+	"W_182975": {
+		"P_682427": {
+			"work_title": "Love Song",
+			"work_artist": "Bon Scott",
+			"perf_title": "Love Song",
+			"perf_artist": "AC/DC",
+			"release_year": "1975",
+			"work_id": "W_182975",
+			"perf_id": "P_682427",
+			"yt_link": "http://www.youtube.com/embed/sBOSt4C_xqg",
+			"instrumental": "No"
+		}
+	},
+	"W_182977": {
+		"P_682440": {
+			"work_title": "Bottoms Up",
+			"work_artist": "David Lee Roth",
+			"perf_title": "Bottoms Up!",
+			"perf_artist": "Van Halen",
+			"release_year": "1979",
+			"work_id": "W_182977",
+			"perf_id": "P_682440",
+			"yt_link": "http://www.youtube.com/embed/Z8fYlqqg-pQ",
+			"instrumental": "No"
+		}
+	},
+	"W_182979": {
+		"P_682449": {
+			"work_title": "Straight from the Heart",
+			"work_artist": "David Coverdale",
+			"perf_title": "Straight from the Heart",
+			"perf_artist": "Whitesnake",
+			"release_year": "1987",
+			"work_id": "W_182979",
+			"perf_id": "P_682449",
+			"yt_link": "http://www.youtube.com/embed/-Q6G4S5dQCw",
+			"instrumental": "No"
+		}
+	},
+	"W_182980": {
+		"P_682450": {
+			"work_title": "Bad Boys",
+			"work_artist": "David Coverdale",
+			"perf_title": "Bad Boys",
+			"perf_artist": "Whitesnake",
+			"release_year": "1987",
+			"work_id": "W_182980",
+			"perf_id": "P_682450",
+			"yt_link": "http://www.youtube.com/embed/ZrT3XEATurs",
+			"instrumental": "No"
+		}
+	},
+	"W_182981": {
+		"P_682454": {
+			"work_title": "Lady Strange",
+			"work_artist": "Rick Allen",
+			"perf_title": "Lady Strange",
+			"perf_artist": "Def Leppard",
+			"release_year": "1981",
+			"work_id": "W_182981",
+			"perf_id": "P_682454",
+			"yt_link": "http://www.youtube.com/embed/gfiOxDd-dhM",
+			"instrumental": "No"
+		}
+	},
+	"W_182991": {
+		"P_682545": {
+			"work_title": "Drop Dead Legs",
+			"work_artist": "David Lee Roth",
+			"perf_title": "Drop Dead Legs",
+			"perf_artist": "Van Halen",
+			"release_year": "1984",
+			"work_id": "W_182991",
+			"perf_id": "P_682545",
+			"yt_link": "http://www.youtube.com/embed/vLjz1gn3sOI",
+			"instrumental": "No"
+		}
+	},
+	"W_182992": {
+		"P_682555": {
+			"work_title": "Tomorrow",
+			"work_artist": "Duane Baron",
+			"perf_title": "Tomorrow",
+			"perf_artist": "Ozzy Osbourne",
+			"release_year": "1995",
+			"work_id": "W_182992",
+			"perf_id": "P_682555",
+			"yt_link": "http://www.youtube.com/embed/F2nKcoPo_dE",
+			"instrumental": "No"
+		}
+	},
+	"W_182993": {},
+	"W_182994": {
+		"P_682566": {
+			"work_title": "Nobody Likes Me",
+			"work_artist": "Michael Bruce",
+			"perf_title": "Nobody Likes Me",
+			"perf_artist": "Alice Cooper",
+			"release_year": "1971",
+			"work_id": "W_182994",
+			"perf_id": "P_682566",
+			"yt_link": "http://www.youtube.com/embed/Y9AD0iCeRY4",
+			"instrumental": "No"
+		}
+	},
+	"W_182995": {
+		"P_682570": {
+			"work_title": "Dancing on Glass",
+			"work_artist": "Mick Mars",
+			"perf_title": "Dancing on Glass",
+			"perf_artist": "M\u00f6tley Cr\u00fce",
+			"release_year": "1987",
+			"work_id": "W_182995",
+			"perf_id": "P_682570",
+			"yt_link": "http://www.youtube.com/embed/Mx0_mIxvbsc",
+			"instrumental": "No"
+		},
+		"P_682571": {
+			"work_title": "Dancing on Glass",
+			"work_artist": "Mick Mars",
+			"perf_title": "Dancing on Glass",
+			"perf_artist": "Charlie Bonnet III",
+			"release_year": "2013",
+			"work_id": "W_182995",
+			"perf_id": "P_682571",
+			"yt_link": "http://www.youtube.com/embed/pQqXiu74NAQ",
+			"instrumental": "No"
+		}
+	},
+	"W_183001": {},
+	"W_183003": {
+		"P_682612": {
+			"work_title": "Get It Right",
+			"work_artist": "King Henry",
+			"perf_title": "Get It Right",
+			"perf_artist": "Diplo feat. M\u00d8",
+			"release_year": "2017",
+			"work_id": "W_183003",
+			"perf_id": "P_682612",
+			"yt_link": "http://www.youtube.com/embed/8BQqX3bUqtY",
+			"instrumental": "No"
+		},
+		"P_682613": {
+			"work_title": "Get It Right",
+			"work_artist": "King Henry",
+			"perf_title": "Get It Right",
+			"perf_artist": "Ben Woodward",
+			"release_year": "2017",
+			"work_id": "W_183003",
+			"perf_id": "P_682613",
+			"yt_link": "http://www.youtube.com/embed/Tjc_3hgVkx0",
+			"instrumental": "No"
+		}
+	},
+	"W_183005": {
+		"P_682618": {
+			"work_title": "Riding Shotgun",
+			"work_artist": "Kygo",
+			"perf_title": "Riding Shotgun",
+			"perf_artist": "Kygo & Oliver Nelson feat. Bonnie McKee",
+			"release_year": "2017",
+			"work_id": "W_183005",
+			"perf_id": "P_682618",
+			"yt_link": "http://www.youtube.com/embed/bi8DS9pKyw8",
+			"instrumental": "No"
+		},
+		"P_682619": {
+			"work_title": "Riding Shotgun",
+			"work_artist": "Kygo",
+			"perf_title": "Riding Shotgun",
+			"perf_artist": "Adam Christopher - Ben Woodward",
+			"release_year": "2017",
+			"work_id": "W_183005",
+			"perf_id": "P_682619",
+			"yt_link": "http://www.youtube.com/embed/3Ki-m69Zz4Y",
+			"instrumental": "No"
+		}
+	},
+	"W_183007": {
+		"P_682625": {
+			"work_title": "Then",
+			"work_artist": "Steve Mac",
+			"perf_title": "Then",
+			"perf_artist": "Anne-Marie",
+			"release_year": "2017",
+			"work_id": "W_183007",
+			"perf_id": "P_682625",
+			"yt_link": "http://www.youtube.com/embed/dmtTnGlTUI0",
+			"instrumental": "No"
+		},
+		"P_682626": {
+			"work_title": "Then",
+			"work_artist": "Steve Mac",
+			"perf_title": "Then",
+			"perf_artist": "Ben Woodward",
+			"release_year": "2017",
+			"work_id": "W_183007",
+			"perf_id": "P_682626",
+			"yt_link": "http://www.youtube.com/embed/rXSxee1oubE",
+			"instrumental": "No"
+		}
+	},
+	"W_183010": {
+		"P_682632": {
+			"work_title": "You Owe Me",
+			"work_artist": "Andrew Taggart",
+			"perf_title": "You Owe Me",
+			"perf_artist": "The Chainsmokers",
+			"release_year": "2018",
+			"work_id": "W_183010",
+			"perf_id": "P_682632",
+			"yt_link": "http://www.youtube.com/embed/_hMQe2U4c6w",
+			"instrumental": "No"
+		},
+		"P_682634": {
+			"work_title": "You Owe Me",
+			"work_artist": "Andrew Taggart",
+			"perf_title": "You Owe Me",
+			"perf_artist": "Ben Woodward",
+			"release_year": "2018",
+			"work_id": "W_183010",
+			"perf_id": "P_682634",
+			"yt_link": "http://www.youtube.com/embed/WoaJ2eZVPGg",
+			"instrumental": "No"
+		}
+	},
+	"W_183014": {},
+	"W_183015": {
+		"P_682663": {
+			"work_title": "Throw Myself a Party",
+			"work_artist": "2 Chainz",
+			"perf_title": "Throw Myself a Party",
+			"perf_artist": "Cashmere Cat feat. Starrah, 2 Chainz & Tory Lanez",
+			"release_year": "2016",
+			"work_id": "W_183015",
+			"perf_id": "P_682663",
+			"yt_link": "http://www.youtube.com/embed/vAmOCpfBxHU",
+			"instrumental": "No"
+		},
+		"P_682664": {
+			"work_title": "Throw Myself a Party",
+			"work_artist": "2 Chainz",
+			"perf_title": "Throw Myself a Party",
+			"perf_artist": "Adam Christopher",
+			"release_year": "2017",
+			"work_id": "W_183015",
+			"perf_id": "P_682664",
+			"yt_link": "http://www.youtube.com/embed/RsN8blWDPWg",
+			"instrumental": "No"
+		}
+	},
+	"W_183021": {
+		"P_682844": {
+			"work_title": "Jazz Legato",
+			"work_artist": "Leroy Anderson",
+			"perf_title": "Jazz Legato - Jazz Pizzicato",
+			"perf_artist": "Boston \"Pops\" Orchestra - Arthur Fiedler, Conductor",
+			"release_year": "1944",
+			"work_id": "W_183021",
+			"perf_id": "P_682844",
+			"yt_link": "http://www.youtube.com/embed/DIaws4RtTCA",
+			"instrumental": "Yes"
+		},
+		"P_682846": {
+			"work_title": "Jazz Legato",
+			"work_artist": "Leroy Anderson",
+			"perf_title": "Jazz Pizzicato - Jazz Legato",
+			"perf_artist": "Leroy Anderson and His \"Pops\" Concert Orchestra",
+			"release_year": "1950",
+			"work_id": "W_183021",
+			"perf_id": "P_682846",
+			"yt_link": "http://www.youtube.com/embed/dENwLHX4Z7M",
+			"instrumental": "Yes"
+		}
+	},
+	"W_183024": {},
+	"W_183034": {
+		"P_682873": {
+			"work_title": "Ciu Ciu Bella",
+			"work_artist": "Sylvia Fine",
+			"perf_title": "Ciu Ciu Bella",
+			"perf_artist": "Danny Kaye",
+			"release_year": "1956",
+			"work_id": "W_183034",
+			"perf_id": "P_682873",
+			"yt_link": "http://www.youtube.com/embed/_S1S8GBk6Mg",
+			"instrumental": "No"
+		}
+	}
+}
