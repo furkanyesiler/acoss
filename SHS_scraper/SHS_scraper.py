@@ -31,13 +31,16 @@ def work_page_parser(url, all_songs):
     header_strong = header.find_all('strong', {'itemprop': 'name'})
     work_title = header_strong[0].get_text()
 
-    div = work_soup.find_all('a', {'class': 'link-artist'})[0]
-    div_span = div.find_all('span', {'itemprop': 'name'})
-    work_artist = div_span[0].get_text()
+    try:
+        div = work_soup.find_all('a', {'class': 'link-artist'})[0]
+        div_span = div.find_all('span', {'itemprop': 'name'})
+        work_artist = div_span[0].get_text()
+    except:
+        work_artist = 'None'
 
     url_id = url.split('/')[2]
     work_id = 'W_' + url_id
-    print(work_title)
+    #print(work_title)
 
     all_songs[work_id] = dict()
 
@@ -64,8 +67,14 @@ def perf_page_parser(table, all_songs, work_title, work_artist, work_id, inst_fl
 
             header = perf_soup.find_all('header', {'class': 'row'})[0]
             span_tags = header.find_all('span', {'itemprop': 'name'})
-            perf_title = span_tags[0].get_text()
-            perf_artist = span_tags[1].get_text()
+            try:
+                perf_title = span_tags[0].get_text()
+            except:
+                perf_title = 'None'
+            try:
+                perf_artist = span_tags[1].get_text()
+            except:
+                perf_artist = 'None'
 
             yt_link_shs = perf_soup.find_all("iframe")[0]['src']
             if yt_link_shs.split('/')[2] == 'www.youtube.com':
@@ -103,9 +112,9 @@ def main(start_idx, end_idx, download_songs):
     if not os.path.exists('metadata/'):
         os.mkdir('metadata/')
 
-    all_songs = dict()
-
     for page_idx in range(start_idx, end_idx):
+        all_songs = dict()
+
         database_page = urllib.request.urlopen(
             'https://secondhandsongs.com/statistics?adaptationExcluded=1&christmasExcluded=1&page=' + str(page_idx)
             + '&sort=covers&list=stats_work_covered')
@@ -126,8 +135,8 @@ def main(start_idx, end_idx, download_songs):
                 all_songs = perf_page_parser(instrumentals_table[0], all_songs,
                                              work_title, work_artist, work_id, 'Yes', download_songs)
 
-    with open('metadata/metadata_shs_'+str(start_idx)+'-'+str(end_idx)+'.json', 'w') as fp:
-        json.dump(all_songs, fp, indent='\t')
+        with open('metadata/metadata_shs_{}.json'.format(page_idx), 'w') as fp:
+            json.dump(all_songs, fp, indent='\t')
 
 
 if __name__ == "__main__":
@@ -136,7 +145,7 @@ if __name__ == "__main__":
     parser.add_argument('-s',
                         '--start_idx',
                         type=int,
-                        default='0',
+                        default='200',
                         help='Index of the first page for scraping. Default is 0.')
     parser.add_argument('-e',
                         '--end_idx',
