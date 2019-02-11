@@ -4,6 +4,7 @@
 """
 from scipy.signal import resample
 from essentia import Pool, array
+import essentia.pytools.spectral as epy
 import essentia.standard as estd
 import numpy as np
 import librosa
@@ -216,6 +217,52 @@ class AudioFeatures:
             plt.title('2D-Fourier transform magnitude coefficiants')
             specshow(ndim_fft_mag, cmap='jet')
         return ndim_fft_mag
+
+    def tempogram(self, onset_envelope, hop_length=512, win_length=384, center=True, window='hann'):
+      """
+      Compute the tempogram: local autocorrelation of the onset strength envelope. [1]
+      [1] Grosche, Peter, Meinard Müller, and Frank Kurth. “Cyclic tempogram - A mid-level tempo 
+      representation for music signals.” ICASSP, 2010.
+
+      https://librosa.github.io/librosa/generated/librosa.feature.tempogram.html
+      """
+      return librosa.feature.tempogram(y=self.audio_vector, 
+                                      sr=self.fs, 
+                                      onset_envelope=onset_envelope, 
+                                      hop_length=hop_length, 
+                                      win_length=win_length,
+                                      center=center,
+                                      window=window)
+
+      def cqt_nsg(self, frame_size=4096):
+        """
+        invertible CQT algorithm based on Non-Stationary Gabor frames
+        https://mtg.github.io/essentia-labs//news/2019/02/07/invertible-constant-q/
+        https://essentia.upf.edu/documentation/reference/std_NSGConstantQ.html
+        """
+        cq_frames, dc_frames, nb_frames = epy.nsgcqgram(self.audio_vector, frameSize=frame_size)
+        return cq_frames
+
+      def cqt(self, hop_length=512, fmin=None, n_bins=84, bins_per_octave=12, tuning=0.0, 
+              filter_scale=1, norm=1, sparsity=0.01, window='hann', scale=True, pad_mode='reflect'):
+        """
+        Compute the constant-Q transform implementation as in librosa
+        https://librosa.github.io/librosa/generated/librosa.core.cqt.html
+        """
+        return librosa.core.cqt(y=self.audio_vector, 
+                                sr=self.fs, 
+                                hop_length=hop_length, 
+                                fmin=fmin, 
+                                n_bins=n_bins, 
+                                bins_per_octave=bins_per_octave, 
+                                tuning=tuning, 
+                                filter_scale=filter_scale, 
+                                norm=norm, 
+                                sparsity=sparsity, 
+                                window=window,
+                                scale=scale, 
+                                pad_mode=pad_mode)
+
 
 
 def display_chroma(chroma, hop_size=1024, cmap="jet"):
