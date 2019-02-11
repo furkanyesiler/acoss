@@ -5,7 +5,8 @@ Here we can different methods to compute similarity matrix and distances
 TODO: add methods from Chris and Diego 
 """
 from sklearn.metrics.pairwise import euclidean_distances
-from essentia import CoverSongSimilarity, array
+from essentia.standard import CoverSongSimilarity
+from essentia import array
 import numpy as np
 
 
