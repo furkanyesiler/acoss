@@ -38,6 +38,13 @@ def timeit(method):
     return timed
 
 
+def read_txt_file(txt_file):
+    """read a text file and strips \n char from it"""
+    f = open(txt_file)
+    data = f.readlines()
+    return [d.replace('\n', '') for d in data]
+
+
 def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
     Description:
@@ -56,19 +63,3 @@ def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
     return subprocess.call('ffmpeg -i %s -acodec copy -ss %s -to %s %s'
                             %(filename, start_time, end_time, out_filename), shell=True)
-
-
-def convert_lossless_to_mp3(input_file, output_file):
-    """
-    Description: Convert a input audio file to .mp3 format
-
-    :param
-            input_file: path to input audio
-            output_file: path to desired .mp3 audio file
-
-    :return:
-
-    NOTE: needs ffmpeg locally installed
-
-    """
-    return subprocess.call("ffmpeg -i %s -acodec libmp3lame -aq 2 %s" %(input_file, output_file), shell=True)

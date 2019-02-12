@@ -10,12 +10,11 @@ from essentia import array
 import numpy as np
 
 
-
 def global_hpcp(chroma):
     """Computes global hpcp of a input chroma vector"""
     if chroma.shape[1] not in [12, 24, 36]:
         raise IOError("Wrong axis for the input chroma array. Expected shape '(frame_size, bin_size)'")
-    return np.divide(chroma.sum(axis=0) np.max(chroma.sum(axis=0)))
+    return np.divide(chroma.sum(axis=0), np.max(chroma.sum(axis=0)))
 
 
 def optimal_transposition_index(chromaA, chromaB, n_shifts=12):
@@ -67,8 +66,7 @@ def to_embedding(input_xrray, tau=1, m=9):
     return np.array(timeseries)
 
 
-
-def cross_recurrent_plot(input_x, input_y, tau=1, m=9, kappa=0.095, transpose=True, resample=True, resample_factor=2):
+def cross_recurrent_plot(input_x, input_y, tau=1, m=9, kappa=0.095, transpose=True):
     """
     Constructs the Cross Recurrent Plot of two audio feature vector as mentioned in [1]
     Inputs :
@@ -111,16 +109,17 @@ def cross_recurrent_plot(input_x, input_y, tau=1, m=9, kappa=0.095, transpose=Tr
 
 
 def serra_cover_similarity_measures(input_crp, disOnset=0.5, disExtension=0.5, simType='qmax'):
-  """
-  Computes distance cover song similarity measure from the cross recurrent plots as mentioned in [1] (qmax) and [2] (dmax)
+    """
+    Computes distance cover song similarity measure using smith-waterman local allignment from the
+    cross recurrent plots as mentioned in [1] (qmax) and [2] (dmax)
 
-  [1]. Serra, J., Serra, X., & Andrzejak, R. G. (2009). Cross recurrence quantification for cover
+    [1]. Serra, J., Serra, X., & Andrzejak, R. G. (2009). Cross recurrence quantification for cover
         song identification. New Journal of Physics, 11.
 
-  [2]. Chen, N., Li, W., & Xiao, H. (2017). Fusing similarity functions for cover song identification.
+    [2]. Chen, N., Li, W., & Xiao, H. (2017). Fusing similarity functions for cover song identification.
          Multimedia Tools and Applications.
 
-  Input:
+    Input:
         input_crp: 2-d binary matrix of cross recurrent plot (x-axis query song and y-axis for reference song)
 
       Params:
@@ -128,11 +127,11 @@ def serra_cover_similarity_measures(input_crp, disOnset=0.5, disExtension=0.5, s
              disExtension: penalty for a disurption extension
              simType: ['qmax', 'dmax']
 
-  Return: cover similarity distance
+    Return: cover similarity distance
 
-  NOTE: CoverSongSimilarity algo will be available soon in the new essentia release
-  """
-  coversim = CoverSongSimilarity(disOnset=disOnset, disExtension=disExtension, simType=simType)
-  score_matrix = coversim.compute(array(input_crp))
-  return np.divide(np.sqrt(input_crp.shape[1]), np.max(cum_matrix))
+    NOTE: CoverSongSimilarity algo will be available soon in the new essentia release
+    """
+    coversim = CoverSongSimilarity(disOnset=disOnset, disExtension=disExtension, simType=simType)
+    score_matrix = coversim.compute(array(input_crp))
+    return np.divide(np.sqrt(input_crp.shape[1]), np.max(score_matrix))
 

@@ -104,21 +104,21 @@ class AudioFeatures:
             display_chroma(chroma_cens, hopSize)
         return np.swapaxes(chroma_cens, 0, 1)
 
-    def chroma_hpcp(self,
-                frameSize=4096,
-                hopSize=2048,
-                windowType='blackmanharris62',
-                harmonicsPerPeak=8,
-                magnitudeThreshold=1e-05,
-                maxPeaks=1000,
-                whitening=True,
-                referenceFrequency=440,
-                minFrequency=40,
-                maxFrequency=5000,
-                nonLinear=False,
-                numBins=12,
-                display=False):
-        '''
+    def hpcp(self,
+            frameSize=4096,
+            hopSize=2048,
+            windowType='blackmanharris62',
+            harmonicsPerPeak=8,
+            magnitudeThreshold=1e-05,
+            maxPeaks=1000,
+            whitening=True,
+            referenceFrequency=440,
+            minFrequency=40,
+            maxFrequency=5000,
+            nonLinear=False,
+            numBins=12,
+            display=False):
+        """
         Compute Harmonic Pitch Class Profiles (HPCP) for the input audio files using essentia standard mode using
         the default parameters as mentioned in [1].
         Please refer to the following paper for detailed explanantion of the algorithm.
@@ -148,7 +148,7 @@ class AudioFeatures:
             the size of the output HPCP (must be a positive nonzero multiple of 12)
             whitening : (boolean (True, False), default = False)
             Optional step of computing spectral whitening to the output from speakPeak magnitudes
-        '''
+        """
         audio = array(self.audio_vector)
         frameGenerator = estd.FrameGenerator(audio, frameSize=frameSize, hopSize=hopSize)
         window = estd.Windowing(type=windowType)
@@ -202,7 +202,7 @@ class AudioFeatures:
             display_chroma(beat_chroma)
         return beat_chroma
 
-    def two_dim_fft_magnitudes(self, feature_vector, display=False):
+    def two_d_fft_mag(self, feature_vector, display=False):
         """
         Computes 2d - fourier transform magnitude coefficiants of the input feature vector (numpy array)
         Usually fed by Constant-q transform or chroma feature vectors for cover detection tasks.
@@ -219,22 +219,22 @@ class AudioFeatures:
         return ndim_fft_mag
 
     def tempogram(self, onset_envelope, hop_length=512, win_length=384, center=True, window='hann'):
-      """
-      Compute the tempogram: local autocorrelation of the onset strength envelope. [1]
-      [1] Grosche, Peter, Meinard Müller, and Frank Kurth. “Cyclic tempogram - A mid-level tempo 
-      representation for music signals.” ICASSP, 2010.
+        """
+        Compute the tempogram: local autocorrelation of the onset strength envelope. [1]
+        [1] Grosche, Peter, Meinard Müller, and Frank Kurth. “Cyclic tempogram - A mid-level tempo
+        representation for music signals.” ICASSP, 2010.
 
-      https://librosa.github.io/librosa/generated/librosa.feature.tempogram.html
-      """
-      return librosa.feature.tempogram(y=self.audio_vector, 
-                                      sr=self.fs, 
-                                      onset_envelope=onset_envelope, 
-                                      hop_length=hop_length, 
-                                      win_length=win_length,
-                                      center=center,
-                                      window=window)
+        https://librosa.github.io/librosa/generated/librosa.feature.tempogram.html
+        """
+        return librosa.feature.tempogram(y=self.audio_vector,
+                                         sr=self.fs,
+                                         onset_envelope=onset_envelope,
+                                         hop_length=hop_length,
+                                         win_length=win_length,
+                                         center=center,
+                                         window=window)
 
-      def cqt_nsg(self, frame_size=4096):
+    def cqt_nsg(self, frame_size=4096):
         """
         invertible CQT algorithm based on Non-Stationary Gabor frames
         https://mtg.github.io/essentia-labs//news/2019/02/07/invertible-constant-q/
@@ -243,24 +243,24 @@ class AudioFeatures:
         cq_frames, dc_frames, nb_frames = epy.nsgcqgram(self.audio_vector, frameSize=frame_size)
         return cq_frames
 
-      def cqt(self, hop_length=512, fmin=None, n_bins=84, bins_per_octave=12, tuning=0.0, 
+    def cqt(self, hop_length=512, fmin=None, n_bins=84, bins_per_octave=12, tuning=0.0,
               filter_scale=1, norm=1, sparsity=0.01, window='hann', scale=True, pad_mode='reflect'):
         """
         Compute the constant-Q transform implementation as in librosa
         https://librosa.github.io/librosa/generated/librosa.core.cqt.html
         """
-        return librosa.core.cqt(y=self.audio_vector, 
-                                sr=self.fs, 
-                                hop_length=hop_length, 
-                                fmin=fmin, 
-                                n_bins=n_bins, 
-                                bins_per_octave=bins_per_octave, 
-                                tuning=tuning, 
-                                filter_scale=filter_scale, 
-                                norm=norm, 
-                                sparsity=sparsity, 
+        return librosa.core.cqt(y=self.audio_vector,
+                                sr=self.fs,
+                                hop_length=hop_length,
+                                fmin=fmin,
+                                n_bins=n_bins,
+                                bins_per_octave=bins_per_octave,
+                                tuning=tuning,
+                                filter_scale=filter_scale,
+                                norm=norm,
+                                sparsity=sparsity,
                                 window=window,
-                                scale=scale, 
+                                scale=scale,
                                 pad_mode=pad_mode)
 
 
