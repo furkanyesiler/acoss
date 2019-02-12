@@ -224,6 +224,10 @@ class AudioFeatures:
             the size of the output HPCP (must be a positive nonzero multiple of 12)
             whitening : (boolean (True, False), default = False)
             Optional step of computing spectral whitening to the output from speakPeak magnitudes
+        
+        Returns
+        hpcp: ndarray(n_frames, 12)
+            The HPCP coefficients at each time frame
         """
         audio = array(self.audio_vector)
         frameGenerator = estd.FrameGenerator(audio, frameSize=frameSize, hopSize=self.hop_length)
@@ -266,6 +270,27 @@ class AudioFeatures:
 
         return pool['tonal.hpcp']
 
+    def crema(self):
+        """
+        Compute "convolutional and recurrent estimators for music analysis" (CREMA)
+        and resample so that it's reported in hop_length intervals
+        NOTE: This code is a bit finnecky, and is recommended for Python 3.5
+        Returns
+        -------
+        crema: ndarray(n_frames, 12)
+            The crema coefficients at each frame
+        """
+        import crema
+        from scipy import interpolate
+        model = crema.models.chord.ChordModel()
+        data = model.outputs(y=self.audio_vector, sr=self.fs)
+        fac = (float(self.fs)/44100.0)*4096.0/self.hop_length
+        times_orig = fac*np.arange(len(data['chord_bass']))
+        nwins = int(np.floor(float(self.audio_vector.size) / self.hop_length))
+        times_new = np.arange(nwins)
+        interp = interpolate.interp1d(times_orig, data['chord_pitch'].T, kind='nearest', fill_value='extrapolate')
+        return interp(times_new).T
+
     def two_d_fft_mag(self, feature_type='chroma_cqt', display=False):
         """
         Computes 2d - fourier transform magnitude coefficients of the input feature vector (numpy array)
@@ -295,7 +320,7 @@ class AudioFeatures:
             specshow(ndim_fft_mag, cmap='jet')
 
         return ndim_fft_mag
-    
+
     def tempogram(self, win_length=384, center=True, window='hann'):
         """
         Compute the tempogram: local autocorrelation of the onset strength envelope. [1]
@@ -456,22 +481,39 @@ class AudioFeatures:
         os.remove("temp.wav")
 
 
-def display_chroma(chroma, hop_size=512, cmap="jet"):
+def display_chroma(chroma, hop_length=512, fs=44100):
     """
-    Make plots for input chroma vector using 
+    Make plots for input chroma vector using librosa's spechow
+    Parameters
+    ----------
+    chroma: ndarray(n_frames, n_chroma_bins)
+        An array of chroma features
     """
     from librosa.display import specshow
     import matplotlib.pyplot as plt
-    plt.figure(figsize=(16, 8))
-    plt.subplot(2,1,1)
-    plt.title("Chroma")
-    specshow(np.swapaxes(chroma,1,0), x_axis='time', y_axis='chroma', cmap=cmap, hop_length=hop_size)
-    plt.show()
-    return
+    specshow(chroma.T, x_axis='time', y_axis='chroma', hop_length=hop_length, sr=fs)
 
 if __name__ == '__main__':
     filename = argv[1]
     song = AudioFeatures(filename)
+    
+    import matplotlib.pyplot as plt
+    """
+    hpcp = song.hpcp()
+    crema = song.crema()
+    print(hpcp.shape)
+    print(crema.shape)
+    plt.subplot(211)
+    display_chroma(hpcp, song.hop_length, song.fs)
+    plt.title("HPCP")
+    plt.subplot(212)
+    display_chroma(crema, song.hop_length, song.fs)
+    plt.title("CREMA")
+    plt.show()
+    """
+
+
+
     librosa_onsets = song.librosa_onsets()['onsets']
     madmom_onsets = song.madmom_rnn_onsets()['onsets']
     song.export_onset_clicks("%s_librosa_onsets.mp3"%filename, librosa_onsets)
