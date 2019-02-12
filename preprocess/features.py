@@ -4,7 +4,6 @@
 """
 from scipy.signal import resample
 from essentia import Pool, array
-#import essentia.pytools.spectral as epy
 import essentia.standard as estd
 import numpy as np
 import librosa
@@ -319,6 +318,7 @@ class AudioFeatures:
         https://mtg.github.io/essentia-labs//news/2019/02/07/invertible-constant-q/
         https://essentia.upf.edu/documentation/reference/std_NSGConstantQ.html
         """
+        import essentia.pytools.spectral as epy
         cq_frames, dc_frames, nb_frames = epy.nsgcqgram(self.audio_vector, frameSize=frame_size)
         return cq_frames
 
@@ -341,6 +341,93 @@ class AudioFeatures:
                                 window=window,
                                 scale=scale,
                                 pad_mode=pad_mode)
+
+    def mfcc_htk(self, window_length=22050, nmfcc=13, n_mels=26, fmax=8000, lifterexp=22):
+        """
+        Get MFCCs 'the HTK way' with the help of Essentia
+        https://github.com/MTG/essentia/blob/master/src/examples/tutorial/example_mfcc_the_htk_way.py
+        Using all of the default parameters from there except the hop length (which shouldn't matter), and a much longer window length (which has been found to work better for covers)
+        Parameters
+        ----------
+        window_length: int
+            Length of the window to use for the STFT
+        nmfcc: int
+            Number of MFCC coefficients to compute
+        n_mels: int
+            Number of frequency bands to use
+        fmax: int
+            Maximum frequency
+        Returns
+        -------
+        ndarray(nmfcc, nframes)
+            An array of all of the MFCC frames
+        """
+        fftlen = int(2**(np.ceil(np.log(window_length)/np.log(2))))
+        spectrumSize= fftlen//2+1
+        zeroPadding = fftlen - window_length
+
+        w = estd.Windowing(type = 'hamming', #  corresponds to htk default  USEHAMMING = T
+                            size = window_length, 
+                            zeroPadding = zeroPadding,
+                            normalized = False,
+                            zeroPhase = False)
+        
+        spectrum = estd.Spectrum(size=fftlen)
+        mfcc_htk = estd.MFCC(inputSize = spectrumSize,
+                            type = 'magnitude', # htk uses mel filterbank magniude
+                            warpingFormula = 'htkMel', # htk's mel warping formula
+                            weighting = 'linear', # computation of filter weights done in Hz domain
+                            highFrequencyBound = fmax, # 8000 is htk default
+                            lowFrequencyBound = 0, # corresponds to htk default
+                            numberBands = n_mels, # corresponds to htk default  NUMCHANS = 26
+                            numberCoefficients = nmfcc,
+                            normalize = 'unit_max', # htk filter normaliation to have constant height = 1  
+                            dctType = 3, # htk uses DCT type III
+                            logType = 'log',
+                            liftering = lifterexp) # corresponds to htk default CEPLIFTER = 22
+
+
+        mfccs = []
+        # startFromZero = True, validFrameThresholdRatio = 1 : the way htk computes windows
+        for frame in estd.FrameGenerator(self.audio_vector, frameSize = window_length, hopSize = self.hop_length , startFromZero = True, validFrameThresholdRatio = 1):
+            spect = spectrum(w(frame))
+            mel_bands, mfcc_coeffs = mfcc_htk(spect)
+            mfccs.append(mfcc_coeffs)
+        
+        return np.array(mfccs, dtype=np.float32).T
+    
+    def mfcc_librosa(self, window_length=22050, nmfcc=20, n_mels=40, fmax=8000, lifterexp=0.6):
+        """
+        Using the default parameters from C Tralie
+        "Early MFCC And HPCP Fusion for Robust Cover Song Identification"
+        Parameters
+        ----------
+        window_length: int
+            Length of the window to use for the STFT
+        nmfcc: int
+            Number of MFCC coefficients to compute
+        n_mels: int
+            Number of frequency bands to use
+        fmax: int
+            Maximum frequency
+        lifterexp: float
+            Liftering exponent
+        Returns
+        -------
+        ndarray(nmfcc, nframes)
+            An array of all of the MFCC frames
+        """
+        S = librosa.core.stft(self.audio_vector, window_length, self.hop_length)
+        M = librosa.filters.mel(self.fs, window_length, n_mels = n_mels, fmax = fmax)
+        X = M.dot(np.abs(S))
+        X = librosa.core.amplitude_to_db(X)
+        X = np.dot(librosa.filters.dct(nmfcc, X.shape[0]), X) #Make MFCC
+        #Do liftering
+        coeffs = np.arange(nmfcc)**lifterexp
+        coeffs[0] = 1
+        X = coeffs[:, None]*X
+        X = np.array(X, dtype = np.float32)
+        return X
 
     def export_onset_clicks(self, outname, onsets):
         """
