@@ -202,23 +202,41 @@ class AudioFeatures:
             display_chroma(beat_chroma)
         return beat_chroma
 
-    def two_d_fft_mag(self, feature_vector, display=False):
+    def two_d_fft_mag(self, feature_type='chroma_cqt', display=False):
         """
         Computes 2d - fourier transform magnitude coefficiants of the input feature vector (numpy array)
         Usually fed by Constant-q transform or chroma feature vectors for cover detection tasks.
         """
-        import matplotlib.pyplot as plt
+        if feature_type == 'audio':
+            feature_vector = self.audio_vector
+        elif feature_type == 'hpcp':
+            feature_vector = self.hpcp()
+        elif feature_type == 'chroma_cqt':
+            feature_vector = self.chroma_cqt()
+        elif feature_type == 'chroma_cens':
+            feature_vector = self.chroma_cens()
+        else:
+            raise IOError("two_d_fft_mag: Wrong parameter 'feature type'. "
+                          "Should be in one of ['audio', 'hpcp', 'chroma_cqt', 'chroma_cens']")
+
         # 2d fourier transform
         ndim_fft = np.fft.fft2(feature_vector)
         ndim_fft_mag = np.abs(np.fft.fftshift(ndim_fft))
+
         if display:
+            import matplotlib.pyplot as plt
             from librosa.display import specshow
             plt.figure(figsize=(8,6))
             plt.title('2D-Fourier transform magnitude coefficiants')
             specshow(ndim_fft_mag, cmap='jet')
+
         return ndim_fft_mag
 
-    def tempogram(self, onset_envelope, hop_length=512, win_length=384, center=True, window='hann'):
+    def onset_envelope(self, hop_length=512):
+        """Compute onset envelope from a input signal"""
+        return librosa.onset.onset_strength(y=self.audio_vector, sr=self.fs, hop_length=hop_length)
+
+    def tempogram(self, hop_length=512, win_length=384, center=True, window='hann'):
         """
         Compute the tempogram: local autocorrelation of the onset strength envelope. [1]
         [1] Grosche, Peter, Meinard Müller, and Frank Kurth. “Cyclic tempogram - A mid-level tempo
@@ -228,7 +246,7 @@ class AudioFeatures:
         """
         return librosa.feature.tempogram(y=self.audio_vector,
                                          sr=self.fs,
-                                         onset_envelope=onset_envelope,
+                                         onset_envelope=self.onset_envelope(hop_length=hop_length),
                                          hop_length=hop_length,
                                          win_length=win_length,
                                          center=center,
@@ -262,7 +280,6 @@ class AudioFeatures:
                                 window=window,
                                 scale=scale,
                                 pad_mode=pad_mode)
-
 
 
 def display_chroma(chroma, hop_size=1024, cmap="jet"):

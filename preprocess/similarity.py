@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Here we can different methods to compute similarity matrix and distances
+Here we can different baseline methods to compute similarity matrix and distances
 
 TODO: add methods from Chris and Diego 
 """

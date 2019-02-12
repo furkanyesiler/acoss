@@ -20,9 +20,11 @@ _LOG_FILE = log("<path_to_log_file>")
 
 PROFILE = {
            'sample_rate': 44100,
+           'input_audio_format': '.mp3',
            'downsample_audio': False,
            'downsample_factor': 2,
-           'features': ['cqt_nsg', 'chroma_cqt', 'chroma_cens', 'hpcp', 'tempogram', 'two_d_fft_mag']
+           'endtime': None,
+           'features': ['cqt', 'chroma_cqt', 'chroma_cens', 'hpcp', 'tempogram', 'two_d_fft_mag']
         }
 
 
@@ -42,6 +44,10 @@ def compute_features(audio_path, params=PROFILE):
     # now we compute all the listed features in the profile dict and store the results to a output dictionary
     for method in params['features']:
         out_dict[method] = getattr(feature, method)()
+
+    track_id = os.path.basename(audio_path).replace(params['input_audio_format'], '')
+    out_dict['track_id'] = track_id
+
     return out_dict
 
 
@@ -58,8 +64,6 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
 
     for song in data:
         feature_dict = compute_features(audio_path=song, params=params)
-        track_id = os.path.basename(song).replace('.mp3', '')
-        feature_dict['track_id'] = track_id
         # save as json
         with open(feature_dir + os.path.basename(input_txt_file) + '.json', 'w') as f:
             json.dump(feature_dict, f)

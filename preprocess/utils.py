@@ -45,6 +45,14 @@ def read_txt_file(txt_file):
     return [d.replace('\n', '') for d in data]
 
 
+def savelist_to_file(pathList, filename):
+    doc = open(filename, 'w')
+    for item in pathList:
+        doc.write("%s\n" % item)
+    doc.close()
+    return
+
+
 def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
     Description:
@@ -62,4 +70,4 @@ def ffmpeg_slicer(filename, start_time, end_time, out_filename):
 
     """
     return subprocess.call('ffmpeg -i %s -acodec copy -ss %s -to %s %s'
-                            %(filename, start_time, end_time, out_filename), shell=True)
+                            % (filename, start_time, end_time, out_filename), shell=True)
