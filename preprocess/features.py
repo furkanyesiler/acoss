@@ -4,10 +4,12 @@
 """
 from scipy.signal import resample
 from essentia import Pool, array
-import essentia.pytools.spectral as epy
+#import essentia.pytools.spectral as epy
 import essentia.standard as estd
 import numpy as np
 import librosa
+from sys import argv
+import os
 
 
 class AudioFeatures:
@@ -73,33 +75,66 @@ class AudioFeatures:
     def librosa_noveltyfn(self):
         """
         Compute librosa's onset envelope from an input signal
+        Returns
+        -------
+        novfn: ndarray(n_frames)
+            Evaluation of the audio novelty function at each audio frame,
+            in time increments equal to self.hop_length
         """
-        return librosa.onset.onset_strength(y=self.audio_vector, sr=self.fs, hop_length=self.hop_length)
+        # Include max_size=3 to make like superflux
+        return librosa.onset.onset_strength(y=self.audio_vector, sr=self.fs, 
+                                            hop_length=self.hop_length, max_size=3)
 
-    def madmom_onsets(self):
+    def madmom_rnn_onsets(self, fps=100):
         """
         Call Madmom's implementation of RNN + DBN beat tracking. Madmom's
         results are returned in terms of seconds, but round and convert to
-        be in terms of hop_size so that they line up with the features
+        be in terms of hop_size so that they line up with the features.
+        The novelty function is also computed as a side effect (and is
+        the bottleneck in the computation), so also return that
+        Parameters
+        ----------
+        fps: int
+            Frames per second in processing
         Returns
         -------
-            tempo: float
+        {
+            'tempo': float
                  Average tempo
-            beats: ndarray(N)
+            'onsets': ndarray(n_onsets)
                 of beat intervals in number of windows
+            'novfn': ndarray(n_frames)
+                Evaluation of the audio novelty function at each audio frame,
+                in time increments equal to self.hop_length
+        }
         """
-        print("Computing madmom beats...")
         from madmom.features.beats import RNNBeatProcessor, DBNBeatTrackingProcessor
-        proc = DBNBeatTrackingProcessor(fps=100)
-        act = RNNBeatProcessor()(self.audio_file)
-        b = proc(act)
+        proc = DBNBeatTrackingProcessor(fps=fps)
+        novfn = RNNBeatProcessor()(self.audio_file)
+        b = proc(novfn)
         tempo = 60/np.mean(b[1::] - b[0:-1])
-        beats = np.array(np.round(b*self.fs/float(self.hop_length)), dtype=np.int64)
-        return (tempo, beats)
+        onsets = np.array(np.round(b*self.fs/float(self.hop_length)), dtype=np.int64)
+        # Resample the audio novelty function to correspond to the 
+        # correct hop length
+        nframes = len(self.librosa_noveltyfn())
+        novfn = np.interp(np.arange(nframes)*self.hop_length/float(self.fs), np.arange(len(novfn))/float(fps), novfn) 
+        return {'tempo':tempo, 'onsets':onsets, 'novfn':novfn}
 
-    def librosa_onsets(self, tempobias):
+    def librosa_onsets(self, tempobias=120.0):
+        """
+        Call librosa's implementation of dynamic programming beat tracking
+        Returns
+        -------
+        {
+            'tempo': float
+                 Average tempo
+            'onsets': ndarray(n_onsets)
+                of beat intervals in number of windows
+        }
+        """
         y_harmonic, y_percussive = librosa.effects.hpss(self.audio_vector)
-        tempo, beat_frames = librosa.beat.beat_track(y=y_percussive,sr=self.fs)
+        tempo, onsets = librosa.beat.beat_track(y=y_percussive,sr=self.fs,start_bpm=tempobias)
+        return {'tempo':tempo, 'onsets':onsets}
 
     @staticmethod
     def resample_feature(feature_array, factor):
@@ -118,7 +153,7 @@ class AudioFeatures:
                                             sr=self.fs,
                                             tuning=0,
                                             norm=2,
-                                            hop_length=self.hop_length=,
+                                            hop_length=self.hop_length,
                                             n_fft=frameSize)
         if display:
             display_chroma(chroma, self.hop_length)
@@ -307,6 +342,32 @@ class AudioFeatures:
                                 scale=scale,
                                 pad_mode=pad_mode)
 
+    def export_onset_clicks(self, outname, onsets):
+        """
+        Test a beat tracker by creating an audio file
+        with little blips where the onsets are
+        Parameters
+        ----------
+        outname: string 
+            Path to the file to which to output
+        onsets: ndarray(n_onsets)
+            An array of onsets, in terms of the hop length
+        """
+        import scipy.io as sio
+        import subprocess
+        yaudio = np.array(self.audio_vector)
+        blipsamples = int(np.round(0.02*self.fs))
+        blip = np.cos(2*np.pi*np.arange(blipsamples)*440.0/self.fs)
+        blip = np.array(blip*np.max(np.abs(yaudio)), dtype=yaudio.dtype)
+        for idx in onsets:
+            l = len(yaudio[idx*self.hop_length:idx*self.hop_length+blipsamples])
+            yaudio[idx*self.hop_length:idx*self.hop_length+blipsamples] = blip[0:l]
+        sio.wavfile.write("temp.wav", self.fs, yaudio)
+        if os.path.exists(outname):
+            os.remove(outname)
+        subprocess.call(["ffmpeg", "-i", "temp.wav", outname])
+        os.remove("temp.wav")
+
 
 def display_chroma(chroma, hop_size=512, cmap="jet"):
     """
@@ -320,3 +381,12 @@ def display_chroma(chroma, hop_size=512, cmap="jet"):
     specshow(np.swapaxes(chroma,1,0), x_axis='time', y_axis='chroma', cmap=cmap, hop_length=hop_size)
     plt.show()
     return
+
+if __name__ == '__main__':
+    filename = argv[1]
+    song = AudioFeatures(filename)
+    librosa_onsets = song.librosa_onsets()['onsets']
+    madmom_onsets = song.madmom_rnn_onsets()['onsets']
+    song.export_onset_clicks("%s_librosa_onsets.mp3"%filename, librosa_onsets)
+    song.export_onset_clicks("%s_madmom_onsets.mp3"%filename, madmom_onsets)
+    
