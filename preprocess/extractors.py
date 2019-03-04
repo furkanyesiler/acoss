@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-[TODO]: Here we can add batch feature extractors for all audio files in the dataset with multiple threads
+Batch feature extractor
 
-The following functions are some examples and we can refactor it to meet our needs (add more features or store in more optimised fileformats etc)
-
+@2019
 """
-from joblib import Parallel, delayed
-from .utils import timeit, log, read_txt_file
+from .utils import timeit, log, read_txt_file, ErrorFile
 from .features import AudioFeatures
+from joblib import Parallel, delayed
 import argparse
+import datetime
 import time
 import glob
 import json
 import os
 
 
-_LOG_FILE = log("<path_to_log_file>")
+_TIMESTAMP = '{:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now())
+_LOG_FILE = log(_TIMESTAMP + "_extractor.log")
+_ERROR_FILE = ErrorFile(_TIMESTAMP + "_errors.txt")
 
 
 PROFILE = {
@@ -24,7 +26,12 @@ PROFILE = {
            'downsample_audio': False,
            'downsample_factor': 2,
            'endtime': None,
-           'features': ['cqt', 'chroma_cqt', 'chroma_cens', 'hpcp', 'tempogram', 'two_d_fft_mag']
+           'features': ['cqt', 
+                        'hpcp', 
+                        'crema', 
+                        'key_extractor',
+                        'tempogram', 
+                        'mfcc_htk']
         }
 
 
@@ -63,11 +70,15 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
         raise IOError("Empty collection txt file -%s- !" % input_txt_file)
 
     for song in data:
-        feature_dict = compute_features(audio_path=song, params=params)
-        # save as json
-        with open(feature_dir + os.path.basename(input_txt_file) + '.json', 'w') as f:
-            json.dump(feature_dict, f)
-    _LOG_FILE.debug("Process finished in - %s - seconds" % (start_time - time.time()))
+        try:
+            feature_dict = compute_features(audio_path=song, params=params)
+            # save as json
+            with open(feature_dir + os.path.basename(song).replace(params['input_audio_format'], '') + '.json', 'w') as f:
+                json.dump(feature_dict, f)
+        except:
+            _ERROR_FILE.add(song)
+            _LOG_FILE.debug("Error: skipping computing features for audio file --%s-- " % song)
+    _LOG_FILE.info("Process finished in - %s - seconds" % (start_time - time.time()))
 
 
 @timeit
@@ -105,7 +116,6 @@ def batch_feature_extractor(collections_dir, feature_dir, n_threads, params=PROF
 
     Parallel(n_jobs=n_threads, verbose=1)(delayed(compute_features_from_list_file)\
                                               (cpath, fpath, param) for cpath, fpath, param in args)
-    return
 
 
 if __name__ == '__main__':
@@ -120,15 +130,7 @@ if __name__ == '__main__':
 
     cmd_args = parser.parse_args()
 
-    try:
-        import multiprocessing
-        cores = multiprocessing.cpu_count()
-    except ImportError:
-        raise ImportError("Cannot find multiprocessing package on the system")
+    _ERROR_FILE.close()
 
-    if cores not in [0, 1]:
-        batch_feature_extractor(cmd_args.c, cmd_args.p, cores-1)
-    else:
-        batch_feature_extractor(cmd_args.c, cmd_args.p, cmd_args.n)
     print ("... Done ....")
 

@@ -1,24 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-
+@2019
 """
-from scipy.signal import resample
-from essentia import Pool, array
+from essentia import Pool, array, run
 import essentia.standard as estd
+import essentia.streaming as ess
 import numpy as np
 import librosa
-from sys import argv
 import os
 
 
 class AudioFeatures:
     """
     Class containing methods to compute various audio features
-    Methods :
-                chroma_stft   : Computes chromagram using short fourier transform
-                chroma_cqt    : Computes chromagram from constant-q transform of the audio signal
-                chroma_cens   : Computes improved chromagram using CENS method as mentioned in
-                chroma_hpcp   : Computes Harmonic pitch class profiles aka HPCP (improved chromagram)
     
     Attributes:
         hop_length: int
@@ -37,12 +31,9 @@ class AudioFeatures:
                 #chroma stft with default parameters
                 feature.chroma_stft()
 
-    TODO: add more features such as
-          - MFCC
-          - CENS
     """
 
-    def __init__(self, audio_file, mono=True, hop_length=512, sample_rate=44100, normalize_gain=False):
+    def __init__(self, audio_file, mono=True, hop_length=512, sample_rate=44100, normalize_gain=False, verbose=False):
         """"""
         self.hop_length = hop_length
         self.fs = sample_rate
@@ -51,7 +42,8 @@ class AudioFeatures:
             self.audio_vector = estd.EasyLoader(filename=audio_file, sampleRate=self.fs, replayGain=-9)()
         elif mono:
             self.audio_vector = estd.MonoLoader(filename=audio_file, sampleRate=self.fs)()
-        print ("== Audio vector of %s loaded with shape %s and sample rate %s ==" % (audio_file, self.audio_vector.shape, self.fs))
+        if verbose:
+            print ("== Audio vector of %s loaded with shape %s and sample rate %s ==" % (audio_file, self.audio_vector.shape, self.fs))
 
     def resample_audio(self, target_sample_rate):
         """Downsample a audio into a target sample rate"""
@@ -140,6 +132,7 @@ class AudioFeatures:
         """
         downsample a input feature array with a given step size
         """
+        from scipy.signal import resample
         frames = feature_array.shape[0]
         re_size = int(np.ceil(frames / float(factor)))
         return resample(feature_array, re_size)
@@ -156,7 +149,7 @@ class AudioFeatures:
                                             n_fft=frameSize)
         if display:
             display_chroma(chroma, self.hop_length)
-        return np.swapaxes(chroma, 0, 1)
+        return chroma.T
 
     def chroma_cqt(self, display=False):
         """
@@ -167,30 +160,47 @@ class AudioFeatures:
                                             hop_length=self.hop_length)
         if display:
             display_chroma(chroma, self.hop_length)
-        return np.swapaxes(chroma, 0, 1)
+        return chroma.T
 
     def chroma_cens(self, display=False):
-        '''
+        """
         Computes CENS chroma vectors for the input audio signal (numpy array)
         Refer https://librosa.github.io/librosa/generated/librosa.feature.chroma_cens.html for more parameters
-        '''
+        """
         chroma_cens = librosa.feature.chroma_cens(y=self.audio_vector,
                                                   sr=self.fs,
                                                   hop_length=self.hop_length)
         if display:
             display_chroma(chroma_cens, self.hop_length)
-        return np.swapaxes(chroma_cens, 0, 1)
+        return chroma_cens.T
+
+    def chroma_cqt_processed(self):
+        """
+        Adapted from librosa docs
+        https://librosa.github.io/librosa_gallery/auto_examples/plot_chroma.html
+        """
+        from scipy.ndimage import median_filter
+        harmonic = librosa.effects.harmonic(y=self.audio_vector, margin=8)
+        chroma_cqt_harm = librosa.feature.chroma_cqt(y=harmonic, sr=self.fs, bins_per_octave=12*3, hop_length=self.hop_length)
+        chroma_filter = np.minimum(chroma_cqt_harm,
+                           librosa.decompose.nn_filter(chroma_cqt_harm,
+                                                       aggregate=np.median,
+                                                       metric='cosine'))
+        chroma_smooth = median_filter(chroma_filter, size=(1, 9))
+        return {'chroma_filtered': chroma_filter, 
+                'chroma_smoothed': chroma_smooth}
+
 
     def hpcp(self,
             frameSize=4096,
             windowType='blackmanharris62',
             harmonicsPerPeak=8,
-            magnitudeThreshold=1e-05,
-            maxPeaks=1000,
+            magnitudeThreshold=0,
+            maxPeaks=100,
             whitening=True,
             referenceFrequency=440,
-            minFrequency=40,
-            maxFrequency=5000,
+            minFrequency=100,
+            maxFrequency=3500,
             nonLinear=False,
             numBins=12,
             display=False):
@@ -199,52 +209,31 @@ class AudioFeatures:
         the default parameters as mentioned in [1].
         Please refer to the following paper for detailed explanantion of the algorithm.
         [1]. Gómez, E. (2006). Tonal Description of Polyphonic Audio for Music Content Processing.
-        For full list of parameters of essentia standard mode HPCP please refer to http://essentia.upf.edu/documentation/reference/std_HPCP.html
-        Parameters
-            harmonicsPerPeak : (integer ∈ [0, ∞), default = 0) :
-            number of harmonics for frequency contribution, 0 indicates exclusive fundamental frequency contribution
-            maxFrequency : (real ∈ (0, ∞), default = 5000) :
-            the maximum frequency that contributes to the HPCP [Hz] (the difference between the max and split frequencies must not be less than 200.0 Hz)
-
-            minFrequency : (real ∈ (0, ∞), default = 40) :
-            the minimum frequency that contributes to the HPCP [Hz] (the difference between the min and split frequencies must not be less than 200.0 Hz)
-
-            nonLinear : (bool ∈ {true, false}, default = false) :
-            apply non-linear post-processing to the output (use with normalized='unitMax'). Boosts values close to 1, decreases values close to 0.
-            normalized (string ∈ {none, unitSum, unitMax}, default = unitMax) :
-            whether to normalize the HPCP vector
-
-            referenceFrequency : (real ∈ (0, ∞), default = 440) :
-            the reference frequency for semitone index calculation, corresponding to A3 [Hz]
-
-            sampleRate : (real ∈ (0, ∞), default = 44100) :
-            the sampling rate of the audio signal [Hz]
-
-            numBins : (integer ∈ [12, ∞), default = 12) :
-            the size of the output HPCP (must be a positive nonzero multiple of 12)
-            whitening : (boolean (True, False), default = False)
-            Optional step of computing spectral whitening to the output from speakPeak magnitudes
+        For full list of parameters of essentia standard mode HPCP 
+        please refer to http://essentia.upf.edu/documentation/reference/std_HPCP.html
         
         Returns
         hpcp: ndarray(n_frames, 12)
             The HPCP coefficients at each time frame
         """
-        audio = array(self.audio_vector)
-        frameGenerator = estd.FrameGenerator(audio, frameSize=frameSize, hopSize=self.hop_length)
-        window = estd.Windowing(type=windowType)
-        spectrum = estd.Spectrum()
-        # Refer http://essentia.upf.edu/documentation/reference/std_SpectralPeaks.html
-        spectralPeaks = estd.SpectralPeaks(magnitudeThreshold=magnitudeThreshold,
+        # loader = ess.MonoLoader(filename=self.audio_file, sampleRate=self.fs)
+        vec_input = ess.VectorInput(self.audio_vector)
+        # frameGenerator = estd.FrameGenerator(audio, frameSize=frameSize, hopSize=self.hop_length)
+        framecutter = ess.FrameCutter(frameSize=frameSize, hopSize=self.hop_length)
+        windowing = ess.Windowing(type=windowType)
+        spectrum = ess.Spectrum()
+        # Refer http://essentia.upf.edu/documentation/reference/streaming_SpectralPeaks.html
+        spectralPeaks = ess.SpectralPeaks(magnitudeThreshold=magnitudeThreshold,
                                             maxFrequency=maxFrequency,
                                             minFrequency=minFrequency,
                                             maxPeaks=maxPeaks,
                                             orderBy="frequency",
                                             sampleRate=self.fs)
-        # http://essentia.upf.edu/documentation/reference/std_SpectralWhitening.html
-        spectralWhitening = estd.SpectralWhitening(maxFrequency= maxFrequency,
+        # http://essentia.upf.edu/documentation/reference/streaming_SpectralWhitening.html
+        spectralWhitening = ess.SpectralWhitening(maxFrequency= maxFrequency,
                                                     sampleRate=self.fs)
-        # http://essentia.upf.edu/documentation/reference/std_HPCP.html
-        hpcp = estd.HPCP(sampleRate=self.fs,
+        # http://essentia.upf.edu/documentation/reference/streaming_HPCP.html
+        hpcp = ess.HPCP(sampleRate=self.fs,
                         maxFrequency=maxFrequency,
                         minFrequency=minFrequency,
                         referenceFrequency=referenceFrequency,
@@ -252,21 +241,23 @@ class AudioFeatures:
                         harmonics=harmonicsPerPeak,
                         size=numBins)
         pool = Pool()
-        #compute hpcp for each frame and add the results to the pool
-        for frame in frameGenerator:
-            spectrum_mag = spectrum(window(frame))
-            frequencies, magnitudes = spectralPeaks(spectrum_mag)
-            if whitening:
-                w_magnitudes = spectralWhitening(spectrum_mag,
-                                                frequencies,
-                                                magnitudes)
-                hpcp_vector = hpcp(frequencies, w_magnitudes)
-            else:
-                hpcp_vector = hpcp(frequencies, magnitudes)
-            pool.add('tonal.hpcp',hpcp_vector)
+
+        # Connect streaming algorithms
+        #loader.audio >> framecutter.signal
+        vec_input.data >> framecutter.signal
+        framecutter.frame >> windowing.frame >> spectrum.frame
+        spectrum.spectrum >> spectralPeaks.spectrum
+        spectrum.spectrum >> spectralWhitening.spectrum
+        spectralPeaks.magnitudes >> spectralWhitening.magnitudes
+        spectralPeaks.frequencies >> spectralWhitening.frequencies
+        spectralPeaks.frequencies >> hpcp.frequencies
+        spectralWhitening.magnitudes >> hpcp.magnitudes
+        hpcp.hpcp >> (pool, 'tonal.hpcp')
+
+        run(vec_input) # run the network of algos
 
         if display:
-            display_chroma(np.swapaxes(pool['tonal.hpcp']), 0, 1)
+            display_chroma(pool['tonal.hpcp'], self.hop_length)
 
         return pool['tonal.hpcp']
 
@@ -304,9 +295,11 @@ class AudioFeatures:
             feature_vector = self.chroma_cqt()
         elif feature_type == 'chroma_cens':
             feature_vector = self.chroma_cens()
+        elif feature_type == 'crema':
+            feature_vector = self.crema()
         else:
             raise IOError("two_d_fft_mag: Wrong parameter 'feature type'. "
-                          "Should be in one of ['audio', 'hpcp', 'chroma_cqt', 'chroma_cens']")
+                          "Should be in one of these ['audio', 'hpcp', 'chroma_cqt', 'chroma_cens', 'crema']")
 
         # 2d fourier transform
         ndim_fft = np.fft.fft2(feature_vector)
@@ -320,6 +313,58 @@ class AudioFeatures:
             specshow(ndim_fft_mag, cmap='jet')
 
         return ndim_fft_mag
+
+    def key_extractor(self, 
+                    frameSize=4096, 
+                    hpcpSize=12, 
+                    maxFrequency=3500,  
+                    minFrequency=25, 
+                    windowType='hann',
+                    profileType='bgate',
+                    pcpThreshold=0.2,
+                    tuningFrequency=440,
+                    weightType='cosine'):
+        """
+        Wrapper around essentia KeyExtractor algo. This algorithm extracts key/scale for an audio signal. 
+        It computes HPCP frames for the input signal and applies key estimation using the Key algorithm.
+
+        Refer for more details https://essentia.upf.edu/documentation/reference/streaming_KeyExtractor.html
+
+        Returns:
+                a dictionary with corresponding values for key, scale and strength
+
+        eg: {'key': 'F', 'scale': 'major', 'strength': 0.7704258561134338}
+
+        """
+
+        vec_input = ess.VectorInput(self.audio_vector)
+
+        key = ess.KeyExtractor(frameSize=frameSize, hopSize=self.hop_length, tuningFrequency=tuningFrequency)
+        
+        """
+        TODO: test it with new essentia update
+        key = ess.KeyExtractor(frameSize=frameSize,
+                               hopSize=self.hop_length,
+                               sampleRate=self.fs, 
+                               hpcpSize=hpcpSize,
+                               maxFrequency=maxFrequency,
+                               minFrequency=minFrequency,
+                               windowType=windowType,
+                               profileType=profileType,
+                               pcpThreshold=pcpThreshold,
+                               tuningFrequency=tuningFrequency,
+                               weightType=weightType)
+        """
+        pool = Pool()
+
+        vec_input.data >> key.audio
+        key.key >> (pool,'tonal.key')
+        key.scale >> (pool, 'tonal.scale')
+        key.strength >> (pool, 'tonal.strength')
+
+        run(vec_input)
+
+        return {'key': pool['tonal.key'], 'scale': pool['tonal.scale'], 'strength': pool['tonal.strength']}
 
     def tempogram(self, win_length=384, center=True, window='hann'):
         """
@@ -480,6 +525,22 @@ class AudioFeatures:
         subprocess.call(["ffmpeg", "-i", "temp.wav", outname])
         os.remove("temp.wav")
 
+    def chromaprint(self, analysisTime=30):
+        """
+        This algorithm computes the fingerprint of the input signal using Chromaprint algorithm. 
+        It is a wrapper of the Chromaprint library
+
+        Returns: The chromaprints are returned as base64-encoded strings.
+        """
+        vec_input = ess.VectorInput(self.audio_vector)
+        chromaprinter = ess.Chromaprinter(analysisTime=analysisTime, sampleRate=self.fs)
+        pool = Pool()
+
+        vec_input.data >> chromaprinter.signal
+        chromaprinter.fingerprint >> (pool, 'chromaprint')
+        run(vec_input)
+        return pool['chromaprint']
+
 
 def display_chroma(chroma, hop_length=512, fs=44100):
     """
@@ -493,12 +554,15 @@ def display_chroma(chroma, hop_length=512, fs=44100):
     import matplotlib.pyplot as plt
     specshow(chroma.T, x_axis='time', y_axis='chroma', hop_length=hop_length, sr=fs)
 
+
 if __name__ == '__main__':
+
+    """
     filename = argv[1]
+    from sys import argv
     song = AudioFeatures(filename)
     
     import matplotlib.pyplot as plt
-    """
     hpcp = song.hpcp()
     crema = song.crema()
     print(hpcp.shape)
@@ -510,12 +574,8 @@ if __name__ == '__main__':
     display_chroma(crema, song.hop_length, song.fs)
     plt.title("CREMA")
     plt.show()
-    """
-
-
-
     librosa_onsets = song.librosa_onsets()['onsets']
     madmom_onsets = song.madmom_rnn_onsets()['onsets']
     song.export_onset_clicks("%s_librosa_onsets.mp3"%filename, librosa_onsets)
     song.export_onset_clicks("%s_madmom_onsets.mp3"%filename, madmom_onsets)
-    
+    """

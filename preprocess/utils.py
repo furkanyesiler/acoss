@@ -52,7 +52,6 @@ def savelist_to_file(pathList, filename):
     doc.close()
     return
 
-
 def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
     Description:
@@ -71,3 +70,17 @@ def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
     return subprocess.call('ffmpeg -i %s -acodec copy -ss %s -to %s %s'
                             % (filename, start_time, end_time, out_filename), shell=True)
+
+
+class ErrorFile(object):
+
+    def __init__(self, filename):
+        self.doc = open(filename)
+        self.errors = list()
+        self.doc.write("---")
+
+    def add(self, text):
+        self.doc.write("%s\n" % text)
+
+    def close(self):
+        self.doc.close()
