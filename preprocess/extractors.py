@@ -133,6 +133,8 @@ if __name__ == '__main__':
     cmd_args = parser.parse_args()
     # here we can choose subset should be used
     local_config.create_benchmark_file(n_splits=100)
+    if not os.path.exists(cmd_args.p):
+        os.mkdir(cmd_args.p)
     # then do batch feature extraction with default params
     batch_feature_extractor(cmd_args.c, cmd_args.p, cmd_args.n)
 
