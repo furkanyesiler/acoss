@@ -50,7 +50,7 @@ def savelist_to_file(pathList, filename):
     for item in pathList:
         doc.write("%s\n" % item)
     doc.close()
-    return
+
 
 def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
@@ -80,6 +80,7 @@ class ErrorFile(object):
         self.doc.write("---")
 
     def add(self, text):
+        self.errors.append(text)
         self.doc.write("%s\n" % text)
 
     def close(self):

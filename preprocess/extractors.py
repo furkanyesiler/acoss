@@ -7,6 +7,7 @@ Batch feature extractor
 from .utils import timeit, log, read_txt_file, ErrorFile
 from .features import AudioFeatures
 from joblib import Parallel, delayed
+import local_config
 import argparse
 import datetime
 import time
@@ -29,6 +30,7 @@ PROFILE = {
            'features': ['cqt', 
                         'hpcp', 
                         'crema', 
+                        'chroma_cens',
                         'key_extractor',
                         'tempogram', 
                         'mfcc_htk']
@@ -122,15 +124,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description= "With command-line args, it does batch feature extraction of  \
             collection of audio files using multiple threads", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-c", action="store",
-                        help="path to collection_files for audio feature extraction")
+                        help="path to collection_files for audio feature extraction", default=local_config.COLLECTION_DIR)
     parser.add_argument("-p", action="store",
-                        help="path to directory where the audio features should be stored")
+                        help="path to directory where the audio features should be stored", default=local_config.FEATURES_DIR)
     parser.add_argument("-n", action="store", default=-1,
                         help="No of threads required for parallelization")
 
     cmd_args = parser.parse_args()
+    # here we can choose subset should be used
+    local_config.create_benchmark_file(n_splits=100)
+    # then do batch feature extraction with default params
+    batch_feature_extractor(cmd_args.c, cmd_args.p, cmd_args.n)
 
     _ERROR_FILE.close()
-
     print ("... Done ....")
-
+    print (" -- PROFILE INFO -- \n %s" % PROFILE)

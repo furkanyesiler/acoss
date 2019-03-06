@@ -10,7 +10,7 @@ import librosa
 import os
 
 
-class AudioFeatures:
+class AudioFeatures(object):
     """
     Class containing methods to compute various audio features
     
@@ -579,3 +579,5 @@ if __name__ == '__main__':
     song.export_onset_clicks("%s_librosa_onsets.mp3"%filename, librosa_onsets)
     song.export_onset_clicks("%s_madmom_onsets.mp3"%filename, madmom_onsets)
     """
+    pass
+    
