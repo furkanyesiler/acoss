@@ -216,24 +216,23 @@ class AudioFeatures(object):
         hpcp: ndarray(n_frames, 12)
             The HPCP coefficients at each time frame
         """
-        # loader = ess.MonoLoader(filename=self.audio_file, sampleRate=self.fs)
-        vec_input = ess.VectorInput(self.audio_vector)
-        # frameGenerator = estd.FrameGenerator(audio, frameSize=frameSize, hopSize=self.hop_length)
-        framecutter = ess.FrameCutter(frameSize=frameSize, hopSize=self.hop_length)
-        windowing = ess.Windowing(type=windowType)
-        spectrum = ess.Spectrum()
+        audio = array(self.audio_vector)
+        frameGenerator = estd.FrameGenerator(audio, frameSize=frameSize, hopSize=self.hop_length)
+        # framecutter = estd.FrameCutter(frameSize=frameSize, hopSize=self.hop_length)
+        windowing = estd.Windowing(type=windowType)
+        spectrum = estd.Spectrum()
         # Refer http://essentia.upf.edu/documentation/reference/streaming_SpectralPeaks.html
-        spectralPeaks = ess.SpectralPeaks(magnitudeThreshold=magnitudeThreshold,
+        spectralPeaks = estd.SpectralPeaks(magnitudeThreshold=magnitudeThreshold,
                                             maxFrequency=maxFrequency,
                                             minFrequency=minFrequency,
                                             maxPeaks=maxPeaks,
                                             orderBy="frequency",
                                             sampleRate=self.fs)
         # http://essentia.upf.edu/documentation/reference/streaming_SpectralWhitening.html
-        spectralWhitening = ess.SpectralWhitening(maxFrequency= maxFrequency,
+        spectralWhitening = estd.SpectralWhitening(maxFrequency= maxFrequency,
                                                     sampleRate=self.fs)
         # http://essentia.upf.edu/documentation/reference/streaming_HPCP.html
-        hpcp = ess.HPCP(sampleRate=self.fs,
+        hpcp = estd.HPCP(sampleRate=self.fs,
                         maxFrequency=maxFrequency,
                         minFrequency=minFrequency,
                         referenceFrequency=referenceFrequency,
@@ -242,22 +241,21 @@ class AudioFeatures(object):
                         size=numBins)
         pool = Pool()
 
-        # Connect streaming algorithms
-        #loader.audio >> framecutter.signal
-        vec_input.data >> framecutter.signal
-        framecutter.frame >> windowing.frame >> spectrum.frame
-        spectrum.spectrum >> spectralPeaks.spectrum
-        spectrum.spectrum >> spectralWhitening.spectrum
-        spectralPeaks.magnitudes >> spectralWhitening.magnitudes
-        spectralPeaks.frequencies >> spectralWhitening.frequencies
-        spectralPeaks.frequencies >> hpcp.frequencies
-        spectralWhitening.magnitudes >> hpcp.magnitudes
-        hpcp.hpcp >> (pool, 'tonal.hpcp')
-
-        run(vec_input) # run the network of algos
+        #compute hpcp for each frame and add the results to the pool
+        for frame in frameGenerator:
+            spectrum_mag = spectrum(windowing(frame))
+            frequencies, magnitudes = spectralPeaks(spectrum_mag)
+            if whitening:
+                w_magnitudes = spectralWhitening(spectrum_mag,
+                                                frequencies,
+                                                magnitudes)
+                hpcp_vector = hpcp(frequencies, w_magnitudes)
+            else:
+                hpcp_vector = hpcp(frequencies, magnitudes)
+            pool.add('tonal.hpcp',hpcp_vector)
 
         if display:
-            display_chroma(pool['tonal.hpcp'], self.hop_length)
+            display_chroma(pool['tonal.hpcp'].T, self.hop_length)
 
         return pool['tonal.hpcp']
 
@@ -336,11 +334,8 @@ class AudioFeatures(object):
         eg: {'key': 'F', 'scale': 'major', 'strength': 0.7704258561134338}
 
         """
-
-        vec_input = ess.VectorInput(self.audio_vector)
-
-        key = ess.KeyExtractor(frameSize=frameSize, hopSize=self.hop_length, tuningFrequency=tuningFrequency)
-        
+        audio = array(self.audio_vector)
+        key = estd.KeyExtractor(frameSize=frameSize, hopSize=self.hop_length, tuningFrequency=tuningFrequency)
         """
         TODO: test it with new essentia update
         key = ess.KeyExtractor(frameSize=frameSize,
@@ -355,16 +350,9 @@ class AudioFeatures(object):
                                tuningFrequency=tuningFrequency,
                                weightType=weightType)
         """
-        pool = Pool()
+        key, scale, strength = key.compute(audio)
 
-        vec_input.data >> key.audio
-        key.key >> (pool,'tonal.key')
-        key.scale >> (pool, 'tonal.scale')
-        key.strength >> (pool, 'tonal.strength')
-
-        run(vec_input)
-
-        return {'key': pool['tonal.key'], 'scale': pool['tonal.scale'], 'strength': pool['tonal.strength']}
+        return {'key': key, 'scale': scale, 'strength': strength}
 
     def tempogram(self, win_length=384, center=True, window='hann'):
         """
