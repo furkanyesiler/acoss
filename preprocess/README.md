@@ -15,10 +15,13 @@ pip install -r requirements.txt
 
 ```
 
+* Update the global variables in ```local_config.py``` with your respective paths
+
+
 ## Usage
 
 * Inside the virtualenv
-```bash
+```python
 # check help flag for more details of command-line arguments
 python extractors.py -h
 
