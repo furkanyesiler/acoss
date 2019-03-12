@@ -76,7 +76,7 @@ class AudioFeatures(object):
         return librosa.onset.onset_strength(y=self.audio_vector, sr=self.fs, 
                                             hop_length=self.hop_length, max_size=3)
 
-    def madmom_rnn_onsets(self, fps=100):
+    def madmom_features(self, fps=100):
         """
         Call Madmom's implementation of RNN + DBN beat tracking. Madmom's
         results are returned in terms of seconds, but round and convert to
@@ -90,26 +90,41 @@ class AudioFeatures(object):
         Returns
         -------
         {
-            'tempo': float
-                 Average tempo
+            'tempos': ndarray(n_levels, 2)
+                An array of tempo estimates in beats per minute,
+                along with their confidences
             'onsets': ndarray(n_onsets)
-                of beat intervals in number of windows
+                Array of onsets, where each onset indexes into a particular window
             'novfn': ndarray(n_frames)
-                Evaluation of the audio novelty function at each audio frame,
+                Evaluation of the rnn audio novelty function at each audio
+                frame, in time increments equal to self.hop_length
+            'snovfn': ndarray(n_frames)
+                Superflux audio novelty function at each audio frame,
                 in time increments equal to self.hop_length
         }
         """
         from madmom.features.beats import RNNBeatProcessor, DBNBeatTrackingProcessor
-        proc = DBNBeatTrackingProcessor(fps=fps)
-        novfn = RNNBeatProcessor()(self.audio_file)
-        b = proc(novfn)
-        tempo = 60/np.mean(b[1::] - b[0:-1])
-        onsets = np.array(np.round(b*self.fs/float(self.hop_length)), dtype=np.int64)
+        from madmom.features.tempo import TempoEstimationProcessor
+        from madmom.features.onsets import SpectralOnsetProcessor
+        from madmom.audio.filters import LogarithmicFilterbank
+        beatproc = DBNBeatTrackingProcessor(fps=fps)
+        tempoproc = TempoEstimationProcessor(fps=fps)
+        novfn = RNNBeatProcessor()(self.audio_file) # This step is the computational bottleneck
+        beats = beatproc(novfn)
+        tempos = tempoproc(novfn)
+        onsets = np.array(np.round(beats*self.fs/float(self.hop_length)), dtype=np.int64)
         # Resample the audio novelty function to correspond to the 
         # correct hop length
         nframes = len(self.librosa_noveltyfn())
         novfn = np.interp(np.arange(nframes)*self.hop_length/float(self.fs), np.arange(len(novfn))/float(fps), novfn) 
-        return {'tempo':tempo, 'onsets':onsets, 'novfn':novfn}
+        
+        # For good measure, also compute and return superflux
+        sodf = SpectralOnsetProcessor(onset_method='superflux', fps=fps, \
+                            filterbank=LogarithmicFilterbank,\
+                              num_bands=24, log=np.log10)
+        snovfn = sodf(self.audio_file)
+        snovfn = np.interp(np.arange(nframes)*self.hop_length/float(self.fs), np.arange(len(snovfn))/float(fps), snovfn) 
+        return {'tempos':tempos, 'onsets':onsets, 'novfn':novfn, 'snovfn':snovfn}
 
     def librosa_onsets(self, tempobias=120.0):
         """
@@ -544,14 +559,14 @@ def display_chroma(chroma, hop_length=512, fs=44100):
 
 
 if __name__ == '__main__':
-
     """
+    from sys import argv
     filename = argv[1]
     from sys import argv
     song = AudioFeatures(filename)
     
     import matplotlib.pyplot as plt
-    hpcp = song.hpcp()
+    hpcp = song.hpcp(frameSize=4096, nonLinear=False)
     crema = song.crema()
     print(hpcp.shape)
     print(crema.shape)
@@ -562,10 +577,16 @@ if __name__ == '__main__':
     display_chroma(crema, song.hop_length, song.fs)
     plt.title("CREMA")
     plt.show()
-    librosa_onsets = song.librosa_onsets()['onsets']
-    madmom_onsets = song.madmom_rnn_onsets()['onsets']
-    song.export_onset_clicks("%s_librosa_onsets.mp3"%filename, librosa_onsets)
-    song.export_onset_clicks("%s_madmom_onsets.mp3"%filename, madmom_onsets)
+
+    madmom_feats = song.madmom_features()
+    plt.subplot(311)
+    plt.plot(madmom_feats['novfn'])
+    plt.subplot(312)
+    plt.plot(madmom_feats['snovfn'])
+    plt.subplot(313)
+    t = madmom_feats['tempos']
+    plt.stem(t[:, 0], t[:, 1])
+    plt.show()
     """
     pass
     
