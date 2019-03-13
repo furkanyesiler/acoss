@@ -24,7 +24,7 @@ PROFILE = {
            'downsample_audio': False,
            'downsample_factor': 2,
            'endtime': None,
-           'features': ['hpcp', 'key_extractor']
+           'features': ['hpcp', 'key_extractor', 'crema', 'madmom_features', 'mfcc_htk']
         }
 
 
