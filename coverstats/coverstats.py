@@ -100,7 +100,59 @@ def get_key_stats(min_confidence=0.75):
     plt.savefig("Transposition.svg", bbox_inches='tight')
 
 
+def get_maxtempo(row):
+    x = row['madmom_features']['tempos']
+    return x[np.argmax(x[:, 1]), :]
+
+def save_tempo_csv():
+    """
+    Save a csv file called "tempos.csv" with the extracted clearest
+    tempos and their confidences
+    """
+    pairs = get_cover_pairs(get_maxtempo)
+    table = np.zeros((len(pairs), 4))
+    index = []
+    for i, p in enumerate(pairs):
+        index.append(p)
+        table[i, 0:2] = pairs[p][0]
+        table[i, 2::] = pairs[p][1]
+    df = pd.DataFrame(table, index=index, columns=['Tempo1', 'Strength1', 'Tempo2', 'Strength2'])
+    df.to_csv("tempos.csv")
+
+def get_tempo_stats(min_confidence=0):
+    """
+    Look at the following:
+    * Histogram of confidences
+    * Distribution of tempo ratios
+    """
+    res = pd.read_csv('tempos.csv')
+    # Histogram of confidences
+    x = res[['Strength1', 'Strength2']].values
+    sns.distplot(np.min(x, 1), norm_hist=True)
+    plt.xlabel("Strength")
+    plt.ylabel("Density")
+    plt.title("Histogram of Minimum Tempo Confidences for A Pair")
+    plt.savefig("TempoConfidences.svg", bbox_inches='tight')
+    idx = np.min(x, 1) > min_confidence
+    print("%i pairs exceed minimum of %g confidence"%(np.sum(idx), min_confidence))
+    
+    # Histogram of tempo ratios
+    tempos = res[['Tempo1', 'Tempo2']].values
+    ratios = tempos[:, 1]/tempos[:, 0]
+    ratios[ratios < 1] = 1.0/ratios[ratios < 1]
+    print(np.quantile(ratios, 0.25))
+    print(np.quantile(ratios, 0.5))
+    print(np.quantile(ratios, 0.75))
+    plt.clf()
+    sns.distplot(ratios, norm_hist=False)
+    plt.xlabel("Ratio")
+    plt.ylabel("Counts")
+    plt.title("Tempo Ratios")
+    plt.savefig("TempoRatios.svg", bbox_inches='tight')
+
 
 if __name__ == '__main__':
     #save_keys_csv()
-    get_key_stats()
+    #get_key_stats()
+    #save_tempo_csv()
+    get_tempo_stats()
