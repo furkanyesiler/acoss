@@ -37,7 +37,7 @@ class CoverAlgorithm(object):
         """
         Load the fields from the h5 file for a particular
         song, and also keep track of which cover clique
-        it's in.  
+        it's in by saving into self.cliques as a side effect
         NOTE: This function can be used to cache information
         about a particular song if that makes comparisons
         faster downstream (e.g. for FTM2D, cache the Fourier
@@ -58,6 +58,29 @@ class CoverAlgorithm(object):
             self.cliques[feats['label']] = set([])
         self.cliques[feats['label']].add(i)
         return feats
+    
+    def get_all_clique_ids(self, verbose=False):
+        """
+        Load all h5 files to get clique information as a side effect
+        """
+        import os
+        if not os.path.exists("clique_info.txt"):
+            fout = open("clique_info.txt", "w")
+            for i in range(len(self.filepaths)):
+                feats = CoverAlgorithm.load_features(self, i)
+                if verbose:
+                    print(i)
+                print(feats['label'])
+                fout.write("%i,%s\n"%(i, feats['label']))
+            fout.close()
+        else:
+            fin = open("clique_info.txt")
+            for line in fin.readlines():
+                i, label = line.split(",")
+                label = label.strip()
+                if not label in self.cliques:
+                    self.cliques[label] = set([])
+                self.cliques[label].add(int(i))
 
 
     def similarity(self, i, j):
@@ -80,7 +103,7 @@ class CoverAlgorithm(object):
         self.D[j, i] = score
         return score
     
-    def getEvalStatistics(self, topsidx = [10, 100, 1000]):
+    def getEvalStatistics(self, topsidx = [1, 10, 100, 1000]):
         """
         Compute MR, MRR, MAP, Median Rank, and Top X
         """

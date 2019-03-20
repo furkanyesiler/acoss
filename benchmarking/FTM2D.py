@@ -120,6 +120,9 @@ def ftm2d_allpairwise():
         ftm.similarity(i, j)
         if idx%100 == 0:
             print((i, j))
+    # In the serial case, I'm saving all pairwise comparisons to disk
+    # but in the parallel case, there should probably be a separate
+    # file for each pair
     sio.savemat("FTM2D.mat", {"D":ftm.D})
     ftm.getEvalStatistics()
 
