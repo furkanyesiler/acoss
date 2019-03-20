@@ -35,6 +35,12 @@ def get_recordings(recording_query, artist_query, threshold):
     return process_results(results['recording-list'], threshold)
 
 
+def init_mb_client(api_rate):
+    # TODO create global config with app name and version
+    mb.set_useragent('CoverSongDataset', 'v0.1')
+    mb.set_rate_limit(api_rate)
+
+
 def augment_metadata(input_filename, subset_filename, output_filename, threshold, api_rate):
     data = load_json(input_filename)
     subset = load_json(subset_filename) if subset_filename else None
@@ -52,9 +58,7 @@ def augment_metadata(input_filename, subset_filename, output_filename, threshold
         'multiple_artists': 0
     }
 
-    # TODO create global config with app name and version
-    mb.set_useragent('CoverSongDataset', 'v0.1')
-    mb.set_rate_limit(api_rate)
+    init_mb_client(api_rate)
 
     for work_id, work in data.items():
         work_counter += 1
@@ -120,6 +124,40 @@ def augment_metadata(input_filename, subset_filename, output_filename, threshold
     print(stats)
 
 
+def check_tags(input_filename, output_filename, api_rate):
+    data = load_json(input_filename)
+
+    init_mb_client(api_rate)
+
+    perf_counter = 0
+    perf_with_tags = 0
+
+    for work_id, work in data.items():
+        for perf_id, performance in work.items():
+            perf_counter += 1
+            if 'perf_mbids' in performance:
+                tags_all = {}
+                for recording_id in performance['perf_mbids']:
+                    result = mb.get_recording_by_id(recording_id, includes=['tags'])
+                    if 'tag-list' in result['recording']:
+                        print(result['recording'])
+                        tags = result['recording']['tag-list']
+                        for tag in tags:
+                            if tag['name'] in tags_all:
+                                tags_all[tag['name']] += int(tag['count'])
+                            else:
+                                tags_all[tag['name']] = int(tag['count'])
+                if len(tags_all) > 0:
+                    performance['perf_mb_tags'] = tags_all
+                    print(perf_counter, tags_all)
+                    perf_with_tags += 1
+        if perf_counter >= 10:
+            break
+
+    write_json(data, output_filename)
+    print('Found tags for {} performances'.format(perf_with_tags))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Queries musicbrainz to enhance the metadata of cover song list")
     parser.add_argument("-i", "--input", action="store", default="metadata/whatisacover_subset.json",
@@ -135,4 +173,6 @@ if __name__ == '__main__':
                         help="Rate limit for MusicBrainz API (one response per specified period in seconds)")
 
     args = parser.parse_args()
-    augment_metadata(args.input, args.subset, args.output, args.threshold, args.rate)
+
+    # augment_metadata(args.input, args.subset, args.output, args.threshold, args.rate)
+    check_tags(args.output, "metadata/metadata_augmented_with_tags.json", args.rate)
