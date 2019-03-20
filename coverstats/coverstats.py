@@ -89,8 +89,9 @@ def get_key_stats(min_confidence=0.75):
     for i in range(key.shape[0]):
         keyidx.append([key2idx[c] for c in key[i, :]])
     keyidx = np.array(keyidx)
-    keyidx = keyidx[keysame == 0, :]
+    keyidx = keyidx[(keysame == 0)*(majmin==1), :]
     dist = np.abs(keyidx[:, 0] - keyidx[:, 1])
+    print(np.sum(dist == 0))
     dist = np.minimum(dist, 12-dist)
     plt.clf()
     sns.distplot(dist, kde=False, norm_hist=False)
@@ -153,6 +154,6 @@ def get_tempo_stats(min_confidence=0):
 
 if __name__ == '__main__':
     #save_keys_csv()
-    #get_key_stats()
+    get_key_stats()
     #save_tempo_csv()
-    get_tempo_stats()
+    #get_tempo_stats()
