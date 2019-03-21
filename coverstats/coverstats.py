@@ -31,20 +31,25 @@ def get_cover_pairs(extractor):
         pairs[label].append(feat)
     return pairs
 
+def get_key_info(fields):
+    ret = fields['key_extractor']
+    ret['track_id'] = fields['track_id']
+    return ret
+
 def save_keys_csv():
     """
     Save a csv file called "keys.csv" with the extracted keys
     for all pairs
     """
-    pairs = get_cover_pairs(lambda x: x['key_extractor'])
+    pairs = get_cover_pairs(get_key_info)
     table = []
     index = []
     for p in pairs:
         index.append(p)
         s1 = pairs[p][0]
         s2 = pairs[p][1]
-        table.append([s1['key'], s1['scale'], s1['strength'], s2['key'], s2['scale'], s2['strength']])
-    df = pd.DataFrame(table, index=index, columns=['Key1', 'Scale1', 'Strength1', 'Key2', 'Scale2', 'Strength2'])
+        table.append([s1['track_id'], s1['key'], s1['scale'], s1['strength'], s2['track_id'], s2['key'], s2['scale'], s2['strength']])
+    df = pd.DataFrame(table, index=index, columns=['ID1', 'Key1', 'Scale1', 'Strength1', 'ID2', 'Key2', 'Scale2', 'Strength2'])
     df.to_csv("keys.csv")
 
 def get_key_stats(min_confidence=0.75):
@@ -82,6 +87,20 @@ def get_key_stats(min_confidence=0.75):
     sns.countplot(data=pd.DataFrame(keysame, columns=['Key Changes']), x="Key Changes")
     plt.savefig("KeySame.svg", bbox_inches='tight')
 
+    # Pull out a list of songs that change keys
+    songsidx = np.arange(majmin.shape[0])
+    songsidx = songsidx[majmin == 0]
+    songs = res[['ID1', 'ID2', 'Key1', 'Scale1', 'Key2', 'Scale2']].values[idx == 1, :]
+    songs = songs[songsidx, :]
+    songs = songs[np.random.permutation(songs.shape[0]), :]
+    songs = songs[0:50, :]
+    for i in range(songs.shape[0]):
+        for k in [0, 1]:
+            songs[i, k] = songs[i, k].replace("P_", "https://secondhandsongs.com/performance/")
+    df = pd.DataFrame(songs, columns=['URL1', 'URL2', 'Key1', 'Scale1', 'Key2', 'Scale2'])
+    df.to_csv("majorminor.csv")
+    
+
     # For those that change key, what is the distribution
     # of the absolute transposition distance?
     key2idx = {'C':0, 'C#':1, 'D':2, 'Eb':3, 'E':4, 'F':5, 'F#':6, 'G':7, 'Ab':8, 'A':9, 'Bb':10, 'B':11}
@@ -89,9 +108,9 @@ def get_key_stats(min_confidence=0.75):
     for i in range(key.shape[0]):
         keyidx.append([key2idx[c] for c in key[i, :]])
     keyidx = np.array(keyidx)
-    keyidx = keyidx[(keysame == 0)*(majmin==1), :]
+    songidxs = np.arange(majmin.shape[0])
+    keyidx = keyidx[(keysame==0)*(majmin==1), :]
     dist = np.abs(keyidx[:, 0] - keyidx[:, 1])
-    print(np.sum(dist == 0))
     dist = np.minimum(dist, 12-dist)
     plt.clf()
     sns.distplot(dist, kde=False, norm_hist=False)
