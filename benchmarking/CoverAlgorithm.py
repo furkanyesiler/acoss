@@ -116,7 +116,7 @@ class CoverAlgorithm(object):
 
         dist_matrix = np.array(self.D)
         dist_matrix = np.array(-dist_matrix)
-        np.fill_diagonal(dist_matrix, np.inf)
+        np.fill_diagonal(dist_matrix, -np.inf)
 
         for s in self.cliques:
             temp_list = list(self.cliques[s])
@@ -136,6 +136,8 @@ class CoverAlgorithm(object):
         # initializing mAP
         mAP = 0
 
+        counted_samples = 0
+
         # calculating average precision for each row of the distance matrix
         for i in range(num_of_samples):
             # obtaining the current row
@@ -143,6 +145,10 @@ class CoverAlgorithm(object):
 
             # label of the current query
             label = labels[i]
+
+            # this step is to exclude noise songs from MAP calculation
+            if np.where(labels == label)[0].size < 2:
+                continue
 
             # sorting the row with respect to distance values
             row.sort(order='f1')
@@ -158,7 +164,6 @@ class CoverAlgorithm(object):
 
             for j in range(1, num_of_samples):
                 # checking whether the reference sample has the same label as the query
-                temp_var = row[j][1]
                 if row[j][1] == label:
 
                     # incrementing the number of true positives
@@ -173,8 +178,10 @@ class CoverAlgorithm(object):
             # updating  mAP
             mAP += prec / label_count
 
+            counted_samples += 1
+
         # updating mAP
-        mAP = mAP / num_of_samples
+        mAP = mAP / counted_samples
 
         return mAP
     
@@ -204,13 +211,13 @@ class CoverAlgorithm(object):
             if i >= startidx + Ks[kidx]:
                 startidx += Ks[kidx]
                 kidx += 1
-            #print(startidx)
+            print(startidx)
             for k in range(N):
                 diff = idx[i, k] - startidx
                 if diff >= 0 and diff < Ks[kidx]:
                     ranks[i] = k+1
                     break
-        #print(ranks)
+        print(ranks)
         MR = np.mean(ranks)
         MRR = 1.0/N*(np.sum(1.0/ranks))
         MDR = np.median(ranks)
