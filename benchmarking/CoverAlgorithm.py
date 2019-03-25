@@ -5,6 +5,8 @@ A template class for all benchmarking algorithms
 import numpy as np
 import glob
 import deepdish as dd
+from sklearn.metrics import average_precision_score
+from sklearn.preprocessing import label_binarize
 
 class CoverAlgorithm(object):
     """
@@ -102,6 +104,79 @@ class CoverAlgorithm(object):
         self.D[i, j] = score
         self.D[j, i] = score
         return score
+
+    def MAP(self):
+        """
+           Compute MAP
+        """
+        # number of samples in the dataset
+        num_of_samples = len(self.filepaths)
+
+        labels = np.empty(num_of_samples, dtype='U32')
+
+        dist_matrix = np.array(self.D)
+        dist_matrix = np.array(-dist_matrix)
+        np.fill_diagonal(dist_matrix, np.inf)
+
+        for s in self.cliques:
+            temp_list = list(self.cliques[s])
+            for i in range(len(temp_list)):
+                labels[temp_list[i]] = s
+
+        tuple_dtype = np.dtype([('f1', np.float), ('f2', np.unicode_, 32)])
+
+        # initializing a matrix to store tuples of pairwise distances and labels of the reference samples
+        tuple_matrix = np.ndarray(shape=(num_of_samples, num_of_samples), dtype=tuple_dtype)
+
+        # filling the tuple_matrix with distance values and labels
+        for i in range(num_of_samples):
+            for j in range(num_of_samples):
+                tuple_matrix[i][j] = (dist_matrix[i][j], labels[j])
+
+        # initializing mAP
+        mAP = 0
+
+        # calculating average precision for each row of the distance matrix
+        for i in range(num_of_samples):
+            # obtaining the current row
+            row = tuple_matrix[i]
+
+            # label of the current query
+            label = labels[i]
+
+            # sorting the row with respect to distance values
+            row.sort(order='f1')
+
+            # initializing true positive count
+            tp = 0
+
+            # initializing precision value
+            prec = 0
+
+            # counting number of instances that has the same label as the query
+            label_count = 0
+
+            for j in range(1, num_of_samples):
+                # checking whether the reference sample has the same label as the query
+                temp_var = row[j][1]
+                if row[j][1] == label:
+
+                    # incrementing the number of true positives
+                    tp += 1
+
+                    # updating the precision value
+                    prec += tp / j
+
+                    # incrementing the number of samples with the same label as the query
+                    label_count += 1
+
+            # updating  mAP
+            mAP += prec / label_count
+
+        # updating mAP
+        mAP = mAP / num_of_samples
+
+        return mAP
     
     def getEvalStatistics(self, topsidx = [1, 10, 100, 1000]):
         """
@@ -129,17 +204,17 @@ class CoverAlgorithm(object):
             if i >= startidx + Ks[kidx]:
                 startidx += Ks[kidx]
                 kidx += 1
-            print(startidx)
+            #print(startidx)
             for k in range(N):
                 diff = idx[i, k] - startidx
                 if diff >= 0 and diff < Ks[kidx]:
                     ranks[i] = k+1
                     break
-        print(ranks)
+        #print(ranks)
         MR = np.mean(ranks)
         MRR = 1.0/N*(np.sum(1.0/ranks))
         MDR = np.median(ranks)
-        print("%s STATS\n-------------------------\nMR = %g\nMRR = %g\nMDR = %g\n"%(self.name, MR, MRR, MDR))
+        print("%s STATS\n-------------------------\nMR = %g\nMRR = %g\nMDR = %g\nMAP = %.2g\n"%(self.name, MR, MRR, MDR, self.MAP()))
         tops = np.zeros(len(topsidx))
         for i in range(len(tops)):
             tops[i] = np.sum(ranks <= topsidx[i])
