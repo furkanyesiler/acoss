@@ -151,8 +151,6 @@ def check_tags(input_filename, output_filename, api_rate):
                     performance['perf_mb_tags'] = tags_all
                     print(perf_counter, tags_all)
                     perf_with_tags += 1
-        if perf_counter >= 10:
-            break
 
     write_json(data, output_filename)
     print('Found tags for {} performances'.format(perf_with_tags))
