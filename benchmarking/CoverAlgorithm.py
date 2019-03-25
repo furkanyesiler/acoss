@@ -89,9 +89,8 @@ class CoverAlgorithm(object):
         """
         Given the indices of two songs, return a number
         which is high if the songs are similar, and low
-        otherwise.  It is assumed that this score is symmetric,
-        so it only needs to be computed for i, j: j > i
-        Also store this number in D[i, j] and D[j, i] 
+        otherwise.
+        Also store this number in D[i, j]
         as a side effect
         Parameters
         ----------
@@ -102,88 +101,8 @@ class CoverAlgorithm(object):
         """
         score = 0.0
         self.D[i, j] = score
-        self.D[j, i] = score
         return score
-
-    def MAP(self):
-        """
-           Compute MAP
-        """
-        # number of samples in the dataset
-        num_of_samples = len(self.filepaths)
-
-        labels = np.empty(num_of_samples, dtype='U32')
-
-        dist_matrix = np.array(self.D)
-        dist_matrix = np.array(-dist_matrix)
-        np.fill_diagonal(dist_matrix, -np.inf)
-
-        for s in self.cliques:
-            temp_list = list(self.cliques[s])
-            for i in range(len(temp_list)):
-                labels[temp_list[i]] = s
-
-        tuple_dtype = np.dtype([('f1', np.float), ('f2', np.unicode_, 32)])
-
-        # initializing a matrix to store tuples of pairwise distances and labels of the reference samples
-        tuple_matrix = np.ndarray(shape=(num_of_samples, num_of_samples), dtype=tuple_dtype)
-
-        # filling the tuple_matrix with distance values and labels
-        for i in range(num_of_samples):
-            for j in range(num_of_samples):
-                tuple_matrix[i][j] = (dist_matrix[i][j], labels[j])
-
-        # initializing mAP
-        mAP = 0
-
-        counted_samples = 0
-
-        # calculating average precision for each row of the distance matrix
-        for i in range(num_of_samples):
-            # obtaining the current row
-            row = tuple_matrix[i]
-
-            # label of the current query
-            label = labels[i]
-
-            # this step is to exclude noise songs from MAP calculation
-            if np.where(labels == label)[0].size < 2:
-                continue
-
-            # sorting the row with respect to distance values
-            row.sort(order='f1')
-
-            # initializing true positive count
-            tp = 0
-
-            # initializing precision value
-            prec = 0
-
-            # counting number of instances that has the same label as the query
-            label_count = 0
-
-            for j in range(1, num_of_samples):
-                # checking whether the reference sample has the same label as the query
-                if row[j][1] == label:
-
-                    # incrementing the number of true positives
-                    tp += 1
-
-                    # updating the precision value
-                    prec += tp / j
-
-                    # incrementing the number of samples with the same label as the query
-                    label_count += 1
-
-            # updating  mAP
-            mAP += prec / label_count
-
-            counted_samples += 1
-
-        # updating mAP
-        mAP = mAP / counted_samples
-
-        return mAP
+    
     
     def getEvalStatistics(self, topsidx = [1, 10, 100, 1000]):
         """
@@ -195,7 +114,13 @@ class CoverAlgorithm(object):
         ## Step 1: Re-sort indices of D so that
         ## cover cliques are contiguous
         cliques = [list(self.cliques[s]) for s in self.cliques]
-        Ks = [len(c) for c in cliques] # Length of each clique
+        Ks = np.array([len(c) for c in cliques]) # Length of each clique
+        # Sort cliques in descending order of number
+        idx = np.argsort(-Ks)
+        Ks = Ks[idx]
+        cliques = [cliques[i] for i in idx]
+        # Unroll array of cliques and put distance matrix in
+        # contiguous order
         idx = np.array(list(chain(*cliques)), dtype=int)
         D = D[idx, :]
         D = D[:, idx]
@@ -204,26 +129,40 @@ class CoverAlgorithm(object):
         #Fill diagonal with -infinity to exclude song from comparison with self
         np.fill_diagonal(D, -np.inf)
         idx = np.argsort(-D, 1) #Sort row by row in descending order of score
-        ranks = np.zeros(N)
+        ranks = np.nan*np.ones(N)
         startidx = 0
         kidx = 0
+        AllMap = np.nan*np.ones(N)
         for i in range(N):
             if i >= startidx + Ks[kidx]:
                 startidx += Ks[kidx]
                 kidx += 1
-            print(startidx)
+                print(startidx)
+                if Ks[kidx] < 2:
+                    # We're done once we get to a clique with less than 2
+                    # since cliques are sorted in descending order
+                    break
+            iranks = []
             for k in range(N):
                 diff = idx[i, k] - startidx
                 if diff >= 0 and diff < Ks[kidx]:
-                    ranks[i] = k+1
-                    break
+                    iranks.append(k+1)
+            iranks = iranks[0:-1] #Exclude the song itself, which comes last
+            #For MR, MRR, and MDR, use first song in clique
+            ranks[i] = iranks[0] 
+            #For MAP, use all ranks
+            P = np.array([float(j)/float(r) for (j, r) in \
+                            zip(range(1, Ks[kidx]), iranks)])
+            AllMap[i] = np.mean(P)
+        MAP = np.nanmean(AllMap)
+        ranks = ranks[np.isnan(ranks) == 0]
         print(ranks)
         MR = np.mean(ranks)
         MRR = 1.0/N*(np.sum(1.0/ranks))
         MDR = np.median(ranks)
-        print("%s STATS\n-------------------------\nMR = %g\nMRR = %g\nMDR = %g\nMAP = %.2g\n"%(self.name, MR, MRR, MDR, self.MAP()))
+        print("%s STATS\n-------------------------\nMR = %.3g\nMRR = %.3g\nMDR = %.3g\nMAP = %.3g"%(self.name, MR, MRR, MDR, MAP))
         tops = np.zeros(len(topsidx))
         for i in range(len(tops)):
             tops[i] = np.sum(ranks <= topsidx[i])
             print("Top-%i: %i"%(topsidx[i], tops[i]))
-        return (MR, MRR, MDR, tops)
+        return (MR, MRR, MDR, MAP, tops)

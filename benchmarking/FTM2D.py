@@ -50,12 +50,15 @@ class FTM2D(CoverAlgorithm):
     shingles: {int: ndarray(WIN*chromabins)}
         A map from the song index to the FFT2DM shingles, so that
         they are cached
+    chroma_type: string
+        Type of chroma to use (key into features)
     """
-    def __init__(self, datapath="features_benchmark", PWR=1.96, WIN=75, C=5):
+    def __init__(self, datapath="features_benchmark", chroma_type='hpcp', PWR=1.96, WIN=75, C=5):
         CoverAlgorithm.__init__(self, "FTM2D", datapath)
         self.PWR = PWR
         self.WIN = WIN
         self.C = C
+        self.chroma_type = chroma_type
         self.shingles = {}
 
     def load_features(self, i, do_plot=False):
@@ -65,7 +68,7 @@ class FTM2D(CoverAlgorithm):
         # Otherwise, compute the shingle
         import librosa.util
         feats = CoverAlgorithm.load_features(self, i)
-        hpcp_orig = feats['hpcp'].T
+        hpcp_orig = feats[self.chroma_type].T
         # Synchronize HPCP to the beats
         onsets = feats['madmom_features']['onsets']
         hpcp = librosa.util.sync(hpcp_orig, onsets, aggregate=np.median)
@@ -106,7 +109,7 @@ class FTM2D(CoverAlgorithm):
         return sim
 
 
-def ftm2d_allpairwise():
+def ftm2d_allpairwise(cached=False):
     """
     Show how one might do all pairwise comparisons between songs,
     with code that is amenable to parallelizations.
@@ -116,16 +119,39 @@ def ftm2d_allpairwise():
     from itertools import combinations
     import scipy.io as sio
     ftm = FTM2D()
+    if cached:
+        D = sio.loadmat("FTM2D.mat")["D"]
+        ftm.D = D
+        ftm.get_all_clique_ids()
+    else:
+        for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)):
+            ftm.similarity(i, j)
+            if idx%100 == 0:
+                print((i, j))
+        ftm.D += ftm.D.T
+        # In the serial case, I'm saving all pairwise comparisons to disk
+        # but in the parallel case, there should probably be a separate
+        # file for each pair
+        sio.savemat("FTM2D.mat", {"D":ftm.D})
+    ftm.getEvalStatistics()
+
+def ftm2d_allpairwise_covers80(chroma_type='hpcp'):
+    """
+    Show how one might do all pairwise comparisons between songs,
+    with code that is amenable to parallelizations.
+    This will go slowly at the beginning but then it will speed way
+    up because it caches the shingles for each song
+    """
+    from itertools import combinations
+    import scipy.io as sio
+    ftm = FTM2D(datapath="features_covers80", chroma_type=chroma_type)
     for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)):
         ftm.similarity(i, j)
         if idx%100 == 0:
             print((i, j))
-    # In the serial case, I'm saving all pairwise comparisons to disk
-    # but in the parallel case, there should probably be a separate
-    # file for each pair
-    sio.savemat("FTM2D.mat", {"D":ftm.D})
+    
     ftm.getEvalStatistics()
 
-
 if __name__ == '__main__':
-    ftm2d_allpairwise()
+    #ftm2d_allpairwise(cached=True)
+    ftm2d_allpairwise_covers80(chroma_type='crema')
