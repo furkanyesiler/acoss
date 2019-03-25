@@ -76,12 +76,12 @@ def add_ids(performance, threshold):
 
     if len(artists) == 0:
         print('Didn\'t find match')
-        return False, 'no_match', None, None
+        return False, 'no_match'
 
     if len(artists) > 1:
         # TODO: properly handle multiple artists
         print('Artist has multiple mbids')
-        return False, 'multiple_artists', None, None
+        return False, 'multiple_artists'
 
     (artist_id,) = artists
     performance['perf_artist_mbid'] = artist_id
@@ -119,21 +119,25 @@ def augment_metadata(input_filename, output_filename, threshold, api_rate):
     data = load_json(input_filename)
 
     total_works = len(data)
-    counter = 0
+    work_counter = 0
+    perf_counter = 0
     stats = {
         'no_match': 0,
         'single_recording': 0,
         'multiple_recordings': 0,
         'multiple_artists': 0,
-        'has_tags': 0
+        'has_tags': 0,
+        'total': 0
     }
 
     init_mb_client(api_rate)
 
     for work_id, work in data.items():
+        work_counter += 1
         for perf_id, performance in work.items():
-            counter += 1
-            print('- {}: {} ({}/{})'.format(performance['perf_artist'], performance['perf_title'], counter, total))
+            perf_counter += 1
+            print('- {}: {} ({}/{})'.format(performance['perf_artist'], performance['perf_title'], work_counter,
+                                            total_works))
 
             success, status = add_ids(performance, threshold)
             if success:
@@ -142,6 +146,8 @@ def augment_metadata(input_filename, output_filename, threshold, api_rate):
                 success = add_tags(performance)
                 if success:
                     stats['has_tags'] += 1
+
+            stats['total'] += 1
 
     # TODO: add safeguard against overwriting a file
     write_json(data, output_filename)
