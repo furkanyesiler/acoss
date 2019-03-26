@@ -19,20 +19,25 @@ class CoverAlgorithm(object):
         A pairwise similarity matrix, whose indices index
         into filepaths.  Assumed to be symmetric
     """
-    def __init__(self, name = "Generic", datapath="features_benchmark"):
+    def __init__(self, name = "Generic", datapath="features_benchmark", shortname="full"):
         """
         Parameters
         ----------
+        name: string
+            Name of the algorithm
         datapath: string
             Path to folder with h5 files for the benchmark dataset
+        shortname: string
+            Short name for the dataset (for printing and saving results)
         """
         self.name = name
+        self.shortname = shortname
         self.filepaths = glob.glob("%s/*.h5"%datapath)
         self.cliques = {}
         N = len(self.filepaths)
         # self.D = np.zeros((N, N))
         self.D = np.memmap('d_mat', shape=(N, N), mode='w+', dtype='float32')
-        print("Initialized %s algorithm on %i songs"%(name, N))
+        print("Initialized %s algorithm on %i songs in dataset %s"%(name, N, shortname))
     
     def load_features(self, i):
         """
@@ -42,7 +47,7 @@ class CoverAlgorithm(object):
         NOTE: This function can be used to cache information
         about a particular song if that makes comparisons
         faster downstream (e.g. for FTM2D, cache the Fourier
-        magnitude shingle median).  But this may not help as much
+        magnitude shingle median).  But this will not help
         in a parallel scenario
         Parameters
         ----------
@@ -102,6 +107,59 @@ class CoverAlgorithm(object):
         self.D[i, j] = score
         return score
     
+    def all_pairwise(self, parallel=0, n_cores=12, symmetric=False, precomputed=False):
+        """
+        Do all pairwise comparisons between songs, with code that is 
+        amenable to parallelizations.
+        In the serial case where features are cached, many algorithms will go
+        slowly at the beginning but then speed up once the features for all
+        songs have been computed
+        Parameters
+        ----------
+        parallel: int
+            If 0, run serial.  If 1, run parallel
+        n_cores: int
+            Number of cores to use in a parallel scenario
+        symmetric: boolean
+            Whether comparisons between pairs of songs are symmetric.  If so, the
+            computation can be halved
+        precomputed: boolean
+            Whether all pairs have already been precomputed, in which case we just
+            want to print the result statistics
+        """
+        from itertools import combinations, permutations
+        import scipy.io as sio
+        matfilename = "%s_%s.mat"%(self.name, self.shortname)
+        if precomputed:
+            D = sio.loadmat(matfilename)["D"]
+            self.D = D
+            self.get_all_clique_ids()
+        else:
+            pairs = range(len(self.filepaths))
+            if symmetric:
+                pairs = combinations(pairs, 2)
+            else:
+                pairs = permutations(pairs, 2)
+            if parallel == 1:
+                from joblib import Parallel, delayed
+                Parallel(n_jobs=n_cores, verbose=1)(
+                    delayed(self.similarity)(i, j) for idx, (i, j) in enumerate(pairs))
+                self.get_all_clique_ids() # Since nothing has been cached
+            else:
+                for idx, (i, j) in enumerate(pairs):
+                    self.similarity(i, j)
+                    if idx%100 == 0:
+                        print((i, j))
+            if symmetric:
+                self.D += self.D.T
+            sio.savemat(matfilename, {"D":self.D})
+        self.getEvalStatistics()
+        if parallel == 1:
+            import shutil
+            try:
+                shutil.rmtree('d_mat')
+            except:  # noqa
+                print('Could not clean-up automatically.')
     
     def getEvalStatistics(self, topsidx = [1, 10, 100, 1000]):
         """

@@ -14,8 +14,9 @@ def chrompwr(X, P=.5):
     nchr, nbts = X.shape
     # norms of each input col
     CMn = np.tile(np.sqrt(np.sum(X * X, axis=0)), (nchr, 1))
-    CMn[np.where(CMn==0)] = 1
+    CMn[CMn == 0] = 1
     # normalize each input col, raise to power
+    res = X/CMn
     CMp = np.power(X/CMn, P)
     # norms of each resulant column
     CMpn = np.tile(np.sqrt(np.sum(CMp * CMp, axis=0)), (nchr, 1))
@@ -56,8 +57,8 @@ class FTM2D(CoverAlgorithm):
     chroma_type: string
         Type of chroma to use (key into features)
     """
-    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', PWR=1.96, WIN=75, C=5):
-        CoverAlgorithm.__init__(self, "FTM2D", datapath)
+    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
+        CoverAlgorithm.__init__(self, "FTM2D", datapath, shortname)
         self.PWR = PWR
         self.WIN = WIN
         self.C = C
@@ -75,7 +76,6 @@ class FTM2D(CoverAlgorithm):
         # Synchronize HPCP to the beats
         onsets = feats['madmom_features']['onsets']
         hpcp = librosa.util.sync(hpcp_orig, onsets, aggregate=np.median)
-
         chroma = chrompwr(hpcp, self.PWR)
         # Get all 2D FFT magnitude shingles
         shingles = btchroma_to_fftmat(chroma, self.WIN).T
@@ -113,73 +113,13 @@ class FTM2D(CoverAlgorithm):
         return sim
 
 
-def ftm2d_allpairwise(datapath='../data/features_covers80',
-                      chroma_type='hpcp',
-                      parallel=0,
-                      n_cores=12,
-                      cached=False):
-    """
-    Show how one might do all pairwise comparisons between songs,
-    with code that is amenable to parallelizations.
-    This will go slowly at the beginning but then it will speed way
-    up because it caches the shingles for each song
-    """
-    from itertools import combinations
-    import scipy.io as sio
-    ftm = FTM2D(datapath=datapath, chroma_type=chroma_type)
-
-    if cached:
-        D = sio.loadmat("FTM2D_{}.mat")["D"]
-        ftm.D = D
-        ftm.get_all_clique_ids()
-    else:
-        if parallel == 1:
-            from joblib import Parallel, delayed
-            Parallel(n_jobs=n_cores, verbose=1)(
-                delayed(ftm.similarity)(i, j) for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)))
-            ftm.D += ftm.D.T
-            sio.savemat("FTM2D.mat", {"D": ftm.D})
-            ftm.get_all_clique_ids() # Since nothing has been cached
-        else:
-            for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)):
-                ftm.similarity(i, j)
-                if idx%100 == 0:
-                    print((i, j))
-            ftm.D += ftm.D.T
-            sio.savemat("FTM2D.mat", {"D":ftm.D})
-    ftm.getEvalStatistics()
-    if parallel == 1:
-        import shutil
-        try:
-            shutil.rmtree('d_mat')
-        except:  # noqa
-            print('Could not clean-up automatically.')
-
-
-def ftm2d_allpairwise_covers80(chroma_type='hpcp'):
-    """
-    Show how one might do all pairwise comparisons between songs,
-    with code that is amenable to parallelizations.
-    This will go slowly at the beginning but then it will speed way
-    up because it caches the shingles for each song
-    """
-    from itertools import combinations
-    import scipy.io as sio
-    ftm = FTM2D(datapath="features_covers80", chroma_type=chroma_type)
-    for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)):
-        ftm.similarity(i, j)
-        if idx%100 == 0:
-            print((i, j))
-    
-    ftm.getEvalStatistics()
-
-
 if __name__ == '__main__':
     #ftm2d_allpairwise_covers80(chroma_type='crema')
     parser = argparse.ArgumentParser(description="Benchmarking with 2D Fourier Transform Magnitude Coefficients",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
                         help="Path to data files")
+    parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")
     parser.add_argument("-c", '--chroma_type', type=str, action="store", default='hpcp',
                         help="Type of chroma to use for experiments")
     parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=0,
@@ -189,7 +129,8 @@ if __name__ == '__main__':
 
     cmd_args = parser.parse_args()
 
-    ftm2d_allpairwise(cmd_args.datapath, cmd_args.chroma_type, cmd_args.parallel, cmd_args.n_cores)
+    ftm2d = FTM2D(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
+    ftm2d.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
 
     print("... Done ....")
 
