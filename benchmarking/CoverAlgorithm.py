@@ -5,8 +5,6 @@ A template class for all benchmarking algorithms
 import numpy as np
 import glob
 import deepdish as dd
-from sklearn.metrics import average_precision_score
-from sklearn.preprocessing import label_binarize
 
 class CoverAlgorithm(object):
     """
@@ -32,7 +30,8 @@ class CoverAlgorithm(object):
         self.filepaths = glob.glob("%s/*.h5"%datapath)
         self.cliques = {}
         N = len(self.filepaths)
-        self.D = np.zeros((N, N))
+        # self.D = np.zeros((N, N))
+        self.D = np.memmap('d_mat', shape=(N, N), mode='w+', dtype='float32')
         print("Initialized %s algorithm on %i songs"%(name, N))
     
     def load_features(self, i):
@@ -166,3 +165,4 @@ class CoverAlgorithm(object):
             tops[i] = np.sum(ranks <= topsidx[i])
             print("Top-%i: %i"%(topsidx[i], tops[i]))
         return (MR, MRR, MDR, MAP, tops)
+
