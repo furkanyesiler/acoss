@@ -140,9 +140,8 @@ def augment_metadata(input_filename, output_filename, threshold, api_rate):
                                             total_works))
 
             success, status = add_ids(performance, threshold)
+            stats[status] += 1
             if success:
-                stats[status] += 1
-
                 success = add_tags(performance)
                 if success:
                     stats['has_tags'] += 1
