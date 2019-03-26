@@ -137,9 +137,9 @@ def ftm2d_allpairwise(datapath='../data/features_covers80',
             from joblib import Parallel, delayed
             Parallel(n_jobs=n_cores, verbose=1)(
                 delayed(ftm.similarity)(i, j) for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)))
+            ftm.D += ftm.D.T
             sio.savemat("FTM2D.mat", {"D": ftm.D})
-
-            ftm.get_all_clique_ids()
+            ftm.get_all_clique_ids() # Since nothing has been cached
         else:
             for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2)):
                 ftm.similarity(i, j)
