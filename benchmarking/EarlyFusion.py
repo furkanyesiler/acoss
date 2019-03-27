@@ -1,6 +1,5 @@
 import numpy as np
 import scipy
-import skimage.transform
 import matplotlib.pyplot as plt
 from CoverAlgorithm import *
 import argparse
@@ -9,9 +8,6 @@ import argparse
 """====================================================
                 UTILITY FUNCTIONS
 ===================================================="""
-
-# If speed isn't a concern, turn on antialiasing
-imresize = lambda x, M, N: skimage.transform.resize(x, (M, N), anti_aliasing=False, mode='reflect')
 
 def get_ssm(X):
     """
@@ -128,7 +124,30 @@ def get_csm_blocked_cosine_oti(X, Y, C1, C2):
     return get_csm_cosine(X1, Y)
 
 
-
+def median_resize_block(X, i1, i2, frames_per_block):
+    """
+    Median aggregate features into a coarser list
+    Parameters
+    ----------
+    X: ndarray(n_frames, n_feats)
+        An array of features
+    i1: int
+        Index at beginning of block
+    i2: int
+        Index at end of block
+    frames_per_block: int
+        Number of frames to which to downsample
+    """
+    import librosa
+    idxs = np.linspace(i1, i2, frames_per_block-1)
+    idxs = np.array(np.round(idxs), dtype=int)
+    res = librosa.util.sync(X.T, idxs).T
+    if res.shape[0] > frames_per_block:
+        ret = res[0:frames_per_block, :]
+    elif res.shape[0] < frames_per_block:
+        ret = np.zeros((frames_per_block, res.shape[1]))
+        ret[0:res.shape[0], :] = ret
+    return ret
 
 
 
@@ -146,9 +165,7 @@ class EarlyFusion(CoverAlgorithm):
     mfcc_blocksize: int
         Number of beats to take in an MFCC block
     mfccs_per_block: int
-        Resize to this number of MFCC frames in each block for raw MFCC
-    ssm_res: int
-        Resize SSMs to this dimension
+        Resize to this number of MFCC frames in each block
     chroma_blocksize: int
         Number of beats to take in a chroma block
     chromas_per_block: int
@@ -163,7 +180,6 @@ class EarlyFusion(CoverAlgorithm):
         self.chroma_type = chroma_type
         self.mfcc_blocksize = mfcc_blocksize
         self.mfccs_per_block = mfccs_per_block
-        self.ssm_res = ssm_res
         self.chroma_blocksize = chroma_blocksize
         self.chromas_per_block = chromas_per_block
         self.kappa = kappa
@@ -181,7 +197,7 @@ class EarlyFusion(CoverAlgorithm):
         block_features: dict {
             'mfccs': ndarray(n_mfcc_blocks, 20*mfccs_per_block)
                 Array of blocked Z-normalized raw MFCCs
-            'ssms': ndarray(n_mfcc_blocks, ssm_res*(ssm_res-1)/2)
+            'ssms': ndarray(n_mfcc_blocks, mfccs_per_block*(mfccs_per_block-1)/2)
                 Upper triangular part of all SSMs for blocked
                 Z-normalized MFCCs
             'chromas': ndarray(n_chroma_blocks, 12*chroma_dim)
@@ -206,27 +222,24 @@ class EarlyFusion(CoverAlgorithm):
         ## Step 1: Compute raw MFCC and MFCC SSM blocked features
         # Allocate space for MFCC-based features
         block_feats['mfccs'] = np.zeros((n_mfcc_blocks, self.mfccs_per_block*mfcc.shape[1]), dtype=np.float32)
-        pix = np.arange(self.ssm_res)
+        pix = np.arange(self.mfccs_per_block)
         I, J = np.meshgrid(pix, pix)
-        dpixels = int(self.ssm_res*(self.ssm_res-1)/2)
+        dpixels = int(self.mfccs_per_block*(self.mfccs_per_block-1)/2)
         block_feats['ssms'] = np.zeros((n_mfcc_blocks, dpixels), dtype=np.float32)
         # Compute MFCC-based features
         for i in range(n_mfcc_blocks):
             i1 = onsets[i]
-            i2 = onsets[i+self.mfcc_blocksize]
-            x = mfcc[i1:i2, :]
+            i2 = onsets[i+self.mfcc_blocksize-1]
+            x = median_resize_block(mfcc, i1, i2, self.mfccs_per_block)
             # Z-normalize
             x -= np.mean(x, 0)[None, :]
             xnorm = np.sqrt(np.sum(x**2, 1))[:, None]
             xnorm[xnorm == 0] = 1
             xn = x / xnorm
-            # Resize and store raw mfcc
-            xnr = imresize(xn, self.mfccs_per_block, xn.shape[1])
-            block_feats['mfccs'][i, :] = xnr.flatten()
+            block_feats['mfccs'][i, :] = xn.flatten()
             # Create SSM, resize, and save
-            d = get_ssm(xn)
-            d = imresize(d, self.ssm_res, self.ssm_res)
-            block_feats['ssms'][i, :] = d[I < J] # Upper triangular part
+            D = get_ssm(xn)
+            block_feats['ssms'][i, :] = D[I < J] # Upper triangular part
         
         ## Step 2: Compute chroma blocks
         block_feats['chromas'] = np.zeros((n_chroma_blocks, self.chromas_per_block*chroma.shape[1]))
@@ -234,8 +247,7 @@ class EarlyFusion(CoverAlgorithm):
         for i in range(n_chroma_blocks):
             i1 = onsets[i]
             i2 = onsets[i+self.chroma_blocksize]
-            x = chroma[i1:i2, :]
-            x = imresize(x, self.chromas_per_block, x.shape[1])
+            x = median_resize_block(chroma, i1, i2, self.chromas_per_block)
             block_feats['chromas'][i, :] = x.flatten()
         
         self.all_block_feats[i] = block_feats # Cache features
