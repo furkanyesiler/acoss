@@ -141,12 +141,13 @@ def median_resize_block(X, i1, i2, frames_per_block):
     import librosa
     idxs = np.linspace(i1, i2, frames_per_block-1)
     idxs = np.array(np.round(idxs), dtype=int)
-    res = librosa.util.sync(X.T, idxs).T
+    res = librosa.util.sync(X.T, idxs, aggregate=np.median).T
+    ret = res
     if res.shape[0] > frames_per_block:
         ret = res[0:frames_per_block, :]
     elif res.shape[0] < frames_per_block:
         ret = np.zeros((frames_per_block, res.shape[1]))
-        ret[0:res.shape[0], :] = ret
+        ret[0:res.shape[0], :] = res
     return ret
 
 
