@@ -6,6 +6,7 @@ import numpy as np
 import glob
 import os
 import deepdish as dd
+import warnings
 
 class CoverAlgorithm(object):
     """
@@ -230,6 +231,9 @@ class CoverAlgorithm(object):
                 if diff >= 0 and diff < Ks[kidx]:
                     iranks.append(k+1)
             iranks = iranks[0:-1] #Exclude the song itself, which comes last
+            if len(iranks) == 0:
+                warnings.warn("Recalling 0 songs for clique of size %i at song index %i"%(Ks[kidx], i))
+                break
             #For MR, MRR, and MDR, use first song in clique
             ranks[i] = iranks[0] 
             #For MAP, use all ranks

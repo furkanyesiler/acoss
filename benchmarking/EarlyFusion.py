@@ -214,8 +214,6 @@ class EarlyFusion(CoverAlgorithm):
         A cache of features computed by load_features
     """
     def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', blocksize=20, mfccs_per_block=50, ssm_res=50, chromas_per_block=40, kappa=0.1, K=10, niters=5, log_times=False):
-        CoverAlgorithm.__init__(self, "EarlyFusion", datapath=datapath, shortname=shortname, \
-                                similarity_types=["mfccs", "ssms", "chromas"])
         self.chroma_type = chroma_type
         self.blocksize = blocksize
         self.mfccs_per_block = mfccs_per_block
@@ -227,6 +225,15 @@ class EarlyFusion(CoverAlgorithm):
         self.log_times = log_times
         if log_times:
             self.fout = open("earlyfusionlog.txt", "w")
+        CoverAlgorithm.__init__(self, "EarlyFusion", datapath=datapath, shortname=shortname, \
+                                similarity_types=["mfccs", "ssms", "chromas"])
+
+    def get_cacheprefix(self):
+        """
+        Return a descriptive file prefix to use for caching features
+        and distance matrices
+        """
+        return "%s/%s_%s_%s"%(self.cachedir, self.name, self.shortname, self.chroma_type)
 
     def load_features(self, i, do_plot=False):
         """
