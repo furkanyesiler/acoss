@@ -87,8 +87,9 @@ class CoverAlgorithm(object):
         Load all h5 files to get clique information as a side effect
         """
         import os
-        if not os.path.exists("clique_info.txt"):
-            fout = open("clique_info.txt", "w")
+        filepath = "%s_clique_info.txt"%self.get_cacheprefix()
+        if not os.path.exists(filepath):
+            fout = open(filepath, "w")
             for i in range(len(self.filepaths)):
                 feats = CoverAlgorithm.load_features(self, i)
                 if verbose:
@@ -97,7 +98,7 @@ class CoverAlgorithm(object):
                 fout.write("%i,%s\n"%(i, feats['label']))
             fout.close()
         else:
-            fin = open("clique_info.txt")
+            fin = open(filepath)
             for line in fin.readlines():
                 i, label = line.split(",")
                 label = label.strip()
@@ -119,20 +120,13 @@ class CoverAlgorithm(object):
             Index of first song in self.filepaths
         j: int
             Index of second song in self.filepaths
-        Returns
-        -------
-        similarities: {similarity_type: score}
-            Scores for different similarity types between these two songs
         """
-        
         (a, b) = idxs.shape
         for k in range(a):
             i = idxs[k][0]
             j = idxs[k][1]
             score = 0.0
-
             self.Ds["main"][i, j] = score
-        return {"main":score}
     
     def all_pairwise(self, parallel=0, n_cores=12, symmetric=False, precomputed=False):
         """
@@ -161,9 +155,9 @@ class CoverAlgorithm(object):
             self.get_all_clique_ids()
         else:
             if symmetric:
-                all_pairs = [(i, j) for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2))]
+                all_pairs = [(i, j) for idx, (i, j) in enumerate(combinations(range(len(self.filepaths)), 2))]
             else:
-                all_pairs = [(i, j) for idx, (i, j) in enumerate(permutations(range(len(ftm.filepaths)), 2))]
+                all_pairs = [(i, j) for idx, (i, j) in enumerate(permutations(range(len(self.filepaths)), 2))]
             chunks = np.array_split(all_pairs, 45)
             if parallel == 1:
                 from joblib import Parallel, delayed
@@ -171,8 +165,8 @@ class CoverAlgorithm(object):
                     delayed(self.similarity)(chunks[i]) for i in range(len(chunks)))
                 self.get_all_clique_ids() # Since nothing has been cached
             else:
-                for idx, (i, j) in enumerate(pairs):
-                    self.similarity(i, j)
+                for idx, (i, j) in enumerate(all_pairs):
+                    self.similarity(np.array([[i, j]]))
                     if idx%100 == 0:
                         print((i, j))
             if symmetric:

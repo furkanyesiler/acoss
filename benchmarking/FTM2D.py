@@ -119,7 +119,6 @@ class FTM2D(CoverAlgorithm):
         return shingle
     
     def similarity(self, idxs):
-
         (a, b) = idxs.shape
         for k in range(a):
             i = idxs[k][0]
@@ -132,7 +131,6 @@ class FTM2D(CoverAlgorithm):
             # with a small distance, take the negative exponential
             sim = np.exp(-dSqr)
             self.Ds['main'][i, j] = sim
-        return {'main':sim}
 
 
 if __name__ == '__main__':
