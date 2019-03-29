@@ -150,6 +150,9 @@ if __name__ == '__main__':
     cmd_args = parser.parse_args()
 
     ftm2d = FTM2D(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
+    for i in range(len(ftm2d.filepaths)):
+        ftm2d.load_features(i)
+    print('Feature loading done.')
     ftm2d.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
     for similarity_type in ftm2d.Ds:
         ftm2d.getEvalStatistics(similarity_type)
