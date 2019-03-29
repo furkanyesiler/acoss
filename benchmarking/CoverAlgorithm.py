@@ -106,7 +106,7 @@ class CoverAlgorithm(object):
                 self.cliques[label].add(int(i))
 
 
-    def similarity(self, i, j):
+    def similarity(self, idxs):
         """
         Given the indices of two songs, return a number
         which is high if the songs are similar, and low
@@ -124,8 +124,14 @@ class CoverAlgorithm(object):
         similarities: {similarity_type: score}
             Scores for different similarity types between these two songs
         """
-        score = 0.0
-        self.Ds["main"][i, j] = score
+        
+        (a, b) = idxs.shape
+        for k in range(a):
+            i = idxs[k][0]
+            j = idxs[k][1]
+            score = 0.0
+
+            self.Ds["main"][i, j] = score
         return {"main":score}
     
     def all_pairwise(self, parallel=0, n_cores=12, symmetric=False, precomputed=False):
@@ -154,15 +160,15 @@ class CoverAlgorithm(object):
             self.Ds = dd.io.load(h5filename)
             self.get_all_clique_ids()
         else:
-            pairs = range(len(self.filepaths))
             if symmetric:
-                pairs = combinations(pairs, 2)
+                all_pairs = [(i, j) for idx, (i, j) in enumerate(combinations(range(len(ftm.filepaths)), 2))]
             else:
-                pairs = permutations(pairs, 2)
+                all_pairs = [(i, j) for idx, (i, j) in enumerate(permutations(range(len(ftm.filepaths)), 2))]
+            chunks = np.array_split(all_pairs, 45)
             if parallel == 1:
                 from joblib import Parallel, delayed
                 Parallel(n_jobs=n_cores, verbose=1)(
-                    delayed(self.similarity)(i, j) for idx, (i, j) in enumerate(pairs))
+                    delayed(self.similarity)(chunks[i]) for i in range(len(chunks)))
                 self.get_all_clique_ids() # Since nothing has been cached
             else:
                 for idx, (i, j) in enumerate(pairs):
