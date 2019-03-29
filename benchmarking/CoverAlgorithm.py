@@ -1,12 +1,12 @@
 """
 A template class for all benchmarking algorithms
 """
-
 import numpy as np
 import glob
 import os
 import deepdish as dd
 import warnings
+
 
 class CoverAlgorithm(object):
     """
@@ -37,17 +37,15 @@ class CoverAlgorithm(object):
         self.name = name
         self.shortname = shortname
         self.cachedir = cachedir
-        self.filepaths = glob.glob("%s/*.h5"%datapath)
+        self.filepaths = glob.glob("%s/*.h5" % datapath)
         self.cliques = {}
-        N = len(self.filepaths)
-        # self.D = np.zeros((N, N))
+        self.N = len(self.filepaths)
         if not os.path.exists(cachedir):
             os.mkdir(cachedir)
-
         self.Ds = {}
         for s in similarity_types:
-            self.Ds[s] = np.memmap('%s_%s_dmat'%(self.get_cacheprefix(), s), shape=(N, N), mode='w+', dtype='float32')
-        print("Initialized %s algorithm on %i songs in dataset %s"%(name, N, shortname))
+            self.Ds[s] = np.memmap('%s_%s_dmat' % (self.get_cacheprefix(), s), shape=(self.N, self.N), mode='w+', dtype='float32')
+        print("Initialized %s algorithm on %i songs in dataset %s"%(name, self.N, shortname))
     
     def get_cacheprefix(self):
         """

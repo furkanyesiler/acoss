@@ -154,7 +154,7 @@ if __name__ == '__main__':
         ftm2d.load_features(i)
     print('Feature loading done.')
     ftm2d.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
-    for similarity_type in ftm2d.Ds:
+    for similarity_type in ftm2d.Ds.keys():
         ftm2d.getEvalStatistics(similarity_type)
     ftm2d.cleanup_memmap()
 
