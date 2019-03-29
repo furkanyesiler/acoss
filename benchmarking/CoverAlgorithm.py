@@ -172,15 +172,18 @@ class CoverAlgorithm(object):
             if symmetric:
                 for similarity_type in self.Ds:
                     self.Ds[similarity_type] += self.Ds[similarity_type].T
-            dd.io.save(h5filename, self.Ds)
-        for similarity_type in self.Ds:
-            self.getEvalStatistics(similarity_type)
-        if parallel == 1:
-            import shutil
-            try:
-                shutil.rmtree('d_mat')
-            except:  # noqa
-                print('Could not clean-up automatically.')
+            dd.io.save(h5filename, self.Ds)    
+
+    def cleanup_memmap(self):
+        """
+        Remove all memmap variables for song-level similarity matrices
+        """
+        import shutil
+        try:
+            for s in self.Ds:
+                shutil.rmtree('%s_%s_dmat'%(self.get_cacheprefix(), s))
+        except:  # noqa
+            print('Could not clean-up automatically.')
     
     def getEvalStatistics(self, similarity_type, topsidx = [1, 10, 100, 1000]):
         """

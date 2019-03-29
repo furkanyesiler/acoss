@@ -358,6 +358,11 @@ if __name__ == '__main__':
 
     ef = EarlyFusion(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname, log_times=bool(cmd_args.log_times))
     ef.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
+    for similarity_type in ef.Ds:
+        print(similarity_type)
+        ef.getEvalStatistics(similarity_type)
+    ef.cleanup_memmap()
+    
 
     print("... Done ....")
 
