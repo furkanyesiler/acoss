@@ -58,7 +58,7 @@ class FTM2D(CoverAlgorithm):
         Type of chroma to use (key into features)
     """
     def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
-        CoverAlgorithm.__init__(self, "FTM2D", datapath, shortname)
+        CoverAlgorithm.__init__(self, "FTM2D", datapath=datapath, shortname=shortname)
         self.PWR = PWR
         self.WIN = WIN
         self.C = C
@@ -101,16 +101,15 @@ class FTM2D(CoverAlgorithm):
         return shingle
     
     def similarity(self, i, j):
-
         s1 = self.load_features(i)
         s2 = self.load_features(j)
         dSqr = np.sum((s1-s2)**2)
         # Since similarity should be high for two things
         # with a small distance, take the negative exponential
         sim = np.exp(-dSqr)
-        self.D[i, j] = sim
-        self.D[j, i] = sim
-        return sim
+        self.Ds['main'][i, j] = sim
+        self.Ds['main'][j, i] = sim
+        return {'main':sim}
 
 
 if __name__ == '__main__':

@@ -15,11 +15,11 @@ class CoverAlgorithm(object):
     cliques: {string: set}
         A dictionary of all cover cliques, where the cliques
         index into filepaths
-    D: ndarray(num files, num files)
-        A pairwise similarity matrix, whose indices index
-        into filepaths.  Assumed to be symmetric
+    Ds: {string silarity type: ndarray(num files, num files)}
+        A dictionary of pairwise similarity matrices, whose 
+        indices index into filepaths.
     """
-    def __init__(self, name = "Generic", datapath="features_benchmark", shortname="full"):
+    def __init__(self, name = "Generic", datapath="features_benchmark", shortname="full", similarity_types = ["main"]):
         """
         Parameters
         ----------
@@ -36,7 +36,10 @@ class CoverAlgorithm(object):
         self.cliques = {}
         N = len(self.filepaths)
         # self.D = np.zeros((N, N))
-        self.D = np.memmap('d_mat', shape=(N, N), mode='w+', dtype='float32')
+
+        self.Ds = {}
+        for s in similarity_types:
+            self.Ds[s] = np.memmap('d_mat_%s_%s_%s'%(name, shortname, s), shape=(N, N), mode='w+', dtype='float32')
         print("Initialized %s algorithm on %i songs in dataset %s"%(name, N, shortname))
     
     def load_features(self, i):
@@ -93,7 +96,7 @@ class CoverAlgorithm(object):
         """
         Given the indices of two songs, return a number
         which is high if the songs are similar, and low
-        otherwise.
+        otherwise, for each similarity type
         Also store this number in D[i, j]
         as a side effect
         Parameters
@@ -102,10 +105,14 @@ class CoverAlgorithm(object):
             Index of first song in self.filepaths
         j: int
             Index of second song in self.filepaths
+        Returns
+        -------
+        similarities: {similarity_type: score}
+            Scores for different similarity types between these two songs
         """
         score = 0.0
-        self.D[i, j] = score
-        return score
+        self.Ds["main"][i, j] = score
+        return {"main":score}
     
     def all_pairwise(self, parallel=0, n_cores=12, symmetric=False, precomputed=False):
         """
@@ -131,8 +138,7 @@ class CoverAlgorithm(object):
         import scipy.io as sio
         matfilename = "%s_%s.mat"%(self.name, self.shortname)
         if precomputed:
-            D = sio.loadmat(matfilename)["D"]
-            self.D = D
+            self.Ds = sio.loadmat(matfilename)
             self.get_all_clique_ids()
         else:
             pairs = range(len(self.filepaths))
@@ -151,9 +157,11 @@ class CoverAlgorithm(object):
                     if idx%100 == 0:
                         print((i, j))
             if symmetric:
-                self.D += self.D.T
-            sio.savemat(matfilename, {"D":self.D})
-        self.getEvalStatistics()
+                for similarity_type in self.Ds:
+                    self.Ds[similarity_type] += self.Ds[similarity_type].T
+            sio.savemat(matfilename, self.Ds)
+        for similarity_type in self.Ds:
+            self.getEvalStatistics(similarity_type)
         if parallel == 1:
             import shutil
             try:
@@ -161,12 +169,17 @@ class CoverAlgorithm(object):
             except:  # noqa
                 print('Could not clean-up automatically.')
     
-    def getEvalStatistics(self, topsidx = [1, 10, 100, 1000]):
+    def getEvalStatistics(self, similarity_type, topsidx = [1, 10, 100, 1000]):
         """
-        Compute MR, MRR, MAP, Median Rank, and Top X
+        Compute MR, MRR, MAP, Median Rank, and Top X using
+        a particular similarity measure
+        Parameters
+        ----------
+        similarity_type: string
+            The similarity measure to use
         """
         from itertools import chain
-        D = np.array(self.D)
+        D = np.array(self.Ds[similarity_type], dtype=np.float32)
         N = D.shape[0]
         ## Step 1: Re-sort indices of D so that
         ## cover cliques are contiguous
@@ -217,7 +230,7 @@ class CoverAlgorithm(object):
         MR = np.mean(ranks)
         MRR = 1.0/N*(np.sum(1.0/ranks))
         MDR = np.median(ranks)
-        print("%s STATS\n-------------------------\nMR = %.3g\nMRR = %.3g\nMDR = %.3g\nMAP = %.3g"%(self.name, MR, MRR, MDR, MAP))
+        print("%s %s STATS\n-------------------------\nMR = %.3g\nMRR = %.3g\nMDR = %.3g\nMAP = %.3g"%(self.name, similarity_type, MR, MRR, MDR, MAP))
         tops = np.zeros(len(topsidx))
         for i in range(len(tops)):
             tops[i] = np.sum(ranks <= topsidx[i])

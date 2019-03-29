@@ -139,8 +139,8 @@ def getS(W, K):
     SNorm[SNorm == 0] = 1
     V = V/SNorm[:, None]
     [I, J, V] = [I.flatten(), J.flatten(), V.flatten()]
-    S = sparse.coo_matrix((V, (I, J.flatten())), shape=(N, N)).tocsr()
-    return S, J
+    S = sparse.coo_matrix((V, (I, J)), shape=(N, N)).tocsr()
+    return S
 
 
 def doSimilarityFusionWs(Ws, K = 5, niters = 20, reg_diag = 1):
@@ -154,17 +154,17 @@ def doSimilarityFusionWs(Ws, K = 5, niters = 20, reg_diag = 1):
         self-similarity promotion
     :return D: A fused NxN similarity matrix
     """
-    tic = time.time()
     #Full probability matrices
     Ps = [getP(W) for W in Ws]
     #Nearest neighbor truncated matrices
-    Ss = [getS(W, K)[0] for W in Ws]
+    Ss = [getS(W, K) for W in Ws]
 
     #Now do cross-diffusion iterations
     Pts = [np.array(P) for P in Ps]
     nextPts = [np.zeros(P.shape) for P in Pts]
 
     N = len(Pts)
+    pix = np.arange(Ws[0].shape[0])
     for it in range(niters):
         for i in range(N):
             nextPts[i] *= 0
@@ -176,17 +176,16 @@ def doSimilarityFusionWs(Ws, K = 5, niters = 20, reg_diag = 1):
             nextPts[i] /= float(N-1)
             #Need S*P*S^T, but have to multiply sparse matrix on the left
             tic = time.time()
-            A = Ss[i].dot(nextPts[i].T)
-            nextPts[i] = Ss[i].dot(A.T)
+            nextPts[i] = Ss[i].dot( (Ss[i].dot(nextPts[i].T)).T )
             if reg_diag > 0:
-                nextPts[i] += reg_diag*np.eye(nextPts[i].shape[0])
+                nextPts[i][pix, pix] += reg_diag
         Pts = nextPts
     FusedScores = np.zeros(Pts[0].shape)
     for Pt in Pts:
         FusedScores += Pt
     return FusedScores/N
 
-def doSimilarityFusion(Scores, K = 10, niters = 10, reg_diag = 1):
+def doSimilarityFusion(Scores, K = 5, niters = 5, reg_diag = 1):
     """
     Do similarity fusion on a set of NxN distance matrices.
     Parameters the same as doSimilarityFusionWs
@@ -206,28 +205,31 @@ def testSimilarityFusion():
     tic = time.time()
     features = ef.load_features(2)
     print("Elapsed Time Block Features: %.3g"%(time.time()-tic))
-    D1 = get_ssm(features['mfccs'])
-    Chroma = features['chromas']
-    CMed = features['chroma_med']
-    D2 = get_csm_blocked_cosine_oti(Chroma, Chroma, CMed, CMed)
-    N = min(D1.shape[0], D2.shape[0])
-    D1 = D1[0:N, 0:N]
-    D2 = D2[0:N, 0:N]
+    fnames = [f for f in features if '_W' in f]
+    Ws = [features[f] for f in fnames]
 
-    Ws, DFPython = doSimilarityFusion([D1, D2])
+    DFPython = doSimilarityFusionWs(Ws, K=10, niters=5)
     np.fill_diagonal(DFPython, 0)
     
-    plt.figure(figsize=(18, 6))
-    plt.subplot(131)
-    plt.imshow(D1)
-    plt.title("MFCCs")
-    plt.subplot(132)
-    plt.imshow(D2)
-    plt.title("Chromas")
-    plt.subplot(133)
+    plt.figure(figsize=(6*len(fnames)+6, 6))
+    for k, f in enumerate(fnames):
+        plt.subplot(1, len(fnames)+1, k+1)
+        W = Ws[k]
+        np.fill_diagonal(W, 0)
+        plt.imshow(W)
+        plt.title(f)
+    plt.subplot(1, len(fnames)+1, len(fnames)+1)
     plt.imshow(DFPython)
     plt.title("Fused")
     plt.show()
 
+def testSNFTime():
+    N = 2000
+    Ds = [np.random.randn(N, N) for i in range(3)]
+    tic = time.time()
+    Ws, DF = doSimilarityFusion(Ds, K=10, niters=6)
+    print("Elapsed Time: %.3g"%(time.time()-tic))
+
 if __name__ == '__main__':
     testSimilarityFusion()
+    #testSNFTime()
