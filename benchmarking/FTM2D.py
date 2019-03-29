@@ -118,14 +118,20 @@ class FTM2D(CoverAlgorithm):
         dd.io.save(filepath, {'shingle':shingle})
         return shingle
     
-    def similarity(self, i, j):
-        s1 = self.load_features(i)
-        s2 = self.load_features(j)
-        dSqr = np.sum((s1-s2)**2)
-        # Since similarity should be high for two things
-        # with a small distance, take the negative exponential
-        sim = np.exp(-dSqr)
-        self.Ds['main'][i, j] = sim
+    def similarity(self, idxs):
+
+        (a, b) = idxs.shape
+        for k in range(a):
+            i = idxs[k][0]
+            j = idxs[k][1]
+
+            s1 = self.load_features(i)
+            s2 = self.load_features(j)
+            dSqr = np.sum((s1-s2)**2)
+            # Since similarity should be high for two things
+            # with a small distance, take the negative exponential
+            sim = np.exp(-dSqr)
+            self.Ds['main'][i, j] = sim
         return {'main':sim}
 
 
