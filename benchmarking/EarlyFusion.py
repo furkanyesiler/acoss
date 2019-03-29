@@ -226,7 +226,7 @@ class EarlyFusion(CoverAlgorithm):
         if log_times:
             self.fout = open("earlyfusionlog.txt", "w")
         CoverAlgorithm.__init__(self, "EarlyFusion", datapath=datapath, shortname=shortname, \
-                                similarity_types=["mfccs", "ssms", "chromas"])
+                                similarity_types=["mfccs", "ssms", "chromas", "early"])
 
     def get_cacheprefix(self):
         """
@@ -257,7 +257,17 @@ class EarlyFusion(CoverAlgorithm):
         }
         """
         import librosa.util
+        filepath = "%s_%i.h5"%(self.get_cacheprefix(), i)
         if i in self.all_block_feats:
+            # If the result has already been cached in memory, 
+            # return the cache
+            return self.all_block_feats[i]
+        elif os.path.exists(filepath):
+            # If the result has already been cached on disk, 
+            # load it, save it in memory, and return
+            self.all_block_feats[i] = dd.io.load(filepath)
+            # Make sure to also load clique info as a side effect
+            feats = CoverAlgorithm.load_features(self, i)
             return self.all_block_feats[i]
         tic = time.time()
         block_feats = {}
@@ -301,12 +311,15 @@ class EarlyFusion(CoverAlgorithm):
             block_feats['chromas'][b, :] = x.flatten()
         
         ## Step 3: Precompute Ws for each features
+        """ Skip this since I'm doing a simpler, accelerated early fusion
         ssm_fns = {'chromas':lambda x: get_csm_cosine(x, x), 'mfccs':get_ssm, 'ssms':get_ssm}
         for feat in ssm_fns:
             d = ssm_fns[feat](block_feats[feat])
             block_feats['%s_W'%feat] = getW(d, self.K)
-            
+        """
+
         self.all_block_feats[i] = block_feats # Cache features
+        dd.io.save(filepath, block_feats)
         if self.log_times:
             self.fout.write("Features %.3g\n"%(time.time()-tic))
             self.fout.flush()
@@ -333,9 +346,25 @@ class EarlyFusion(CoverAlgorithm):
             if self.log_times:
                 self.fout.write("Raw: %.3g\n"%(time.time()-tic))
                 self.fout.flush()
+            
+            ## Step 2: Compute Ws for each CSM
+            W_CSMs = {s:getWCSM(CSMs[s], self.K, self.K) for s in CSMs}
+            WCSM_sum = np.zeros_like(CSMs['mfccs'])
+            for s in W_CSMs:
+                WCSM_sum += W_CSMs[s]
+            WCSM_sum = np.exp(-WCSM_sum) # Binary thresholding uses "distances" so switch back
+            scores['early'] = swconstrained(csm_to_binary(WCSM_sum, self.kappa).flatten(), M, N)
+            
             for s in scores:
                 self.Ds[s][i, j] = scores[s]
-        
+    
+    def do_late_fusion(self):
+        """
+        Perform late fusion after all different pairwise similarity scores
+        have been computed
+        """
+        self.Ds["late"] = doSimilarityFusion([1.0/(1.0+self.Ds[s]) for s in ["chromas", "ssms", "mfccs"]], K=20, niters=20, reg_diag=1)[1]
+        self.Ds["early+late"] = doSimilarityFusion([1.0/(1.0+self.Ds[s]) for s in ["chromas", "ssms", "mfccs", "early"]], K=20, niters=20, reg_diag=1)[1]
 
 
 if __name__ == '__main__':
@@ -356,9 +385,12 @@ if __name__ == '__main__':
     cmd_args = parser.parse_args()
 
     ef = EarlyFusion(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname, log_times=bool(cmd_args.log_times))
+    for i in range(len(ef.filepaths)):
+        print("Preloading features %i of %i"%(i+1, len(ef.filepaths)))
+        ef.load_features(i)
     ef.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
+    ef.do_late_fusion()
     for similarity_type in ef.Ds:
-        print(similarity_type)
         ef.getEvalStatistics(similarity_type)
     ef.cleanup_memmap()
     
