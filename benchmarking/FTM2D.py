@@ -108,7 +108,6 @@ class FTM2D(CoverAlgorithm):
         # with a small distance, take the negative exponential
         sim = np.exp(-dSqr)
         self.Ds['main'][i, j] = sim
-        self.Ds['main'][j, i] = sim
         return {'main':sim}
 
 
