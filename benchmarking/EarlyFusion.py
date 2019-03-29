@@ -126,7 +126,33 @@ def get_csm_blocked_cosine_oti(X, Y, C1, C2):
     return get_csm_cosine(X1, Y)
 
 
-def median_resize_block(X, i1, i2, frames_per_block):
+def csm_to_binary(D, kappa):
+    """
+    Turn a cross-similarity matrix into a binary cross-simlarity matrix, using partitions instead of
+    nearest neighbors for speed
+    :param D: M x N cross-similarity matrix
+    :param kappa:
+        If kappa = 0, take all neighbors
+        If kappa < 1 it is the fraction of mutual neighbors to consider
+        Otherwise kappa is the number of mutual neighbors to consider
+    :returns B: MxN binary cross-similarity matrix
+    """
+    N = D.shape[0]
+    M = D.shape[1]
+    if kappa == 0:
+        return np.ones_like(D)
+    elif kappa < 1:
+        NNeighbs = int(np.round(kappa*M))
+    else:
+        NNeighbs = kappa
+    J = np.argpartition(D, NNeighbs, 1)[:, 0:NNeighbs]
+    I = np.tile(np.arange(N)[:, None], (1, NNeighbs))
+    V = np.ones(I.size)
+    [I, J] = [I.flatten(), J.flatten()]
+    ret = sparse.coo_matrix((V, (I, J)), shape=(N, M), dtype=np.float32)
+    return ret.toarray()
+
+def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
     """
     Median aggregate features into a coarser list
     Parameters
@@ -140,17 +166,22 @@ def median_resize_block(X, i1, i2, frames_per_block):
     frames_per_block: int
         Number of frames to which to downsample
     """
-    import librosa
-    idxs = np.linspace(i1, i2, frames_per_block-1)
-    idxs = np.array(np.round(idxs), dtype=int)
-    res = librosa.util.sync(X.T, idxs, aggregate=np.median).T
-    ret = res
-    if res.shape[0] > frames_per_block:
-        ret = res[0:frames_per_block, :]
-    elif res.shape[0] < frames_per_block:
-        ret = np.zeros((frames_per_block, res.shape[1]))
-        ret[0:res.shape[0], :] = res
-    return ret
+    if median_aggregate:
+        import librosa
+        idxs = np.linspace(i1, i2, frames_per_block-1)
+        idxs = np.array(np.round(idxs), dtype=int)
+        res = librosa.util.sync(X.T, idxs, aggregate=np.median).T
+        ret = res
+        if res.shape[0] > frames_per_block:
+            ret = res[0:frames_per_block, :]
+        elif res.shape[0] < frames_per_block:
+            ret = np.zeros((frames_per_block, res.shape[1]))
+            ret[0:res.shape[0], :] = res
+        return ret
+    else:
+        import skimage.transform
+        x = X[i1:i2, :]
+        return skimage.transform.resize(x, (frames_per_block, x.shape[1]), anti_aliasing=True, mode='reflect')
 
 
 
@@ -242,7 +273,7 @@ class EarlyFusion(CoverAlgorithm):
         for b in range(n_blocks):
             i1 = onsets[b]
             i2 = onsets[b+self.blocksize-1]
-            x = median_resize_block(mfcc, i1, i2, self.mfccs_per_block)
+            x = resize_block(mfcc, i1, i2, self.mfccs_per_block)
             # Z-normalize
             x -= np.mean(x, 0)[None, :]
             xnorm = np.sqrt(np.sum(x**2, 1))[:, None]
@@ -259,7 +290,7 @@ class EarlyFusion(CoverAlgorithm):
         for b in range(n_blocks):
             i1 = onsets[b]
             i2 = onsets[b+self.blocksize]
-            x = median_resize_block(chroma, i1, i2, self.chromas_per_block)
+            x = resize_block(chroma, i1, i2, self.chromas_per_block)
             block_feats['chromas'][b, :] = x.flatten()
         
         ## Step 3: Precompute Ws for each features
@@ -285,12 +316,12 @@ class EarlyFusion(CoverAlgorithm):
         tic = time.time()
         CSMs['mfccs'] = get_csm(feats1['mfccs'], feats2['mfccs'])
         M, N = CSMs['mfccs'].shape[0], CSMs['mfccs'].shape[1]
-        scores['mfccs'] = swconstrained(CSMs['mfccs'].flatten(), M, N)
+        scores['mfccs'] = swconstrained(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), M, N)
         CSMs['ssms'] = get_csm(feats1['ssms'], feats2['ssms'])
-        scores['ssms'] = swconstrained(CSMs['ssms'].flatten(), M, N)
+        scores['ssms'] = swconstrained(csm_to_binary(CSMs['ssms'], self.kappa).flatten(), M, N)
         CSMs['chromas'] = get_csm_blocked_cosine_oti(feats1['chromas'], feats2['chromas'], \
                                                     feats1['chroma_med'], feats2['chroma_med'])
-        scores['chromas'] = swconstrained(CSMs['chromas'].flatten(), M, N)
+        scores['chromas'] = swconstrained(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), M, N)
         if self.log_times:
             self.fout.write("Raw: %.3g\n"%(time.time()-tic))
             self.fout.flush()

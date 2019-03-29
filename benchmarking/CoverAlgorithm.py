@@ -4,6 +4,7 @@ A template class for all benchmarking algorithms
 
 import numpy as np
 import glob
+import os
 import deepdish as dd
 
 class CoverAlgorithm(object):
@@ -19,7 +20,7 @@ class CoverAlgorithm(object):
         A dictionary of pairwise similarity matrices, whose 
         indices index into filepaths.
     """
-    def __init__(self, name = "Generic", datapath="features_benchmark", shortname="full", similarity_types = ["main"]):
+    def __init__(self, name = "Generic", datapath="features_benchmark", shortname="full", cachedir="cache", similarity_types = ["main"]):
         """
         Parameters
         ----------
@@ -29,19 +30,31 @@ class CoverAlgorithm(object):
             Path to folder with h5 files for the benchmark dataset
         shortname: string
             Short name for the dataset (for printing and saving results)
+        cachedir: string
+            Directory to which to cache intermediate feature computations, etc
         """
         self.name = name
         self.shortname = shortname
+        self.cachedir = cachedir
         self.filepaths = glob.glob("%s/*.h5"%datapath)
         self.cliques = {}
         N = len(self.filepaths)
         # self.D = np.zeros((N, N))
+        if not os.path.exists(cachedir):
+            os.mkdir(cachedir)
 
         self.Ds = {}
         for s in similarity_types:
-            self.Ds[s] = np.memmap('d_mat_%s_%s_%s'%(name, shortname, s), shape=(N, N), mode='w+', dtype='float32')
+            self.Ds[s] = np.memmap('%s_%s_dmat'%(self.get_cacheprefix(), s), shape=(N, N), mode='w+', dtype='float32')
         print("Initialized %s algorithm on %i songs in dataset %s"%(name, N, shortname))
     
+    def get_cacheprefix(self):
+        """
+        Return a descriptive file prefix to use for caching features
+        and distance matrices
+        """
+        return "%s/%s_%s"%(self.cachedir, self.name, self.shortname)
+
     def load_features(self, i):
         """
         Load the fields from the h5 file for a particular
@@ -135,10 +148,9 @@ class CoverAlgorithm(object):
             want to print the result statistics
         """
         from itertools import combinations, permutations
-        import scipy.io as sio
-        matfilename = "%s_%s.mat"%(self.name, self.shortname)
+        h5filename = "%s_Ds.h5"%self.get_cacheprefix()
         if precomputed:
-            self.Ds = sio.loadmat(matfilename)
+            self.Ds = dd.io.load(h5filename)
             self.get_all_clique_ids()
         else:
             pairs = range(len(self.filepaths))
@@ -159,7 +171,7 @@ class CoverAlgorithm(object):
             if symmetric:
                 for similarity_type in self.Ds:
                     self.Ds[similarity_type] += self.Ds[similarity_type].T
-            sio.savemat(matfilename, self.Ds)
+            dd.io.save(h5filename, self.Ds)
         for similarity_type in self.Ds:
             self.getEvalStatistics(similarity_type)
         if parallel == 1:

@@ -58,17 +58,34 @@ class FTM2D(CoverAlgorithm):
         Type of chroma to use (key into features)
     """
     def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
-        CoverAlgorithm.__init__(self, "FTM2D", datapath=datapath, shortname=shortname)
         self.PWR = PWR
         self.WIN = WIN
         self.C = C
         self.chroma_type = chroma_type
         self.shingles = {}
+        CoverAlgorithm.__init__(self, "FTM2D", datapath=datapath, shortname=shortname)
+
+    def get_cacheprefix(self):
+        """
+        Return a descriptive file prefix to use for caching features
+        and distance matrices
+        """
+        return "%s/%s_%s_%s"%(self.cachedir, self.name, self.shortname, self.chroma_type)
 
     def load_features(self, i, do_plot=False):
+        filepath = "%s_%i.h5"%(self.get_cacheprefix(), i)
         if i in self.shingles:
-            # If the result has already been cached, return the cache
+            # If the result has already been cached in memory, 
+            # return the cache
             return self.shingles[i]
+        elif os.path.exists(filepath):
+            # If the result has already been cached on disk, 
+            # load it, save it in memory, and return
+            self.shingles[i] = dd.io.load(filepath)['shingle']
+            # Make sure to also load clique info as a side effect
+            feats = CoverAlgorithm.load_features(self, i)
+            return self.shingles[i]
+
         # Otherwise, compute the shingle
         import librosa.util
         feats = CoverAlgorithm.load_features(self, i)
@@ -98,6 +115,7 @@ class FTM2D(CoverAlgorithm):
             plt.title("Median FFT2D Mag Shingle")
             plt.show()
         self.shingles[i] = shingle
+        dd.io.save(filepath, {'shingle':shingle})
         return shingle
     
     def similarity(self, i, j):
