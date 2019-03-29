@@ -239,28 +239,28 @@ class EarlyFusion(CoverAlgorithm):
         dpixels = int(self.mfccs_per_block*(self.mfccs_per_block-1)/2)
         block_feats['ssms'] = np.zeros((n_blocks, dpixels), dtype=np.float32)
         # Compute MFCC-based features
-        for i in range(n_blocks):
-            i1 = onsets[i]
-            i2 = onsets[i+self.blocksize-1]
+        for b in range(n_blocks):
+            i1 = onsets[b]
+            i2 = onsets[b+self.blocksize-1]
             x = median_resize_block(mfcc, i1, i2, self.mfccs_per_block)
             # Z-normalize
             x -= np.mean(x, 0)[None, :]
             xnorm = np.sqrt(np.sum(x**2, 1))[:, None]
             xnorm[xnorm == 0] = 1
             xn = x / xnorm
-            block_feats['mfccs'][i, :] = xn.flatten()
+            block_feats['mfccs'][b, :] = xn.flatten()
             # Create SSM, resize, and save
             D = get_ssm(xn)
-            block_feats['ssms'][i, :] = D[I < J] # Upper triangular part
+            block_feats['ssms'][b, :] = D[I < J] # Upper triangular part
         
         ## Step 2: Compute chroma blocks
         block_feats['chromas'] = np.zeros((n_blocks, self.chromas_per_block*chroma.shape[1]), dtype=np.float32)
         block_feats['chroma_med'] = np.median(chroma, axis=0)
-        for i in range(n_blocks):
-            i1 = onsets[i]
-            i2 = onsets[i+self.blocksize]
+        for b in range(n_blocks):
+            i1 = onsets[b]
+            i2 = onsets[b+self.blocksize]
             x = median_resize_block(chroma, i1, i2, self.chromas_per_block)
-            block_feats['chromas'][i, :] = x.flatten()
+            block_feats['chromas'][b, :] = x.flatten()
         
         ## Step 3: Precompute Ws for each features
         ssm_fns = {'chromas':lambda x: get_csm_cosine(x, x), 'mfccs':get_ssm, 'ssms':get_ssm}
