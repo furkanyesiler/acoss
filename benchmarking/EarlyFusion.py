@@ -149,7 +149,7 @@ def csm_to_binary(D, kappa):
     I = np.tile(np.arange(N)[:, None], (1, NNeighbs))
     V = np.ones(I.size)
     [I, J] = [I.flatten(), J.flatten()]
-    ret = sparse.coo_matrix((V, (I, J)), shape=(N, M), dtype=np.float32)
+    ret = sparse.coo_matrix((V, (I, J)), shape=(N, M), dtype=np.uint8)
     return ret.toarray()
 
 def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
@@ -312,30 +312,29 @@ class EarlyFusion(CoverAlgorithm):
             self.fout.flush()
         return block_feats
     
-    def similarity(self, i, j):
-        print(i, j)
-        feats1 = self.load_features(i)
-        feats2 = self.load_features(j)
-        ## Step 1: Create all of the parent SSMs
-        Ws = {}
-        scores = {}
-        CSMs = {}
-        tic = time.time()
-        CSMs['mfccs'] = get_csm(feats1['mfccs'], feats2['mfccs'])
-        M, N = CSMs['mfccs'].shape[0], CSMs['mfccs'].shape[1]
-        scores['mfccs'] = swconstrained(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), M, N)
-        CSMs['ssms'] = get_csm(feats1['ssms'], feats2['ssms'])
-        scores['ssms'] = swconstrained(csm_to_binary(CSMs['ssms'], self.kappa).flatten(), M, N)
-        CSMs['chromas'] = get_csm_blocked_cosine_oti(feats1['chromas'], feats2['chromas'], \
-                                                    feats1['chroma_med'], feats2['chroma_med'])
-        scores['chromas'] = swconstrained(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), M, N)
-        if self.log_times:
-            self.fout.write("Raw: %.3g\n"%(time.time()-tic))
-            self.fout.flush()
-
-        for s in scores:
-            self.Ds[s][i, j] = scores[s]
-        return scores
+    def similarity(self, idxs):
+        for i, j in zip(idxs[:, 0], idxs[:, 1]):
+            print(i, j)
+            feats1 = self.load_features(i)
+            feats2 = self.load_features(j)
+            ## Step 1: Create all of the parent SSMs
+            Ws = {}
+            scores = {}
+            CSMs = {}
+            tic = time.time()
+            CSMs['mfccs'] = get_csm(feats1['mfccs'], feats2['mfccs'])
+            M, N = CSMs['mfccs'].shape[0], CSMs['mfccs'].shape[1]
+            scores['mfccs'] = swconstrained(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), M, N)
+            CSMs['ssms'] = get_csm(feats1['ssms'], feats2['ssms'])
+            scores['ssms'] = swconstrained(csm_to_binary(CSMs['ssms'], self.kappa).flatten(), M, N)
+            CSMs['chromas'] = get_csm_blocked_cosine_oti(feats1['chromas'], feats2['chromas'], \
+                                                        feats1['chroma_med'], feats2['chroma_med'])
+            scores['chromas'] = swconstrained(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), M, N)
+            if self.log_times:
+                self.fout.write("Raw: %.3g\n"%(time.time()-tic))
+                self.fout.flush()
+            for s in scores:
+                self.Ds[s][i, j] = scores[s]
         
 
 

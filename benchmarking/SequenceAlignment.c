@@ -26,7 +26,7 @@ float Delta(float a, float b) {
     return gapExtension;
 }
 
-float Match(float i) {
+float Match(unsigned char i) {
     float matchScore = 1;
     float mismatchScore = -1;
     if (i == 0) {
@@ -39,7 +39,7 @@ float Match(float i) {
 
 /*Outputs: 1) Distance (scalar)
 *2) (N+1) x (M+1) dynamic programming matrix (Optional)*/
-float swalignimpconstrained(float* S, int N, int M) {
+float swalignimpconstrained(unsigned char* S, int N, int M) {
     float* D;
     int i, j, k;
     float maxD, d1, d2, d3, MS;

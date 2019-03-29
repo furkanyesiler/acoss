@@ -4,7 +4,7 @@ import cython
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def swconstrained(np.ndarray[float,ndim=1,mode="c"] SParam not None, int N, int M):
+def swconstrained(np.ndarray[unsigned char,ndim=1,mode="c"] SParam not None, int N, int M):
 
 	res = seq.swalignimpconstrained(&SParam[0], N, M)
 
