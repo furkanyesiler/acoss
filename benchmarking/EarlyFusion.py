@@ -25,9 +25,6 @@ def get_ssm(X):
     """
     XSqr = np.sum(X**2, 1)
     DSqr = XSqr[:, None] + XSqr[None, :] - 2*X.dot(X.T)
-    #with np.errstate(invalid='ignore'):
-    #    DSqr[DSqr < 0] = 0
-    DSqr[np.isnan(DSqr)] = 0
     DSqr[DSqr < 0] = 0
     np.fill_diagonal(DSqr, 0)
     return np.sqrt(DSqr)
@@ -48,9 +45,6 @@ def get_csm(X, Y):
         An MxN Euclidean cross-similarity matrix
     """
     C = np.sum(X**2, 1)[:, None] + np.sum(Y**2, 1)[None, :] - 2*X.dot(Y.T)
-    #with np.errstate(invalid='ignore'):
-    #    C[C < 0] = 0
-    C[np.isnan(C)] = 0
     C[C < 0] = 0
     return np.sqrt(C)
 
@@ -175,7 +169,7 @@ def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
     if median_aggregate:
         import librosa
         idxs = np.linspace(i1, i2, frames_per_block-1)
-        idxs = np.array(np.round(idxs), dtype=int)
+        idxs = np.array(np.floor(idxs), dtype=int)
         res = librosa.util.sync(X.T, idxs, aggregate=np.median).T
         ret = res
         if res.shape[0] > frames_per_block:
@@ -187,9 +181,10 @@ def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
     else:
         import skimage.transform
         x = X[i1:i2, :]
-        x = x.astype('float64')
-        return skimage.transform.resize(x, (frames_per_block, x.shape[1]), anti_aliasing=True, mode='reflect')
-
+        ret = skimage.transform.resize(x, (frames_per_block, x.shape[1]), anti_aliasing=True, mode='constant')
+        ret[np.isinf(ret)] = 0
+        ret[np.isnan(ret)] = 0
+        return ret
 
 
 """====================================================
@@ -231,7 +226,7 @@ class EarlyFusion(CoverAlgorithm):
         self.all_block_feats = {} # Cached features
         self.log_times = log_times
         if log_times:
-            self.fout = open("earlyfusionlog.txt", "w")
+            self.times = {'features':[], 'raw':[]}
         CoverAlgorithm.__init__(self, "EarlyFusion", datapath=datapath, shortname=shortname, \
                                 similarity_types=["mfccs", "ssms", "chromas", "early"])
 
@@ -263,7 +258,6 @@ class EarlyFusion(CoverAlgorithm):
                 Median of all chroma frames across song (for OTI)
         }
         """
-        import librosa.util
         filepath = "%s_%i.h5"%(self.get_cacheprefix(), i)
         if i in self.all_block_feats:
             # If the result has already been cached in memory, 
@@ -281,6 +275,7 @@ class EarlyFusion(CoverAlgorithm):
         feats = CoverAlgorithm.load_features(self, i)
         chroma = feats[self.chroma_type]
         mfcc = feats['mfcc_htk'].T
+        mfcc[np.isnan(mfcc)] = 0
 
         onsets = feats['madmom_features']['onsets']
         n_beats = len(onsets)
@@ -328,69 +323,13 @@ class EarlyFusion(CoverAlgorithm):
         self.all_block_feats[i] = block_feats # Cache features
         dd.io.save(filepath, block_feats)
         if self.log_times:
-            self.fout.write("Features %.3g\n"%(time.time()-tic))
-            self.fout.flush()
+            self.times['features'].append(time.time()-tic)
         return block_feats
-    
-
-    def loadandwrite(self, i):
-        filepath = "%s_%i.h5"%(self.get_cacheprefix(), i)
-        if not os.path.exists(filepath):
-            tic = time.time()
-            block_feats = {}
-            feats = CoverAlgorithm.load_features(self, i)
-            chroma = feats[self.chroma_type]
-            mfcc = feats['mfcc_htk'].T
-
-            onsets = feats['madmom_features']['onsets']
-            n_beats = len(onsets)
-            n_blocks = n_beats - self.blocksize
-
-            ## Step 1: Compute raw MFCC and MFCC SSM blocked features
-            # Allocate space for MFCC-based features
-            block_feats['mfccs'] = np.zeros((n_blocks, self.mfccs_per_block*mfcc.shape[1]), dtype=np.float32)
-            pix = np.arange(self.mfccs_per_block)
-            I, J = np.meshgrid(pix, pix)
-            dpixels = int(self.mfccs_per_block*(self.mfccs_per_block-1)/2)
-            block_feats['ssms'] = np.zeros((n_blocks, dpixels), dtype=np.float32)
-            # Compute MFCC-based features
-            for b in range(n_blocks):
-                i1 = onsets[b]
-                i2 = onsets[b+self.blocksize-1]
-                x = resize_block(mfcc, i1, i2, self.mfccs_per_block)
-                # Z-normalize
-                x -= np.mean(x, 0)[None, :]
-                xnorm = np.sqrt(np.sum(x**2, 1))[:, None]
-                xnorm[xnorm == 0] = 1
-                xn = x / xnorm
-                block_feats['mfccs'][b, :] = xn.flatten()
-                # Create SSM, resize, and save
-                D = get_ssm(xn)
-                block_feats['ssms'][b, :] = D[I < J] # Upper triangular part
-            
-            ## Step 2: Compute chroma blocks
-            block_feats['chromas'] = np.zeros((n_blocks, self.chromas_per_block*chroma.shape[1]), dtype=np.float32)
-            block_feats['chroma_med'] = np.median(chroma, axis=0)
-            for b in range(n_blocks):
-                i1 = onsets[b]
-                i2 = onsets[b+self.blocksize]
-                x = resize_block(chroma, i1, i2, self.chromas_per_block)
-                block_feats['chromas'][b, :] = x.flatten()
-            
-            ## Step 3: Precompute Ws for each features
-            """ Skip this since I'm doing a simpler, accelerated early fusion
-            ssm_fns = {'chromas':lambda x: get_csm_cosine(x, x), 'mfccs':get_ssm, 'ssms':get_ssm}
-            for feat in ssm_fns:
-                d = ssm_fns[feat](block_feats[feat])
-                block_feats['%s_W'%feat] = getW(d, self.K)
-            """
-
-            self.all_block_feats[i] = block_feats # Cache features
-            dd.io.save(filepath, block_feats)
 
 
     def similarity(self, idxs):
         for i, j in zip(idxs[:, 0], idxs[:, 1]):
+            print(i, j)
             feats1 = self.load_features(i)
             feats2 = self.load_features(j)
             ## Step 1: Create all of the parent SSMs
@@ -406,9 +345,6 @@ class EarlyFusion(CoverAlgorithm):
             CSMs['chromas'] = get_csm_blocked_cosine_oti(feats1['chromas'], feats2['chromas'], \
                                                         feats1['chroma_med'], feats2['chroma_med'])
             scores['chromas'] = swconstrained(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), M, N)
-            if self.log_times:
-                self.fout.write("Raw: %.3g\n"%(time.time()-tic))
-                self.fout.flush()
             
             ## Step 2: Compute Ws for each CSM
             W_CSMs = {s:getWCSM(CSMs[s], self.K, self.K) for s in CSMs}
@@ -417,7 +353,10 @@ class EarlyFusion(CoverAlgorithm):
                 WCSM_sum += W_CSMs[s]
             WCSM_sum = np.exp(-WCSM_sum) # Binary thresholding uses "distances" so switch back
             scores['early'] = swconstrained(csm_to_binary(WCSM_sum, self.kappa).flatten(), M, N)
-            
+
+            if self.log_times:
+                self.times['raw'].append(time.time()-tic)
+
             for s in scores:
                 self.Ds[s][i, j] = scores[s]
     
@@ -442,7 +381,7 @@ if __name__ == '__main__':
                         help="Parallel computing or not")
     parser.add_argument("-n", '--n_cores', type=int, action="store", default=1,
                         help="No of cores required for parallelization")
-    parser.add_argument("-l", '--log_times', type=int, action="store", default=0,
+    parser.add_argument("-l", '--log_times', type=int, choices=(0, 1), action="store", default=0,
                         help="Whether to log times to a file")
 
     cmd_args = parser.parse_args()
@@ -450,16 +389,20 @@ if __name__ == '__main__':
     ef = EarlyFusion(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname, log_times=bool(cmd_args.log_times))
     if cmd_args.parallel == 1:
         from joblib import Parallel, delayed
-        Parallel(n_jobs=cmd_args.n_cores, verbose=1)(delayed(ef.loadandwrite)(i) for i in range(len(ef.filepaths)))
-    for i in range(len(ef.filepaths)):
-        print("Preloading features %i of %i"%(i+1, len(ef.filepaths)))
-        ef.load_features(i)
+        Parallel(n_jobs=cmd_args.n_cores, verbose=1)(delayed(ef.load_features)(i) for i in range(len(ef.filepaths)))
+    else:
+        for i in range(len(ef.filepaths)):
+            print("Preloading features %i of %i"%(i+1, len(ef.filepaths)))
+            ef.load_features(i)
     ef.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
     ef.do_late_fusion()
     for similarity_type in ef.Ds:
         ef.getEvalStatistics(similarity_type)
     ef.cleanup_memmap()
     
+    if ef.log_times:
+        for s in ef.times:
+            print("%s: %.3g"%(s, np.mean(ef.times[s])))
 
     print("... Done ....")
 
