@@ -252,5 +252,21 @@ class CoverAlgorithm(object):
         for i in range(len(tops)):
             tops[i] = np.sum(ranks <= topsidx[i])
             print("Top-%i: %i"%(topsidx[i], tops[i]))
+        
+        # Output to CSV file
+        resultsfile = "results_%s.csv"%self.shortname
+        if not os.path.exists(resultsfile):
+            fout = open(resultsfile, "w")
+            fout.write("name, MR, MRR, MDR, MAP")
+            for t in topsidx:
+                fout.write(",Top-%i"%t)
+            fout.write("\n")
+        fout = open(resultsfile, "a")
+        fout.write("%s_%s,"%(self.name, similarity_type))
+        fout.write("%.3g, %.3g, %.3g, %.3g"%(MR, MRR, MDR, MAP))
+        for t in tops:
+            fout.write(", %.3g"%t)
+        fout.write("\n")
+        fout.close()
         return (MR, MRR, MDR, MAP, tops)
 
