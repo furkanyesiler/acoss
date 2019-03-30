@@ -181,6 +181,7 @@ def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
     else:
         import skimage.transform
         x = X[i1:i2, :]
+        x = x.astype('float64')
         ret = skimage.transform.resize(x, (frames_per_block, x.shape[1]), anti_aliasing=True, mode='constant')
         ret[np.isinf(ret)] = 0
         ret[np.isnan(ret)] = 0
