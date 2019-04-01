@@ -2,7 +2,7 @@
 """
 """
 from sklearn.metrics.pairwise import euclidean_distances
-from pySeqAlign import swconstrained
+from pySeqAlign import qmax
 from CoverAlgorithm import *
 import numpy as np
 import argparse
@@ -111,16 +111,20 @@ class Serra09(CoverAlgorithm):
     Same as CoverAlgorithms, plus
     chroma_type: string
         Type of chroma to use (key into features)
+    shapes: {int: int}
+        Shapes of each song, used for normalization
     """
     def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='benchmark', 
-                oti=True, kappa=0.095, tau=1, m=9, gammaO=0.5, gammaE=0.5):
+                oti=True, kappa=0.095, tau=1, m=9):
 
         self.oti = oti
         self.tau = tau
         self.m = m
         self.chroma_type = chroma_type
-        self.gammaO = gammaO
-        self.gammaE = gammaE
+        self.kappa = kappa
+        self.tau = tau
+        self.m = m
+        self.shapes = {}
         CoverAlgorithm.__init__(self, "QMAX", datapath=datapath, shortname=shortname)
 
     def load_features(self, i):
@@ -131,14 +135,26 @@ class Serra09(CoverAlgorithm):
     def similarity(self, idxs):
         print(idxs)
         for i,j in zip(idxs[:, 0], idxs[:, 1]):
-          query_feature = self.load_features(i)
-          reference_feature = self.load_features(j)
-          csm = cross_recurrent_plot(query_feature, reference_feature, kappa=self.kappa, oti=self.oti)
-          csm = csm.astype(dtype=np.uint8)
-          scores = swconstrained(csm.flatten(), csm.shape[0], csm.shape[1])
-          scores = np.sqrt(csm.shape[1]) / scores
-          for key in self.Ds.keys():
-            self.Ds[key][i][j] = scores 
+            query_feature = self.load_features(i)
+            reference_feature = self.load_features(j)
+            csm = cross_recurrent_plot(query_feature, reference_feature, kappa=self.kappa, oti=self.oti)
+            csm = csm.astype(dtype=np.uint8)
+            M, N = csm.shape[0], csm.shape[1]
+            D = np.zeros(M*N, dtype=np.float32)
+            score = qmax(csm.flatten(), D, M, N)
+            self.shapes[j] = N
+            #score = np.sqrt(csm.shape[1]) / score
+            for key in self.Ds.keys():
+                self.Ds[key][i][j] = score
+    
+    def normalize_by_length(self):
+        """
+        Do a non-symmetric normalization by length
+        """
+        for key in self.Ds.keys():
+            for i in range(self.Ds[key].shape[0]):
+                for j in range(self.Ds[key].shape[1]):
+                    self.Ds[key][i, j] = np.sqrt(self.shapes[j]) / self.Ds[key][i, j]
 
 
 
@@ -158,7 +174,8 @@ if __name__ == '__main__':
     cmd_args = parser.parse_args()
 
     qmax = Serra09(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
-    qmax.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=False)
+    qmax.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
+    qmax.normalize_by_length()
     for similarity_type in qmax.Ds.keys():
         print(similarity_type)
         qmax.getEvalStatistics(similarity_type)
