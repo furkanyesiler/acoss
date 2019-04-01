@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from CoverAlgorithm import *
 from SimilarityFusion import *
 import argparse
-from pySeqAlign import swconstrained
+from pySeqAlign import swconstrained as alignment_fn
 
 
 """====================================================
@@ -328,7 +328,7 @@ class EarlyFusion(CoverAlgorithm):
         return block_feats
 
 
-    def similarity(self, idxs):
+    def similarity(self, idxs, do_plot=False):
         for i, j in zip(idxs[:, 0], idxs[:, 1]):
             print(i, j)
             feats1 = self.load_features(i)
@@ -340,12 +340,15 @@ class EarlyFusion(CoverAlgorithm):
             tic = time.time()
             CSMs['mfccs'] = get_csm(feats1['mfccs'], feats2['mfccs'])
             M, N = CSMs['mfccs'].shape[0], CSMs['mfccs'].shape[1]
-            scores['mfccs'] = swconstrained(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), M, N)
+            D = np.zeros((M+1, N+1), dtype=np.float32)
+            scores['mfccs'] = alignment_fn(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), D, M, N)
             CSMs['ssms'] = get_csm(feats1['ssms'], feats2['ssms'])
-            scores['ssms'] = swconstrained(csm_to_binary(CSMs['ssms'], self.kappa).flatten(), M, N)
+            D *= 0
+            scores['ssms'] = alignment_fn(csm_to_binary(CSMs['ssms'], self.kappa).flatten(), D, M, N)
             CSMs['chromas'] = get_csm_blocked_cosine_oti(feats1['chromas'], feats2['chromas'], \
                                                         feats1['chroma_med'], feats2['chroma_med'])
-            scores['chromas'] = swconstrained(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), M, N)
+            D *= 0
+            scores['chromas'] = alignment_fn(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), D, M, N)
             
             ## Step 2: Compute Ws for each CSM
             W_CSMs = {s:getWCSM(CSMs[s], self.K, self.K) for s in CSMs}
@@ -353,7 +356,16 @@ class EarlyFusion(CoverAlgorithm):
             for s in W_CSMs:
                 WCSM_sum += W_CSMs[s]
             WCSM_sum = np.exp(-WCSM_sum) # Binary thresholding uses "distances" so switch back
-            scores['early'] = swconstrained(csm_to_binary(WCSM_sum, self.kappa).flatten(), M, N)
+            D *= 0
+            scores['early'] = alignment_fn(csm_to_binary(WCSM_sum, self.kappa).flatten(), D, M, N)
+            if do_plot:
+                plt.figure(figsize=(12, 6))
+                plt.subplot(121)
+                plt.imshow(csm_to_binary(WCSM_sum, self.kappa))
+                plt.subplot(122)
+                plt.imshow(np.reshape(D, (M+1, N+1)))
+                plt.title("%.3g"%scores['early'])
+                plt.show()
 
             if self.log_times:
                 self.times['raw'].append(time.time()-tic)
