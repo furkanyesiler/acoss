@@ -23,8 +23,6 @@ class Serra09(CoverAlgorithm):
     downsample_fac: int
         The factor by which to downsample the HPCPs with
         median aggregation
-    shapes: {int: int}
-        Shapes of each song, used for normalization
     all_feats: {int: dictionary}
         Cached features
     """
@@ -38,9 +36,7 @@ class Serra09(CoverAlgorithm):
         self.tau = tau
         self.m = m
         self.downsample_fac = downsample_fac
-        self.shapes = {}
         self.all_feats = {} # For caching features (global chroma and stacked chroma)
-
         CoverAlgorithm.__init__(self, "Serra09", datapath=datapath, shortname=shortname)
 
     def load_features(self, i):
@@ -59,7 +55,6 @@ class Serra09(CoverAlgorithm):
 
     def similarity(self, idxs):
         for i,j in zip(idxs[:, 0], idxs[:, 1]):
-            print(i, j)
             Si = self.load_features(i)
             Sj = self.load_features(j)
             csm = get_csm_blocked_oti(Si['stacked'], Sj['stacked'], Si['gchroma'], Sj['gchroma'], get_csm_euclidean)
@@ -67,7 +62,6 @@ class Serra09(CoverAlgorithm):
             M, N = csm.shape[0], csm.shape[1]
             D = np.zeros(M*N, dtype=np.float32)
             score = qmax(csm.flatten(), D, M, N)
-            self.shapes[j] = N
             for key in self.Ds.keys():
                 self.Ds[key][i][j] = score
     
@@ -76,12 +70,14 @@ class Serra09(CoverAlgorithm):
         Do a non-symmetric normalization by length
         """
         for key in self.Ds.keys():
-            for i in range(self.Ds[key].shape[0]):
-                for j in range(self.Ds[key].shape[1]):
+            for j in range(self.Ds[key].shape[1]):
+                f = self.load_features(j)
+                norm_fac = np.sqrt(f['stacked'].shape[0])
+                for i in range(self.Ds[key].shape[0]):     
                     # Do the reciprocal of what's written in the paper, since
                     # the evaluation statistics assume something with a higher
                     # score is more similar
-                    self.Ds[key][i, j] = self.Ds[key][i, j] / np.sqrt(self.shapes[j])
+                    self.Ds[key][i, j] /= norm_fac
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Benchmarking with Joan Serra's Cover id algorithm",
