@@ -340,7 +340,7 @@ class EarlyFusion(CoverAlgorithm):
             tic = time.time()
             CSMs['mfccs'] = get_csm(feats1['mfccs'], feats2['mfccs'])
             M, N = CSMs['mfccs'].shape[0], CSMs['mfccs'].shape[1]
-            D = np.zeros((M+1, N+1), dtype=np.float32)
+            D = np.zeros((M+1)*(N+1), dtype=np.float32)
             scores['mfccs'] = alignment_fn(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), D, M, N)
             CSMs['ssms'] = get_csm(feats1['ssms'], feats2['ssms'])
             D *= 0

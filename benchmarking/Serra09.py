@@ -154,7 +154,10 @@ class Serra09(CoverAlgorithm):
         for key in self.Ds.keys():
             for i in range(self.Ds[key].shape[0]):
                 for j in range(self.Ds[key].shape[1]):
-                    self.Ds[key][i, j] = np.sqrt(self.shapes[j]) / self.Ds[key][i, j]
+                    # Do the reciprocal of what's written in the paper, since
+                    # the evaluation statistics assume something with a higher
+                    # score is more similar
+                    self.Ds[key][i, j] = self.Ds[key][i, j] / np.sqrt(self.shapes[j])
 
 
 
