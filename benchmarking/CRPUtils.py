@@ -1,14 +1,13 @@
 """
-Utility functions for cross-recurrence plots and 
+Utility functions for cross-recurrence plots and
 optimal transposition indexes
 """
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy import sparse
 
 def get_ssm(X):
     """
-    Fast code for computing the Euclidean self-similarity 
+    Fast code for computing the Euclidean self-similarity
     matrix of a point cloud
     Parameters
     ----------
@@ -90,6 +89,7 @@ def get_oti(C1, C2, do_plot = False):
     for i in range(NChroma):
         shiftScores[i] = np.sum(np.roll(C1, i)*C2)
     if do_plot:
+        import matplotlib.pyplot as plt
         plt.plot(shiftScores)
         plt.title("OTI")
         plt.show()

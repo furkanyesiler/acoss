@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from CoverAlgorithm import *
 from SimilarityFusion import *
 import argparse
@@ -119,11 +118,11 @@ class EarlyFusion(CoverAlgorithm):
         """
         filepath = "%s_%i.h5"%(self.get_cacheprefix(), i)
         if i in self.all_block_feats:
-            # If the result has already been cached in memory, 
+            # If the result has already been cached in memory,
             # return the cache
             return self.all_block_feats[i]
         elif os.path.exists(filepath):
-            # If the result has already been cached on disk, 
+            # If the result has already been cached on disk,
             # load it, save it in memory, and return
             self.all_block_feats[i] = dd.io.load(filepath)
             # Make sure to also load clique info as a side effect
@@ -161,7 +160,7 @@ class EarlyFusion(CoverAlgorithm):
             # Create SSM, resize, and save
             D = get_ssm(xn)
             block_feats['ssms'][b, :] = D[I < J] # Upper triangular part
-        
+
         ## Step 2: Compute chroma blocks
         block_feats['chromas'] = np.zeros((n_blocks, self.chromas_per_block*chroma.shape[1]), dtype=np.float32)
         block_feats['chroma_med'] = np.median(chroma, axis=0)
@@ -170,7 +169,7 @@ class EarlyFusion(CoverAlgorithm):
             i2 = onsets[b+self.blocksize]
             x = resize_block(chroma, i1, i2, self.chromas_per_block)
             block_feats['chromas'][b, :] = x.flatten()
-        
+
         ## Step 3: Precompute Ws for each features
         """ Skip this since I'm doing a simpler, accelerated early fusion
         ssm_fns = {'chromas':lambda x: get_csm_cosine(x, x), 'mfccs':get_ssm, 'ssms':get_ssm}
@@ -208,7 +207,7 @@ class EarlyFusion(CoverAlgorithm):
                                                         get_csm_cosine)
             D *= 0
             scores['chromas'] = alignment_fn(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), D, M, N)
-            
+
             ## Step 2: Compute Ws for each CSM
             W_CSMs = {s:getWCSM(CSMs[s], self.K, self.K) for s in CSMs}
             WCSM_sum = np.zeros_like(CSMs['mfccs'])
@@ -218,6 +217,7 @@ class EarlyFusion(CoverAlgorithm):
             D *= 0
             scores['early'] = alignment_fn(csm_to_binary(WCSM_sum, self.kappa).flatten(), D, M, N)
             if do_plot:
+                import matplotlib.pyplot as plt
                 plt.figure(figsize=(12, 6))
                 plt.subplot(121)
                 plt.imshow(csm_to_binary(WCSM_sum, self.kappa))
@@ -231,7 +231,7 @@ class EarlyFusion(CoverAlgorithm):
 
             for s in scores:
                 self.Ds[s][i, j] = scores[s]
-    
+
     def do_late_fusion(self):
         """
         Perform late fusion after all different pairwise similarity scores
@@ -277,4 +277,3 @@ if __name__ == '__main__':
             print("%s: %.3g"%(s, np.mean(ef.times[s])))
 
     print("... Done ....")
-

@@ -5,11 +5,11 @@ Purpose: To implement similarity network fusion approach described in
 [2] Wang, Bo, et al. "Similarity network fusion for aggregating data types on a genomic scale." Nature methods 11.3 (2014): 333-337.
 """
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy import sparse
 import scipy.io as sio
 import time
 import os
+
 
 def getW(D, K, Mu = 0.5):
     """
@@ -210,7 +210,7 @@ def testSimilarityFusion():
 
     DFPython = doSimilarityFusionWs(Ws, K=10, niters=5)
     np.fill_diagonal(DFPython, 0)
-    
+    import matplotlib.pyplot as plt
     plt.figure(figsize=(6*len(fnames)+6, 6))
     for k, f in enumerate(fnames):
         plt.subplot(1, len(fnames)+1, k+1)

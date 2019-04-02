@@ -1,0 +1,6 @@
+cython
+numpy
+librosa
+scipy
+essentia
+deepdish
