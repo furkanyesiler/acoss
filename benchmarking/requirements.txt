@@ -1,6 +1,6 @@
-cython
-numpy
-librosa
-scipy
+cython==0.29.1
+numpy==1.12.1
+librosa==0.6.3
+scipy==1.2.
+deepdish==0.3.6
 essentia
-deepdish
