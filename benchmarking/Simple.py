@@ -69,7 +69,7 @@ class Simple(CoverAlgorithm):
     def simple_sim(self, seq_a, seq_b):
     
         # prerequisites
-        ndim = seq_b.shape[0]   
+        ndim = seq_b.shape[0]
         seq_a_len = seq_a.shape[1]
         seq_b_len = seq_b.shape[1]
         
@@ -123,19 +123,19 @@ class Simple(CoverAlgorithm):
     
         for i,j in zip(idxs[:, 0], idxs[:, 1]):
             Si = self.load_features(i)
-            Sj = self.load_features(j)
+            Sj,_ = self.oti(Si,self.load_features(j))
             sim = 1/self.simple_sim(Si, Sj)
             self.Ds['main'][i, j] = sim
 
 
 if __name__ == '__main__':
-    #ftm2d_allpairwise_covers80(chroma_type='crema')
+    #simple(chroma_type='crema')
     parser = argparse.ArgumentParser(description="Benchmarking with Similarity Matrix Profile-based similarity",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
+    parser.add_argument("-d", '--datapath', type=str, action="store", default='features_covers80',
                         help="Path to data files")
     parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")
-    parser.add_argument("-c", '--chroma_type', type=str, action="store", default='hpcp',
+    parser.add_argument("-c", '--chroma_type', type=str, action="store", default='crema',
                         help="Type of chroma to use for experiments")
     parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=0,
                         help="Parallel computing or not")
@@ -151,6 +151,6 @@ if __name__ == '__main__':
     simple.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=False)
     for similarity_type in simple.Ds.keys():
         simple.getEvalStatistics(similarity_type)
-    ftm2d.cleanup_memmap()
+    simple.cleanup_memmap()
 
     print("... Done ....")
