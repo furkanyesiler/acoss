@@ -3,7 +3,7 @@ import scipy
 import matplotlib.pyplot as plt
 from CoverAlgorithm import *
 
-from joblib import Parallel, delayed
+import argparse
 
 import librosa
 import scipy
@@ -21,23 +21,24 @@ class Simple(CoverAlgorithm):
     WIN=200, the window length for the dimensionality reduction
     SKIP=100, how many frames the dim reduction will skip each step
     """
-    def __init__(self, datapath="crema_benchmark", SSLEN=10, WIN=200, SKIP=100):
-        CoverAlgorithm.__init__(self, "Simple - CREMA", datapath)
+    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', SSLEN=10, WIN=200, SKIP=100):
         self.SSLEN = SSLEN
         self.WIN = WIN
         self.SKIP = SKIP
+        self.chroma_type = chroma_type
+        CoverAlgorithm.__init__(self, "Simple", datapath=datapath, shortname=shortname)
 
     def load_features(self, i, do_plot=False):
         
         feats = CoverAlgorithm.load_features(self, i)
-        crema_orig = feats['crema'].T
+        feat_orig = feats[self.chroma_type].T
         
-        new_crema = np.zeros((crema_orig.shape[0],(int)(crema_orig.shape[1]/self.SKIP)))
+        new_feat = np.zeros((feat_orig.shape[0],(int)(feat_orig.shape[1]/self.SKIP)))
 
-        for i in range(0,new_crema.shape[1]):
-            new_crema[:,i] = np.mean(crema_orig[:,i*self.SKIP:i*self.SKIP+self.WIN],axis=1)
+        for i in range(0,new_feat.shape[1]):
+            new_feat[:,i] = np.mean(feat_orig[:,i*self.SKIP:i*self.SKIP+self.WIN],axis=1)
 
-        return self.smooth(new_crema)
+        return self.smooth(new_feat)
         
     def oti(self, seq_a, seq_b):
         
@@ -118,36 +119,38 @@ class Simple(CoverAlgorithm):
         return np.median(matrix_profile)
     
     
-    def similarity(self, i, j):
-        
-        seq_a = self.load_features(i)
-        seq_b, _ = self.oti(seq_a, self.load_features(j))               
-        
-        self.D[i, j] = 1/self.simple_sim(seq_a, seq_b)
-        self.D[j, i] = 1/self.simple_sim(seq_b, seq_a)
-            
-        return i, j, self.D[i, j], self.D[j, i]
-
-
-def simple_allpairwise():
-    """
-    Show how one might do all pairwise comparisons between songs,
-    with code that is amenable to parallelizations.
-    """
-    from itertools import combinations
-    import scipy.io as sio
-    simple = Simple()
-    for idx, (i, j) in enumerate(combinations(range(len(simple.filepaths)), 2)):
-        simple.similarity(i, j)
-        if idx%100 == 0:
-            print((i, j))
+    def similarity(self, idxs):
     
-    # In the serial case, I'm saving all pairwise comparisons to disk
-    # but in the parallel case, there should probably be a separate
-    # file for each pair
-    sio.savemat("SimpleCREMA.mat", {"D":simple.D})
-    simple.getEvalStatistics()
+        for i,j in zip(idxs[:, 0], idxs[:, 1]):
+            Si = self.load_features(i)
+            Sj = self.load_features(j)
+            sim = 1/self.simple_sim(Si, Sj)
+            self.Ds['main'][i, j] = sim
 
 
 if __name__ == '__main__':
-    simple_allpairwise()
+    #ftm2d_allpairwise_covers80(chroma_type='crema')
+    parser = argparse.ArgumentParser(description="Benchmarking with Similarity Matrix Profile-based similarity",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
+                        help="Path to data files")
+    parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")
+    parser.add_argument("-c", '--chroma_type', type=str, action="store", default='hpcp',
+                        help="Type of chroma to use for experiments")
+    parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=0,
+                        help="Parallel computing or not")
+    parser.add_argument("-n", '--n_cores', type=int, action="store", default=1,
+                        help="No of cores required for parallelization")
+
+    cmd_args = parser.parse_args()
+
+    simple = Simple(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
+    for i in range(len(simple.filepaths)):
+        simple.load_features(i)
+    print('Feature loading done.')
+    simple.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=False)
+    for similarity_type in simple.Ds.keys():
+        simple.getEvalStatistics(similarity_type)
+    ftm2d.cleanup_memmap()
+
+    print("... Done ....")
