@@ -124,7 +124,7 @@ class Simple(CoverAlgorithm):
         for i,j in zip(idxs[:, 0], idxs[:, 1]):
             Si = self.load_features(i)
             Sj,_ = self.oti(Si,self.load_features(j))
-            sim = 1/self.simple_sim(Si, Sj)
+            sim = -self.simple_sim(Si, Sj)
             self.Ds['main'][i, j] = sim
 
 
