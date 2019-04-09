@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import deepdish as dd
 import pandas as pd
 import seaborn as sns
+from scipy.stats import ks_2samp
 import glob
 
 def get_cover_pairs(extractor):
@@ -170,9 +171,63 @@ def get_tempo_stats(min_confidence=0):
     plt.title("Tempo Ratios")
     plt.savefig("TempoRatios.svg", bbox_inches='tight')
 
+def getFMeasure(tags1, tags2, cutoff = 0.062):
+    tags1 = {s:f for (s, f) in tags1 if float(f) > cutoff} 
+    tags2 = {s:f for (s, f) in tags2 if float(f) > cutoff}
+    if len(tags1) == 0 or len(tags2) == 0:
+        return np.inf
+    r1 = 0
+    for t in tags1:
+        if t in tags2:
+            r1 += 1
+    r2 = 0
+    for t in tags2:
+        if t in tags1:
+            r2 += 1
+    r = float(r1)/len(tags1)
+    p = float(r2)/len(tags2)
+    if r == 0 or p == 0:
+        return 0
+    return 2*(r*p)/(r+p)
+    
+
+def get_tag_stats():
+    """
+    Look at the F-measure between tags of cover pairs and false
+    cover pairs
+    """
+    files = glob.glob('tag_all_whatisacover/*.h5')
+    pairs = {}
+    for i, f in enumerate(files):
+        if i%100 == 0:
+            print("Loaded %i of %i..."%(i, len(files)))
+        fields = dd.io.load(f)
+        label, tags = fields['label'], fields['tags']
+        if not label in pairs:
+            pairs[label] = []
+        pairs[label].append(tags)
+    cutoff = 0.062
+    true_pairs = np.zeros(len(pairs))
+    false_pairs = np.zeros_like(true_pairs)
+    keys = list(pairs.keys())
+    for i, k in enumerate(keys):
+        tags1 = pairs[k][0]
+        tags2 = pairs[k][1]
+        true_pairs[i] = getFMeasure(tags1, tags2, cutoff)
+        tags3 = pairs[(keys[0:i] + keys[i+1::])[np.random.randint(len(keys)-1)]][0]
+        false_pairs[i] = getFMeasure(tags1, tags3, cutoff)
+    true_pairs = true_pairs[np.isfinite(true_pairs)]
+    false_pairs = false_pairs[np.isfinite(false_pairs)]
+    sns.distplot(true_pairs, kde=True, norm_hist=True)
+    sns.distplot(false_pairs, kde=True, norm_hist=True)
+    print(ks_2samp(true_pairs, false_pairs))
+
+
 
 if __name__ == '__main__':
     #save_keys_csv()
-    get_key_stats()
+    #get_key_stats()
     #save_tempo_csv()
     #get_tempo_stats()
+    #get_onset_stats()
+    get_tag_stats()
