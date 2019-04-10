@@ -5,6 +5,7 @@ import pandas as pd
 import seaborn as sns
 from scipy.stats import ks_2samp
 import glob
+from CRPUtils import *
 
 def get_cover_pairs(extractor):
     """
@@ -22,6 +23,7 @@ def get_cover_pairs(extractor):
     """
     files = glob.glob('feature_whatisacover/*.h5')
     pairs = {}
+    paths = {}
     for i, f in enumerate(files):
         if i%100 == 0:
             print("Loaded %i of %i..."%(i, len(files)))
@@ -29,8 +31,10 @@ def get_cover_pairs(extractor):
         label, feat = fields['label'], extractor(fields)
         if not label in pairs:
             pairs[label] = []
+            paths[label] = []
         pairs[label].append(feat)
-    return pairs
+        paths[label].append(f)
+    return pairs, paths
 
 def get_key_info(fields):
     ret = fields['key_extractor']
@@ -42,7 +46,7 @@ def save_keys_csv():
     Save a csv file called "keys.csv" with the extracted keys
     for all pairs
     """
-    pairs = get_cover_pairs(get_key_info)
+    pairs, _ = get_cover_pairs(get_key_info)
     table = []
     index = []
     for p in pairs:
@@ -113,9 +117,9 @@ def get_key_stats(min_confidence=0.75):
     keyidx = keyidx[(keysame==0)*(majmin==1), :]
     dist = np.abs(keyidx[:, 0] - keyidx[:, 1])
     dist = np.minimum(dist, 12-dist)
-    plt.clf()
+    plt.figure(figsize=(5, 2.5))
     sns.distplot(dist, kde=False, norm_hist=False)
-    plt.xlabel("Transposition Distance")
+    plt.xlabel("Transposition Distance in Halfsteps")
     plt.ylabel("Count")
     plt.title("Distribution of Transposition Changes")
     plt.savefig("Transposition.svg", bbox_inches='tight')
@@ -130,7 +134,7 @@ def save_tempo_csv():
     Save a csv file called "tempos.csv" with the extracted clearest
     tempos and their confidences
     """
-    pairs = get_cover_pairs(get_maxtempo)
+    pairs, _ = get_cover_pairs(get_maxtempo)
     table = np.zeros((len(pairs), 4))
     index = []
     for i, p in enumerate(pairs):
@@ -164,8 +168,9 @@ def get_tempo_stats(min_confidence=0):
     print(np.quantile(ratios, 0.25))
     print(np.quantile(ratios, 0.5))
     print(np.quantile(ratios, 0.75))
-    plt.clf()
+    plt.figure(figsize=(5, 2.5))
     sns.distplot(ratios, norm_hist=False)
+    plt.xlim([1, 3])
     plt.xlabel("Ratio")
     plt.ylabel("Counts")
     plt.title("Tempo Ratios")
@@ -196,6 +201,7 @@ def get_tag_stats():
     Look at the F-measure between tags of cover pairs and false
     cover pairs
     """
+    import scipy.io as sio
     files = glob.glob('tag_all_whatisacover/*.h5')
     pairs = {}
     for i, f in enumerate(files):
@@ -208,26 +214,38 @@ def get_tag_stats():
         pairs[label].append(tags)
     cutoff = 0.062
     true_pairs = np.zeros(len(pairs))
-    false_pairs = np.zeros_like(true_pairs)
+    false_pairs = []
     keys = list(pairs.keys())
     for i, k in enumerate(keys):
+        print(i)
         tags1 = pairs[k][0]
         tags2 = pairs[k][1]
         true_pairs[i] = getFMeasure(tags1, tags2, cutoff)
-        tags3 = pairs[(keys[0:i] + keys[i+1::])[np.random.randint(len(keys)-1)]][0]
-        false_pairs[i] = getFMeasure(tags1, tags3, cutoff)
+        for k2 in keys:
+            if k == k2:
+                continue
+            false_pairs.append(getFMeasure(tags1, pairs[k2][1], cutoff))
+    false_pairs = np.array(false_pairs)
     true_pairs = true_pairs[np.isfinite(true_pairs)]
     false_pairs = false_pairs[np.isfinite(false_pairs)]
-    sns.distplot(true_pairs, kde=True, norm_hist=True)
-    sns.distplot(false_pairs, kde=True, norm_hist=True)
+    sio.savemat("tags.mat", {"true_pairs":true_pairs, "false_pairs":false_pairs})
+    plt.figure(figsize=(8, 4))
+    sns.distplot(true_pairs, kde=False, bins=bins, norm_hist=True)
+    sns.distplot(false_pairs, kde=False, bins=bins, norm_hist=True)
+    plt.xlabel("F-Measure")
+    plt.ylabel("Density")
+    plt.legend(["True Pairs", "False Pairs"])
+    plt.title("Auto Tagging F-Measure Distributions")
+    plt.show()
+    plt.savefig("AutoTag.svg", bbox_inches='tight')
     print(ks_2samp(true_pairs, false_pairs))
 
 
 
 if __name__ == '__main__':
     #save_keys_csv()
-    #get_key_stats()
+    get_key_stats()
     #save_tempo_csv()
-    #get_tempo_stats()
+    get_tempo_stats()
     #get_onset_stats()
-    get_tag_stats()
+    #get_tag_stats()

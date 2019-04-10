@@ -13,7 +13,10 @@ import scipy
 import scipy.io as sio
 import seaborn as sns
 from scipy.stats import ks_2samp
+from scipy.ndimage.filters import gaussian_filter1d as gf1d
 from coverstats import *
+from CRPUtils import *
+from matplotlib.ticker import FormatStrFormatter
 
 def getLowerStarFiltration(x, infinitymax=True):
     """
@@ -34,17 +37,6 @@ def getLowerStarFiltration(x, infinitymax=True):
     if infinitymax:
         dgm0[np.isinf(dgm0[:, 1]), 1] = np.max(x)
     return dgm0
-
-def getOnsetMeans(x, win=20):
-    """
-    Return 
-    """
-    x = x[1::] - x[0:-1]
-    M = x.size-win+1
-    X = np.zeros((M, win))
-    for k in range(win):
-        X[:, k] = x[k:k+M]
-    return np.mean(X, 1)/np.mean(x)
 
 def getPersistenceImage(dgm, plims, res, weightfn = lambda b, l: l, psigma = None):
     """
@@ -86,14 +78,38 @@ def getPersistenceImage(dgm, plims, res, weightfn = lambda b, l: l, psigma = Non
     return {'PI':PI, 'xr':xr[0:-1], 'yr':yr[0:-1]}
 
 
-if __name__ == '__main__':
-    pairs = get_cover_pairs(lambda res: res['madmom_features']['onsets'])
+def getOnsetMeans(px, win=20, sigma=1, truncate=4, edge = 10, do_plot=False):
+    """
+    Do a mollified Gaussian derivative followed by
+    a moving average to get smoothed local tempo estimates
+    """
+    x = px[edge:-edge] #Truncate edges since they seem to be unreliable
+    x = gf1d(x, sigma, truncate=truncate, order = 1, mode='reflect')
+    x = x[truncate*sigma:-truncate*sigma]
+    if do_plot:
+        plt.figure()
+        plt.subplot(211)
+        plt.plot(px)
+        plt.subplot(212)
+        plt.plot(x)
+        plt.show()
+    M = x.size-win+1
+    X = np.zeros((M, win))
+    for k in range(win):
+        X[:, k] = x[k:k+M]
+    ret = np.mean(X, 1)
+    return ret/np.median(ret)
+
+
+def getAllPersistenceImages():
+    pairs, paths = get_cover_pairs(lambda res: res['madmom_features']['onsets'])
     # Assume time series can be in the range [0, 2]
-    pilims =  [0.7, 1.3, 0, 0.6]
-    pilimsneg =  [-1.3, -0.7, 0, 0.6]
+    pilims =  [0.5, 1.5, 0, 1]
+    pilimsneg =  [-1.5, -0.5, 0, 1]
     pires = 0.004
-    psigma = 0.03
-    Is = []
+    psigma = 0.04
+    Is1 = []
+    Is2 = []
     for i, pair in enumerate(pairs.keys()):
         print(i)
         for k in range(2):
@@ -103,28 +119,25 @@ if __name__ == '__main__':
             IDown = getLowerStarFiltration(-y)
             PIDown = getPersistenceImage(IUp, pilimsneg, pires, psigma=psigma)['PI'].flatten()
             I = np.concatenate((PIUp, PIDown))
-            Is.append(I)
-    
-    dcover = np.zeros(int(len(Is)/2))
-    dfalse = np.zeros_like(dcover)
-    for i in range(dcover.size):
-        img1 = Is[i*2]
-        img2 = Is[i*2+1]
-        dcover[i] = np.sqrt(np.sum((img1-img2)**2))
-        # Pick out a false cover
-        idx = np.random.randint(dcover.size-1)
-        if idx == i:
-            idx = dcover.size-1
-        img2 = Is[idx*2]
-        dfalse[i] = np.sqrt(np.sum((img1-img2)**2))
-    
+            if k == 0:
+                Is1.append(I)
+            else:
+                Is2.append(I)
+    Is1 = np.array(Is1)
+    Is2 = np.array(Is2)
+    D = get_csm(Is1, Is2)
+    N = D.shape[0]
+    I, J = np.meshgrid(np.arange(N), np.arange(N))
+    dcover = np.diag(D)
+    dfalse = D[np.abs(I-J) > 0]
     sio.savemat("onsettiming_%.3g"%psigma, {"dcover":dcover, "dfalse":dfalse})
 
-    bins = np.linspace(0, np.quantile(dfalse, 0.98), 20)
-    print(bins[-1])
-    plt.figure(figsize=(10, 6))
+    bins = np.linspace(0, np.quantile(dfalse, 0.98), 40)
+    cutoff = np.quantile(dfalse, 0.95)
+    plt.figure(figsize=(5, 2.5))
     sns.distplot(dcover, kde=True, norm_hist=True, bins=bins)
     sns.distplot(dfalse, kde=True, norm_hist=True, bins=bins)
+    plt.xlim([0, cutoff])
     plt.xlabel("Persitence Image Distance")
     plt.ylabel("Density")
     plt.title("Persistence Image Distances")
@@ -134,3 +147,123 @@ if __name__ == '__main__':
     print(np.mean(dfalse))
     print(ks_2samp(dcover, dfalse))
         
+def makeFigure():
+    fin = open('pairs.txt')
+    pairs = [f.split() for f in fin.readlines()]
+    fin.close()
+    pairidx = 1397
+    paths = pairs[pairidx]
+
+    get_onsets = lambda res: res['madmom_features']['onsets']
+    y1 = get_onsets(dd.io.load(paths[0]))
+    y2 = get_onsets(dd.io.load(paths[1]))
+
+    # Assume time series can be in the range [0, 2]
+    pilims =  [0.8, 1.2, 0, 0.4]
+    pilimsneg =  [-1.2, -0.8, 0, 0.4]
+    pires = 0.004
+    psigma = 0.03
+
+    y1 = getOnsetMeans(y1)
+    y2 = getOnsetMeans(y2)
+    prec = 1000
+    infinitymax = True
+    cutoff = 0.03
+
+    I1 = getLowerStarFiltration(y1, infinitymax)
+    res = getPersistenceImage(I1, pilims, pires, psigma=psigma)
+    img1 = res['PI']
+    dgm0 = I1[np.argsort(I1[:, 0]-I1[:, 1]), :]
+    dgm0 = dgm0[0:4, :]
+    grid1 = np.unique(dgm0.flatten())
+    grid1 = grid1[np.isfinite(grid1)]
+
+    I2 = getLowerStarFiltration(y2, infinitymax)
+    res = getPersistenceImage(I2, pilims, pires, psigma=psigma)
+    img2 = res['PI']
+    dgm0 = I2[np.argsort(I2[:, 0]-I2[:, 1]), :]
+    dgm0 = dgm0[0:4, :]
+    grid2 = np.unique(dgm0.flatten())
+    grid2 = grid2[np.isfinite(grid2)]
+
+    vmin = min(np.min(img1), np.min(img2))
+    vmax = max(np.max(img1), np.max(img2))
+
+    grid = np.concatenate((grid1, grid2))
+    ylims = None
+    if len(grid) > 0:
+        ylims = [0.98*np.min(grid), 1.02*np.max(grid)]
+
+    plt.figure(figsize=(6, 6))
+    ax = plt.subplot(221)
+    ax.set_xticks([])
+    ax.set_yticks(grid1)
+    ax.set_ylim(ylims)
+    plt.grid(linewidth=1, linestyle='--')
+    ax.plot(y1)
+    plt.xlabel("Time")
+    plt.ylabel("Tempo Ratio")
+    plt.title("'Joy Division' Timing")
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+
+    ax = plt.subplot(222)
+    plot_diagrams(I1)
+    ax.set_xticks(grid1)
+    ax.set_yticks(grid1)
+    plt.xlim(ylims)
+    if ylims:
+        plt.ylim(ylims)
+    plt.grid(linewidth=1, linestyle='--')
+    plt.title('Persistence Diagrams')
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+
+
+
+    ax = plt.subplot(223)
+    ax.set_xticks([])
+    ax.set_yticks(grid2)
+    if ylims:
+        ax.set_ylim(ylims)
+    plt.grid(linewidth=1, linestyle='--')
+    ax.plot(y2)
+    plt.xlabel("Time")
+    plt.ylabel("Tempo Ratio")
+    plt.title("'Versus' Timing")
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+
+    ax = plt.subplot(224)
+    plot_diagrams(I2)
+    ax.set_xticks(grid2)
+    ax.set_yticks(grid2)
+    if ylims:
+        plt.ylim(ylims)
+    plt.grid(linewidth=1, linestyle='--')
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    ax.xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+    plt.tight_layout()
+    plt.savefig("OnsetTiming_%i.svg"%pairidx, bbox_inches='tight')
+
+    plt.figure(figsize=(8, 3))
+    plt.subplot(121)
+    plt.imshow(img1, vmin=vmin, vmax=vmax, extent = (res['xr'][0], res['xr'][-1], res['yr'][-1], res['yr'][0]), cmap = 'magma_r', interpolation = 'nearest')
+    plt.gca().invert_yaxis()
+    plt.title("'Joy Division' Persistence Image")
+    plt.xlabel('Birth')
+    plt.ylabel('Lifetime')
+
+    plt.subplot(122)
+    plt.imshow(img2, vmin=vmin, vmax=vmax, extent = (res['xr'][0], res['xr'][-1], res['yr'][-1], res['yr'][0]), cmap = 'magma_r', interpolation = 'nearest')
+    plt.gca().invert_yaxis()
+    plt.title("'Versus' Persistence Image")
+    plt.xlabel('Birth')
+    plt.ylabel('Lifetime')
+    plt.savefig("OnsetTiming_%i_PI.svg"%pairidx, bbox_inches='tight')
+
+
+    
+
+
+if __name__ == '__main__':
+    #getAllPersistenceImages()
+    makeFigure()
