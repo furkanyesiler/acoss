@@ -63,10 +63,13 @@ def add_ids(performance, threshold):
                 artist = credited_artist['artist']
                 # print('recording artist_id: {}, artist_name: {}'
                 #       .format(artist['id'], artist['name']))
-                if artist['id'] in artist_recording_dict:
-                    artist_recording_dict[artist['id']].add(recording['id'])
-                else:
-                    artist_recording_dict[artist['id']] = {recording['id']}
+
+                if artist['id'] not in artist_recording_dict:
+                    artist_recording_dict[artist['id']] = {}
+                artist_recording_dict[artist['id']][recording['id']] = {}
+
+                if 'length' in recording:
+                    artist_recording_dict[artist['id']][recording['id']]['length'] = recording['length']
             except TypeError:
                 print('Weird credited artist: {}'.format(credited_artist))
 
@@ -86,28 +89,28 @@ def add_ids(performance, threshold):
     (artist_id,) = artists
     performance['perf_artist_mbid'] = artist_id
 
-    performance_ids = list(artist_recording_dict[artist_id])
-    performance['perf_mbids'] = list(artist_recording_dict[artist_id])
+    performances = artist_recording_dict[artist_id]
+    performance['mb_performances'] = performances
 
-    print('artist_mbid={} perf_mbids={}'.format(artist_id, performance_ids))
+    print('artist_mbid={} perf_mbids={}'.format(artist_id, performances.keys()))
 
-    if len(performance_ids) > 1:
-        return True, 'single_recording'
-    return True, 'multiple_recordings'
+    return True, 'single_recording' if len(performances) == 1 else 'multiple_recordings'
 
 
 def add_tags(performance):
     tags_all = {}
-    for recording_id in performance['perf_mbids']:
+    for recording_id, recording in performance['mb_performances'].items():
         result = mb.get_recording_by_id(recording_id, includes=['tags'])
         if 'tag-list' in result['recording']:
             print(result['recording'])
             tags = result['recording']['tag-list']
+            recording['tags'] = {}
             for tag in tags:
                 if tag['name'] in tags_all:
                     tags_all[tag['name']] += int(tag['count'])
                 else:
                     tags_all[tag['name']] = int(tag['count'])
+                recording['tags'][tag['name']] = int(tag['count'])
 
     if len(tags_all) > 0:
         performance['perf_mb_tags'] = tags_all
