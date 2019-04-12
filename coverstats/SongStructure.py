@@ -134,7 +134,7 @@ def analyzeResults():
     dcover = np.diag(D)
     dfalse = D[np.abs(I-J) > 0]
     print(ks_2samp(dcover, dfalse))
-    plt.figure(figsize=(5, 3))
+    plt.figure(figsize=(6, 3))
     bins = np.linspace(0, 3, 30)
     sns.distplot(dcover, kde=True, norm_hist=True, bins=bins)
     sns.distplot(dfalse, kde=True, norm_hist=True, bins=bins)
@@ -148,7 +148,7 @@ def analyzeResults():
 
 def PaperFigure():
     pairs = getPairs()
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(6, 6))
     print(pairs[3])
     print(pairs[4][0])
     res1 = getShapeDNA(dd.io.load(pairs[3][1]))
@@ -182,5 +182,5 @@ def PaperFigure():
     plt.savefig("ShapeDNAExample.svg", bbox_inches='tight')
 
 if __name__ == '__main__':
-    #analyzeResults()
-    PaperFigure()
+    analyzeResults()
+    #PaperFigure()

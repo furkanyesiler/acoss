@@ -117,11 +117,11 @@ def get_key_stats(min_confidence=0.75):
     keyidx = keyidx[(keysame==0)*(majmin==1), :]
     dist = np.abs(keyidx[:, 0] - keyidx[:, 1])
     dist = np.minimum(dist, 12-dist)
-    plt.figure(figsize=(5, 2.5))
+    plt.figure(figsize=(2.5, 2.5))
     sns.distplot(dist, kde=False, norm_hist=False)
     plt.xlabel("Transposition Distance in Halfsteps")
     plt.ylabel("Count")
-    plt.title("Distribution of Transposition Changes")
+    plt.title("Transposition Changes")
     plt.savefig("Transposition.svg", bbox_inches='tight')
 
 
@@ -168,9 +168,9 @@ def get_tempo_stats(min_confidence=0):
     print(np.quantile(ratios, 0.25))
     print(np.quantile(ratios, 0.5))
     print(np.quantile(ratios, 0.75))
-    plt.figure(figsize=(5, 2.5))
+    plt.figure(figsize=(2.5, 2.5))
     sns.distplot(ratios, norm_hist=False)
-    plt.xlim([1, 3])
+    plt.xlim([1, 2.2])
     plt.xlabel("Ratio")
     plt.ylabel("Counts")
     plt.title("Tempo Ratios")

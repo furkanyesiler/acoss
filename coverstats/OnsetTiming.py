@@ -146,7 +146,43 @@ def getAllPersistenceImages():
     print(np.mean(dcover))
     print(np.mean(dfalse))
     print(ks_2samp(dcover, dfalse))
-        
+
+
+def getAllSTDevs():
+    """
+    pairs, paths = get_cover_pairs(lambda res: res['madmom_features']['onsets'])
+    # Assume time series can be in the range [0, 2]
+    N = len(pairs)
+    stdevs = np.zeros((N, 2))
+    for i, pair in enumerate(pairs.keys()):
+        print(i)
+        for k in range(2):
+            y = getOnsetMeans(pairs[pair][k])
+            stdevs[i, k] = np.std(y)
+    sio.savemat("stdevs.mat", {"stdevs":stdevs})
+    """
+    stdevs = sio.loadmat("stdevs.mat")["stdevs"]
+    N = stdevs.shape[0]
+    y1 = stdevs[:, 0]
+    y2 = stdevs[:, 1]
+    D = np.abs(y1[:, None] - y2[None, :])
+    dcover = np.diag(D)
+    I, J = np.meshgrid(np.arange(N), np.arange(N))
+    dfalse = D[np.abs(I-J) > 0]
+
+    bins = np.linspace(0, 0.15, 30)
+    plt.figure(figsize=(5, 2.5))
+    sns.distplot(dcover, kde=True, norm_hist=True, bins=bins)
+    sns.distplot(dfalse, kde=True, norm_hist=True, bins=bins)
+    print(np.mean(dcover))
+    print(np.mean(dfalse))
+    print(ks_2samp(dcover, dfalse))
+    plt.xlim([np.min(bins), np.max(bins)])
+    plt.show()
+
+
+
+
 def makeFigure():
     fin = open('pairs.txt')
     pairs = [f.split() for f in fin.readlines()]
@@ -265,5 +301,6 @@ def makeFigure():
 
 
 if __name__ == '__main__':
+    getAllSTDevs()
     #getAllPersistenceImages()
-    makeFigure()
+    #makeFigure()
