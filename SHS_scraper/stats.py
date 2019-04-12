@@ -19,6 +19,7 @@ def get_stats(input_filename):
     have_mbids = 0
     have_many_mbids = 0
     have_tags = 0
+    total_length = 0
 
     for work_id, work in data.items():
         work_counter += 1
@@ -33,11 +34,21 @@ def get_stats(input_filename):
 
                 has_length = False
                 has_tags = False
-                for mbid, mb_performance in performance['mb_performances'].items():
-                    has_length |= 'length' in mb_performance
-                    has_tags |= 'tags' in mb_performance
+                accumulated_length = 0
+                performances_with_length = 0
 
-                have_length += int(has_length)
+                for mbid, mb_performance in performance['mb_performances'].items():
+                    has_tags |= 'tags' in mb_performance
+                    if 'length' in mb_performance:
+                        accumulated_length += int(mb_performance['length'])
+                        performances_with_length += 1
+                        assert accumulated_length > 0
+
+                if performances_with_length > 0:
+                    average_length = accumulated_length / performances_with_length
+                    total_length += average_length
+                    have_length += 1
+
                 have_tags += int(has_tags)
 
     print('Total works: {}'.format(work_counter))
@@ -46,6 +57,7 @@ def get_stats(input_filename):
     print('- have more than one mbid: {}'.format(have_many_mbids))
     print('- have length: {}'.format(have_length))
     print('- have tags: {}'.format(have_tags))
+    print('- average length: {:.3} mins'.format(total_length / have_length / 1000 / 60))
 
 
 if __name__ == '__main__':
