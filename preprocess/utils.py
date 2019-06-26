@@ -3,13 +3,19 @@
 Some utility functions
 
 """
+from preprocess.local_config import LOG_PATH
 import subprocess
+import datetime
 import logging
 import time
 
 
+_TIMESTAMP = '{:%Y-%m-%d_%H:%M:%S}'.format(datetime.datetime.now())
+
+
 def log(log_file):
     """Returns a logger object with predefined settings"""
+    log_file = LOG_PATH + _TIMESTAMP + "_" + log_file
     root_logger = logging.getLogger(__name__)
     root_logger.setLevel(logging.DEBUG)
     file_handler = logging.FileHandler(log_file)
@@ -32,8 +38,7 @@ def timeit(method):
             name = kw.get('log_name', method.__name__.upper())
             kw['log_time'][name] = int((te - ts) * 1000)
         else:
-            print '%r - runtime : %2.2f ms' % \
-                  (method.__name__, (te - ts) * 1000)
+            print('%r - runtime : %2.2f ms' % (method.__name__, (te - ts) * 1000))
         return result
     return timed
 
@@ -49,8 +54,7 @@ def savelist_to_file(pathList, filename):
     doc = open(filename, 'w')
     for item in pathList:
         doc.write("%s\n" % item)
-    doc.close()
-    return
+    doc.close()    
 
 
 def ffmpeg_slicer(filename, start_time, end_time, out_filename):
@@ -71,3 +75,19 @@ def ffmpeg_slicer(filename, start_time, end_time, out_filename):
     """
     return subprocess.call('ffmpeg -i %s -acodec copy -ss %s -to %s %s'
                             % (filename, start_time, end_time, out_filename), shell=True)
+
+
+class ErrorFile(object):
+
+    def __init__(self, filename):
+        filename = LOG_PATH + _TIMESTAMP + "_" + filename
+        self.doc = open(filename, 'w')
+        self.errors = list()
+        self.doc.write("---")
+
+    def add(self, text):
+        self.errors.append(text)
+        self.doc.write("%s\n" % text)
+
+    def close(self):
+        self.doc.close()

@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-[TODO]: Here we can add batch feature extractors for all audio files in the dataset with multiple threads
+Batch feature extractor
 
-The following functions are some examples and we can refactor it to meet our needs (add more features or store in more optimised fileformats etc)
-
+@2019
 """
+from preprocess.utils import log, read_txt_file, ErrorFile
+from preprocess.features import AudioFeatures
 from joblib import Parallel, delayed
-from .utils import timeit, log, read_txt_file
-from .features import AudioFeatures
+import deepdish as dd
+import preprocess.local_config as local_config
 import argparse
 import time
-import glob
-import json
 import os
+import glob
 
 
-_LOG_FILE = log("<path_to_log_file>")
+_LOG_FILE = log("extractor.log")
+_ERROR_FILE = ErrorFile("errors.txt")
 
 
 PROFILE = {
@@ -24,11 +25,10 @@ PROFILE = {
            'downsample_audio': False,
            'downsample_factor': 2,
            'endtime': None,
-           'features': ['cqt', 'chroma_cqt', 'chroma_cens', 'hpcp', 'tempogram', 'two_d_fft_mag']
+           'features': ['hpcp', 'key_extractor', 'crema', 'madmom_features', 'mfcc_htk']
         }
 
 
-@timeit
 def compute_features(audio_path, params=PROFILE):
     """"""
     feature = AudioFeatures(audio_file=audio_path, sample_rate=params['sample_rate'])
@@ -48,6 +48,9 @@ def compute_features(audio_path, params=PROFILE):
     track_id = os.path.basename(audio_path).replace(params['input_audio_format'], '')
     out_dict['track_id'] = track_id
 
+    label = audio_path.split('/')[-2]
+    out_dict['label'] = label
+
     return out_dict
 
 
@@ -63,14 +66,18 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
         raise IOError("Empty collection txt file -%s- !" % input_txt_file)
 
     for song in data:
-        feature_dict = compute_features(audio_path=song, params=params)
-        # save as json
-        with open(feature_dir + os.path.basename(input_txt_file) + '.json', 'w') as f:
-            json.dump(feature_dict, f)
-    _LOG_FILE.debug("Process finished in - %s - seconds" % (start_time - time.time()))
+        try:
+            feature_dict = compute_features(audio_path=song, params=params)
+            # save as h5
+            dd.io.save(feature_dir + os.path.basename(song).replace(params['input_audio_format'], '') + '.h5', feature_dict)
+        except:
+            _ERROR_FILE.add(input_txt_file)
+            _ERROR_FILE.add(song)
+            _LOG_FILE.debug("Error: skipping computing features for audio file --%s-- " % song)
+
+    _LOG_FILE.info("Process finished in - %s - seconds" % (start_time - time.time()))
 
 
-@timeit
 def batch_feature_extractor(collections_dir, feature_dir, n_threads, params=PROFILE):
     """
     Compute parallelised feature extraction process from a collection of input audio file path txt files
@@ -105,30 +112,44 @@ def batch_feature_extractor(collections_dir, feature_dir, n_threads, params=PROF
 
     Parallel(n_jobs=n_threads, verbose=1)(delayed(compute_features_from_list_file)\
                                               (cpath, fpath, param) for cpath, fpath, param in args)
-    return
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description= "With command-line args, it does batch feature extraction of  \
             collection of audio files using multiple threads", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-c", action="store",
-                        help="path to collection_files for audio feature extraction")
+                        help="path to collection_file for audio feature extraction", default=local_config.COLLECTION_DIR)
     parser.add_argument("-p", action="store",
-                        help="path to directory where the audio features should be stored")
+                        help="path to directory where the audio features should be stored", default=local_config.FEATURE_DIR)
+    parser.add_argument("-m", action="store", default='cpu',
+                        help="Whether to use cpu or cluster mode. Choose one of ['cpu', 'cluster']")
+    parser.add_argument("-d", action="store", default='benchmark',
+                        help="Choose whether to compute features for 'benchmark' or 'whatisacover' set")
     parser.add_argument("-n", action="store", default=-1,
                         help="No of threads required for parallelization")
 
     cmd_args = parser.parse_args()
 
-    try:
-        import multiprocessing
-        cores = multiprocessing.cpu_count()
-    except ImportError:
-        raise ImportError("Cannot find multiprocessing package on the system")
+    print("Args: %s" % (cmd_args))
 
-    if cores not in [0, 1]:
-        batch_feature_extractor(cmd_args.c, cmd_args.p, cores-1)
+    if not os.path.exists(cmd_args.p):
+        os.mkdir(cmd_args.p)
+
+    if cmd_args.d == 'benchmark':
+        local_config.create_benchmark_files(n_splits=50)
+    elif cmd_args.d == 'whatisacover':
+        local_config.create_whatisacover_files(n_splits=50)
     else:
+        raise IOError("Invalid value for arg -d. Choose either one of ['benchmark', 'whatisacover']")
+
+    if cmd_args.m == 'cluster':
+        compute_features_from_list_file(local_config.COLLECTION_DIR + cmd_args.c, cmd_args.p)
+    elif cmd_args.m == 'cpu':
         batch_feature_extractor(cmd_args.c, cmd_args.p, cmd_args.n)
+    else:
+        raise IOError("Invalid value for arg -m. Choose either one of ['cpu', 'cluster']")
+
+    _ERROR_FILE.close()
     print ("... Done ....")
+    print (" -- PROFILE INFO -- \n %s" % PROFILE)
 
