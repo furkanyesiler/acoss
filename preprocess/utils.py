@@ -3,7 +3,7 @@
 Some utility functions
 
 """
-from local_config import LOG_PATH
+from preprocess.local_config import LOG_PATH
 import subprocess
 import datetime
 import logging

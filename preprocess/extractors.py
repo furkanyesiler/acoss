@@ -4,14 +4,15 @@ Batch feature extractor
 
 @2019
 """
-from utils import log, read_txt_file, ErrorFile
-from features import AudioFeatures
+from preprocess.utils import log, read_txt_file, ErrorFile
+from preprocess.features import AudioFeatures
 from joblib import Parallel, delayed
 import deepdish as dd
-import local_config
+import preprocess.local_config as local_config
 import argparse
 import time
 import os
+import glob
 
 
 _LOG_FILE = log("extractor.log")
