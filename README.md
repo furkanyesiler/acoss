@@ -1,4 +1,4 @@
-# ACOSS: Audio Cover Song Suite
+# acoss: Audio Cover Song Suite
 
 This repository includes the feature extraction and benchmarking frameworks for the DA-TACOS dataset (TODO: add links)
 
