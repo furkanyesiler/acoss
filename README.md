@@ -1,26 +1,11 @@
-# coversongdataset
+# acoss: Audio Cover Song Suite (Under construction)
 
-TBU
+This repository includes the Feature Extraction and Benchmarking frameworks proposed in the following paper:
+>Furkan Yesiler, Chris Tralie, Albin Correya, Diego F. Silva, Philip Tovstogan, Emilia Gómez, and Xavier Serra. Da-TACOS: A Dataset for Cover Song Identification and Understanding. In 20th International Society for Music Information Retrieval Conference (ISMIR 2019), Delft, The Netherlands, 2019.
 
-## SecondHandSongs scraper (SHS_scraper)
-
-TODO: 
-* write what it does
-* add config
-
-```bash
-virtualenv venv
-source venv/bin/activate
-pip install -r requirements
-```
-
-
-
-
-## How to contribute?
-
-* Fork the repo!
-* Create your feature branch: git checkout -b my-new-feature
-* Commit your changes: git commit -am 'Add some feature'
-* Push to the branch: git push origin my-new-feature
-* Submit a pull request
+Current To-Dos:
+* Write documentation
+* Revise the code to comply with Python style guidelines
+* Consider the alternatives for storing the dataset, Da-TACOS. Possible options:
+  * Zenodo
+  * Google Drive
