@@ -1,2 +1,0 @@
-youtube-dl==2019.1.30.1
-beautifulsoup4==4.7.1
