@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bac70379-343b-47c6-bad5-f3b0a89229ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/benchmarking/CRPUtils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/ChenFusion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/CoverAlgorithm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/EarlyFusion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/FTM2D.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/SequenceAlignment.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/Serra09.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/SimilarityFusion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/Simple.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/_version.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/pySeqAlign.pxd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/pySeqAlign.pyx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmarking/setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverstats/OnsetTiming.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverstats/SimilarityFusion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverstats/SongStructure.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverstats/coverstats.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/covers80.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/extractors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/features.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/local_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/similarity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocess/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subsets/benchmark_subset.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subsets/benchmark_subset_paths.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subsets/whatisacover_subset.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subsets/whatisacover_subset_paths.txt" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>local</find>
+      <find>crema</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/preprocess/__init__.py" />
+        <option value="$PROJECT_DIR$/benchmarking/Serra09.py" />
+        <option value="$PROJECT_DIR$/benchmarking/CoverAlgorithm.py" />
+        <option value="$PROJECT_DIR$/preprocess/local_config.py" />
+        <option value="$PROJECT_DIR$/benchmark/CoverAlgorithm.py" />
+        <option value="$PROJECT_DIR$/statistics/coverstats.py" />
+        <option value="$PROJECT_DIR$/benchmark/CRPUtils.py" />
+        <option value="$PROJECT_DIR$/preprocess/utils.py" />
+        <option value="$PROJECT_DIR$/preprocess/extractors.py" />
+        <option value="$PROJECT_DIR$/preprocess/features.py" />
+        <option value="$PROJECT_DIR$/requirements-py3.5.txt" />
+        <option value="$PROJECT_DIR$/statistics/OnsetTiming.py" />
+        <option value="$PROJECT_DIR$/datacos/local_config.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/datacos/statistics/OnsetTiming.py" />
+        <option value="$PROJECT_DIR$/datacos/preprocess/extractors.py" />
+        <option value="$PROJECT_DIR$/datacos/preprocess/utils.py" />
+        <option value="$PROJECT_DIR$/datacos/utils.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/acoss.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="12" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="727" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bac70379-343b-47c6-bad5-f3b0a89229ad" name="Default Changelist" comment="" />
+      <created>1564751131283</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564751131283</updated>
+      <workItem from="1564751136003" duration="4326000" />
+      <workItem from="1564960135912" duration="323000" />
+      <workItem from="1565006202854" duration="7785000" />
+      <workItem from="1565039745849" duration="1405000" />
+      <workItem from="1565299066949" duration="396000" />
+      <workItem from="1566296217675" duration="641000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="14876000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1280" height="727" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15912762" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32953367" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2720466" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32953367" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/preprocess/similarity.py" />
+    <entry file="file://$PROJECT_DIR$/benchmark/Serra09.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/subsets/benchmark_subset_paths.txt" />
+    <entry file="file://$PROJECT_DIR$/subsets/whatisacover_subset.json" />
+    <entry file="file://$PROJECT_DIR$/subsets/benchmark_subset.json" />
+    <entry file="file://$PROJECT_DIR$/benchmark/CoverAlgorithm.py" />
+    <entry file="file://$PROJECT_DIR$/statistics/coverstats.py" />
+    <entry file="file://$PROJECT_DIR$/benchmark/CRPUtils.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess/local_config.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess/covers80.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess/utils.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess/extractors.py" />
+    <entry file="file://$PROJECT_DIR$/preprocess/features.py" />
+    <entry file="file://$PROJECT_DIR$/statistics/OnsetTiming.py" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/statistics/OnsetTiming.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="e#118#136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/preprocess/extractors.py" />
+    <entry file="file://$PROJECT_DIR$/datacos/preprocess/features.py" />
+    <entry file="file://$PROJECT_DIR$/datacos/preprocess/utils.py" />
+    <entry file="file://$PROJECT_DIR$/datacos/local_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/benchmark/Serra09.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="78" column="2" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
+          <folding>
+            <element signature="e#24#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements-py3.5.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4635">
+          <caret line="309" column="37" selection-start-line="309" selection-start-column="37" selection-end-line="309" selection-end-column="37" />
+          <folding>
+            <element signature="e#38#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/extractors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-455">
+          <caret line="115" column="38" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+          <folding>
+            <element signature="e#63#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/preprocess/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/benchmark/CoverAlgorithm.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/preprocess/similarity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" selection-start-line="11" selection-end-line="44" selection-end-column="32" />
+          <folding>
+            <element signature="e#155#211#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/datacos/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

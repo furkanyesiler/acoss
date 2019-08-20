@@ -14,7 +14,7 @@ import scipy.io as sio
 import seaborn as sns
 from scipy.stats import ks_2samp
 import scipy.linalg as sclinalg
-from coverstats import *
+from statistics import *
 import librosa
 import skimage
 from SimilarityFusion import *

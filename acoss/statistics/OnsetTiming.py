@@ -14,9 +14,10 @@ import scipy.io as sio
 import seaborn as sns
 from scipy.stats import ks_2samp
 from scipy.ndimage.filters import gaussian_filter1d as gf1d
-from coverstats import *
+from statistics import *
 from CRPUtils import *
 from matplotlib.ticker import FormatStrFormatter
+
 
 def getLowerStarFiltration(x, infinitymax=True):
     """
@@ -30,13 +31,14 @@ def getLowerStarFiltration(x, infinitymax=True):
     I = np.concatenate((I, np.arange(N)))
     J = np.concatenate((J, np.arange(N)))
     V = np.concatenate((V, x))
-    #Create the sparse distance matrix
+    # Create the sparse distance matrix
     D = sparse.coo_matrix((V, (I, J)), shape=(N, N)).tocsr()
     dgm0 = ripser(D, maxdim=0, distance_matrix=True)['dgms'][0]
-    #dgm0 = dgm0[dgm0[:, 1]-dgm0[:, 0] > 1e-3, :]
+    # dgm0 = dgm0[dgm0[:, 1]-dgm0[:, 0] > 1e-3, :]
     if infinitymax:
         dgm0[np.isinf(dgm0[:, 1]), 1] = np.max(x)
     return dgm0
+
 
 def getPersistenceImage(dgm, plims, res, weightfn = lambda b, l: l, psigma = None):
     """
@@ -50,11 +52,11 @@ def getPersistenceImage(dgm, plims, res, weightfn = lambda b, l: l, psigma = Non
     :param psigma: Standard deviation of each Gaussian.  By default\
         None, which indicates it should be res/2.0
     """
-    #Convert to birth time/lifetime
+    # Convert to birth time/lifetime
     I = np.array(dgm)
     I[:, 1] = I[:, 1] - I[:, 0]
     
-    #Create grid
+    # Create grid
     lims = np.array([np.floor(plims[0]/res), np.ceil(plims[1]/res), np.floor(plims[2]/res), np.ceil(plims[3]/res)])
     xr = np.arange(int(lims[0]), int(lims[1])+2)*res
     yr = np.arange(int(lims[2]), int(lims[3])+2)*res
@@ -62,18 +64,18 @@ def getPersistenceImage(dgm, plims, res, weightfn = lambda b, l: l, psigma = Non
     if psigma:
         sigma = psigma        
             
-    #Add each integrated Gaussian
+    # Add each integrated Gaussian
     PI = np.zeros((len(yr)-1, len(xr)-1))
     for i in range(I.shape[0]):
         [x, y] = I[i, :]
         w = weightfn(x, y)
         if w == 0:
             continue
-        #CDF of 2D isotropic Gaussian is separable
+        # CDF of 2D isotropic Gaussian is separable
         xcdf = scipy.stats.norm.cdf((xr - x)/sigma)
         ycdf = scipy.stats.norm.cdf((yr - y)/sigma)
         X = ycdf[:, None]*xcdf[None, :]
-        #Integral image
+        # Integral image
         PI += weightfn(x, y)*(X[1::, 1::] - X[0:-1, 1::] - X[1::, 0:-1] + X[0:-1, 0:-1])
     return {'PI':PI, 'xr':xr[0:-1], 'yr':yr[0:-1]}
 
@@ -83,7 +85,7 @@ def getOnsetMeans(px, win=20, sigma=1, truncate=4, edge = 10, do_plot=False):
     Do a mollified Gaussian derivative followed by
     a moving average to get smoothed local tempo estimates
     """
-    x = px[edge:-edge] #Truncate edges since they seem to be unreliable
+    x = px[edge:-edge] # Truncate edges since they seem to be unreliable
     x = gf1d(x, sigma, truncate=truncate, order = 1, mode='reflect')
     x = x[truncate*sigma:-truncate*sigma]
     if do_plot:
@@ -295,9 +297,6 @@ def makeFigure():
     plt.xlabel('Birth')
     plt.ylabel('Lifetime')
     plt.savefig("OnsetTiming_%i_PI.svg"%pairidx, bbox_inches='tight')
-
-
-    
 
 
 if __name__ == '__main__':

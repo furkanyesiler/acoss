@@ -1,5 +1,6 @@
 """
-A template class for all benchmarking algorithms
+A template class for all benchmark algorithms
+
 """
 import numpy as np
 import glob
@@ -45,14 +46,14 @@ class CoverAlgorithm(object):
         self.Ds = {}
         for s in similarity_types:
             self.Ds[s] = np.memmap('%s_%s_dmat' % (self.get_cacheprefix(), s), shape=(self.N, self.N), mode='w+', dtype='float32')
-        print("Initialized %s algorithm on %i songs in dataset %s"%(name, self.N, shortname))
+        print("Initialized %s algorithm on %i songs in dataset %s" % (name, self.N, shortname))
     
     def get_cacheprefix(self):
         """
         Return a descriptive file prefix to use for caching features
         and distance matrices
         """
-        return "%s/%s_%s"%(self.cachedir, self.name, self.shortname)
+        return "%s/%s_%s" % (self.cachedir, self.name, self.shortname)
 
     def load_features(self, i):
         """
@@ -85,7 +86,7 @@ class CoverAlgorithm(object):
         Load all h5 files to get clique information as a side effect
         """
         import os
-        filepath = "%s_clique_info.txt"%self.get_cacheprefix()
+        filepath = "%s_clique_info.txt" % self.get_cacheprefix()
         if not os.path.exists(filepath):
             fout = open(filepath, "w")
             for i in range(len(self.filepaths)):
@@ -103,7 +104,6 @@ class CoverAlgorithm(object):
                 if not label in self.cliques:
                     self.cliques[label] = set([])
                 self.cliques[label].add(int(i))
-
 
     def similarity(self, idxs):
         """
@@ -147,7 +147,7 @@ class CoverAlgorithm(object):
             want to print the result statistics
         """
         from itertools import combinations, permutations
-        h5filename = "%s_Ds.h5"%self.get_cacheprefix()
+        h5filename = "%s_Ds.h5" % self.get_cacheprefix()
         if precomputed:
             self.Ds = dd.io.load(h5filename)
             self.get_all_clique_ids()
@@ -165,7 +165,7 @@ class CoverAlgorithm(object):
             else:
                 for idx, (i, j) in enumerate(all_pairs):
                     self.similarity(np.array([[i, j]]))
-                    if idx%100 == 0:
+                    if idx % 100 == 0:
                         print((i, j))
             if symmetric:
                 for similarity_type in self.Ds:
@@ -180,10 +180,10 @@ class CoverAlgorithm(object):
         try:
             for s in self.Ds:
                 shutil.rmtree('%s_%s_dmat'%(self.get_cacheprefix(), s))
-        except:  # noqa
+        except:
             print('Could not clean-up automatically.')
     
-    def getEvalStatistics(self, similarity_type, topsidx = [1, 10, 100, 1000]):
+    def getEvalStatistics(self, similarity_type, topsidx=[1, 10, 100, 1000]):
         """
         Compute MR, MRR, MAP, Median Rank, and Top X using
         a particular similarity measure
@@ -195,8 +195,8 @@ class CoverAlgorithm(object):
         from itertools import chain
         D = np.array(self.Ds[similarity_type], dtype=np.float32)
         N = D.shape[0]
-        ## Step 1: Re-sort indices of D so that
-        ## cover cliques are contiguous
+        # Step 1: Re-sort indices of D so that
+        # cover cliques are contiguous
         cliques = [list(self.cliques[s]) for s in self.cliques]
         Ks = np.array([len(c) for c in cliques]) # Length of each clique
         # Sort cliques in descending order of number
@@ -209,10 +209,10 @@ class CoverAlgorithm(object):
         D = D[idx, :]
         D = D[:, idx]
         
-        ## Step 2: Compute MR, MRR, MAP, and Median Rank
-        #Fill diagonal with -infinity to exclude song from comparison with self
+        # Step 2: Compute MR, MRR, MAP, and Median Rank
+        # Fill diagonal with -infinity to exclude song from comparison with self
         np.fill_diagonal(D, -np.inf)
-        idx = np.argsort(-D, 1) #Sort row by row in descending order of score
+        idx = np.argsort(-D, 1) # Sort row by row in descending order of score
         ranks = np.nan*np.ones(N)
         startidx = 0
         kidx = 0
@@ -231,13 +231,13 @@ class CoverAlgorithm(object):
                 diff = idx[i, k] - startidx
                 if diff >= 0 and diff < Ks[kidx]:
                     iranks.append(k+1)
-            iranks = iranks[0:-1] #Exclude the song itself, which comes last
+            iranks = iranks[0:-1] # Exclude the song itself, which comes last
             if len(iranks) == 0:
                 warnings.warn("Recalling 0 songs for clique of size %i at song index %i"%(Ks[kidx], i))
                 break
-            #For MR, MRR, and MDR, use first song in clique
+            # For MR, MRR, and MDR, use first song in clique
             ranks[i] = iranks[0] 
-            #For MAP, use all ranks
+            # For MAP, use all ranks
             P = np.array([float(j)/float(r) for (j, r) in \
                             zip(range(1, Ks[kidx]), iranks)])
             AllMap[i] = np.mean(P)
@@ -268,5 +268,5 @@ class CoverAlgorithm(object):
             fout.write(", %.3g"%t)
         fout.write("\n")
         fout.close()
-        return (MR, MRR, MDR, MAP, tops)
+        return MR, MRR, MDR, MAP, tops
 

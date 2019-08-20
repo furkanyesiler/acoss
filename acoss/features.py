@@ -2,12 +2,13 @@
 """
 @2019
 """
-from essentia import Pool, array, run
+import os
+import numpy as np
+
 import essentia.standard as estd
 import essentia.streaming as ess
-import numpy as np
 import librosa
-import os
+from essentia import Pool, array, run
 
 
 class AudioFeatures(object):
@@ -25,16 +26,23 @@ class AudioFeatures(object):
             List of audio samples
     
     Example use :
-                feature = AudioFeatures("./data/test_audio.wav")
+                >>> feature = AudioFeatures("./data/test_audio.wav")
                 #chroma cens with default parameters
-                feature.chroma_cens()
+                >>> feature.chroma_cens()
                 #chroma stft with default parameters
-                feature.chroma_stft()
+                >>> feature.chroma_stft()
 
     """
 
     def __init__(self, audio_file, mono=True, hop_length=512, sample_rate=44100, normalize_gain=False, verbose=False):
-        """"""
+        """
+        :param audio_file:
+        :param mono:
+        :param hop_length:
+        :param sample_rate:
+        :param normalize_gain:
+        :param verbose:
+        """
         self.hop_length = hop_length
         self.fs = sample_rate
         self.audio_file = audio_file
@@ -205,7 +213,6 @@ class AudioFeatures(object):
         return {'chroma_filtered': chroma_filter, 
                 'chroma_smoothed': chroma_smooth}
 
-
     def hpcp(self,
             frameSize=4096,
             windowType='blackmanharris62',
@@ -278,22 +285,19 @@ class AudioFeatures(object):
         """
         Compute "convolutional and recurrent estimators for music analysis" (CREMA)
         and resample so that it's reported in hop_length intervals
-        NOTE: This code is a bit finnecky, and is recommended for Python 3.5
+        NOTE: This code is a bit finnecky, and is recommended for Python 3.5.
+        Check `wrapper_cream_feature` for the actual implementation.
+
         Returns
         -------
         crema: ndarray(n_frames, 12)
             The crema coefficients at each frame
         """
-        import crema
-        from scipy import interpolate
-        model = crema.models.chord.ChordModel()
-        data = model.outputs(y=self.audio_vector, sr=self.fs)
-        fac = (float(self.fs)/44100.0)*4096.0/self.hop_length
-        times_orig = fac*np.arange(len(data['chord_bass']))
-        nwins = int(np.floor(float(self.audio_vector.size) / self.hop_length))
-        times_new = np.arange(nwins)
-        interp = interpolate.interp1d(times_orig, data['chord_pitch'].T, kind='nearest', fill_value='extrapolate')
-        return interp(times_new).T
+        crema_feature = _call_func_on_python_version("3.5",
+                                                     ".features",
+                                                     "_wrapper_crema_feature",
+                                                     [self.audio_vector, self.fs, self.hop_length])
+        return crema_feature
 
     def two_d_fft_mag(self, feature_type='chroma_cqt', display=False):
         """
@@ -558,35 +562,26 @@ def display_chroma(chroma, hop_length=512, fs=44100):
     specshow(chroma.T, x_axis='time', y_axis='chroma', hop_length=hop_length, sr=fs)
 
 
-if __name__ == '__main__':
-    """
-    from sys import argv
-    filename = argv[1]
-    from sys import argv
-    song = AudioFeatures(filename)
-    
-    import matplotlib.pyplot as plt
-    hpcp = song.hpcp(frameSize=4096, nonLinear=False)
-    crema = song.crema()
-    print(hpcp.shape)
-    print(crema.shape)
-    plt.subplot(211)
-    display_chroma(hpcp, song.hop_length, song.fs)
-    plt.title("HPCP")
-    plt.subplot(212)
-    display_chroma(crema, song.hop_length, song.fs)
-    plt.title("CREMA")
-    plt.show()
+def _call_func_on_python_version(Version, Module, Function, ArgumentList):
+    """Wrapper to call functions across different python versions"""
+    import execnet
+    gw = execnet.makegateway("popen//python=python%s" % Version)
+    channel = gw.remote_exec("""
+        from %s import %s as the_function
+        channel.send(the_function(*channel.receive()))
+    """ % (Module, Function))
+    channel.send(ArgumentList)
+    return channel.receive()
 
-    madmom_feats = song.madmom_features()
-    plt.subplot(311)
-    plt.plot(madmom_feats['novfn'])
-    plt.subplot(312)
-    plt.plot(madmom_feats['snovfn'])
-    plt.subplot(313)
-    t = madmom_feats['tempos']
-    plt.stem(t[:, 0], t[:, 1])
-    plt.show()
-    """
-    pass
-    
+
+def _wrapper_crema_feature(audio_vector, sr, hop_length):
+    import crema
+    from scipy import interpolate
+    model = crema.models.chord.ChordModel()
+    data = model.outputs(y=audio_vector, sr=sr)
+    fac = (float(sr) / 44100.0) * 4096.0 / hop_length
+    times_orig = fac * np.arange(len(data['chord_bass']))
+    nwins = int(np.floor(float(audio_vector.size) / hop_length))
+    times_new = np.arange(nwins)
+    interp = interpolate.interp1d(times_orig, data['chord_pitch'].T, kind='nearest', fill_value='extrapolate')
+    return interp(times_new).T

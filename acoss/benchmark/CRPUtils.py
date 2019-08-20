@@ -5,6 +5,7 @@ optimal transposition indexes
 import numpy as np
 from scipy import sparse
 
+
 def get_ssm(X):
     """
     Fast code for computing the Euclidean self-similarity
@@ -23,6 +24,7 @@ def get_ssm(X):
     DSqr[DSqr < 0] = 0
     np.fill_diagonal(DSqr, 0)
     return np.sqrt(DSqr)
+
 
 def get_csm(X, Y):
     """
@@ -43,7 +45,9 @@ def get_csm(X, Y):
     C[C < 0] = 0
     return np.sqrt(C)
 
+
 get_csm_euclidean = get_csm
+
 
 def get_csm_cosine(X, Y):
     """
@@ -63,8 +67,9 @@ def get_csm_cosine(X, Y):
     YNorm = np.sqrt(np.sum(Y**2, 1))
     YNorm[YNorm == 0] = 1
     D = (X/XNorm[:, None]).dot((Y/YNorm[:, None]).T)
-    D = 1 - D #Make sure distance 0 is the same and distance 2 is the most different
+    D = 1 - D # Make sure distance 0 is the same and distance 2 is the most different
     return D
+
 
 def get_oti(C1, C2, do_plot = False):
     """
@@ -94,6 +99,7 @@ def get_oti(C1, C2, do_plot = False):
         plt.title("OTI")
         plt.show()
     return np.argmax(shiftScores)
+
 
 def get_csm_blocked_oti(X, Y, C1, C2, csm_fn):
     """
@@ -151,3 +157,4 @@ def csm_to_binary(D, kappa):
     [I, J] = [I.flatten(), J.flatten()]
     ret = sparse.coo_matrix((V, (I, J)), shape=(N, M), dtype=np.uint8)
     return ret.toarray()
+

@@ -13,6 +13,7 @@ def global_chroma(chroma):
         raise IOError("Wrong axis for the input chroma array. Expected shape '(frame_size, bin_size)'")
     return np.divide(chroma.sum(axis=0), np.max(chroma.sum(axis=0)))
 
+
 class Serra09(CoverAlgorithm):
     """
     Attributes
@@ -78,6 +79,7 @@ class Serra09(CoverAlgorithm):
                     # the evaluation statistics assume something with a higher
                     # score is more similar
                     self.Ds[key][i, j] /= norm_fac
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Benchmarking with Joan Serra's Cover id algorithm",

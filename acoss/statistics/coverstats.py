@@ -7,6 +7,7 @@ from scipy.stats import ks_2samp
 import glob
 from CRPUtils import *
 
+
 def get_cover_pairs(extractor):
     """
     Retrieve all of a particular feature
@@ -25,8 +26,8 @@ def get_cover_pairs(extractor):
     pairs = {}
     paths = {}
     for i, f in enumerate(files):
-        if i%100 == 0:
-            print("Loaded %i of %i..."%(i, len(files)))
+        if i % 100 == 0:
+            print("Loaded %i of %i..." % (i, len(files)))
         fields = dd.io.load(f)
         label, feat = fields['label'], extractor(fields)
         if not label in pairs:
@@ -36,10 +37,12 @@ def get_cover_pairs(extractor):
         paths[label].append(f)
     return pairs, paths
 
+
 def get_key_info(fields):
     ret = fields['key_extractor']
     ret['track_id'] = fields['track_id']
     return ret
+
 
 def save_keys_csv():
     """
@@ -56,6 +59,7 @@ def save_keys_csv():
         table.append([s1['track_id'], s1['key'], s1['scale'], s1['strength'], s2['track_id'], s2['key'], s2['scale'], s2['strength']])
     df = pd.DataFrame(table, index=index, columns=['ID1', 'Key1', 'Scale1', 'Strength1', 'ID2', 'Key2', 'Scale2', 'Strength2'])
     df.to_csv("keys.csv")
+
 
 def get_key_stats(min_confidence=0.75):
     """
@@ -129,6 +133,7 @@ def get_maxtempo(row):
     x = row['madmom_features']['tempos']
     return x[np.argmax(x[:, 1]), :]
 
+
 def save_tempo_csv():
     """
     Save a csv file called "tempos.csv" with the extracted clearest
@@ -143,6 +148,7 @@ def save_tempo_csv():
         table[i, 2::] = pairs[p][1]
     df = pd.DataFrame(table, index=index, columns=['Tempo1', 'Strength1', 'Tempo2', 'Strength2'])
     df.to_csv("tempos.csv")
+
 
 def get_tempo_stats(min_confidence=0):
     """
@@ -175,6 +181,7 @@ def get_tempo_stats(min_confidence=0):
     plt.ylabel("Counts")
     plt.title("Tempo Ratios")
     plt.savefig("TempoRatios.svg", bbox_inches='tight')
+
 
 def getFMeasure(tags1, tags2, cutoff = 0.062):
     tags1 = {s:f for (s, f) in tags1 if float(f) > cutoff} 
@@ -241,11 +248,10 @@ def get_tag_stats():
     print(ks_2samp(true_pairs, false_pairs))
 
 
-
 if __name__ == '__main__':
-    #save_keys_csv()
+    # save_keys_csv()
     get_key_stats()
-    #save_tempo_csv()
+    # save_tempo_csv()
     get_tempo_stats()
-    #get_onset_stats()
-    #get_tag_stats()
+    # get_onset_stats()
+    # get_tag_stats()
