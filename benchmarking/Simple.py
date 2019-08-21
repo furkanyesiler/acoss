@@ -3,13 +3,11 @@ import scipy
 import matplotlib.pyplot as plt
 from CoverAlgorithm import *
 
-import argparse
-
 import librosa
-import scipy
-
 from librosa import util
 from librosa import filters
+
+import argparse
 
 
 class Simple(CoverAlgorithm):
@@ -80,7 +78,7 @@ class Simple(CoverAlgorithm):
         first_subseq = np.flip(seq_b[:,0:self.SSLEN],1)
             
         for i_dim in range(0,ndim):
-            prods_inv[i_dim,:] = np.convolve(first_subseq[i_dim,:],seq_a[i_dim,:])
+            prods_inv[i_dim,:] = scipy.signal.fftconvolve(first_subseq[i_dim,:],seq_a[i_dim,:])
         prods_inv = prods_inv[:, self.SSLEN-1:seq_a_len]
            
         # windowed cumulative sum of the sequence b
@@ -95,7 +93,7 @@ class Simple(CoverAlgorithm):
         
         prods = np.full([ndim,seq_b_len+self.SSLEN-1], np.inf)
         for i_dim in range(0,ndim):
-            prods[i_dim,:] = np.convolve(first_subseq[i_dim,:],seq_b[i_dim,:])
+            prods[i_dim,:] = scipy.signal.fftconvolve(first_subseq[i_dim,:],seq_b[i_dim,:])
             dist_profile -= (2 * prods[i_dim,self.SSLEN-1:seq_b_len])
         prods = prods[:, self.SSLEN-1:seq_b_len] # only the interesting products
             
