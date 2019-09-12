@@ -1,5 +1,8 @@
 # acoss: Audio Cover Song Suite
 
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
 This repository includes the feature extraction and benchmarking frameworks for the DA-TACOS dataset (TODO: add links)
 
 ## How to use
