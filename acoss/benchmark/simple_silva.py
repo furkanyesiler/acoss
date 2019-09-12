@@ -1,15 +1,13 @@
-import numpy as np
-import scipy
-import matplotlib.pyplot as plt
-from CoverAlgorithm import *
-
+# -*- coding: utf-8 -*-
+"""
+@2019
+"""
 import argparse
-
-import librosa
 import scipy
-
+import numpy as np
 from librosa import util
 from librosa import filters
+from .algorithm_template import CoverAlgorithm
 
 
 class Simple(CoverAlgorithm):
@@ -29,7 +27,6 @@ class Simple(CoverAlgorithm):
         CoverAlgorithm.__init__(self, "Simple", datapath=datapath, shortname=shortname)
 
     def load_features(self, i, do_plot=False):
-        
         feats = CoverAlgorithm.load_features(self, i)
         feat_orig = feats[self.chroma_type].T
         
@@ -41,7 +38,6 @@ class Simple(CoverAlgorithm):
         return self.smooth(new_feat)
         
     def oti(self, seq_a, seq_b):
-        
         profile_a = np.sum(seq_a,1);
         profile_b = np.sum(seq_b,1);
 
@@ -53,8 +49,7 @@ class Simple(CoverAlgorithm):
         
         return np.roll(seq_b, sorted_index[-1], axis=0), sorted_index
 
-    def smooth(self, feat, win_len_smooth = 4):    
-
+    def smooth(self, feat, win_len_smooth = 4):
         '''
         This code is similar to the one used on librosa for smoothing cens: 
         https://librosa.github.io/librosa/generated/librosa.feature.chroma_cens.html
@@ -117,8 +112,7 @@ class Simple(CoverAlgorithm):
             matrix_profile[i_subseq] = np.min(dist_profile)
         
         return np.median(matrix_profile)
-    
-    
+
     def similarity(self, idxs):
     
         for i,j in zip(idxs[:, 0], idxs[:, 1]):
@@ -129,7 +123,7 @@ class Simple(CoverAlgorithm):
 
 
 if __name__ == '__main__':
-    #simple(chroma_type='crema')
+    # simple(chroma_type='crema')
     parser = argparse.ArgumentParser(description="Benchmarking with Similarity Matrix Profile-based similarity",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-d", '--datapath', type=str, action="store", default='features_covers80',

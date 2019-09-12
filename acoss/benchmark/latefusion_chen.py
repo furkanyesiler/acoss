@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
-from pySeqAlign import qmax
-from CoverAlgorithm import *
-from CRPUtils import *
-import numpy as np
+"""
+@2019
+"""
 import argparse
 import librosa
+
+from .algorithm_template import CoverAlgorithm
+from .utils.cross_recurrence import *
+from .utils.similarity_fusion import *
+from pySeqAlign import qmax, dmax
 
 
 def global_chroma(chroma):
@@ -14,7 +18,7 @@ def global_chroma(chroma):
     return np.divide(chroma.sum(axis=0), np.max(chroma.sum(axis=0)))
 
 
-class Serra09(CoverAlgorithm):
+class ChenFusion(CoverAlgorithm):
     """
     Attributes
     ----------
@@ -38,7 +42,7 @@ class Serra09(CoverAlgorithm):
         self.m = m
         self.downsample_fac = downsample_fac
         self.all_feats = {} # For caching features (global chroma and stacked chroma)
-        CoverAlgorithm.__init__(self, "Serra09", datapath=datapath, shortname=shortname)
+        CoverAlgorithm.__init__(self, "ChenFusion", similarity_types=["qmax", "dmax"], datapath=datapath, shortname=shortname)
 
     def load_features(self, i):
         if not i in self.all_feats:
@@ -62,23 +66,27 @@ class Serra09(CoverAlgorithm):
             csm = csm_to_binary(csm, self.kappa)
             M, N = csm.shape[0], csm.shape[1]
             D = np.zeros(M*N, dtype=np.float32)
-            score = qmax(csm.flatten(), D, M, N)
-            for key in self.Ds.keys():
-                self.Ds[key][i][j] = score
+            self.Ds["qmax"][i, j] = qmax(csm.flatten(), D, M, N)
+            D *= 0
+            self.Ds["dmax"][i, j] = dmax(csm.flatten(), D, M, N)
     
     def normalize_by_length(self):
         """
         Do a non-symmetric normalization by length
         """
-        for key in self.Ds.keys():
-            for j in range(self.Ds[key].shape[1]):
-                f = self.load_features(j)
-                norm_fac = np.sqrt(f['stacked'].shape[0])
-                for i in range(self.Ds[key].shape[0]):     
-                    # Do the reciprocal of what's written in the paper, since
-                    # the evaluation statistics assume something with a higher
-                    # score is more similar
-                    self.Ds[key][i, j] /= norm_fac
+        N = len(self.filepaths)
+        for j in range(N):
+            f = self.load_features(j)
+            norm_fac = np.sqrt(f['stacked'].shape[0])
+            for i in range(N):
+                for key in self.Ds:     
+                    self.Ds[key][i, j] = norm_fac/self.Ds[key][i, j]
+    
+    def do_late_fusion(self):
+        DLate = doSimilarityFusion([self.Ds[s] for s in self.Ds], K=20, niters=20, reg_diag=1)[1]
+        for key in self.Ds:
+            self.Ds[key] *= -1 # Switch back to larger scores being closer
+        self.Ds["Late"] = DLate
 
 
 if __name__ == '__main__':
@@ -86,7 +94,7 @@ if __name__ == '__main__':
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
                         help="Path to data files")
-    parser.add_argument("-s", "--shortname", type=str, action="store", default="covers80", help="Short name for dataset")
+    parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")
     parser.add_argument("-c", '--chroma_type', type=str, action="store", default='hpcp',
                         help="Type of chroma to use for experiments")
     parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=0,
@@ -96,12 +104,13 @@ if __name__ == '__main__':
 
     cmd_args = parser.parse_args()
 
-    serra09 = Serra09(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
-    serra09.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
-    serra09.normalize_by_length()
-    for similarity_type in serra09.Ds.keys():
+    chenFusion = ChenFusion(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
+    chenFusion.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
+    chenFusion.normalize_by_length()
+    chenFusion.do_late_fusion()
+    for similarity_type in chenFusion.Ds.keys():
         print(similarity_type)
-        serra09.getEvalStatistics(similarity_type)
-    serra09.cleanup_memmap()
+        chenFusion.getEvalStatistics(similarity_type)
+    chenFusion.cleanup_memmap()
     print("... Done ....")
 

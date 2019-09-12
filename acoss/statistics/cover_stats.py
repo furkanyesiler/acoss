@@ -1,11 +1,14 @@
-import numpy as np
+# -*- coding: utf-8 -*-
+"""
+@2019
+"""
+import glob
 import matplotlib.pyplot as plt
 import deepdish as dd
 import pandas as pd
 import seaborn as sns
 from scipy.stats import ks_2samp
-import glob
-from CRPUtils import *
+from ..benchmark.utils.cross_recurrence import *
 
 
 def get_cover_pairs(extractor):

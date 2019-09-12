@@ -6,7 +6,6 @@ import os
 import numpy as np
 
 import essentia.standard as estd
-import essentia.streaming as ess
 import librosa
 from essentia import Pool, array, run
 
@@ -63,17 +62,23 @@ class AudioFeatures(object):
     def audio_slicer(self, endTime, startTime=0):
         """
         Trims the audio signal array with a specified start and end time in seconds
-        :param endTime: endTime for slicing
-        :param startTime: (default: 0)
 
-        :return:
+        Parameters
+        ----------
+        endTime: endTime for slicing
+        startTime: (default: 0)
+
+        Returns
+        -------
+        trimmed_audio: ndarray
         """
         trimmer = estd.Trimmer(startTime=startTime, endTime=endTime, checkRange=True)
         return trimmer.compute(self.audio_vector)
 
     def librosa_noveltyfn(self):
         """
-        Compute librosa's onset envelope from an input signal
+        Compute librosa's onset envelope from an input signal.
+
         Returns
         -------
         novfn: ndarray(n_frames)
@@ -91,25 +96,27 @@ class AudioFeatures(object):
         be in terms of hop_size so that they line up with the features.
         The novelty function is also computed as a side effect (and is
         the bottleneck in the computation), so also return that
+
         Parameters
         ----------
         fps: int
             Frames per second in processing
         Returns
         -------
-        {
-            'tempos': ndarray(n_levels, 2)
-                An array of tempo estimates in beats per minute,
-                along with their confidences
-            'onsets': ndarray(n_onsets)
-                Array of onsets, where each onset indexes into a particular window
-            'novfn': ndarray(n_frames)
-                Evaluation of the rnn audio novelty function at each audio
-                frame, in time increments equal to self.hop_length
-            'snovfn': ndarray(n_frames)
-                Superflux audio novelty function at each audio frame,
-                in time increments equal to self.hop_length
-        }
+        output: a python dict with following key, value pairs
+            {
+                'tempos': ndarray(n_levels, 2)
+                    An array of tempo estimates in beats per minute,
+                    along with their confidences
+                'onsets': ndarray(n_onsets)
+                    Array of onsets, where each onset indexes into a particular window
+                'novfn': ndarray(n_frames)
+                    Evaluation of the rnn audio novelty function at each audio
+                    frame, in time increments equal to self.hop_length
+                'snovfn': ndarray(n_frames)
+                    Superflux audio novelty function at each audio frame,
+                    in time increments equal to self.hop_length
+            }
         """
         from madmom.features.beats import RNNBeatProcessor, DBNBeatTrackingProcessor
         from madmom.features.tempo import TempoEstimationProcessor
@@ -539,6 +546,8 @@ class AudioFeatures(object):
 
         Returns: The chromaprints are returned as base64-encoded strings.
         """
+        import essentia.streaming as ess
+
         vec_input = ess.VectorInput(self.audio_vector)
         chromaprinter = ess.Chromaprinter(analysisTime=analysisTime, sampleRate=self.fs)
         pool = Pool()
@@ -558,7 +567,6 @@ def display_chroma(chroma, hop_length=512, fs=44100):
         An array of chroma features
     """
     from librosa.display import specshow
-    import matplotlib.pyplot as plt
     specshow(chroma.T, x_axis='time', y_axis='chroma', hop_length=hop_length, sr=fs)
 
 
@@ -575,8 +583,10 @@ def _call_func_on_python_version(Version, Module, Function, ArgumentList):
 
 
 def _wrapper_crema_feature(audio_vector, sr, hop_length):
+    """wrapper callback func to run crema feature computation in different python shell"""
     import crema
     from scipy import interpolate
+
     model = crema.models.chord.ChordModel()
     data = model.outputs(y=audio_vector, sr=sr)
     fac = (float(sr) / 44100.0) * 4096.0 / hop_length

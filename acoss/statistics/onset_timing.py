@@ -2,10 +2,8 @@
 Purpose: To use sublevelset filtrations as an invariant to
 parameterization for describing local tempo curves
 """
-import numpy as np
 import matplotlib.pyplot as plt
 import deepdish as dd
-import glob
 from ripser import ripser
 from persim import plot_diagrams
 from scipy import sparse
@@ -15,7 +13,7 @@ import seaborn as sns
 from scipy.stats import ks_2samp
 from scipy.ndimage.filters import gaussian_filter1d as gf1d
 from statistics import *
-from CRPUtils import *
+from ..benchmark.utils.cross_recurrence import *
 from matplotlib.ticker import FormatStrFormatter
 
 

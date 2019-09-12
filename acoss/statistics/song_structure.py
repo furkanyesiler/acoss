@@ -17,10 +17,12 @@ import scipy.linalg as sclinalg
 from statistics import *
 import librosa
 import skimage
-from SimilarityFusion import *
-from CRPUtils import *
 import time
 import glob
+
+from ..benchmark.utils.similarity_fusion import *
+from ..benchmark.utils.cross_recurrence import *
+
 
 def getRandomWalkLaplacianEigsDense(W, neigs):
     """

@@ -1,53 +1,17 @@
-import numpy as np
-from CoverAlgorithm import *
-from SimilarityFusion import *
+# -*- coding: utf-8 -*-
+"""
+@2019
+"""
 import argparse
 from pySeqAlign import swconstrained as alignment_fn
-from CRPUtils import *
-
-"""====================================================
-                UTILITY FUNCTIONS
-===================================================="""
-
-def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
-    """
-    Median aggregate features into a coarser list
-    Parameters
-    ----------
-    X: ndarray(n_frames, n_feats)
-        An array of features
-    i1: int
-        Index at beginning of block
-    i2: int
-        Index at end of block
-    frames_per_block: int
-        Number of frames to which to downsample
-    """
-    if median_aggregate:
-        import librosa
-        idxs = np.linspace(i1, i2, frames_per_block-1)
-        idxs = np.array(np.floor(idxs), dtype=int)
-        res = librosa.util.sync(X.T, idxs, aggregate=np.median).T
-        ret = res
-        if res.shape[0] > frames_per_block:
-            ret = res[0:frames_per_block, :]
-        elif res.shape[0] < frames_per_block:
-            ret = np.zeros((frames_per_block, res.shape[1]))
-            ret[0:res.shape[0], :] = res
-        return ret
-    else:
-        import skimage.transform
-        x = X[i1:i2, :]
-        x = x.astype('float64')
-        ret = skimage.transform.resize(x, (frames_per_block, x.shape[1]), anti_aliasing=True, mode='constant')
-        ret[np.isinf(ret)] = 0
-        ret[np.isnan(ret)] = 0
-        return ret
-
+from .algorithm_template import CoverAlgorithm
+from .utils.cross_recurrence import *
+from .utils.similarity_fusion import *
 
 """====================================================
             FEATURE COMPUTATION/COMPARISON
 ===================================================="""
+
 
 class EarlyFusion(CoverAlgorithm):
     """
@@ -239,6 +203,47 @@ class EarlyFusion(CoverAlgorithm):
         """
         self.Ds["late"] = doSimilarityFusion([1.0/(1.0+self.Ds[s]) for s in ["chromas", "ssms", "mfccs"]], K=20, niters=20, reg_diag=1)[1]
         self.Ds["early+late"] = doSimilarityFusion([1.0/(1.0+self.Ds[s]) for s in ["chromas", "ssms", "mfccs", "early"]], K=20, niters=20, reg_diag=1)[1]
+
+
+"""====================================================
+                UTILITY FUNCTIONS
+===================================================="""
+
+
+def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
+    """
+    Median aggregate features into a coarser list
+    Parameters
+    ----------
+    X: ndarray(n_frames, n_feats)
+        An array of features
+    i1: int
+        Index at beginning of block
+    i2: int
+        Index at end of block
+    frames_per_block: int
+        Number of frames to which to downsample
+    """
+    if median_aggregate:
+        import librosa
+        idxs = np.linspace(i1, i2, frames_per_block-1)
+        idxs = np.array(np.floor(idxs), dtype=int)
+        res = librosa.util.sync(X.T, idxs, aggregate=np.median).T
+        ret = res
+        if res.shape[0] > frames_per_block:
+            ret = res[0:frames_per_block, :]
+        elif res.shape[0] < frames_per_block:
+            ret = np.zeros((frames_per_block, res.shape[1]))
+            ret[0:res.shape[0], :] = res
+        return ret
+    else:
+        import skimage.transform
+        x = X[i1:i2, :]
+        x = x.astype('float64')
+        ret = skimage.transform.resize(x, (frames_per_block, x.shape[1]), anti_aliasing=True, mode='constant')
+        ret[np.isinf(ret)] = 0
+        ret[np.isnan(ret)] = 0
+        return ret
 
 
 if __name__ == '__main__':

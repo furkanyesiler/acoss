@@ -1,49 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+@2019
+"""
 import numpy as np
-import scipy
-import matplotlib.pyplot as plt
-from CoverAlgorithm import *
 import argparse
-
-
-def chrompwr(X, P=.5):
-    """
-    Y = chrompwr(X,P)  raise chroma columns to a power, preserving norm
-    2006-07-12 dpwe@ee.columbia.edu
-    -> python: TBM, 2011-11-05, TESTED
-    """
-    nchr, nbts = X.shape
-    # norms of each input col
-    CMn = np.tile(np.sqrt(np.sum(X * X, axis=0)), (nchr, 1))
-    CMn[CMn == 0] = 1
-    # normalize each input col, raise to power
-    res = X/CMn
-    CMp = np.power(X/CMn, P)
-    # norms of each resulant column
-    CMpn = np.tile(np.sqrt(np.sum(CMp * CMp, axis=0)), (nchr, 1))
-    CMpn[np.where(CMpn==0)] = 1.
-    # rescale cols so norm of output cols match norms of input cols
-    return CMn * (CMp / CMpn)
-
-
-def btchroma_to_fftmat(btchroma, win=75):
-    """
-    Stack the flattened result of fft2 on patches 12 x win
-    Translation of my own matlab function
-    -> python: TBM, 2011-11-05, TESTED
-    """
-    # 12 semitones
-    nchrm, nbeats = btchroma.shape
-    assert nchrm == 12, 'beat-aligned matrix transposed?'
-    if nbeats < win:
-        return None
-    # output
-    fftmat = np.zeros((nchrm * win, nbeats - win + 1))
-    for i in range(nbeats-win+1):
-        F = scipy.fftpack.fft2(btchroma[:,i:i+win])
-        F = np.sqrt(np.real(F)**2 + np.imag(F)**2)
-        patch = scipy.fftpack.fftshift(F)
-        fftmat[:, i] = patch.flatten()
-    return fftmat
+import scipy
+from .algorithm_template import CoverAlgorithm
 
 
 class FTM2D(CoverAlgorithm):
@@ -103,6 +65,7 @@ class FTM2D(CoverAlgorithm):
         shingle = shingle/np.sqrt(np.sum(shingle**2))
 
         if do_plot:
+            import matplotlib.pyplot as plt
             import librosa.display
             plt.subplot(311)
             librosa.display.specshow(librosa.amplitude_to_db(hpcp_orig, ref=np.max))
@@ -133,8 +96,49 @@ class FTM2D(CoverAlgorithm):
             self.Ds['main'][i, j] = sim
 
 
+def chrompwr(X, P=.5):
+    """
+    Y = chrompwr(X,P)  raise chroma columns to a power, preserving norm
+    2006-07-12 dpwe@ee.columbia.edu
+    -> python: TBM, 2011-11-05, TESTED
+    """
+    nchr, nbts = X.shape
+    # norms of each input col
+    CMn = np.tile(np.sqrt(np.sum(X * X, axis=0)), (nchr, 1))
+    CMn[CMn == 0] = 1
+    # normalize each input col, raise to power
+    res = X/CMn
+    CMp = np.power(X/CMn, P)
+    # norms of each resulant column
+    CMpn = np.tile(np.sqrt(np.sum(CMp * CMp, axis=0)), (nchr, 1))
+    CMpn[np.where(CMpn==0)] = 1.
+    # rescale cols so norm of output cols match norms of input cols
+    return CMn * (CMp / CMpn)
+
+
+def btchroma_to_fftmat(btchroma, win=75):
+    """
+    Stack the flattened result of fft2 on patches 12 x win
+    Translation of my own matlab function
+    -> python: TBM, 2011-11-05, TESTED
+    """
+    # 12 semitones
+    nchrm, nbeats = btchroma.shape
+    assert nchrm == 12, 'beat-aligned matrix transposed?'
+    if nbeats < win:
+        return None
+    # output
+    fftmat = np.zeros((nchrm * win, nbeats - win + 1))
+    for i in range(nbeats-win+1):
+        F = scipy.fftpack.fft2(btchroma[:,i:i+win])
+        F = np.sqrt(np.real(F)**2 + np.imag(F)**2)
+        patch = scipy.fftpack.fftshift(F)
+        fftmat[:, i] = patch.flatten()
+    return fftmat
+
+
 if __name__ == '__main__':
-    #ftm2d_allpairwise_covers80(chroma_type='crema')
+    # ftm2d_allpairwise_covers80(chroma_type='crema')
     parser = argparse.ArgumentParser(description="Benchmarking with 2D Fourier Transform Magnitude Coefficients",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
