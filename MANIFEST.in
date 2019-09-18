@@ -1,0 +1,7 @@
+# Include the README and LICENSE
+include README.md LICENSE.txt
+
+# Include the cython files
+include acoss/benchmark/utils/alignment_tools/pySeqAlign.pxd
+include acoss/benchmark/utils/alignment_tools/pySeqAlign.pyx
+include acoss/benchmark/utils/alignment_tools/SequenceAlignment.c
