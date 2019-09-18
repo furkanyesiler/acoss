@@ -50,7 +50,8 @@ class AudioFeatures(object):
         elif mono:
             self.audio_vector = estd.MonoLoader(filename=audio_file, sampleRate=self.fs)()
         if verbose:
-            print ("== Audio vector of %s loaded with shape %s and sample rate %s ==" % (audio_file, self.audio_vector.shape, self.fs))
+            print("== Audio vector of %s loaded with shape %s and sample rate %s =="
+                  % (audio_file, self.audio_vector.shape, self.fs))
 
     def resample_audio(self, target_sample_rate):
         """Downsample a audio into a target sample rate"""
@@ -134,12 +135,14 @@ class AudioFeatures(object):
         novfn = np.interp(np.arange(nframes)*self.hop_length/float(self.fs), np.arange(len(novfn))/float(fps), novfn) 
         
         # For good measure, also compute and return superflux
-        sodf = SpectralOnsetProcessor(onset_method='superflux', fps=fps, \
-                            filterbank=LogarithmicFilterbank,\
-                              num_bands=24, log=np.log10)
+        sodf = SpectralOnsetProcessor(onset_method='superflux',
+                                      fps=fps,
+                                      filterbank=LogarithmicFilterbank,
+                                      num_bands=24,
+                                      log=np.log10)
         snovfn = sodf(self.audio_file)
         snovfn = np.interp(np.arange(nframes)*self.hop_length/float(self.fs), np.arange(len(snovfn))/float(fps), snovfn) 
-        return {'tempos':tempos, 'onsets':onsets, 'novfn':novfn, 'snovfn':snovfn}
+        return {'tempos': tempos, 'onsets': onsets, 'novfn': novfn, 'snovfn': snovfn}
 
     def librosa_onsets(self, tempobias=120.0):
         """
@@ -154,8 +157,8 @@ class AudioFeatures(object):
         }
         """
         y_harmonic, y_percussive = librosa.effects.hpss(self.audio_vector)
-        tempo, onsets = librosa.beat.beat_track(y=y_percussive,sr=self.fs,start_bpm=tempobias)
-        return {'tempo':tempo, 'onsets':onsets}
+        tempo, onsets = librosa.beat.beat_track(y=y_percussive, sr=self.fs, start_bpm=tempobias)
+        return {'tempo': tempo, 'onsets': onsets}
 
     @staticmethod
     def resample_feature(feature_array, factor):
@@ -211,7 +214,10 @@ class AudioFeatures(object):
         """
         from scipy.ndimage import median_filter
         harmonic = librosa.effects.harmonic(y=self.audio_vector, margin=8)
-        chroma_cqt_harm = librosa.feature.chroma_cqt(y=harmonic, sr=self.fs, bins_per_octave=12*3, hop_length=self.hop_length)
+        chroma_cqt_harm = librosa.feature.chroma_cqt(y=harmonic,
+                                                     sr=self.fs,
+                                                     bins_per_octave=12*3,
+                                                     hop_length=self.hop_length)
         chroma_filter = np.minimum(chroma_cqt_harm,
                            librosa.decompose.nn_filter(chroma_cqt_harm,
                                                        aggregate=np.median,
@@ -300,7 +306,7 @@ class AudioFeatures(object):
         crema: ndarray(n_frames, 12)
             The crema coefficients at each frame
         """
-        crema_feature = _call_func_on_python_version("3.5",
+        crema_feature = _call_func_on_python_version("3.6",
                                                      ".features",
                                                      "_wrapper_crema_feature",
                                                      [self.audio_vector, self.fs, self.hop_length])

@@ -8,6 +8,8 @@ import os
 import deepdish as dd
 import warnings
 
+from ..utils import create_dataset_filepaths
+
 
 class CoverAlgorithm(object):
     """
@@ -22,7 +24,13 @@ class CoverAlgorithm(object):
         A dictionary of pairwise similarity matrices, whose 
         indices index into filepaths.
     """
-    def __init__(self, name = "Generic", datapath="features_benchmark", shortname="full", cachedir="cache", similarity_types = ["main"]):
+    def __init__(self,
+                 dataset_csv,
+                 name="Generic",
+                 datapath="features_benchmark",
+                 shortname="full",
+                 cachedir="cache",
+                 similarity_types=["main"]):
         """
         Parameters
         ----------
@@ -38,7 +46,7 @@ class CoverAlgorithm(object):
         self.name = name
         self.shortname = shortname
         self.cachedir = cachedir
-        self.filepaths = glob.glob("%s/*.h5" % datapath)
+        self.filepaths = create_dataset_filepaths(dataset_csv, root_audio_dir=datapath, file_format=".h5")
         self.cliques = {}
         self.N = len(self.filepaths)
         if not os.path.exists(cachedir):
@@ -247,7 +255,8 @@ class CoverAlgorithm(object):
         MR = np.mean(ranks)
         MRR = 1.0/N*(np.sum(1.0/ranks))
         MDR = np.median(ranks)
-        print("%s %s STATS\n-------------------------\nMR = %.3g\nMRR = %.3g\nMDR = %.3g\nMAP = %.3g"%(self.name, similarity_type, MR, MRR, MDR, MAP))
+        print("%s %s STATS\n-------------------------\nMR = %.3g\nMRR = %.3g\nMDR = %.3g\nMAP = %.3g"
+              % (self.name, similarity_type, MR, MRR, MDR, MAP))
         tops = np.zeros(len(topsidx))
         for i in range(len(tops)):
             tops[i] = np.sum(ranks <= topsidx[i])

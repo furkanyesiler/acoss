@@ -11,15 +11,16 @@ import glob
 import os
 import deepdish as dd
 from joblib import Parallel, delayed
+from shutil import rmtree
 
 from .utils import log, read_txt_file, savelist_to_file, create_audio_path_batches
 from .features import AudioFeatures
-from .local_config import *
 
 
 PROFILE = {
            'sample_rate': 44100,
            'input_audio_format': '.mp3',
+           'extractor_batch_size': 50,
            'downsample_audio': False,
            'downsample_factor': 2,
            'endtime': None,
@@ -113,35 +114,28 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
     _LOG_FILE.info("Process finished in - %s - seconds" % (start_time - time.time()))
 
 
-def batch_feature_extractor(collections_dir, feature_dir, n_threads, mode='parallel', params=PROFILE):
+def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_threads, mode='parallel', params=PROFILE):
     """
     Compute parallelised feature extraction process from a collection of input audio file path txt files
 
     :param
-        collections_dir: path to directory where a group of collections.txt located with list of audio file paths
+        dataset_csv: dataset csv file
+        audio_dir: path where the audio files are stored
         feature_dir: path where the computed audio features should be stored
         n_threads: no. of threads for parallelisation
         mode: whether to run the extractor in 'single' or 'parallel' mode.
         params: profile dict with params
 
     :return: None
-
-    eg:
-        '>>> batch_hpcp_extractor(collections_dir='./collections_dir/', features_dir='./features/', n_threads=4)'
-
-
-        Here the collections_dir directory should have the following directory structure. Each *_collections.txt files
-        contains a list of path to audio files in the disk for feature computation.
-
-       ./collections_dir/
-            /1_collections.txt
-            /2_collections.txt
-            .......
-            .......
-            /*_collections.txt
-
     """
-    collection_files = glob.glob(collections_dir + '*.txt')
+    batch_file_dir = "./batches/"
+    create_audio_path_batches(dataset_csv,
+                              dir_to_save=batch_file_dir,
+                              root_audio_dir=audio_dir,
+                              audio_format=params['input_audio_format'],
+                              batch_size=params['extractor_batch_size'])
+
+    collection_files = glob.glob(batch_file_dir + '*.txt')
     feature_path = [feature_dir for i in range(len(collection_files))]
     param_list = [params for i in range(len(collection_files))]
     args = zip(collection_files, feature_path, param_list)
@@ -162,8 +156,11 @@ def batch_feature_extractor(collections_dir, feature_dir, n_threads, mode='paral
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="With command-line args, it does batch feature extraction of  \
             collection of audio files using multiple threads", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-c", "--collection_dir", action="store",
-                        help="path to collection_file for audio feature extraction", default=COLLECTION_DIR)
+
+    parser.add_argument("-d", "--dataset_csv", action="store", default='',
+                        help="path to input dataset csv file")
+    parser.add_argument("-a", "--audio_dir", action="store", default='',
+                        help="path to the main audio directory of dataset")
     parser.add_argument("-p", "--feature_dir", action="store",
                         help="path to directory where the audio features should be stored", default=FEATURE_DIR)
     parser.add_argument("-f", "--feature_list", action="store", type=str, default="['hpcp', 'key_extractor', "
@@ -173,8 +170,6 @@ if __name__ == '__main__':
     parser.add_argument("-m", "--run_mode", action="store", default='parallel',
                         help="Whether to run the extractor in single or parallel mode. "
                              "Choose one of ['single', 'parallel']")
-    parser.add_argument("-d", "--dataset_csv", action="store", default='',
-                        help="path to input dataset csv file")
     parser.add_argument("-n", "--workers", action="store", default=-1,
                         help="No of workers for running the batch extraction process. Only valid in 'parallel' mode.")
 
@@ -185,7 +180,17 @@ if __name__ == '__main__':
     if not os.path.exists(cmd_args.p):
         os.mkdir(cmd_args.p)
 
-    batch_feature_extractor(cmd_args.c, cmd_args.p, cmd_args.n, cmd_args.m)
+    feature_list = list(cmd_args.f)
+    updated_profile = PROFILE.copy()
+    del updated_profile['features']
+    updated_profile['features'] = feature_list
+
+    batch_feature_extractor(dataset_csv=cmd_args.d,
+                            audio_dir=cmd_args.a,
+                            feature_dir=cmd_args.p,
+                            n_threads=cmd_args.n,
+                            mode=cmd_args.m,
+                            params=updated_profile)
 
     print("... Done ....")
     print(" -- PROFILE INFO -- \n %s" % PROFILE)

@@ -3,7 +3,10 @@
 @2019
 """
 import argparse
-from pySeqAlign import swconstrained as alignment_fn
+try:
+    from pySeqAlign import swconstrained as alignment_fn
+except ImportError:
+    raise ImportError("Cannot import pySeqAlign cython module.")
 from .algorithm_template import CoverAlgorithm
 from .utils.cross_recurrence import *
 from .utils.similarity_fusion import *
@@ -37,7 +40,7 @@ class EarlyFusion(CoverAlgorithm):
     all_block_feats: dict
         A cache of features computed by load_features
     """
-    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', blocksize=20, mfccs_per_block=50, ssm_res=50, chromas_per_block=40, kappa=0.1, K=10, niters=5, log_times=False):
+    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', blocksize=20, mfccs_per_block=50, ssm_res=50, chromas_per_block=40, kappa=0.1, K=10, niters=5, log_times=False):
         self.chroma_type = chroma_type
         self.blocksize = blocksize
         self.mfccs_per_block = mfccs_per_block
@@ -48,9 +51,9 @@ class EarlyFusion(CoverAlgorithm):
         self.all_block_feats = {} # Cached features
         self.log_times = log_times
         if log_times:
-            self.times = {'features':[], 'raw':[]}
-        CoverAlgorithm.__init__(self, "EarlyFusion", datapath=datapath, shortname=shortname, \
-                                similarity_types=["mfccs", "ssms", "chromas", "early"])
+            self.times = {'features': [], 'raw': []}
+        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="EarlyFusion", datapath=datapath,
+                                shortname=shortname, similarity_types=["mfccs", "ssms", "chromas", "early"])
 
     def get_cacheprefix(self):
         """
@@ -249,6 +252,8 @@ def resize_block(X, i1, i2, frames_per_block, median_aggregate = False):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Benchmarking with Early Similarity Network Fusion of HPCP, MFCC, and MFCC SSMs",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-i", '--dataset_csv', type=str, action="store",
+                        help="Input dataset csv file")
     parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
                         help="Path to data files")
     parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")

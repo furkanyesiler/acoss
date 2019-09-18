@@ -19,13 +19,13 @@ class FTM2D(CoverAlgorithm):
     chroma_type: string
         Type of chroma to use (key into features)
     """
-    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
+    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
         self.PWR = PWR
         self.WIN = WIN
         self.C = C
         self.chroma_type = chroma_type
         self.shingles = {}
-        CoverAlgorithm.__init__(self, "FTM2D", datapath=datapath, shortname=shortname)
+        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="FTM2D", datapath=datapath, shortname=shortname)
 
     def get_cacheprefix(self):
         """
@@ -141,6 +141,8 @@ if __name__ == '__main__':
     # ftm2d_allpairwise_covers80(chroma_type='crema')
     parser = argparse.ArgumentParser(description="Benchmarking with 2D Fourier Transform Magnitude Coefficients",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-i", '--dataset_csv', type=str, action="store",
+                        help="Input dataset csv file")
     parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
                         help="Path to data files")
     parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")

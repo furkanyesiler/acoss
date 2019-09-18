@@ -1,5 +1,6 @@
 cimport numpy as np
-cimport pySeqAlign as seq
+cimport acoss.benchmark.utils.alignment_tools.pySeqAlign as seq
+#cimport pySeqAlign as seq
 import cython
 
 @cython.boundscheck(False)

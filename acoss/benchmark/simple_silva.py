@@ -19,28 +19,28 @@ class Simple(CoverAlgorithm):
     WIN=200, the window length for the dimensionality reduction
     SKIP=100, how many frames the dim reduction will skip each step
     """
-    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', SSLEN=10, WIN=200, SKIP=100):
+    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80',
+                 SSLEN=10, WIN=200, SKIP=100):
         self.SSLEN = SSLEN
         self.WIN = WIN
         self.SKIP = SKIP
         self.chroma_type = chroma_type
-        CoverAlgorithm.__init__(self, "Simple", datapath=datapath, shortname=shortname)
+        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="Simple", datapath=datapath, shortname=shortname)
 
     def load_features(self, i, do_plot=False):
         feats = CoverAlgorithm.load_features(self, i)
         feat_orig = feats[self.chroma_type].T
         
-        new_feat = np.zeros((feat_orig.shape[0],(int)(feat_orig.shape[1]/self.SKIP)))
+        new_feat = np.zeros((feat_orig.shape[0], (int(feat_orig.shape[1]/self.SKIP))))
 
-        for i in range(0,new_feat.shape[1]):
-            new_feat[:,i] = np.mean(feat_orig[:,i*self.SKIP:i*self.SKIP+self.WIN],axis=1)
+        for i in range(0, new_feat.shape[1]):
+            new_feat[:, i] = np.mean(feat_orig[:, i*self.SKIP:i*self.SKIP+self.WIN], axis=1)
 
         return self.smooth(new_feat)
         
     def oti(self, seq_a, seq_b):
-        profile_a = np.sum(seq_a,1);
-        profile_b = np.sum(seq_b,1);
-
+        profile_a = np.sum(seq_a, 1)
+        profile_b = np.sum(seq_b, 1)
         oti_vec = np.zeros(12)
         for i in range(12):
             oti_vec[i] = np.dot(profile_a,np.roll(profile_b,i,axis=0))
@@ -126,6 +126,8 @@ if __name__ == '__main__':
     # simple(chroma_type='crema')
     parser = argparse.ArgumentParser(description="Benchmarking with Similarity Matrix Profile-based similarity",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-i", '--dataset_csv', type=str, action="store",
+                        help="Input dataset csv file")
     parser.add_argument("-d", '--datapath', type=str, action="store", default='features_covers80',
                         help="Path to data files")
     parser.add_argument("-s", "--shortname", type=str, action="store", default="Covers80", help="Short name for dataset")

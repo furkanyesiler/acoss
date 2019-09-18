@@ -4,7 +4,12 @@
 """
 import argparse
 import librosa
-from pySeqAlign import qmax
+import sys
+
+try:
+    from pySeqAlign import qmax
+except ImportError:
+    raise ImportError("Cannot import pySeqAlign cython module.")
 from .algorithm_template import CoverAlgorithm
 from .utils.cross_recurrence import *
 
@@ -22,7 +27,7 @@ class Serra09(CoverAlgorithm):
     all_feats: {int: dictionary}
         Cached features
     """
-    def __init__(self, datapath="../features_covers80", chroma_type='hpcp', shortname='benchmark', 
+    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='benchmark',
                 oti=True, kappa=0.095, tau=1, m=9, downsample_fac=40):
         self.oti = oti
         self.tau = tau
@@ -33,7 +38,7 @@ class Serra09(CoverAlgorithm):
         self.m = m
         self.downsample_fac = downsample_fac
         self.all_feats = {} # For caching features (global chroma and stacked chroma)
-        CoverAlgorithm.__init__(self, "Serra09", datapath=datapath, shortname=shortname)
+        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="Serra09", datapath=datapath, shortname=shortname)
 
     def load_features(self, i):
         if not i in self.all_feats:
@@ -58,6 +63,7 @@ class Serra09(CoverAlgorithm):
             M, N = csm.shape[0], csm.shape[1]
             D = np.zeros(M*N, dtype=np.float32)
             score = qmax(csm.flatten(), D, M, N)
+
             for key in self.Ds.keys():
                 self.Ds[key][i][j] = score
     
@@ -83,21 +89,28 @@ def global_chroma(chroma):
     return np.divide(chroma.sum(axis=0), np.max(chroma.sum(axis=0)))
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Benchmarking with Joan Serra's Cover id algorithm",
+def parser_args(args):
+    parser = argparse.ArgumentParser(sys.argv[0], description="Benchmarking with Joan Serra's Cover id algorithm",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-d", '--datapath', type=str, action="store", default='../features_covers80',
+    parser.add_argument("-i", '--dataset_csv', type=str, action="store",
+                        help="Input dataset csv file")
+    parser.add_argument("-d", '--datapath', type=str, action="store",
                         help="Path to data files")
-    parser.add_argument("-s", "--shortname", type=str, action="store", default="covers80", help="Short name for dataset")
-    parser.add_argument("-c", '--chroma_type', type=str, action="store", default='hpcp',
+    parser.add_argument("-s", "--shortname", type=str, action="store", default="covers80",
+                        help="Short name for dataset")
+    parser.add_argument("-c", '--chroma_type', type=str, action="store", default="hpcp",
                         help="Type of chroma to use for experiments")
     parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=0,
                         help="Parallel computing or not")
     parser.add_argument("-n", '--n_cores', type=int, action="store", default=1,
                         help="No of cores required for parallelization")
 
-    cmd_args = parser.parse_args()
+    return parser.parse_args(args)
 
+
+if __name__ == '__main__':
+
+    cmd_args = parser_args(sys.argv[1:])
     serra09 = Serra09(cmd_args.datapath, cmd_args.chroma_type, cmd_args.shortname)
     serra09.all_pairwise(cmd_args.parallel, cmd_args.n_cores, symmetric=True)
     serra09.normalize_by_length()
