@@ -26,6 +26,12 @@ done
 
 # Install packages and test
 for PYBIN in /opt/python/*/bin/; do
-    "${PYBIN}/pip" install acoss==0.0.1 --no-index -f /io/wheelhouse
-    (cd "$HOME"; "${PYBIN}/python -c 'from acoss import features; from pySeqAlign import qmax'")
+    if [[ "$DOCKER_IMAGE" == "acorreya/acoss-builds:manylinux1_i686" ]];
+    then
+        "${PYBIN}/pip" install  --no-index -f /io/wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_i686.whl
+    else
+        "${PYBIN}/pip" install  --no-index -f /io/wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_x86_64.whl
+    fi
+    echo "Running tests"
+    (cd "$HOME"; "${PYBIN}/python -c 'from acoss import coverid; from pySeqAlign import qmax'")
 done
