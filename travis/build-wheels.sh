@@ -2,13 +2,16 @@
 set -e -x
 
 # Compile wheels
-#for PYBIN in /opt/python/*/bin; do
-#    "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
-#    "${PYBIN}/pip" wheel /io/ -w wheelhouse/
-#done
-PYBIN=python3.6
-"${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
-"${PYBIN}/pip" wheel /io/ -w wheelhouse/
+for PYBIN in /opt/python/*/bin; do
+    if [[ "$PYBIN" == python3.6* ]];
+    then
+        "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
+        "${PYBIN}/pip" wheel /io/ -w wheelhouse/
+    else
+        echo "$PYBIN"
+    fi
+done
+
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/*.whl; do
