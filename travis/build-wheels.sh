@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e -x
 
-yum install -y install clang-3.9.0
-
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
@@ -11,7 +9,14 @@ done
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/*.whl; do
-    auditwheel repair "$whl" --plat $PLAT -w /io/wheelhouse/
+# Do not run auditwheel for six package because of a bug
+# https://github.com/pypa/python-manylinux-demo/issues/7
+    if [[ "$whl" != wheelhouse/six* ]];
+    then
+        auditwheel repair "$whl" -w /io/wheelhouse/
+    else
+        cp "$whl" /io/wheelhouse/
+    fi
 done
 
 # Install packages and test

@@ -103,7 +103,7 @@ setup(
         'scipy==1.2.1',
         'scikit-learn==0.19.2',
         'deepdish',
-        'librosa==0.6.1',
+        # 'librosa==0.6.1',
         'essentia',
     ],
     extras_require={
