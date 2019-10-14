@@ -1,9 +1,12 @@
 #!/bin/bash
 set -e -x
 
+# Use Python3.6. CentOS 5's native python is too old...
+PYBIN=/opt/python/cp36-cp36m/bin/
+
 # Compile wheels only with python3.6** versions
 for PYBIN in /opt/python/*/bin; do
-    if [[ "$PYBIN" == "/opt/python/cp36-cp36m/bin" ]];
+    if [[ "$PYBIN" == *"cp36m"* ]];
     then
         "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
         "${PYBIN}/pip" wheel /io/ -w wheelhouse/
@@ -26,12 +29,11 @@ done
 
 # Install packages and test
 for PYBIN in /opt/python/*/bin/; do
-    if [[ "$DOCKER_IMAGE" == "acorreya/acoss-builds:manylinux1_i686" ]];
+    if [[ "$PYBIN" == *"cp36m"* ]];
     then
-        "${PYBIN}/pip" install wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_i686.whl --no-index -f /io/wheelhouse/
+        "${PYBIN}/pip" install acoss --no-index -f /io/wheelhouse
+        (cd "$HOME"; "${PYBIN}/python -c 'from acoss import coverid; from pySeqAlign import qmax'")
     else
-        "${PYBIN}/pip" install wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_x86_64.whl  --no-index -f /io/wheelhouse
+        echo "$PYBIN"
     fi
-    echo "Running tests"
-    (cd "$HOME"; "${PYBIN}/python -c 'from acoss import coverid; from pySeqAlign import qmax'")
 done
