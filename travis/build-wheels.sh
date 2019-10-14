@@ -28,12 +28,12 @@ for whl in wheelhouse/*.whl; do
 done
 
 # Install packages and test
-for PYBIN in /opt/python/*/bin/; do
-    if [[ "$PYBIN" == *"cp36m"* ]];
-    then
-        "${PYBIN}/pip" install acoss --no-index -f /io/wheelhouse
-        (cd "$HOME"; "${PYBIN}/python -c 'from acoss import coverid; from pySeqAlign import qmax'")
-    else
-        echo "$PYBIN"
-    fi
-done
+#for PYBIN in /opt/python/*/bin/; do
+#    if [[ "$PYBIN" == *"cp36m"* ]];
+#    then
+#        "${PYBIN}/pip" install acoss --no-index -f /io/wheelhouse
+#        (cd "$HOME"; "${PYBIN}/python -c 'from acoss import coverid; from pySeqAlign import qmax'")
+#    else
+#        echo "$PYBIN"
+#    fi
+#done
