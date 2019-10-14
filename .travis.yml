@@ -2,8 +2,6 @@ notifications:
   email: false
 
 language: python
-python:
-  - "3.6"
 cache: pip
 
 matrix:
@@ -11,19 +9,14 @@ matrix:
     - sudo: required
       services:
         - docker
-      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
+      env: DOCKER_IMAGE=acorreya/acoss-builds:manylinux1_x86_64
            PLAT=manylinux1_x86_64
     - sudo: required
       services:
         - docker
-      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_i686
+      env: DOCKER_IMAGE=acorreya/acoss-builds:manylinux1_i686
            PRE_CMD=linux32
            PLAT=manylinux1_i686
-    - sudo: required
-      services:
-        - docker
-      env: DOCKER_IMAGE=quay.io/pypa/manylinux2010_x86_64
-           PLAT=manylinux2010_x86_64
 
 install:
   - docker pull $DOCKER_IMAGE
@@ -40,7 +33,6 @@ deploy:
   provider: script
   script:
     python3 setup.py bdist_wheel;
-    python3 setup.py upload
   on:
     branch: packaging
     condition: $TRAVIS_BRANCH == "packaging" || -n $TRAVIS_TAG

@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e -x
 
-# Build tools for using original quay.io/pypa/manylinux1_* docker images
-/io/travis/build_tools.sh
-
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt

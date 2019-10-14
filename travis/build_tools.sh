@@ -9,17 +9,6 @@ make
 make install
 cd ..
 
-# cmake is also too old
-# taglib requires CMake 2.8.0, chromaprint requires CMake 2.8.12
-curl -SLO http://www.cmake.org/files/v2.8/cmake-2.8.12.tar.gz
-tar -xvf cmake-2.8.12.tar.gz
-cd cmake-2.8.12
-./configure --prefix=/usr/local/cmake-2.8.12
-make
-make install
-PATH=/usr/local/cmake-2.8.12/bin:$PATH
-cd ..
-
 function lex_pyver {
      # Echoes Python version string padded with zeros
      # Thus:
