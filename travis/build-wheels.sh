@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e -x
 
-# Compile wheels
+# Compile wheels only with python3.6** versions
 for PYBIN in /opt/python/*/bin; do
-    if [[ "$PYBIN" == python3.6* ]];
+    if [[ "$PYBIN" == "/opt/python/cp36-cp36m/bin" ]];
     then
         "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
         "${PYBIN}/pip" wheel /io/ -w wheelhouse/
@@ -11,7 +11,6 @@ for PYBIN in /opt/python/*/bin; do
         echo "$PYBIN"
     fi
 done
-
 
 # Bundle external shared libraries into the wheels
 for whl in wheelhouse/*.whl; do
