@@ -1,0 +1,10 @@
+cython
+madmom
+numpy>=1.16.5
+pandas
+scipy==1.2.1
+scikit-learn==0.19.2
+deepdish
+matplotlib
+librosa==0.6.1
+essentia
