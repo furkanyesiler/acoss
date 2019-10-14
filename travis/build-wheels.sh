@@ -26,6 +26,6 @@ done
 
 # Install packages and test
 for PYBIN in /opt/python/*/bin/; do
-    "${PYBIN}/pip" install acoss --no-index -f /io/wheelhouse
+    "${PYBIN}/pip" install acoss==0.0.1 --no-index -f /io/wheelhouse
     (cd "$HOME"; "${PYBIN}/python -c 'from acoss import features; from pySeqAlign import qmax'")
 done
