@@ -1,4 +1,4 @@
 setuptools
 cython
 numpy>=1.16.5
-llvmlite
+https://pypi.anaconda.org/sklam/simple/llvmlite/0.24.0/llvmlite-0.24.0-cp37-cp37m-manylinux1_x86_64.whl
