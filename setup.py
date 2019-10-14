@@ -1,7 +1,4 @@
 # - * - coding: utf - 8 -
-"""
-TODO: setup pip wheels
-"""
 import sys
 import imp
 import os
@@ -10,8 +7,9 @@ from setuptools.extension import Extension
 from shutil import rmtree
 try:
     from Cython.Build import cythonize
+    import numpy as np
 except ImportError:
-    raise ImportError("Having Cython installed is required")
+    raise ImportError("Couldn't found any cython and numpy installation.")
 
 
 version = imp.load_source('acoss._version', os.path.join('acoss', '_version.py'))
@@ -82,6 +80,7 @@ setup(
     packages=find_packages(exclude=['_version.py']),
     license='AGPL3.0',
     setup_requires=['cython'],
+    include_dirs=[np.get_include()],
     ext_modules=cythonize(ext_modules, language_level=3),
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -104,7 +103,6 @@ setup(
         'scipy==1.2.1',
         'scikit-learn==0.19.2',
         'deepdish',
-        'matplotlib',
         'librosa==0.6.1',
         'essentia',
     ],
@@ -113,6 +111,5 @@ setup(
         'tests': []
     },
     cmdclass={
-        'clean': []
     },
 )
