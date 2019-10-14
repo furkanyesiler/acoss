@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e -x
 
+pip install cython
+
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
