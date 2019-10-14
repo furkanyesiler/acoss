@@ -28,9 +28,9 @@ done
 for PYBIN in /opt/python/*/bin/; do
     if [[ "$DOCKER_IMAGE" == "acorreya/acoss-builds:manylinux1_i686" ]];
     then
-        "${PYBIN}/pip" install /io/wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_i686.whl --no-index -f /io/wheelhouse/
+        "${PYBIN}/pip" install wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_i686.whl --no-index -f /io/wheelhouse/
     else
-        "${PYBIN}/pip" install /io/wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_x86_64.whl  --no-index -f /io/wheelhouse
+        "${PYBIN}/pip" install wheelhouse/acoss-0.0.1-cp36-cp36m-manylinux1_x86_64.whl  --no-index -f /io/wheelhouse
     fi
     echo "Running tests"
     (cd "$HOME"; "${PYBIN}/python -c 'from acoss import coverid; from pySeqAlign import qmax'")
