@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e -x
 
+yum install -y llvm-3.9.0-libs-3.9.0-7.el7.centos.alonid.x86_64.rpm
+
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
     "${PYBIN}/pip" install -r /io/travis/dev-requirements.txt
