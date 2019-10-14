@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e -x
 
-yum install -y llvm-3.9.0-libs-3.9.0-7.el7.centos.alonid.x86_64.rpm
+yum install -y install clang-3.9.0
 
 # Compile wheels
 for PYBIN in /opt/python/*/bin; do
