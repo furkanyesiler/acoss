@@ -30,38 +30,6 @@ ext_modules = Extension(
     language="c++"
 )
 
-
-class UploadCommand(Command):
-    """Support setup.py upload."""
-
-    description = 'Build and publish the package.'
-    user_options = []
-
-    @staticmethod
-    def status(s):
-        """Prints things in bold."""
-        print('\033[1m{0}\033[0m'.format(s))
-
-    def run(self):
-        try:
-            self.status('Removing previous builds…')
-            rmtree(os.path.join(os.getcwd(), 'dist'))
-        except OSError:
-            pass
-
-        self.status('Building Source and Wheel')
-        os.system('{0} setup.py sdist'.format(sys.executable))
-
-        self.status('Uploading the package to transfer.sh')
-        os.system('travis/deploy_transfer.sh')
-
-        self.status('Pushing git tags…')
-        os.system('git tag v{0}'.format(version))
-        os.system('git push --tags')
-
-        sys.exit()
-
-
 setup(
     name='acoss',
     version=version.version,
@@ -105,7 +73,5 @@ setup(
         'docs': [],
         'tests': []
     },
-    cmdclass={
-        'upload': UploadCommand,
-    },
+    cmdclass={},
 )
