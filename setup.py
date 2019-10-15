@@ -42,27 +42,21 @@ class UploadCommand(Command):
         """Prints things in bold."""
         print('\033[1m{0}\033[0m'.format(s))
 
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
     def run(self):
         try:
             self.status('Removing previous builds…')
-            rmtree(os.path.join(here, 'dist'))
+            rmtree(os.path.join(os.getcwd(), 'dist'))
         except OSError:
             pass
 
-        self.status('Building Source and Wheel (universal) distribution…')
-        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+        self.status('Building Source and Wheel')
+        os.system('{0} setup.py sdist'.format(sys.executable))
 
-        self.status('Uploading the package to PyPI via Twine…')
-        os.system('twine upload dist/*')
+        self.status('Uploading the package to transfer.sh')
+        os.system('travis/deploy_transfer.sh')
 
         self.status('Pushing git tags…')
-        os.system('git tag v{0}'.format(about['__version__']))
+        os.system('git tag v{0}'.format(version))
         os.system('git push --tags')
 
         sys.exit()
@@ -71,7 +65,8 @@ class UploadCommand(Command):
 setup(
     name='acoss',
     version=version.version,
-    description='Audio Cover Song Suite (acoss): A benchmarking suite for cover song identification tasks',
+    description='Audio Cover Song Suite (acoss): A feature extraction and '
+                'benchmarking suite for cover song identification tasks',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/furkanyesiler/acoss',
@@ -111,5 +106,6 @@ setup(
         'tests': []
     },
     cmdclass={
+        'upload': UploadCommand,
     },
 )
