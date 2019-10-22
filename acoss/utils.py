@@ -53,7 +53,7 @@ def savelist_to_file(path_list, filename):
     doc.close()
 
 
-def create_audio_path_batches(dataset_csv, dir_to_save, batch_size=50, root_audio_dir="./", audio_format="mp3", reset=False):
+def create_audio_path_batches(dataset_csv, dir_to_save, root_audio_dir="./", audio_format="mp3", reset=False):
 
     if not os.path.exists(dir_to_save):
         os.mkdir(dir_to_save)
@@ -61,6 +61,8 @@ def create_audio_path_batches(dataset_csv, dir_to_save, batch_size=50, root_audi
         rmtree(dir_to_save)
 
     data_paths = create_dataset_filepaths(dataset_csv, root_audio_dir, audio_format)
+    batch_size = len(data_paths)
+
     for path in data_paths:
         if not os.path.exists(path):
             raise Exception(".. Invalid audio filepath -- %s -- found in the collection file" % path)

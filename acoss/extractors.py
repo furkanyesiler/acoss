@@ -18,13 +18,11 @@ from .features import AudioFeatures
 PROFILE = {
            'sample_rate': 44100,
            'input_audio_format': '.mp3',
-           'extractor_batch_size': 50,
            'downsample_audio': False,
            'downsample_factor': 2,
            'endtime': None,
            'features': ['hpcp',
                         'key_extractor',
-                        'tempogram',
                         'madmom_features',
                         'mfcc_htk']
         }
@@ -112,7 +110,7 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
     _LOG_FILE.info("Process finished in - %s - seconds" % (start_time - time.time()))
 
 
-def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_threads, mode='parallel', params=PROFILE):
+def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_threads=-1, mode='parallel', params=PROFILE):
     """
     Compute parallelised feature extraction process from a collection of input audio file path txt files
 
@@ -130,14 +128,13 @@ def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_threads, mode
     create_audio_path_batches(dataset_csv,
                               dir_to_save=batch_file_dir,
                               root_audio_dir=audio_dir,
-                              audio_format=params['input_audio_format'],
-                              batch_size=params['extractor_batch_size'])
+                              audio_format=params['input_audio_format'])
 
     collection_files = glob.glob(batch_file_dir + '*.txt')
     feature_path = [feature_dir for i in range(len(collection_files))]
     param_list = [params for i in range(len(collection_files))]
     args = zip(collection_files, feature_path, param_list)
-    print("Computing batch feature extraction using '%s' mode the profile: %s " % (mode, params))
+    print("Computing batch feature extraction using '%s' mode the profile: %s \n" % (mode, params))
     if mode == 'parallel':
         Parallel(n_jobs=n_threads, verbose=1)(delayed(compute_features_from_list_file)\
                                               (cpath, fpath, param) for cpath, fpath, param in args)
@@ -149,6 +146,7 @@ def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_threads, mode
     else:
         raise IOError("Wrong value for the parameter 'mode'. Should be either 'single' or 'parallel'")
     savelist_to_file(_ERRORS, _LOG_PATH + _TIMESTAMP + '_erros_extractor.txt')
+    rmtree(batch_file_dir)
 
 
 if __name__ == '__main__':
