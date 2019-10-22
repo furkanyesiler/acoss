@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Batch feature extractor
-
-@2019
+Batch feature extractor for acoss
 """
 import argparse
 import datetime
@@ -157,12 +155,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="With command-line args, it does batch feature extraction of  \
             collection of audio files using multiple threads", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument("-d", "--dataset_csv", action="store", default='',
+    parser.add_argument("-d", "--dataset_csv", action="store",
                         help="path to input dataset csv file")
-    parser.add_argument("-a", "--audio_dir", action="store", default='',
+    parser.add_argument("-a", "--audio_dir", action="store",
                         help="path to the main audio directory of dataset")
     parser.add_argument("-p", "--feature_dir", action="store",
-                        help="path to directory where the audio features should be stored", default=FEATURE_DIR)
+                        help="path to directory where the audio features should be stored")
     parser.add_argument("-f", "--feature_list", action="store", type=str, default="['hpcp', 'key_extractor', "
                                                                                   "'crema', 'madmom_features', "
                                                                                   "'mfcc_htk']",
@@ -194,3 +192,4 @@ if __name__ == '__main__':
 
     print("... Done ....")
     print(" -- PROFILE INFO -- \n %s" % PROFILE)
+    rmtree(_LOG_PATH)

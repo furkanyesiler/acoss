@@ -1,22 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Some general utility functions
-
+Some general utility functions used in acoss
 """
-import datetime
 import logging
 import time
 import os
 import numpy as np
 from shutil import rmtree
 
-_LOG_PATH = "./logs/"
-_TIMESTAMP = '{:%Y-%m-%d_%H:%M:%S}'.format(datetime.datetime.now())
-
 
 def log(log_file):
     """Returns a logger object with predefined settings"""
-    log_file = _LOG_PATH + _TIMESTAMP + "_" + log_file
     root_logger = logging.getLogger(__name__)
     root_logger.setLevel(logging.DEBUG)
     file_handler = logging.FileHandler(log_file)
@@ -52,6 +46,7 @@ def read_txt_file(txt_file):
 
 
 def savelist_to_file(path_list, filename):
+
     doc = open(filename, 'w')
     for item in path_list:
         doc.write("%s\n" % item)
