@@ -19,7 +19,7 @@ class FTM2D(CoverAlgorithm):
     chroma_type: string
         Type of chroma to use (key into features)
     """
-    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
+    def __init__(self, dataset_csv, datapath, chroma_type='hpcp', shortname='Covers80', PWR=1.96, WIN=75, C=5):
         self.PWR = PWR
         self.WIN = WIN
         self.C = C

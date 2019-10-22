@@ -9,7 +9,7 @@ import sys
 def benchmark(dataset_csv,
               feature_dir,
               feature_type="hpcp",
-              method="serra09",
+              method="Serra09",
               shortname="covers80",
               parallel=True,
               n_cores=-1):

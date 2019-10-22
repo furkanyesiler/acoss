@@ -41,7 +41,8 @@ class EarlyFusion(CoverAlgorithm):
     all_block_feats: dict
         A cache of features computed by load_features
     """
-    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80', blocksize=20, mfccs_per_block=50, ssm_res=50, chromas_per_block=40, kappa=0.1, K=10, niters=5, log_times=False):
+    def __init__(self, dataset_csv, datapath, chroma_type='hpcp', shortname='Covers80', blocksize=20,
+                 mfccs_per_block=50, ssm_res=50, chromas_per_block=40, kappa=0.1, K=10, niters=5, log_times=False):
         self.chroma_type = chroma_type
         self.blocksize = blocksize
         self.mfccs_per_block = mfccs_per_block

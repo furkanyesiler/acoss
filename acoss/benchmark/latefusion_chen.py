@@ -36,7 +36,7 @@ class ChenFusion(CoverAlgorithm):
         Cached features
     """
 
-    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='benchmark',
+    def __init__(self, dataset_csv, datapath, chroma_type='hpcp', shortname='benchmark',
                  oti=True, kappa=0.095, tau=1, m=9, downsample_fac=40):
         self.oti = oti
         self.tau = tau

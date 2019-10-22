@@ -19,7 +19,7 @@ class Simple(CoverAlgorithm):
     WIN=200, the window length for the dimensionality reduction
     SKIP=100, how many frames the dim reduction will skip each step
     """
-    def __init__(self, dataset_csv, datapath="../features_covers80", chroma_type='hpcp', shortname='Covers80',
+    def __init__(self, dataset_csv, datapath, chroma_type='hpcp', shortname='Covers80',
                  SSLEN=10, WIN=200, SKIP=100):
         self.SSLEN = SSLEN
         self.WIN = WIN
