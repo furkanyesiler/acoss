@@ -68,6 +68,7 @@ setup(
         'deepdish',
         # 'librosa==0.6.1',
         'essentia',
+        'scikit-image'
     ],
     extras_require={
         'docs': [],
