@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@2019
+
 """
 import numpy as np
 import argparse

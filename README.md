@@ -6,9 +6,18 @@
 [acoss: Audio Cover Song Suite]() is a feature extraction and benchmarking frameworks for the 
 cover song identification tasks. This tool has been developed along with the new DA-TACOS dataset. 
 
+
+Please site our paper if you use this tool in your resarch.
+
+> Furkan Yesiler, Chris Tralie, Albin Correya, Diego F. Silva, Philip Tovstogan, Emilia Gómez, and Xavier Serra. Da-TACOS: A Dataset for Cover Song Identification and Understanding. In 20th International Society for Music Information Retrieval Conference (ISMIR 2019), Delft, The Netherlands, 2019.
+
+
 ## Setup & Installation
 
-We recommend you to install the python package from source. 
+We recommend you to install the package inside a python [virtualenv](https://docs.python.org/3/tutorial/venv.html). 
+
+> NOTE: You might need to have a local installation of [librosa](https://librosa.github.io/librosa/0.6.1/index.html) 
+python library.
 
 #### Install from source (recommended)
 
@@ -24,15 +33,9 @@ python3 setup.py install
 pip3 install acoss
 ```
 
-> NOTE: While using pip install, you might need to have a local installation of [librosa](https://librosa.github.io/) 
-python library.
+## Documentation
 
-## How to cite
-
-Please site our paper if you use this tool in your resarch.
-
-> Furkan Yesiler, Chris Tralie, Albin Correya, Diego F. Silva, Philip Tovstogan, Emilia Gómez, and Xavier Serra. Da-TACOS: A Dataset for Cover Song Identification and Understanding. In 20th International Society for Music Information Retrieval Conference (ISMIR 2019), Delft, The Netherlands, 2019.
-
+[TODO]
 
 ## How to contribute?
 

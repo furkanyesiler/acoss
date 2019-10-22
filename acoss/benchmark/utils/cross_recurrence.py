@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 """
-Utility functions for cross-recurrence plots and
-optimal transposition indexes
+Utility functions for cross-recurrence plots and optimal transposition indexes
 """
 import numpy as np
 from scipy import sparse

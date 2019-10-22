@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-@2019
+Serra, J., Serra, X., & Andrzejak, R. G. (2009). Cross recurrence quantification for cover song identification.
+New Journal of Physics, 11(9), 093017.
 """
 import argparse
 import librosa

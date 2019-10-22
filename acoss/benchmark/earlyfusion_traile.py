@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-@2019
+Tralie, C.J., 2017. Early mfcc and hpcp fusion for robust cover song identification. arXiv preprint arXiv:1707.04680.
 """
 import argparse
+import deepdish as dd
 try:
     from pySeqAlign import swconstrained as alignment_fn
 except ImportError:
@@ -284,6 +285,6 @@ if __name__ == '__main__':
     
     if ef.log_times:
         for s in ef.times:
-            print("%s: %.3g"%(s, np.mean(ef.times[s])))
+            print("%s: %.3g" %(s, np.mean(ef.times[s])))
 
     print("... Done ....")

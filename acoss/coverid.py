@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-
-@2019
+Interface to run the various cover id algorithms for acoss benchmarking.
 """
 import argparse
 import sys

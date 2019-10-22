@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-@2019
+Audio features used in acoss
 """
 import os
 import numpy as np

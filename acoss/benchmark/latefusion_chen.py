@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-@2019
+Chen, N., Li, W. and Xiao, H., 2018. Fusing similarity functions for cover song identification.
+Multimedia Tools and Applications, 77(2), pp.2629-2652.
 """
 import argparse
 import librosa

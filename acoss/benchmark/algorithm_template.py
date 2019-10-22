@@ -1,6 +1,6 @@
+# -*- coding: utf-8 -*-
 """
-A template class for all benchmark algorithms
-
+A template class for all benchmark algorithms in `acoss.benchmark` module
 """
 import numpy as np
 import glob

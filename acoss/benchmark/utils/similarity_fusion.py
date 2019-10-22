@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Programmer: Chris Tralie, 12/2016 (ctralie@alumni.princeton.edu)
 Purpose: To implement similarity network fusion approach described in
