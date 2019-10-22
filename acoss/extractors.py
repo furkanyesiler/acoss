@@ -88,7 +88,7 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
     :return: None
     """
 
-    start_time = time.time()
+    start_time = time.monotonic()
     _LOG_FILE.info("\nExtracting features for %s " % input_txt_file)
     data = read_txt_file(input_txt_file)
     data = [path for path in data if os.path.exists(path)]
@@ -99,8 +99,12 @@ def compute_features_from_list_file(input_txt_file, feature_dir, params=PROFILE)
     for song in data:
         try:
             feature_dict = compute_features(audio_path=song, params=params)
+            work_id = song.split('/')[-2]
+            work_dir = "%s%s/" % (feature_dir, work_id)
+            if not os.path.exists(work_dir):
+                os.makedirs(work_dir)
             # save as h5
-            dd.io.save(feature_dir + os.path.basename(song).replace(params['input_audio_format'], '') + '.h5',
+            dd.io.save(work_dir + os.path.basename(song).replace(params['input_audio_format'], '') + '.h5',
                        feature_dict)
         except:
             _ERRORS.append(input_txt_file)

@@ -70,10 +70,10 @@ def create_audio_path_batches(dataset_csv, dir_to_save, root_audio_dir="./", aud
         raise UserWarning("Batch size shouldn't be greater than the size of audio file")
     song_chunks = np.array_split(data_paths, batch_size)
     for idx, chunk in enumerate(song_chunks):
-        savelist_to_file(chunk, dir_to_save + str(idx) + '_th_batch.txt')
+        savelist_to_file(chunk, dir_to_save + str(idx) + '_batch.txt')
 
 
-def create_dataset_filepaths(dataset_csv, root_audio_dir="./", file_format=".mp3"):
+def create_dataset_filepaths(dataset_csv, root_audio_dir, file_format=".mp3"):
     import pandas as pd
     dataset = pd.read_csv(dataset_csv)
     dataset['filepath'] = dataset.apply(lambda x: root_audio_dir + x.work_id + "/" + x.track_id + file_format, axis=1)
