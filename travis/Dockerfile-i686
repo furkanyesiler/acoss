@@ -1,0 +1,7 @@
+FROM quay.io/pypa/manylinux1_i686:latest
+
+COPY build_tools.sh ./
+
+RUN /build_tools.sh && rm -r /build_tools.sh
+
+CMD ["/bin/bash"]
