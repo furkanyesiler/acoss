@@ -35,5 +35,5 @@ deploy:
     python3 setup.py bdist_wheel;
     travis/deploy_bashupload.sh
   on:
-    branch: packaging
-    condition: $TRAVIS_BRANCH == "packaging" || -n $TRAVIS_TAG
+    branch: master
+    condition: $TRAVIS_BRANCH == "master" || -n $TRAVIS_TAG
