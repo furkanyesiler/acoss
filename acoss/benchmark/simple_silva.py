@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 """
 
+<<<<<<< HEAD:acoss/benchmark/simple_silva.py
 """
 import argparse
 import scipy
 import numpy as np
+import librosa
 from librosa import util
 from librosa import filters
 from .algorithm_template import CoverAlgorithm
+
+import argparse
 
 
 class Simple(CoverAlgorithm):
