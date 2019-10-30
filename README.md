@@ -10,7 +10,7 @@ cover song identification (CSI) tasks. This tool has been developed along with t
 `acoss` includes a standard feature extraction framework with state-of-art audio features for CSI task and open source implementations of seven state-of-the-art CSI algorithms to facilitate the future work in this
 line of research. Using this framework, researchers can easily compare existing algorithms on different datasets,
 and we encourage all CSI researchers to incorporate their
-algorithms into this framework which can easily done following the [documentation](). 
+algorithms into this framework which can easily done following the usage examples. 
 
 
 Please site our paper if you use this tool in your resarch.
@@ -22,9 +22,6 @@ Please site our paper if you use this tool in your resarch.
 
 We recommend you to install the package inside a python [virtualenv](https://docs.python.org/3/tutorial/venv.html). 
 
-> NOTE: You might need to have a local installation of [librosa](https://librosa.github.io/librosa/0.6.1/index.html) 
-python library.
-
 #### Install from source (recommended)
 
 - Clone or download the repo.
@@ -35,15 +32,19 @@ python3 setup.py install
 
 OR
 
-#### Install using pip
+#### Install using pip (currenly only of linux distros)
 
 ```bash
-pip3 install acoss
+pip install acoss
 ```
 
-## Documentation
 
-Please check out the [documentation]() for more details.
+> NOTE: You might need to have a local installation of [librosa](https://librosa.github.io/librosa/0.6.1/index.html)
+python library and other optional dependencies.
+
+## Usages
+
+The usage examples will be updated soon here.
 
 ## How to contribute?
 
