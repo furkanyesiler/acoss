@@ -22,6 +22,9 @@ Please site our paper if you use this tool in your resarch.
 
 We recommend you to install the package inside a python [virtualenv](https://docs.python.org/3/tutorial/venv.html). 
 
+> NOTE: You might need to have a local installation of [librosa](https://librosa.github.io/librosa/0.6.1/index.html)
+python library.
+
 #### Install from source (recommended)
 
 - Clone or download the repo.
@@ -35,16 +38,12 @@ OR
 #### Install using pip (currenly only of linux distros)
 
 ```bash
-pip install acoss
+pip3 install acoss
 ```
-
-
-> NOTE: You might need to have a local installation of [librosa](https://librosa.github.io/librosa/0.6.1/index.html)
-python library and other optional dependencies.
 
 ## Usages
 
-The usage examples will be updated soon here.
+The usage examples will be updated here soon.
 
 ## How to contribute?
 
