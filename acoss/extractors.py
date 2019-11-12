@@ -149,7 +149,7 @@ def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_threads=-1, m
         print("Single mode feature extraction finished in %s" % (time.monotonic() - tic))
     else:
         raise IOError("Wrong value for the parameter 'mode'. Should be either 'single' or 'parallel'")
-    savelist_to_file(_ERRORS, _LOG_PATH + _TIMESTAMP + '_erros_extractor.txt')
+    savelist_to_file(_ERRORS, _LOG_PATH + _TIMESTAMP + '_erros_acoss.extractors.txt')
     rmtree(batch_file_dir)
 
 

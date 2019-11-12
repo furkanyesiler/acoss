@@ -306,11 +306,17 @@ class AudioFeatures(object):
         crema: ndarray(n_frames, 12)
             The crema coefficients at each frame
         """
-        crema_feature = _call_func_on_python_version("3.6",
-                                                     ".features",
-                                                     "_wrapper_crema_feature",
-                                                     [self.audio_vector, self.fs, self.hop_length])
-        return crema_feature
+        import crema
+        from scipy import interpolate
+
+        model = crema.models.chord.ChordModel()
+        data = model.outputs(y=self.audio_vector, sr=self.fs)
+        fac = (float(self.fs) / 44100.0) * 4096.0 / self.hop_length
+        times_orig = fac * np.arange(len(data['chord_bass']))
+        nwins = int(np.floor(float(self.audio_vector.size) / self.hop_length))
+        times_new = np.arange(nwins)
+        interp = interpolate.interp1d(times_orig, data['chord_pitch'].T, kind='nearest', fill_value='extrapolate')
+        return interp(times_new).T
 
     def two_d_fft_mag(self, feature_type='chroma_cqt', display=False):
         """
@@ -574,30 +580,3 @@ def display_chroma(chroma, hop_length=512, fs=44100):
     """
     from librosa.display import specshow
     specshow(chroma.T, x_axis='time', y_axis='chroma', hop_length=hop_length, sr=fs)
-
-
-def _call_func_on_python_version(Version, Module, Function, ArgumentList):
-    """Wrapper to call functions across different python versions"""
-    import execnet
-    gw = execnet.makegateway("popen//python=python%s" % Version)
-    channel = gw.remote_exec("""
-        from %s import %s as the_function
-        channel.send(the_function(*channel.receive()))
-    """ % (Module, Function))
-    channel.send(ArgumentList)
-    return channel.receive()
-
-
-def _wrapper_crema_feature(audio_vector, sr, hop_length):
-    """wrapper callback func to run crema feature computation in different python shell"""
-    import crema
-    from scipy import interpolate
-
-    model = crema.models.chord.ChordModel()
-    data = model.outputs(y=audio_vector, sr=sr)
-    fac = (float(sr) / 44100.0) * 4096.0 / hop_length
-    times_orig = fac * np.arange(len(data['chord_bass']))
-    nwins = int(np.floor(float(audio_vector.size) / hop_length))
-    times_new = np.arange(nwins)
-    interp = interpolate.interp1d(times_orig, data['chord_pitch'].T, kind='nearest', fill_value='extrapolate')
-    return interp(times_new).T

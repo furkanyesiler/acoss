@@ -4,8 +4,10 @@ Some general utility functions used in acoss
 """
 import logging
 import time
+import json
 import os
 import numpy as np
+import pandas as pd
 from shutil import rmtree
 
 
@@ -46,7 +48,6 @@ def read_txt_file(txt_file):
 
 
 def savelist_to_file(path_list, filename):
-
     doc = open(filename, 'w')
     for item in path_list:
         doc.write("%s\n" % item)
@@ -54,7 +55,7 @@ def savelist_to_file(path_list, filename):
 
 
 def create_audio_path_batches(dataset_csv, dir_to_save, root_audio_dir="./", audio_format="mp3", reset=False):
-
+    """Create batches of audio file paths for batch processing given a input dataset_csv annotation"""
     if not os.path.exists(dir_to_save):
         os.mkdir(dir_to_save)
     elif reset:
@@ -74,7 +75,25 @@ def create_audio_path_batches(dataset_csv, dir_to_save, root_audio_dir="./", aud
 
 
 def create_dataset_filepaths(dataset_csv, root_audio_dir, file_format=".mp3"):
-    import pandas as pd
+    """Constructs audio file paths from dataset csv annotation.
+    eg: For a csv file with two columns `work_id, track_id`
+        the audio path will be "root_audio_dir/work_id/track_id.mp3"
+    """
     dataset = pd.read_csv(dataset_csv)
     dataset['filepath'] = dataset.apply(lambda x: root_audio_dir + x.work_id + "/" + x.track_id + file_format, axis=1)
     return dataset.filepath.tolist()
+
+
+def da_tacos_metadata_to_csv(dataset_json, output_csv):
+    """Parse da-tacos dataset metadata json file to csv file required for acoss"""
+    with open(dataset_json) as f:
+        dataset = json.load(f)
+    work_ids = list()
+    perf_ids = list()
+    for work_id in dataset.keys():
+        work_ids.append(work_id)
+        perf_id = dataset[work_id].keys()[0]
+        perf_ids.append(perf_id)
+    df = pd.DataFrame({'work_id': work_ids, 'track_id': perf_ids})
+    df.to_csv(output_csv, index=False)
+
