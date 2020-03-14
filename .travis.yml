@@ -19,6 +19,6 @@ jobs:
 install: pip install -e .
           
 script: 
-  - pip instal cython
+  - pip install cython
   - pip install .[extra-deps]
   - python3 test/basetest.py
