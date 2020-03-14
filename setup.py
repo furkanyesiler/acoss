@@ -51,8 +51,10 @@ setup(
     extras_require={
         'docs': [],
         'tests': [],
-        'extra-deps': ['essentia', 'madmom'],
+        'extra-deps': ['cython>=0.29.13',
+                        'essentia', 
+                        'madmom>=0.16.1'],
         'machine_learning': []
     },
     cmdclass={},
-)
+)   
