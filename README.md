@@ -1,6 +1,6 @@
 # acoss: Audio Cover Song Suite
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/acoss.svg)](https://pypi.python.org/pypi/acoss/)
 [![Build Status](https://travis-ci.org/furkanyesiler/acoss.svg?branch=master)](https://travis-ci.org/furkanyesiler/acoss)
-[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 [acoss: Audio Cover Song Suite](https://github.com/furkanyesiler/acoss) is a feature extraction and benchmarking frameworks for the 
@@ -50,7 +50,14 @@ For linux-based distro users,
 pip install "acoss[extra-deps]"
 ```
 
-or if you are a Mac OSX user, you can install `essentia` from homebrew 
+or if you are a Mac OSX user, 
+
+you can install madmom from pip
+```
+pip install madmom
+```
+
+you can install `essentia` from homebrew 
 ```
 brew tap MTG/essentia
 brew install essentia --HEAD
@@ -83,7 +90,7 @@ brew install essentia --HEAD
 
 
 ### [`acoss.extractors.batch_feature_extractor`]()
-```json
+```
 {
 	"chroma_cens": numpy.ndarray,
 	"crema": numpy.ndarray,
@@ -132,7 +139,7 @@ feature = dd.load("feature_file.h5")
 
 An example feature file will be in the following structure.
 
- ```json
+ ```
 {
     'feature_1': [],
     'feature_2': [],
