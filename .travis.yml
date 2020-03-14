@@ -17,6 +17,7 @@ jobs:
       python: 3.8        
       
 install: pip install -e .
-         pip install .[extra-deps]
           
-script: python3 test/basetest.py
+script: 
+  - pip install .[extra-deps]
+  - python3 test/basetest.py
