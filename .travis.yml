@@ -2,38 +2,18 @@ notifications:
   email: false
 
 language: python
+
 cache: pip
 
-matrix:
+jobs:
   include:
-    - sudo: required
-      services:
-        - docker
-      env: DOCKER_IMAGE=acorreya/acoss-builds:manylinux1_x86_64
-           PLAT=manylinux1_x86_64
-    - sudo: required
-      services:
-        - docker
-      env: DOCKER_IMAGE=acorreya/acoss-builds:manylinux1_i686
-           PRE_CMD=linux32
-           PLAT=manylinux1_i686
-
-install:
-  - docker pull $DOCKER_IMAGE
-
-script:
-  - docker run --rm -e PLAT=$PLAT -v `pwd`:/io $DOCKER_IMAGE $PRE_CMD /io/travis/build_wheels.sh
-  - ls wheelhouse/
-  - pip3 install cython
-  - if [ -d "dist/" ]; then rm -Rf dist/; fi
-  - python setup.py sdist
-  - travis/deploy_transfer.sh
-
-deploy:
-  provider: script
-  script:
-    python3 setup.py bdist_wheel;
-    travis/deploy_bashupload.sh
-  on:
-    branch: master
-    condition: $TRAVIS_BRANCH == "master" || -n $TRAVIS_TAG
+    - name: "Python 3.8.0 on Xenial Linux"
+      python: 3.6
+    - name: "Python 3.8.0 on Xenial Linux"
+      python: 3.7   
+    - name: "Python 3.8.0 on Xenial Linux"
+      python: 3.8        
+      
+install: cd travis/ && install_acoss.sh  
+          
+script: python3 test/basetest.py
