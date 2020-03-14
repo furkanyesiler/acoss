@@ -2,33 +2,12 @@
 import sys
 import imp
 import os
-from setuptools import setup, find_packages, Command
-from setuptools.extension import Extension
-from shutil import rmtree
-try:
-    from Cython.Build import cythonize
-    import numpy as np
-except ImportError:
-    raise ImportError("Couldn't found any cython and numpy installation.")
-
+from setuptools import setup, find_packages
 
 version = imp.load_source('acoss._version', os.path.join('acoss', '_version.py'))
 
 with open('README.md') as file:
     long_description = file.read()
-
-
-extra_compile_args = ["-Ofast"]
-extra_link_args = []
-
-
-ext_modules = Extension(
-    "pySeqAlign",
-    sources=["acoss/benchmark/utils/alignment_tools/pySeqAlign.pyx"],
-    extra_compile_args=extra_compile_args,
-    extra_link_args=extra_link_args,
-    language="c++"
-)
 
 setup(
     name='acoss',
@@ -40,11 +19,8 @@ setup(
     url='https://github.com/furkanyesiler/acoss',
     author='Albin Correya, Furkan Yesiler, Chris Traile, Philip Tovstogan, and Diego Silva',
     author_email='albin.correya@upf.edu',
-    packages=find_packages(exclude=['_version.py']),
+    packages=find_packages(),
     license='AGPL3.0',
-    setup_requires=['cython'],
-    include_dirs=[np.get_include()],
-    ext_modules=cythonize(ext_modules, language_level=3),
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: GNU Affero General Public License v3',
@@ -53,25 +29,30 @@ setup(
         'Topic :: Multimedia :: Sound/Audio :: Analysis',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
     keywords='audio music dsp musicinformationretireval coversongidentification',
     project_urls={
         'Source': 'https://github.com/furkanyesiler/acoss',
         'Tracker': 'https://github.com/furkanyesiler/acoss/issues',
     },
+    include_package_data=True,
+    package_data={'': ['data/*.csv']},
     install_requires=[
-        'madmom',
         'numpy>=1.16.5',
-        'pandas',
+        'numba>=0.43.0',
+        'pandas>=0.25.0',
         'scipy==1.2.1',
         'scikit-learn==0.19.2',
-        'deepdish',
-        # 'librosa==0.6.1',
-        'essentia',
+        'deepdish>=0.3.6',
+        'librosa==0.6.1',
+        'progress>=1.5'
     ],
     extras_require={
         'docs': [],
-        'tests': []
+        'tests': [],
+        'extra-deps': ['essentia', 'madmom'],
+        'machine_learning': []
     },
     cmdclass={},
 )
