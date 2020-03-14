@@ -1,5 +1,0 @@
-setuptools
-cython
-numpy>=1.16.5
-madmom
-essentia
