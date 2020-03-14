@@ -5,6 +5,8 @@ language: python
 
 cache: pip
 
+group: travis_latest
+
 jobs:
   include:
     - name: "Python 3.8.0 on Xenial Linux"
@@ -14,6 +16,6 @@ jobs:
     - name: "Python 3.8.0 on Xenial Linux"
       python: 3.8        
       
-install: cd travis/ && install_acoss.sh  
+install: pip install -e .  
           
 script: python3 test/basetest.py
