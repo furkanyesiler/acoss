@@ -10,10 +10,8 @@ group: travis_latest
 jobs:
   include:
     - name: "Python 3.6 on Xenial Linux"
-      python: 3.5
-    - name: "Python 3.7 on Xenial Linux"
       python: 3.6   
-    - name: "Python 3.8 on Xenial Linux"
+    - name: "Python 3.7 on Xenial Linux"
       python: 3.7        
       
 install: pip install -e .
