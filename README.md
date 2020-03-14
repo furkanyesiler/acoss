@@ -1,6 +1,7 @@
 # acoss: Audio Cover Song Suite
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/acoss.svg)](https://pypi.python.org/pypi/acoss/)
 [![Build Status](https://travis-ci.org/furkanyesiler/acoss.svg?branch=master)](https://travis-ci.org/furkanyesiler/acoss)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/acoss.svg)](https://pypi.python.org/pypi/acoss/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 [acoss: Audio Cover Song Suite](https://github.com/furkanyesiler/acoss) is a feature extraction and benchmarking frameworks for the 
