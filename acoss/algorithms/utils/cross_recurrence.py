@@ -4,8 +4,10 @@ Utility functions for cross-recurrence plots and optimal transposition indexes
 """
 import numpy as np
 from scipy import sparse
+from numba import jit
 
 
+@jit(nopython=True)
 def get_ssm(X):
     """
     Fast code for computing the Euclidean self-similarity
@@ -25,7 +27,7 @@ def get_ssm(X):
     np.fill_diagonal(DSqr, 0)
     return np.sqrt(DSqr)
 
-
+@jit(nopython=True)
 def get_csm(X, Y):
     """
     Return the Euclidean cross-similarity matrix between the M points
@@ -48,7 +50,7 @@ def get_csm(X, Y):
 
 get_csm_euclidean = get_csm
 
-
+@jit(nopython=True)
 def get_csm_cosine(X, Y):
     """
     Return the cosine distance between all vectors in X
@@ -70,7 +72,7 @@ def get_csm_cosine(X, Y):
     D = 1 - D # Make sure distance 0 is the same and distance 2 is the most different
     return D
 
-
+@jit(nopython=True)
 def get_oti(C1, C2, do_plot = False):
     """
     Get the optimial transposition of the first chroma vector
@@ -100,7 +102,7 @@ def get_oti(C1, C2, do_plot = False):
         plt.show()
     return np.argmax(shiftScores)
 
-
+@jit(nopython=True)
 def get_csm_blocked_oti(X, Y, C1, C2, csm_fn):
     """
     Get the cosine distance between each row of X
@@ -131,7 +133,7 @@ def get_csm_blocked_oti(X, Y, C1, C2, csm_fn):
     X1 = np.reshape(X1, [X.shape[0], ChromasPerBlock*NChromaBins])
     return csm_fn(X1, Y)
 
-
+@jit(nopython=True)
 def csm_to_binary(D, kappa):
     """
     Turn a cross-similarity matrix into a binary cross-simlarity matrix, using partitions instead of

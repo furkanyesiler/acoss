@@ -4,22 +4,15 @@ Chen, N., Li, W. and Xiao, H., 2018. Fusing similarity functions for cover song 
 Multimedia Tools and Applications, 77(2), pp.2629-2652.
 """
 import argparse
-import librosa
 
-try:
-    from pySeqAlign import qmax, dmax
-except ImportError:
-    raise ImportError("Cannot import pySeqAlign cython module.")
+from essentia.standard import ChromaCrossSimilarity, CoverSongSimilarity
+from librosa.util import sync
+
 from .algorithm_template import CoverAlgorithm
 from .utils.cross_recurrence import *
 from .utils.similarity_fusion import *
 
-
-def global_chroma(chroma):
-    """Computes global chroma of a input chroma vector"""
-    if chroma.shape[1] not in [12, 24, 36]:
-        raise IOError("Wrong axis for the input chroma array. Expected shape '(frame_size, bin_size)'")
-    return np.divide(chroma.sum(axis=0), np.max(chroma.sum(axis=0)))
+__all_ = ['ChenFusion']
 
 
 class ChenFusion(CoverAlgorithm):
@@ -47,35 +40,37 @@ class ChenFusion(CoverAlgorithm):
         self.m = m
         self.downsample_fac = downsample_fac
         self.all_feats = {}  # For caching features (global chroma and stacked chroma)
-        CoverAlgorithm.__init__(self, dataset_csv, name="ChenFusion", similarity_types=["qmax", "dmax"],
+        CoverAlgorithm.__init__(self, dataset_csv, name="LateFusionChen", similarity_types=["qmax", "dmax"],
                                 datapath=datapath, shortname=shortname)
 
     def load_features(self, i):
         if not i in self.all_feats:
             feats = CoverAlgorithm.load_features(self, i)
-            # First compute global chroma (used for OTI later)
             chroma = feats[self.chroma_type]
-            gchroma = global_chroma(chroma)
             # Now downsample the chromas using median aggregation
-            chroma = librosa.util.sync(chroma.T, np.arange(0, chroma.shape[0], self.downsample_fac),
-                                       aggregate=np.median)
-            # Finally, do a stacked delay embedding
-            stacked = librosa.feature.stack_memory(chroma, self.tau, self.m).T
-            feats = {'gchroma': gchroma, 'stacked': stacked}
-            self.all_feats[i] = feats
+            chroma = sync(chroma.T, 
+                        np.arange(0, chroma.shape[0], 
+                        self.downsample_fac),
+                        aggregate=np.median)
+            self.all_feats[i] = chroma.T
         return self.all_feats[i]
 
     def similarity(self, idxs):
         for i, j in zip(idxs[:, 0], idxs[:, 1]):
-            Si = self.load_features(i)
-            Sj = self.load_features(j)
-            csm = get_csm_blocked_oti(Si['stacked'], Sj['stacked'], Si['gchroma'], Sj['gchroma'], get_csm_euclidean)
-            csm = csm_to_binary(csm, self.kappa)
-            M, N = csm.shape[0], csm.shape[1]
-            D = np.zeros(M * N, dtype=np.float32)
-            self.Ds["qmax"][i, j] = qmax(csm.flatten(), D, M, N)
-            D *= 0
-            self.Ds["dmax"][i, j] = dmax(csm.flatten(), D, M, N)
+            query = self.load_features(i)
+            reference = self.load_features(j)
+            # create instance of cover similarity algorithms from essentia
+            crp_algo = ChromaCrossSimilarity(frameStackSize=self.m, 
+                                            frameStackStride=self.tau, 
+                                            binarizePercentile=self.kappa, 
+                                            oti=self.oti)
+            qmax_algo = CoverSongSimilarity(alignmentType='serra09', distanceType='symmetric')
+            dmax_algo = CoverSongSimilarity(alignmentType='chen17', distanceType='symmetric')
+            csm = crp_algo(query, reference)
+            _, qmax = qmax_algo(csm)
+            _, dmax = dmax_algo(csm)
+            self.Ds["qmax"][i, j] = qmax
+            self.Ds["dmax"][i, j] = dmax
 
     def normalize_by_length(self):
         """
@@ -83,8 +78,8 @@ class ChenFusion(CoverAlgorithm):
         """
         N = len(self.filepaths)
         for j in range(N):
-            f = self.load_features(j)
-            norm_fac = np.sqrt(f['stacked'].shape[0])
+            feature = self.load_features(j)
+            norm_fac = np.sqrt(feature.shape[0])
             for i in range(N):
                 for key in self.Ds:
                     self.Ds[key][i, j] = norm_fac / self.Ds[key][i, j]

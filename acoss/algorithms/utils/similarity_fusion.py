@@ -143,7 +143,6 @@ def getS(W, K):
     S = sparse.coo_matrix((V, (I, J)), shape=(N, N)).tocsr()
     return S
 
-
 def doSimilarityFusionWs(Ws, K = 5, niters = 20, reg_diag = 1):
     """
     Perform similarity fusion between a set of exponentially
@@ -196,41 +195,41 @@ def doSimilarityFusion(Scores, K = 5, niters = 5, reg_diag = 1):
     Ws = [getW(D, K) for D in Scores]
     return (Ws, doSimilarityFusionWs(Ws, K, niters, reg_diag))
 
-def testSimilarityFusion():
-    """
-    Test similarity fusion on SSMs from one of the
-    songs in the covers80 dataset
-    """
-    from EarlyFusion import EarlyFusion, get_ssm, get_csm_blocked_cosine_oti
-    ef = EarlyFusion()
-    tic = time.time()
-    features = ef.load_features(2)
-    print("Elapsed Time Block Features: %.3g"%(time.time()-tic))
-    fnames = [f for f in features if '_W' in f]
-    Ws = [features[f] for f in fnames]
+# def testSimilarityFusion():
+#     """
+#     Test similarity fusion on SSMs from one of the
+#     songs in the covers80 dataset
+#     """
+#     from EarlyFusion import EarlyFusion, get_ssm, get_csm_blocked_cosine_oti
+#     ef = EarlyFusion()
+#     tic = time.time()
+#     features = ef.load_features(2)
+#     print("Elapsed Time Block Features: %.3g"%(time.time()-tic))
+#     fnames = [f for f in features if '_W' in f]
+#     Ws = [features[f] for f in fnames]
 
-    DFPython = doSimilarityFusionWs(Ws, K=10, niters=5)
-    np.fill_diagonal(DFPython, 0)
-    import matplotlib.pyplot as plt
-    plt.figure(figsize=(6*len(fnames)+6, 6))
-    for k, f in enumerate(fnames):
-        plt.subplot(1, len(fnames)+1, k+1)
-        W = Ws[k]
-        np.fill_diagonal(W, 0)
-        plt.imshow(W)
-        plt.title(f)
-    plt.subplot(1, len(fnames)+1, len(fnames)+1)
-    plt.imshow(DFPython)
-    plt.title("Fused")
-    plt.show()
+#     DFPython = doSimilarityFusionWs(Ws, K=10, niters=5)
+#     np.fill_diagonal(DFPython, 0)
+#     import matplotlib.pyplot as plt
+#     plt.figure(figsize=(6*len(fnames)+6, 6))
+#     for k, f in enumerate(fnames):
+#         plt.subplot(1, len(fnames)+1, k+1)
+#         W = Ws[k]
+#         np.fill_diagonal(W, 0)
+#         plt.imshow(W)
+#         plt.title(f)
+#     plt.subplot(1, len(fnames)+1, len(fnames)+1)
+#     plt.imshow(DFPython)
+#     plt.title("Fused")
+#     plt.show()
 
-def testSNFTime():
-    N = 2000
-    Ds = [np.random.randn(N, N) for i in range(3)]
-    tic = time.time()
-    Ws, DF = doSimilarityFusion(Ds, K=10, niters=6)
-    print("Elapsed Time: %.3g"%(time.time()-tic))
+# def testSNFTime():
+#     N = 2000
+#     Ds = [np.random.randn(N, N) for i in range(3)]
+#     tic = time.time()
+#     Ws, DF = doSimilarityFusion(Ds, K=10, niters=6)
+#     print("Elapsed Time: %.3g"%(time.time()-tic))
 
-if __name__ == '__main__':
-    testSimilarityFusion()
-    #testSNFTime()
+# if __name__ == '__main__':
+#     testSimilarityFusion()
+#     #testSNFTime()

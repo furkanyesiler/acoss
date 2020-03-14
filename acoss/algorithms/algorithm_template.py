@@ -7,8 +7,11 @@ import glob
 import os
 import deepdish as dd
 import warnings
+from progress.bar import Bar
 
 from ..utils import create_dataset_filepaths
+
+__all__ = ['CoverAlgorithm']
 
 
 class CoverAlgorithm(object):
@@ -26,7 +29,7 @@ class CoverAlgorithm(object):
     """
     def __init__(self,
                  dataset_csv,
-                 name="Generic",
+                 name="Serra09",
                  datapath="features_benchmark",
                  shortname="full",
                  cachedir="cache",
@@ -34,6 +37,8 @@ class CoverAlgorithm(object):
         """
         Parameters
         ----------
+        dataset_csv: string
+            path to the dataset annotation csv file
         name: string
             Name of the algorithm
         datapath: string
@@ -165,19 +170,26 @@ class CoverAlgorithm(object):
             else:
                 all_pairs = [(i, j) for idx, (i, j) in enumerate(permutations(range(len(self.filepaths)), 2))]
             chunks = np.array_split(all_pairs, 45)
+
             if parallel == 1:
                 from joblib import Parallel, delayed
                 Parallel(n_jobs=n_cores, verbose=1)(
                     delayed(self.similarity)(chunks[i]) for i in range(len(chunks)))
                 self.get_all_clique_ids() # Since nothing has been cached
             else:
+                progressbar = Bar('Running pairwise between all combinations of query and reference song', 
+                                max=len(all_pairs) + len(self.Ds) , 
+                                suffix='%(index)d/%(max)d - %(percent).1f%% - %(eta)ds')
                 for idx, (i, j) in enumerate(all_pairs):
                     self.similarity(np.array([[i, j]]))
                     if idx % 100 == 0:
                         print((i, j))
+                    progressbar.next()
             if symmetric:
                 for similarity_type in self.Ds:
                     self.Ds[similarity_type] += self.Ds[similarity_type].T
+                    progressbar.next()
+            progressbar.finish()
             dd.io.save(h5filename, self.Ds)    
 
     def cleanup_memmap(self):
@@ -229,7 +241,6 @@ class CoverAlgorithm(object):
             if i >= startidx + Ks[kidx]:
                 startidx += Ks[kidx]
                 kidx += 1
-                print(startidx)
                 if Ks[kidx] < 2:
                     # We're done once we get to a clique with less than 2
                     # since cliques are sorted in descending order
@@ -263,7 +274,7 @@ class CoverAlgorithm(object):
             print("Top-%i: %i"%(topsidx[i], tops[i]))
         
         # Output to CSV file
-        resultsfile = "results_%s.csv"%self.shortname
+        resultsfile = "results_%s_%s.csv" % (self.shortname, self.name)
         if not os.path.exists(resultsfile):
             fout = open(resultsfile, "w")
             fout.write("name, MR, MRR, MDR, MAP")
@@ -278,4 +289,3 @@ class CoverAlgorithm(object):
         fout.write("\n")
         fout.close()
         return MR, MRR, MDR, MAP, tops
-

@@ -7,6 +7,7 @@ import argparse
 import scipy
 from .algorithm_template import CoverAlgorithm
 
+__all__ = ['FTM2D']
 
 class FTM2D(CoverAlgorithm):
     """

@@ -10,6 +10,16 @@ import numpy as np
 import pandas as pd
 from shutil import rmtree
 
+from acoss import __path__ as acoss_pkg_path
+
+ACOSS_PATH = acoss_pkg_path[0]
+# csv files with annotations required for acoss benchmarking for da-tacos benchmark subset 
+# https://mtg.github.io/da-tacos/
+DA_TACOS_BENCHMARK_CSV = os.path.join(ACOSS_PATH,"data/da-tacos_benchmark_subset.csv")
+# csv files with annotations required for acoss benchmarking for covers80 dataset 
+# https://labrosa.ee.columbia.edu/projects/coversongs/covers80/
+COVERS_80_CSV = os.path.join(ACOSS_PATH, "data/covers80_annotations.csv")
+
 
 def log(log_file):
     """Returns a logger object with predefined settings"""
@@ -26,7 +36,7 @@ def log(log_file):
 
 
 def timeit(method):
-    """A custom timeit profiling decorator from Stackoverflow"""
+    """A custom timeit profiling decorator"""
     def timed(*args, **kw):
         ts = time.time()
         result = method(*args, **kw)
@@ -54,7 +64,7 @@ def savelist_to_file(path_list, filename):
     doc.close()
 
 
-def create_audio_path_batches(dataset_csv, dir_to_save, root_audio_dir="./", audio_format="mp3", reset=False):
+def create_audio_path_batches(dataset_csv, dir_to_save, root_audio_dir="./", audio_format=".mp3", reset=False):
     """Create batches of audio file paths for batch processing given a input dataset_csv annotation"""
     if not os.path.exists(dir_to_save):
         os.mkdir(dir_to_save)
@@ -80,20 +90,43 @@ def create_dataset_filepaths(dataset_csv, root_audio_dir, file_format=".mp3"):
         the audio path will be "root_audio_dir/work_id/track_id.mp3"
     """
     dataset = pd.read_csv(dataset_csv)
+
+    warn = ("Wrong input dataset csv annotation file '%s'. Expected a csv file with the columns of key 'work_id', 'track_id'" 
+            % dataset_csv)
+
+    for key in dataset.keys().tolist():
+        if key not in ['work_id', 'track_id']:
+            raise IOError(warn)
+
     dataset['filepath'] = dataset.apply(lambda x: root_audio_dir + x.work_id + "/" + x.track_id + file_format, axis=1)
     return dataset.filepath.tolist()
 
 
-def da_tacos_metadata_to_csv(dataset_json, output_csv):
+def da_tacos_metadata_to_acoss_csv(datacos_metadata_json, output_csv):
     """Parse da-tacos dataset metadata json file to csv file required for acoss"""
-    with open(dataset_json) as f:
+    with open(datacos_metadata_json) as f:
         dataset = json.load(f)
     work_ids = list()
     perf_ids = list()
     for work_id in dataset.keys():
-        work_ids.append(work_id)
-        perf_id = dataset[work_id].keys()[0]
-        perf_ids.append(perf_id)
+        for perf_id in dataset[work_id].keys():
+            perf_ids.append(perf_id)
+            work_ids.append(work_id)
     df = pd.DataFrame({'work_id': work_ids, 'track_id': perf_ids})
     df.to_csv(output_csv, index=False)
 
+
+def generate_covers80_acoss_csv(covers80_audio_data_path, output_csv):
+    """Generate acoss csv annotation file from covers80 audio data folder"""
+    work_ids = list()
+    track_ids = list()
+    for work_label in os.listdir(covers80_audio_data_path):
+        work_path = os.path.join(covers80_audio_data_path, work_label)
+        if os.path.isdir(work_path):
+            for track in os.listdir(work_path):
+                if track.endswith('.mp3'):
+                    track_ids.append(track.replace('.mp3', ''))
+                    work_ids.append(work_label)
+    
+    df = pd.DataFrame({'work_id': work_ids, 'track_id': track_ids})
+    df.to_csv(output_csv, index=False)

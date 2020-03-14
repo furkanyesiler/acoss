@@ -10,6 +10,9 @@ import librosa
 from essentia import Pool, array, run
 
 
+__all__ = ['AudioFeatures']
+
+
 class AudioFeatures(object):
     """
     Class containing methods to compute various audio features
@@ -34,13 +37,17 @@ class AudioFeatures(object):
     """
 
     def __init__(self, audio_file, mono=True, hop_length=512, sample_rate=44100, normalize_gain=False, verbose=False):
-        """
-        :param audio_file:
-        :param mono:
-        :param hop_length:
-        :param sample_rate:
-        :param normalize_gain:
-        :param verbose:
+        """[summary]
+        
+        Arguments:
+            audio_file {[type]} -- [description]
+        
+        Keyword Arguments:
+            mono {bool} -- [description] (default: {True})
+            hop_length {int} -- [description] (default: {512})
+            sample_rate {int} -- [description] (default: {44100})
+            normalize_gain {bool} -- [description] (default: {False})
+            verbose {bool} -- [description] (default: {False})
         """
         self.hop_length = hop_length
         self.fs = sample_rate
@@ -54,7 +61,17 @@ class AudioFeatures(object):
                   % (audio_file, self.audio_vector.shape, self.fs))
 
     def resample_audio(self, target_sample_rate):
-        """Downsample a audio into a target sample rate"""
+        """Downsample a audio into a target sample rate
+        
+        Arguments:
+            target_sample_rate {[type]} -- [description]
+        
+        Raises:
+            ValueError: If `target_sample_rate` is less than the sample rate of given audio data.
+        
+        Returns:
+            [type] -- [description]
+        """
         if target_sample_rate > self.fs:
             raise ValueError("Target_sample_rate should be lower than %s" % self.fs)
         resampler = estd.Resample(inputSampleRate=self.fs, outputSampleRate=target_sample_rate, quality=1)

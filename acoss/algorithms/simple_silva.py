@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-
-<<<<<<< HEAD:acoss/benchmark/simple_silva.py
+Diego Furtado Silva, Chin-Chia Michael Yeh, Gustavo E.A.P.A. Batista, and Eamonn J. Keogh. 
+SiMPle: Assessing music similarity using subsequences joins.
+17th International Society for Music Information
+Retrieval Conference (ISMIR 2016),
 """
 import argparse
 import scipy
 import numpy as np
-import librosa
 from librosa import util
 from librosa import filters
 from .algorithm_template import CoverAlgorithm
 
-import argparse
-
+__all__ = ['Simple']
 
 class Simple(CoverAlgorithm):
     """
@@ -29,7 +29,7 @@ class Simple(CoverAlgorithm):
         self.WIN = WIN
         self.SKIP = SKIP
         self.chroma_type = chroma_type
-        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="Simple", datapath=datapath, shortname=shortname)
+        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="SiMPle", datapath=datapath, shortname=shortname)
 
     def load_features(self, i, do_plot=False):
         feats = CoverAlgorithm.load_features(self, i)

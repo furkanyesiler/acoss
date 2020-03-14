@@ -3,65 +3,109 @@
 Interface to run the various cover id algorithms for acoss benchmarking.
 """
 import argparse
+import time
 import sys
+import os
+from shutil import rmtree
+
+from .utils import log
+
+__all__ = ['benchmark', 'algorithm_names']
+
+_LOG_FILE_PATH = "acoss.coverid.log"
+_LOGGER = log(_LOG_FILE_PATH)
+
+# list the available cover song identification algorithms in acoss
+algorithm_names = ["Serra09", "EarlyFusionTraile", "LateFusionChen", "FTM2D", "SiMPle"]
 
 
 def benchmark(dataset_csv,
               feature_dir,
               feature_type="hpcp",
-              method="Serra09",
+              algorithm="Serra09",
               shortname="covers80",
               parallel=True,
-              n_cores=-1):
-    """A wrapper function to run specific benchmark cover id algorithms (TODO)"""
+              n_workers=-1):
+    """Benchmark a specific cover id algorithm with a given input dataset annotation csv file.
+    
+    Arguments:
+        dataset_csv {string} -- path to dataset csv annotation file
+        feature_dir {string} -- path to the directory where the pre-computed audio features are stored
+    
+    Keyword Arguments:
+        feature_type {str} -- type of audio feature you want to use for benchmarking. (default: {"hpcp"})
+        algorithm {str} -- name of the algorithm you want to benchmark (default: {"Serra09"})
+        shortname {str} -- description (default: {"DaTacos-Benchmark"})
+        parallel {bool} -- whether you want to run the benchmark process with parallel workers (default: {True})
+        n_workers {int} -- number of workers required. By default it uses as much workers available on the system. (default: {-1})
+    
+    Raises:
+        NotImplementedError: when an given algorithm method in not implemented in acoss.benchmark
+    """
 
-    if method == "Serra09":
-        from .benchmark.rqa_serra09 import Serra09
+    if algorithm not in algorithm_names:
+        warn = ("acoss.coverid: Couldn't find '%s' algorithm in acoss \
+                                Available cover id algorithms are %s "
+                                % (algorithm, str(algorithm_names)))
+        _LOGGER.debug(warn)
+        raise NotImplementedError(warn)
+
+    _LOGGER.info("Running acoss cover identification benchmarking for the algorithm - '%s'" % algorithm)
+
+    start_time = time.monotonic()
+
+    if algorithm == "Serra09":
+        from .algorithms.rqa_serra09 import Serra09
         # here run the algo
         serra09 = Serra09(dataset_csv=dataset_csv,
                           datapath=feature_dir,
                           chroma_type=feature_type,
                           shortname=shortname)
-        serra09.all_pairwise(parallel, n_cores, symmetric=True)
+        _LOGGER.info('Computing pairwise similarity...')
+        serra09.all_pairwise(parallel, n_cores=n_workers, symmetric=True)
         serra09.normalize_by_length()
+        _LOGGER.info('Running benchmark evaluations on the given dataset - %s' % dataset_csv)
         for similarity_type in serra09.Ds.keys():
-            print(similarity_type)
             serra09.getEvalStatistics(similarity_type)
         serra09.cleanup_memmap()
 
-    elif method == "EarlyFusion":
-        from .benchmark.earlyfusion_traile import EarlyFusion
+    elif algorithm == "EarlyFusion":
+        from .algorithms.earlyfusion_traile import EarlyFusion
 
         early_fusion = EarlyFusion(dataset_csv=dataset_csv,
                                    datapath=feature_dir,
                                    chroma_type=feature_type,
                                    shortname=shortname)
+        _LOGGER.info('Feature loading done...')
         for i in range(len(early_fusion.filepaths)):
-            print("Preloading features %i of %i" % (i + 1, len(early_fusion.filepaths)))
             early_fusion.load_features(i)
-        early_fusion.all_pairwise(parallel, n_cores, symmetric=True)
+        _LOGGER.info('Computing pairwise similarity...')
+        early_fusion.all_pairwise(parallel, n_cores=n_workers, symmetric=True)
         early_fusion.do_late_fusion()
+        _LOGGER.info('Running benchmark evaluations on the given dataset - %s' % dataset_csv)
         for similarity_type in early_fusion.Ds:
             early_fusion.getEvalStatistics(similarity_type)
         early_fusion.cleanup_memmap()
 
-    elif method == "ChenFusion":
-        from .benchmark.latefusion_chen import ChenFusion
+    elif algorithm  == "LateFusionChen":
+        from .algorithms.latefusion_chen import ChenFusion
 
         chenFusion = ChenFusion(dataset_csv=dataset_csv,
                                 datapath=feature_dir,
                                 chroma_type=feature_type,
                                 shortname=shortname)
-        chenFusion.all_pairwise(parallel, n_cores, symmetric=True)
+        _LOGGER.info('Computing pairwise similarity...')
+        chenFusion.all_pairwise(parallel, n_cores=n_workers, symmetric=True)
         chenFusion.normalize_by_length()
         chenFusion.do_late_fusion()
+        _LOGGER.info('Running benchmark evaluations on the given dataset - %s' % dataset_csv)
         for similarity_type in chenFusion.Ds.keys():
-            print(similarity_type)
+            _LOGGER.info(similarity_type)
             chenFusion.getEvalStatistics(similarity_type)
         chenFusion.cleanup_memmap()
 
-    elif method == "FTM2D":
-        from .benchmark.ftm2d import FTM2D
+    elif algorithm == "FTM2D":
+        from .algorithms.ftm2d import FTM2D
 
         ftm2d = FTM2D(dataset_csv=dataset_csv,
                       datapath=feature_dir,
@@ -69,14 +113,16 @@ def benchmark(dataset_csv,
                       shortname=shortname)
         for i in range(len(ftm2d.filepaths)):
             ftm2d.load_features(i)
-        print('Feature loading done.')
-        ftm2d.all_pairwise(parallel, n_cores, symmetric=True)
+        _LOGGER.info('Feature loading done...')
+        _LOGGER.info('Computing pairwise similarity...')
+        ftm2d.all_pairwise(parallel, n_cores=n_workers, symmetric=True)
+        _LOGGER.info('Running benchmark evaluations on the given dataset - %s' % dataset_csv)
         for similarity_type in ftm2d.Ds.keys():
             ftm2d.getEvalStatistics(similarity_type)
         ftm2d.cleanup_memmap()
 
-    elif method == "Simple":
-        from .benchmark.simple_silva import Simple
+    elif algorithm == "SiMPle":
+        from .algorithms.simple_silva import Simple
 
         simple = Simple(dataset_csv=dataset_csv,
                         datapath=feature_dir,
@@ -84,20 +130,22 @@ def benchmark(dataset_csv,
                         shortname=shortname)
         for i in range(len(simple.filepaths)):
             simple.load_features(i)
-        print('Feature loading done.')
-        simple.all_pairwise(parallel, n_cores, symmetric=False)
+        _LOGGER.info('Feature loading done...')
+        _LOGGER.info('Computing pairwise similarity...')
+        simple.all_pairwise(parallel, n_cores=n_workers, symmetric=False)
+        _LOGGER.info('Running benchmark evaluations on the given dataset - %s' % dataset_csv)
         for similarity_type in simple.Ds.keys():
             simple.getEvalStatistics(similarity_type)
         simple.cleanup_memmap()
-    else:
-        raise NotImplementedError("Cannot find the inputted method in the benchmark algorithm lists")
-    return
+
+    _LOGGER.info("acoss.coverid benchmarking finsihed in %s" % (time.monotonic() - start_time))
+    _LOGGER.info("Log file located at '%s'" % _LOG_FILE_PATH)
 
 
 def parser_args(cmd_args):
 
     parser = argparse.ArgumentParser(sys.argv[0], description="Benchmark a specific cover id algorithm with a given"
-                                                              "input dataset",
+                                                              "input dataset csv annotations",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-i", '--dataset_csv', type=str, action="store",
                         help="Input dataset csv file")
@@ -107,10 +155,10 @@ def parser_args(cmd_args):
                         help="Short name for dataset")
     parser.add_argument("-c", '--chroma_type', type=str, action="store", default="hpcp",
                         help="Type of chroma to use for experiments")
-    parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=0,
+    parser.add_argument("-p", '--parallel', type=int, choices=(0, 1), action="store", default=1,
                         help="Parallel computing or not")
-    parser.add_argument("-n", '--n_cores', type=int, action="store", default=-1,
-                        help="No of cores required for parallelization")
+    parser.add_argument("-n", '--n_workers', type=int, action="store", default=-1,
+                        help="No of workers required for parallelization")
 
     return parser.parse_args(cmd_args)
 
@@ -124,5 +172,4 @@ if __name__ == '__main__':
               feature_type=args.c,
               method=args.m,
               parallel=bool(args.p),
-              n_cores=args.m)
-
+              n_workers=args.m)

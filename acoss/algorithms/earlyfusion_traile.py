@@ -4,13 +4,13 @@ Tralie, C.J., 2017. Early mfcc and hpcp fusion for robust cover song identificat
 """
 import argparse
 import deepdish as dd
-try:
-    from pySeqAlign import swconstrained as alignment_fn
-except ImportError:
-    raise ImportError("Cannot import pySeqAlign cython module.")
 from .algorithm_template import CoverAlgorithm
+from .utils.alignment_tools import smith_waterman_constrained as alignment_fn
 from .utils.cross_recurrence import *
 from .utils.similarity_fusion import *
+
+__all__ = ['EarlyFusion']
+
 
 """====================================================
             FEATURE COMPUTATION/COMPARISON
@@ -54,7 +54,7 @@ class EarlyFusion(CoverAlgorithm):
         self.log_times = log_times
         if log_times:
             self.times = {'features': [], 'raw': []}
-        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="EarlyFusion", datapath=datapath,
+        CoverAlgorithm.__init__(self, dataset_csv=dataset_csv, name="EarlyFusionTraile", datapath=datapath,
                                 shortname=shortname, similarity_types=["mfccs", "ssms", "chromas", "early"])
 
     def get_cacheprefix(self):
@@ -165,17 +165,14 @@ class EarlyFusion(CoverAlgorithm):
             CSMs = {}
             tic = time.time()
             CSMs['mfccs'] = get_csm(feats1['mfccs'], feats2['mfccs'])
-            M, N = CSMs['mfccs'].shape[0], CSMs['mfccs'].shape[1]
-            D = np.zeros((M+1)*(N+1), dtype=np.float32)
-            scores['mfccs'] = alignment_fn(csm_to_binary(CSMs['mfccs'], self.kappa).flatten(), D, M, N)
+            scores['mfccs'] = alignment_fn(csm_to_binary(CSMs['mfccs'], self.kappa))
             CSMs['ssms'] = get_csm(feats1['ssms'], feats2['ssms'])
-            D *= 0
-            scores['ssms'] = alignment_fn(csm_to_binary(CSMs['ssms'], self.kappa).flatten(), D, M, N)
+   
+            scores['ssms'] = alignment_fn(csm_to_binary(CSMs['ssms'], self.kappa))
             CSMs['chromas'] = get_csm_blocked_oti(feats1['chromas'], feats2['chromas'], \
                                                         feats1['chroma_med'], feats2['chroma_med'],\
                                                         get_csm_cosine)
-            D *= 0
-            scores['chromas'] = alignment_fn(csm_to_binary(CSMs['chromas'], self.kappa).flatten(), D, M, N)
+            scores['chromas'] = alignment_fn(csm_to_binary(CSMs['chromas'], self.kappa))
 
             ## Step 2: Compute Ws for each CSM
             W_CSMs = {s:getWCSM(CSMs[s], self.K, self.K) for s in CSMs}
@@ -183,8 +180,7 @@ class EarlyFusion(CoverAlgorithm):
             for s in W_CSMs:
                 WCSM_sum += W_CSMs[s]
             WCSM_sum = np.exp(-WCSM_sum) # Binary thresholding uses "distances" so switch back
-            D *= 0
-            scores['early'] = alignment_fn(csm_to_binary(WCSM_sum, self.kappa).flatten(), D, M, N)
+            scores['early'] = alignment_fn(csm_to_binary(WCSM_sum, self.kappa))
             if do_plot:
                 import matplotlib.pyplot as plt
                 plt.figure(figsize=(12, 6))

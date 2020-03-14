@@ -4,15 +4,15 @@ Serra, J., Serra, X., & Andrzejak, R. G. (2009). Cross recurrence quantification
 New Journal of Physics, 11(9), 093017.
 """
 import argparse
-import librosa
 import sys
 
-try:
-    from pySeqAlign import qmax
-except ImportError:
-    raise ImportError("Cannot import pySeqAlign cython module.")
+from essentia.standard import ChromaCrossSimilarity, CoverSongSimilarity
+from librosa.util import sync
+
 from .algorithm_template import CoverAlgorithm
 from .utils.cross_recurrence import *
+
+__all__ = ['Serra09']
 
 
 class Serra09(CoverAlgorithm):
@@ -43,28 +43,28 @@ class Serra09(CoverAlgorithm):
 
     def load_features(self, i):
         if not i in self.all_feats:
+            # Load features from file
             feats = CoverAlgorithm.load_features(self, i)
-            # First compute global chroma (used for OTI later)
+            # Load selected chroma feature
             chroma = feats[self.chroma_type]
-            gchroma = global_chroma(chroma)
             # Now downsample the chromas using median aggregation
-            chroma = librosa.util.sync(chroma.T, np.arange(0, chroma.shape[0], self.downsample_fac), aggregate=np.median)
-            # Finally, do a stacked delay embedding
-            stacked = librosa.feature.stack_memory(chroma, self.tau, self.m).T
-            feats = {'gchroma':gchroma, 'stacked':stacked}
-            self.all_feats[i] = feats
+            chroma = sync(chroma.T, np.arange(0, chroma.shape[0], self.downsample_fac), aggregate=np.median)
+            self.all_feats[i] = chroma.T
         return self.all_feats[i]
 
     def similarity(self, idxs):
         for i,j in zip(idxs[:, 0], idxs[:, 1]):
-            Si = self.load_features(i)
-            Sj = self.load_features(j)
-            csm = get_csm_blocked_oti(Si['stacked'], Sj['stacked'], Si['gchroma'], Sj['gchroma'], get_csm_euclidean)
-            csm = csm_to_binary(csm, self.kappa)
-            M, N = csm.shape[0], csm.shape[1]
-            D = np.zeros(M*N, dtype=np.float32)
-            score = qmax(csm.flatten(), D, M, N)
-
+            query = self.load_features(i)
+            reference = self.load_features(j)
+            # create instance of cover similarity algorithms from essentia
+            crp_algo = ChromaCrossSimilarity(frameStackSize=self.m, 
+                                            frameStackStride=self.tau, 
+                                            binarizePercentile=self.kappa, 
+                                            oti=self.oti)
+            alignment_algo = CoverSongSimilarity(alignmentType='serra09', distanceType='symmetric')
+            # compute similarity
+            csm = crp_algo(query, reference)
+            _, score = alignment_algo(csm)
             for key in self.Ds.keys():
                 self.Ds[key][i][j] = score
     
@@ -74,20 +74,13 @@ class Serra09(CoverAlgorithm):
         """
         for key in self.Ds.keys():
             for j in range(self.Ds[key].shape[1]):
-                f = self.load_features(j)
-                norm_fac = np.sqrt(f['stacked'].shape[0])
+                feature = self.load_features(j)
+                norm_fac = np.sqrt(feature.shape[0])
                 for i in range(self.Ds[key].shape[0]):     
                     # Do the reciprocal of what's written in the paper, since
                     # the evaluation statistics assume something with a higher
                     # score is more similar
                     self.Ds[key][i, j] /= norm_fac
-
-
-def global_chroma(chroma):
-    """Computes global chroma of a input chroma vector"""
-    if chroma.shape[1] not in [12, 24, 36]:
-        raise IOError("Wrong axis for the input chroma array. Expected shape '(frame_size, bin_size)'")
-    return np.divide(chroma.sum(axis=0), np.max(chroma.sum(axis=0)))
 
 
 def parser_args(args):
