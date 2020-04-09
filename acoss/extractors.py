@@ -147,7 +147,7 @@ def batch_feature_extractor(dataset_csv, audio_dir, feature_dir, n_workers=-1, m
     args = zip(collection_files, feature_path, param_list)
     _LOG_FILE.info("Computing batch feature extraction using '%s' mode the profile: %s \n" % (mode, params))
     if mode == 'parallel':
-        Parallel(n_jobs=n_threads, verbose=1)(delayed(compute_features_from_list_file)\
+        Parallel(n_jobs=n_workers, verbose=1)(delayed(compute_features_from_list_file)\
                                               (cpath, fpath, param) for cpath, fpath, param in args)
     elif mode == 'single':
         tic = time.monotonic()
