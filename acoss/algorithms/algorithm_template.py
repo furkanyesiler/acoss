@@ -185,11 +185,10 @@ class CoverAlgorithm(object):
                     if idx % 100 == 0:
                         print((i, j))
                     progressbar.next()
+                progressbar.finish()
             if symmetric:
                 for similarity_type in self.Ds:
                     self.Ds[similarity_type] += self.Ds[similarity_type].T
-                    progressbar.next()
-            progressbar.finish()
             dd.io.save(h5filename, self.Ds)    
 
     def cleanup_memmap(self):
