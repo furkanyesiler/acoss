@@ -20,8 +20,8 @@ import skimage
 import time
 import glob
 
-from ..benchmark.utils.similarity_fusion import *
-from ..benchmark.utils.cross_recurrence import *
+from ..algorithms.utils.similarity_fusion import *
+from ..algorithms.utils.cross_recurrence import *
 
 
 def getRandomWalkLaplacianEigsDense(W, neigs):
